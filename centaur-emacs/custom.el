@@ -9,10 +9,22 @@
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
 (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
-(setq centaur-icon t)                        ; Display icons or not: t or nil
+(setq centaur-icon nil)                        ; Display icons or not: t or nil
+
+
+(add-hook 'prog-mode-hook
+          (lambda()
+            (display-line-numbers-mode -1)) )
+(add-hook 'prog-mode-hook (lambda()(flyspell-mode -1)) )
+(add-hook 'prog-mode-hook (lambda()(global-diff-hl-mode -1)) )
+(add-hook 'prog-mode-hook (lambda()(diff-hl-flydiff-mode -1)) )
+(add-hook 'prog-mode-hook (lambda()(highlight-indent-guides-mode -1)) )
+(add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
+(add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
+
 
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'pro)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 ;; (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
@@ -87,10 +99,12 @@
  '(company-tooltip-idle-delay 0)
  '(custom-safe-themes
    '("7a994c16aa550678846e82edc8c9d6a7d39cc6564baaaacc305a3fdc0bd8725f" default))
+ '(doom-modeline-mode t)
  '(fci-rule-color "#a3a1a1")
  '(jdee-db-active-breakpoint-face-colors (cons "#f2f2f2" "#4271ae"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#f2f2f2" "#718c00"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#f2f2f2" "#a5a4a5"))
+ '(lsp-ui-doc-delay 0.13)
  '(lsp-ui-doc-position 'top)
  '(ns-alternate-modifier 'super)
  '(ns-command-modifier 'meta)
@@ -98,6 +112,8 @@
  '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff"))
  '(rustic-ansi-faces
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
+ '(scroll-conservatively 0)
+ '(scroll-step 0)
  '(vc-annotate-background "#ffffff")
  '(vc-annotate-color-map
    (list

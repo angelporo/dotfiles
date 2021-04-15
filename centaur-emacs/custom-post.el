@@ -1,16 +1,27 @@
+
+
 ;;; 开启 dired 修改文件权限功能
 (setq wdired-allow-to-change-permissions t)
 
-(add-hook 'prog-mode-hook
-          (lambda()
-            (display-line-numbers-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(flyspell-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(global-diff-hl-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(diff-hl-flydiff-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(highlight-indent-guides-mode -1)) )
-(add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
-(add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
+(use-package company-tabnine
+  :ensure t
+  :init
+  (add-to-list 'company-backends #'company-tabnine)
+  :config
+  (setq company-idle-delay 0.0
+        company-tooltip-idle-delay 0.0
+        company-show-numbers t
+        company-minimum-prefix-length 1
+        lsp-headerline-breadcrumb-mode t)
+  )
+
+
+(use-package company
+  :config
+  (define-key company-active-map (kbd "M-/") 'company-other-backend)
+  (define-key company-active-map (kbd "C-i") 'yas-expand)
+  )
 
 
 (use-package sis
