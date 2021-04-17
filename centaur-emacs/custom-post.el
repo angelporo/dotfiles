@@ -1,5 +1,3 @@
-
-
 ;;; 开启 dired 修改文件权限功能
 (setq wdired-allow-to-change-permissions t)
 
@@ -16,6 +14,7 @@
         lsp-headerline-breadcrumb-mode t)
   )
 
+(global-hungry-delete-mode -1)
 
 (use-package company
   :config
