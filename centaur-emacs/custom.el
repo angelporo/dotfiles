@@ -94,6 +94,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
+ '(centaur-icon t)
  '(centaur-package-archives 'melpa)
  '(centaur-theme 'day)
  '(company-tooltip-idle-delay 0)
