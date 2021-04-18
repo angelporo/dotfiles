@@ -1,5 +1,7 @@
 ;;; 开启 dired 修改文件权限功能
-(setq wdired-allow-to-change-permissions t)
+(setq wdired-allow-to-change-permissions t
+      lsp-ui-doc-position 'top
+      )
 
 
 (use-package company-tabnine
