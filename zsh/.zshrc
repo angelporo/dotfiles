@@ -107,3 +107,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 alias ga='git add .'
 alias gs='git status'
 alias gcm='git commit -m'
+
+
+
+export PATH="/usr/local/opt/qt@5/bin:$PATH"
