@@ -16,7 +16,8 @@
         lsp-headerline-breadcrumb-mode t)
   )
 
-(global-hungry-delete-mode -1)
+
+;; 关闭sub word
 
 (use-package company
   :config

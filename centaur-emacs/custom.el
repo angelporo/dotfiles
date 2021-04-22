@@ -7,24 +7,27 @@
 ;; (setq centaur-logo nil)                        ; Logo file or nil (official logo)
 (setq centaur-full-name "angelporo")              ; User full name
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
-(setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
+;; (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon nil)                        ; Display icons or not: t or nil
 
 
-(add-hook 'prog-mode-hook
-          (lambda()
-            (display-line-numbers-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(flyspell-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(global-diff-hl-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(diff-hl-flydiff-mode -1)) )
-(add-hook 'prog-mode-hook (lambda()(highlight-indent-guides-mode -1)) )
+(add-hook 'prog-mode-hook (lambda()
+                            (global-subword-mode -1)
+                            (global-subword-mode -1)
+                            (global-hungry-delete-mode -1)
+                            (highlight-indent-guides-mode -1)
+                            (diff-hl-flydiff-mode -1)
+                            (global-diff-hl-mode -1)
+                            (flyspell-mode -1)
+                            (display-line-numbers-mode -1)
+                            ))
 (add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
 (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
 
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'night)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-package-archives 'emacs-china)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 ;; (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
