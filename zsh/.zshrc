@@ -111,3 +111,6 @@ alias gcm='git commit -m'
 
 
 export PATH="/usr/local/opt/qt@5/bin:$PATH"
+# flutter file
+export PATH="$HOME/.flutter/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"

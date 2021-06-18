@@ -11,10 +11,9 @@
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon nil)                        ; Display icons or not: t or nil
 
-
 (add-hook 'prog-mode-hook (lambda()
-                            (global-subword-mode -1)
-                            (global-subword-mode -1)
+                            ;; (global-subword-mode -1)
+                            ;; (global-subword-mode -1)
                             (global-hungry-delete-mode -1)
                             (highlight-indent-guides-mode -1)
                             (diff-hl-flydiff-mode -1)
@@ -22,11 +21,11 @@
                             (flyspell-mode -1)
                             (display-line-numbers-mode -1)
                             ))
-(add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
-(add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
+;; (add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
+;; (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
 
-(setq centaur-package-archives 'emacs-china)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+(setq centaur-package-archives 'bfsu)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
 (setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 ;; (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
@@ -34,8 +33,8 @@
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
 (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode typescript-mode js-mode css-mode web-mode)) ; Ignore format on save for some languages
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
-;; (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
-;; (setq centaur-prettify-org-symbols-alist nil)  ; Alist of symbol prettifications for `org-mode'
+(setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
+(setq centaur-prettify-org-symbols-alist nil)  ; Alist of symbol prettifications for `org-mode'
 
 ;; For Emacs devel
 ;; (setq package-user-dir (locate-user-emacs-file (format "elpa-%s" emacs-major-version)))
@@ -97,6 +96,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
+ '(centaur-completion-style 'minibuffer)
  '(centaur-icon t)
  '(centaur-package-archives 'melpa)
  '(centaur-theme 'day)
@@ -108,16 +108,20 @@
  '(jdee-db-active-breakpoint-face-colors (cons "#f2f2f2" "#4271ae"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#f2f2f2" "#718c00"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#f2f2f2" "#a5a4a5"))
+ '(js-jsx-indent-level 2)
  '(lsp-ui-doc-delay 0.13)
  '(lsp-ui-doc-position 'top)
  '(ns-alternate-modifier 'super)
  '(ns-command-modifier 'meta)
  '(objed-cursor-color "#c82829")
- '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff"))
+ '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff") t)
+ '(prettier-js-show-errors 'echo)
  '(rustic-ansi-faces
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
  '(scroll-conservatively 0)
  '(scroll-step 0)
+ '(typescript-expr-indent-offset 0)
+ '(typescript-indent-level 2)
  '(vc-annotate-background "#ffffff")
  '(vc-annotate-color-map
    (list
@@ -155,9 +159,14 @@
  '(diff-hl-delete ((t (:inherit diff-removed :background nil))))
  '(diff-hl-insert ((t (:inherit diff-added :background nil))))
  '(doom-modeline-buffer-file ((t (:inherit (mode-line bold)))))
+ '(flycheck-posframe-background-face ((t (:inherit tooltip))))
+ '(flycheck-posframe-border-face ((t (:inherit font-lock-comment-face))))
+ '(flycheck-posframe-face ((t (:foreground "#718c00"))))
+ '(flycheck-posframe-info-face ((t (:foreground "#718c00"))))
  '(git-timemachine-minibuffer-author-face ((t (:inherit success))))
  '(git-timemachine-minibuffer-detail-face ((t (:inherit warning))))
  '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
+ '(ivy-posframe-border ((t (:background "#a5a4a5"))))
  '(lsp-headerline-breadcrumb-path-error-face ((t :underline (:style wave :color "#ff6c6b") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-hint-face ((t :underline (:style wave :color "#98be65") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-info-face ((t :underline (:style wave :color "#98be65") :inherit lsp-headerline-breadcrumb-path-face)))
@@ -175,6 +184,8 @@
  '(pulse-highlight-face ((t (:inherit region))))
  '(pulse-highlight-start-face ((t (:inherit region))))
  '(symbol-overlay-default-face ((t (:inherit (region bold)))))
+ '(transient-posframe-border ((t (:background "#a5a4a5"))))
+ '(which-key-posframe-border ((t (:background "#a5a4a5"))))
  '(ztreep-arrow-face ((t (:inherit font-lock-comment-face))))
  '(ztreep-diff-header-face ((t (:inherit (diff-header bold)))))
  '(ztreep-diff-header-small-face ((t (:inherit diff-file-header))))
