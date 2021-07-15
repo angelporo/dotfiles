@@ -12,18 +12,21 @@
 (setq centaur-icon nil)                        ; Display icons or not: t or nil
 
 (add-hook 'prog-mode-hook (lambda()
-                            ;; (global-subword-mode -1)
-                            ;; (global-subword-mode -1)
+                            (global-subword-mode -1)
                             (global-hungry-delete-mode -1)
                             (highlight-indent-guides-mode -1)
                             (diff-hl-flydiff-mode -1)
                             (global-diff-hl-mode -1)
                             (flyspell-mode -1)
+                            (magit-todos-mode -1)
                             (display-line-numbers-mode -1)
+                            (setq scroll-step            1
+                                  scroll-conservatively  0)
                             ))
-;; (add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
-;; (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
+(setq frame-resize-pixelwise t)
+(add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
+(add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
 (setq centaur-package-archives 'bfsu)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
 (setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
@@ -99,7 +102,8 @@
  '(centaur-completion-style 'minibuffer)
  '(centaur-icon t)
  '(centaur-package-archives 'melpa)
- '(centaur-theme 'day)
+ '(centaur-theme 'night)
+ '(company-async-redisplay-delay 0)
  '(company-tooltip-idle-delay 0)
  '(custom-safe-themes
    '("7a994c16aa550678846e82edc8c9d6a7d39cc6564baaaacc305a3fdc0bd8725f" default))
