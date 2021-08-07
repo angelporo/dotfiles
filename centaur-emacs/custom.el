@@ -4,7 +4,7 @@
 ;;;       Put your own configurations in custom-post.el to override default configurations.
 ;;; Code:
 
-;; (setq centaur-logo nil)                        ; Logo file or nil (official logo)
+(setq centaur-logo nil)                        ; Logo file or nil (official logo)
 (setq centaur-full-name "angelporo")              ; User full name
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
 ;; (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
@@ -20,17 +20,14 @@
                             (flyspell-mode -1)
                             (magit-todos-mode -1)
                             (display-line-numbers-mode -1)
-                            (setq scroll-step            1
-                                  scroll-conservatively  0)
                             ))
-
-(setq frame-resize-pixelwise t)
+(frame-resize-pixelwise t)
 (add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
 (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
-(setq centaur-package-archives 'bfsu)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
-;; (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
+(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+(setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
@@ -97,18 +94,29 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(all-the-icons-color-icons t)
  '(ansi-color-names-vector
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
  '(centaur-completion-style 'minibuffer)
  '(centaur-icon t)
  '(centaur-package-archives 'melpa)
- '(centaur-theme 'night)
- '(company-async-redisplay-delay 0)
+ '(company-async-redisplay-delay 0.0)
+ '(company-begin-commands '(self-insert-command))
+ '(company-box-doc-delay 0.2)
+ '(company-box-enable-icon nil)
+ '(company-idle-delay 0)
+ '(company-minimum-prefix-length 3)
+ '(company-tabnine-max-restart-count 40)
+ '(company-tabnine-show-annotation nil)
+ '(company-tabnine-wait 0.2)
  '(company-tooltip-idle-delay 0)
  '(custom-safe-themes
-   '("7a994c16aa550678846e82edc8c9d6a7d39cc6564baaaacc305a3fdc0bd8725f" default))
+   '("4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "fe2539ccf78f28c519541e37dc77115c6c7c2efcec18b970b16e4a4d2cd9891d" "7a994c16aa550678846e82edc8c9d6a7d39cc6564baaaacc305a3fdc0bd8725f" default))
  '(doom-modeline-mode t)
  '(fci-rule-color "#a3a1a1")
+ '(font-lock-maximum-size 50000000)
+ '(gc-cons-percentage 0.5)
+ '(gc-cons-threshold 536870912)
  '(jdee-db-active-breakpoint-face-colors (cons "#f2f2f2" "#4271ae"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#f2f2f2" "#718c00"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#f2f2f2" "#a5a4a5"))
@@ -119,10 +127,13 @@
  '(ns-command-modifier 'meta)
  '(objed-cursor-color "#c82829")
  '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff") t)
+ '(prettier-js-args
+   '("--trailing-comma" "all" "--bracket-spacing" "false" "--arrow-parens" "avoid" "--print-width" "100" "--tab-width" "2" "--no-semi" "true" "--jsx-single-quote" "true"))
  '(prettier-js-show-errors 'echo)
  '(rustic-ansi-faces
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
- '(scroll-conservatively 0)
+ '(scroll-conservatively 100000)
+ '(scroll-preserve-screen-position nil)
  '(scroll-step 0)
  '(typescript-expr-indent-offset 0)
  '(typescript-indent-level 2)
@@ -148,7 +159,9 @@
     (cons 340 "#a3a1a1")
     (cons 360 "#a3a1a1")))
  '(vc-annotate-very-old-color nil)
- '(warning-minimum-level :error))
+ '(warning-minimum-level :error)
+ '(warning-suppress-types '((org-roam)))
+ '(web-mode-auto-close-style 1))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -170,6 +183,7 @@
  '(git-timemachine-minibuffer-author-face ((t (:inherit success))))
  '(git-timemachine-minibuffer-detail-face ((t (:inherit warning))))
  '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
+ '(ivy-posframe ((t (:inherit tooltip))))
  '(ivy-posframe-border ((t (:background "#a5a4a5"))))
  '(lsp-headerline-breadcrumb-path-error-face ((t :underline (:style wave :color "#ff6c6b") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-hint-face ((t :underline (:style wave :color "#98be65") :inherit lsp-headerline-breadcrumb-path-face)))
@@ -188,7 +202,9 @@
  '(pulse-highlight-face ((t (:inherit region))))
  '(pulse-highlight-start-face ((t (:inherit region))))
  '(symbol-overlay-default-face ((t (:inherit (region bold)))))
+ '(transient-posframe ((t (:inherit tooltip))))
  '(transient-posframe-border ((t (:background "#a5a4a5"))))
+ '(which-key-posframe ((t (:inherit tooltip))))
  '(which-key-posframe-border ((t (:background "#a5a4a5"))))
  '(ztreep-arrow-face ((t (:inherit font-lock-comment-face))))
  '(ztreep-diff-header-face ((t (:inherit (diff-header bold)))))
