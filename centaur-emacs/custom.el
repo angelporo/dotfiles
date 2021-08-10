@@ -4,12 +4,13 @@
 ;;;       Put your own configurations in custom-post.el to override default configurations.
 ;;; Code:
 
-(setq centaur-logo nil)                        ; Logo file or nil (official logo)
+;; (setq centaur-logo nil)                        ; Logo file or nil (official logo)
 (setq centaur-full-name "angelporo")              ; User full name
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
 ;; (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon nil)                        ; Display icons or not: t or nil
+
 
 (add-hook 'prog-mode-hook (lambda()
                             (global-subword-mode -1)
@@ -20,13 +21,18 @@
                             (flyspell-mode -1)
                             (magit-todos-mode -1)
                             (display-line-numbers-mode -1)
+                            (setq scroll-step 0
+                                  scroll-conservatively 0
+                                  )
                             ))
-(frame-resize-pixelwise t)
+
+(setq frame-resize-pixelwise t)
+
 (add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
 (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
@@ -97,6 +103,7 @@
  '(all-the-icons-color-icons t)
  '(ansi-color-names-vector
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
+ '(centaur-auto-themes '(("8:00" . doom-one-light) ("15:00" . doom-one)))
  '(centaur-completion-style 'minibuffer)
  '(centaur-icon t)
  '(centaur-package-archives 'melpa)
@@ -105,7 +112,7 @@
  '(company-box-doc-delay 0.2)
  '(company-box-enable-icon nil)
  '(company-idle-delay 0)
- '(company-minimum-prefix-length 3)
+ '(company-minimum-prefix-length 2)
  '(company-tabnine-max-restart-count 40)
  '(company-tabnine-show-annotation nil)
  '(company-tabnine-wait 0.2)
@@ -113,8 +120,10 @@
  '(custom-safe-themes
    '("4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "fe2539ccf78f28c519541e37dc77115c6c7c2efcec18b970b16e4a4d2cd9891d" "7a994c16aa550678846e82edc8c9d6a7d39cc6564baaaacc305a3fdc0bd8725f" default))
  '(doom-modeline-mode t)
+ '(eglot-send-changes-idle-time 0.0)
  '(fci-rule-color "#a3a1a1")
  '(font-lock-maximum-size 50000000)
+ '(frame-resize-pixelwise t)
  '(gc-cons-percentage 0.5)
  '(gc-cons-threshold 536870912)
  '(jdee-db-active-breakpoint-face-colors (cons "#f2f2f2" "#4271ae"))
@@ -132,7 +141,7 @@
  '(prettier-js-show-errors 'echo)
  '(rustic-ansi-faces
    ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
- '(scroll-conservatively 100000)
+ '(scroll-conservatively 0)
  '(scroll-preserve-screen-position nil)
  '(scroll-step 0)
  '(typescript-expr-indent-offset 0)
@@ -161,7 +170,10 @@
  '(vc-annotate-very-old-color nil)
  '(warning-minimum-level :error)
  '(warning-suppress-types '((org-roam)))
- '(web-mode-auto-close-style 1))
+ '(web-mode-enable-auto-indentation t)
+ '(web-mode-enable-auto-pairing nil)
+ '(web-mode-enable-auto-quoting nil))
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

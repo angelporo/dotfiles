@@ -109,3 +109,10 @@ ORIG is the advised function, which is called with its ARGS."
   (define-key company-active-map (kbd "C-n") 'next-line)
   (define-key company-active-map (kbd "C-p") 'previous-line)
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                                        ;        去除web-mode中自动缩进      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook web-mode-hook (lambda ()
+                          (electric-indent-local-mode -1)
+                          ))
