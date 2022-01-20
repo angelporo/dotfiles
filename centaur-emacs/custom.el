@@ -9,8 +9,14 @@
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
 ;; (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
-(setq centaur-icon nil)                        ; Display icons or not: t or nil
-
+;; (setq )
+(setq scroll-step 0
+      scroll-conservatively 0
+      lsp-ui-doc-position 'top
+      ns-alternate-modifier 'super
+      ns-command-modifier 'meta
+      centaur-icon t ; Display icons or not: t or nil
+      )
 
 (add-hook 'prog-mode-hook (lambda()
                             (global-subword-mode -1)
@@ -21,9 +27,6 @@
                             (flyspell-mode -1)
                             (magit-todos-mode -1)
                             (display-line-numbers-mode -1)
-                            (setq scroll-step 0
-                                  scroll-conservatively 0
-                                  )
                             ))
 
 (setq frame-resize-pixelwise t)
@@ -31,7 +34,8 @@
 (add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
 (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+
+(setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
 (setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
@@ -101,11 +105,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(all-the-icons-color-icons t)
- '(ansi-color-names-vector
-   ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
- '(centaur-auto-themes '(("8:00" . doom-one-light) ("15:00" . doom-one)))
  '(centaur-completion-style 'minibuffer)
- '(centaur-icon t)
  '(centaur-package-archives 'melpa)
  '(company-async-redisplay-delay 0.0)
  '(company-begin-commands '(self-insert-command))
@@ -117,62 +117,23 @@
  '(company-tabnine-show-annotation nil)
  '(company-tabnine-wait 0.2)
  '(company-tooltip-idle-delay 0)
- '(custom-safe-themes
-   '("4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "fe2539ccf78f28c519541e37dc77115c6c7c2efcec18b970b16e4a4d2cd9891d" "7a994c16aa550678846e82edc8c9d6a7d39cc6564baaaacc305a3fdc0bd8725f" default))
  '(doom-modeline-mode t)
  '(eglot-send-changes-idle-time 0.0)
  '(fci-rule-color "#a3a1a1")
  '(font-lock-maximum-size 50000000)
  '(frame-resize-pixelwise t)
  '(gc-cons-percentage 0.5)
- '(gc-cons-threshold 536870912)
- '(jdee-db-active-breakpoint-face-colors (cons "#f2f2f2" "#4271ae"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#f2f2f2" "#718c00"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#f2f2f2" "#a5a4a5"))
  '(js-jsx-indent-level 2)
+ '(line-spacing 2)
  '(lsp-ui-doc-delay 0.13)
  '(lsp-ui-doc-position 'top)
+ '(lsp-ui-doc-show-with-cursor t)
+ '(lsp-ui-doc-use-webkit nil)
  '(ns-alternate-modifier 'super)
  '(ns-command-modifier 'meta)
  '(objed-cursor-color "#c82829")
  '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff") t)
- '(prettier-js-args
-   '("--trailing-comma" "all" "--bracket-spacing" "false" "--arrow-parens" "avoid" "--print-width" "100" "--tab-width" "2" "--no-semi" "true" "--jsx-single-quote" "true"))
- '(prettier-js-show-errors 'echo)
- '(rustic-ansi-faces
-   ["#ffffff" "#c82829" "#718c00" "#eab700" "#3e999f" "#c9b4cf" "#8abeb7" "#4d4d4c"])
- '(scroll-conservatively 0)
- '(scroll-preserve-screen-position nil)
- '(scroll-step 0)
- '(typescript-expr-indent-offset 0)
- '(typescript-indent-level 2)
- '(vc-annotate-background "#ffffff")
- '(vc-annotate-color-map
-   (list
-    (cons 20 "#718c00")
-    (cons 40 "#999a00")
-    (cons 60 "#c1a800")
-    (cons 80 "#eab700")
-    (cons 100 "#eda70a")
-    (cons 120 "#f19714")
-    (cons 140 "#f5871f")
-    (cons 160 "#e69659")
-    (cons 180 "#d7a594")
-    (cons 200 "#c9b4cf")
-    (cons 220 "#c88597")
-    (cons 240 "#c85660")
-    (cons 260 "#c82829")
-    (cons 280 "#bf4748")
-    (cons 300 "#b66667")
-    (cons 320 "#ad8586")
-    (cons 340 "#a3a1a1")
-    (cons 360 "#a3a1a1")))
- '(vc-annotate-very-old-color nil)
- '(warning-minimum-level :error)
- '(warning-suppress-types '((org-roam)))
- '(web-mode-enable-auto-indentation t)
- '(web-mode-enable-auto-pairing nil)
- '(web-mode-enable-auto-quoting nil))
+ '(warning-minimum-level :error))
 
 
 (custom-set-faces

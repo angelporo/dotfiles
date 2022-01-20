@@ -70,15 +70,15 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-source $ZSH/oh-my-zsh.sh
+#plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+#source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
-export PATH="$HOME/.emacs.d/bin:$PATH"
+#export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -110,7 +110,7 @@ alias gcm='git commit -m'
 
 
 
-export PATH="/usr/local/opt/qt@5/bin:$PATH"
+#export PATH="/usr/local/opt/qt@5/bin:$PATH"
 # flutter file
-export PATH="$HOME/.flutter/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+#export PATH="$HOME/.flutter/bin:$PATH"
+#export PATH="/usr/local/sbin:$PATH"
