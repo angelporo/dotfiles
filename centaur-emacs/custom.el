@@ -7,7 +7,10 @@
 ;; (setq centaur-logo nil)                        ; Logo file or nil (official logo)
 (setq centaur-full-name "angelporo")              ; User full name
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
-;; (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
+(setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
+;; Enable proxy
+(proxy-http-enable)
+
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 ;; (setq )
 (setq scroll-step 0
@@ -36,7 +39,7 @@
 
 
 (setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'cold)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
@@ -91,8 +94,7 @@
 ;; Misc.
 (setq confirm-kill-emacs 'y-or-n-p)
 
-;; Enable proxy
-(proxy-http-enable)
+
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
@@ -114,8 +116,8 @@
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 2)
  '(company-tabnine-max-restart-count 40)
- '(company-tabnine-show-annotation nil)
- '(company-tabnine-wait 0.2)
+ '(company-tabnine-show-annotation t)
+ '(company-tabnine-wait 0.1)
  '(company-tooltip-idle-delay 0)
  '(doom-modeline-mode t)
  '(eglot-send-changes-idle-time 0.0)
