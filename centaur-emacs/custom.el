@@ -12,7 +12,6 @@
 (proxy-http-enable)
 
 ;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
-;; (setq )
 (setq scroll-step 0
       scroll-conservatively 0
       lsp-ui-doc-position 'top
@@ -39,12 +38,12 @@
 
 
 (setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'cold)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
-(setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode typescript-mode js-mode css-mode web-mode)) ; Ignore format on save for some languages
+;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode typescript-mode js-mode css-mode web-mode)) ; Ignore format on save for some languages
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist nil)  ; Alist of symbol prettifications for `org-mode'
@@ -110,6 +109,10 @@
  '(centaur-completion-style 'minibuffer)
  '(centaur-package-archives 'melpa)
  '(company-async-redisplay-delay 0.0)
+ '(company-backends
+   '((company-capf :with company-tabnine)
+     (company-dabbrev-code company-keywords company-files)
+     company-dabbrev))
  '(company-begin-commands '(self-insert-command))
  '(company-box-doc-delay 0.2)
  '(company-box-enable-icon nil)
@@ -123,8 +126,10 @@
  '(eglot-send-changes-idle-time 0.0)
  '(fci-rule-color "#a3a1a1")
  '(font-lock-maximum-size 50000000)
+ '(font-lock-support-mode 'jit-lock-mode)
  '(frame-resize-pixelwise t)
  '(gc-cons-percentage 0.5)
+ '(jit-lock-stealth-time 16)
  '(js-jsx-indent-level 2)
  '(line-spacing 2)
  '(lsp-ui-doc-delay 0.13)
@@ -135,6 +140,9 @@
  '(ns-command-modifier 'meta)
  '(objed-cursor-color "#c82829")
  '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff") t)
+ '(scroll-conservatively 0)
+ '(scroll-step 0)
+ '(typescript-indent-level 2)
  '(warning-minimum-level :error))
 
 
