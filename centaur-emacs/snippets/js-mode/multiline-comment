@@ -3,5 +3,6 @@
 # key: /**
 # --
 /**
- * $0
+ * @description  $0
+ * @default      $1
  */

@@ -110,7 +110,8 @@
  '(centaur-package-archives 'melpa)
  '(company-async-redisplay-delay 0.0)
  '(company-backends
-   '((company-capf :with company-tabnine)
+   '(company-tabnine
+     (company-capf :with company-yasnippet)
      (company-dabbrev-code company-keywords company-files)
      company-dabbrev))
  '(company-begin-commands '(self-insert-command))
