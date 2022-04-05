@@ -38,15 +38,15 @@
 
 
 (setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
-(setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
+(setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-completion-style 'minibuffer)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
 ;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode typescript-mode js-mode css-mode web-mode)) ; Ignore format on save for some languages
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
-(setq centaur-prettify-org-symbols-alist nil)  ; Alist of symbol prettifications for `org-mode'
+(setq centaur-prettify-org-symbols-alist t)  ; Alist of symbol prettifications for `org-mode'
 
 ;; For Emacs devel
 ;; (setq package-user-dir (locate-user-emacs-file (format "elpa-%s" emacs-major-version)))
@@ -106,7 +106,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(all-the-icons-color-icons t)
- '(centaur-completion-style 'minibuffer)
+ '(centaur-completion-style 'childframe)
  '(centaur-package-archives 'melpa)
  '(company-async-redisplay-delay 0.0)
  '(company-backends
@@ -133,8 +133,8 @@
  '(jit-lock-stealth-time 16)
  '(js-jsx-indent-level 2)
  '(line-spacing 2)
- '(lsp-ui-doc-delay 0.13)
- '(lsp-ui-doc-position 'top)
+ '(lsp-ui-doc-delay 0.13 t)
+ '(lsp-ui-doc-position 'top t)
  '(lsp-ui-doc-show-with-cursor t)
  '(lsp-ui-doc-use-webkit nil)
  '(ns-alternate-modifier 'super)
@@ -155,6 +155,7 @@
  '(aw-leading-char-face ((t (:inherit font-lock-keyword-face :bold t :height 2.0))))
  '(aw-minibuffer-leading-char-face ((t (:inherit font-lock-keyword-face :bold t :height 1.0))))
  '(aw-mode-line-face ((t (:inherit mode-line-emphasis :bold t))))
+ '(cfrs-border-color ((t (:background "#9ca0a4"))))
  '(dashboard-heading ((t (:inherit (font-lock-string-face bold)))))
  '(diff-hl-change ((t (:foreground "#51afef" :background nil))))
  '(diff-hl-delete ((t (:inherit diff-removed :background nil))))
@@ -166,6 +167,7 @@
  '(flycheck-posframe-info-face ((t (:foreground "#718c00"))))
  '(git-timemachine-minibuffer-author-face ((t (:inherit success))))
  '(git-timemachine-minibuffer-detail-face ((t (:inherit warning))))
+ '(hl-todo ((t (:inherit variable-pitch :box (:line-width -1) :height 0.85 :width condensed :weight semibold :underline nil :inverse-video t))))
  '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
  '(ivy-posframe ((t (:inherit tooltip))))
  '(ivy-posframe-border ((t (:background "#a5a4a5"))))
