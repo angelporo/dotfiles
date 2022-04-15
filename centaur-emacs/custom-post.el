@@ -104,6 +104,7 @@
         sis-respect-restore-triggers
         (list 'isearch-exit 'isearch-abort))   ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
   :config
+  (add-hook 'text-mode-hook #'sis-set-other)
   (sis-ism-lazyman-config
    "com.apple.keylayout.ABC"
    ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
@@ -116,11 +117,11 @@
   ;; enable the /follow context/ mode for all buffers
   (sis-global-context-mode nil)
   ;; enable the /inline english/ mode for all buffers
-  (sis-global-inline-mode nil) ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
+  (sis-global-inline-mode t) ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
   ;; (global-set-key (kbd "C-M-<spc>") 'sis-switch) ; 切换输入法
   ;; 特殊定制
   (setq sis-do-set
-        (lambda(source) (start-process "set-input-source" nil "macism" source "50000")))
+        (lambda(source) (start-process "set-input-source" nil "macism" source "40000")))
   (setq sis-default-cursor-color "#E55D9C" ; 英文光标色
         sis-other-cursor-color "#FF2121" ; 中文光标色
         ;; sis-inline-tighten-head-rule 'all ; 删除头部空格，默认1，删除一个空格，1/0/'all
@@ -138,6 +139,8 @@
                      (not (sis--string-match-p "^\*New" (buffer-name buffer)))
                      (not (sis--string-match-p "^\*Scratch" (buffer-name buffer))))))) ; *Scratch*  仍可使用 C-h/C-x/C-c 前缀
   )
+
+
 
 
 ;; (setq prettier-js-args '(
@@ -217,3 +220,18 @@
   :config
   (global-set-key (kbd "C-M-m") 'lsp-execute-code-action)
   )
+
+
+;; 尝试 github copilot
+;; (load-file "~/elisp/copilot.el/copilot.el")
+
+;; (use-package copilot
+;;   :straight (:host github :repo "zerolfx/copilot.el"
+;;              :files ("dist" "copilot.el"))
+;;   :ensure t
+;;   :config
+;;   ;; provide completion when typing
+;;   (add-hook 'post-command-hook (lambda ()
+;;                                  (copilot-clear-overlay)
+;;                                  (when (evil-insert-state-p)
+;;                                    (copilot-complete)))))

@@ -43,7 +43,7 @@
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
-;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode typescript-mode js-mode css-mode web-mode)) ; Ignore format on save for some languages
+(setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode e web-mode)) ; Ignore format on save for some languages
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist t)  ; Alist of symbol prettifications for `org-mode'
@@ -144,7 +144,9 @@
  '(scroll-conservatively 0)
  '(scroll-step 0)
  '(typescript-indent-level 2)
- '(warning-minimum-level :error))
+ '(warning-minimum-level :error)
+ '(warning-suppress-log-types '((use-package)))
+ '(warning-suppress-types '((use-package))))
 
 
 (custom-set-faces
