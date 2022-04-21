@@ -8,6 +8,7 @@
 # Modified Hosts Start
 
 # Localhost (DO NOT REMOVE) Start
+172.17.0.2  localhost
 127.0.0.1	localhost
 # Localhost (DO NOT REMOVE) End
 10.7.0.21       node021

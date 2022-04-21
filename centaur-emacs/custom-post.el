@@ -33,7 +33,8 @@
 (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
 ;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
-;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
 
 (use-package company-tabnine
@@ -105,6 +106,9 @@
         (list 'isearch-exit 'isearch-abort))   ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
   :config
   (add-hook 'text-mode-hook #'sis-set-other)
+  (add-hook 'typescript-mode-hook #'sis-set-english)
+  (add-hook 'dashboard-mode-hook #'sis-set-english)
+
   (sis-ism-lazyman-config
    "com.apple.keylayout.ABC"
    ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
@@ -113,21 +117,21 @@
   ;; enable the /cursor color/ mode 中英文光标颜色模式
   (sis-global-cursor-color-mode t)
   ;; enable the /respect/ mode buffer 输入法状态记忆模式
-  (sis-global-respect-mode nil)
+  (sis-global-respect-mode t)
   ;; enable the /follow context/ mode for all buffers
-  (sis-global-context-mode nil)
+  (sis-global-context-mode t)
   ;; enable the /inline english/ mode for all buffers
-  (sis-global-inline-mode t) ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
+  (sis-global-inline-mode t)  ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
   ;; (global-set-key (kbd "C-M-<spc>") 'sis-switch) ; 切换输入法
   ;; 特殊定制
   (setq sis-do-set
         (lambda(source) (start-process "set-input-source" nil "macism" source "40000")))
-  (setq sis-default-cursor-color "#E55D9C" ; 英文光标色
-        sis-other-cursor-color "#FF2121" ; 中文光标色
+  (setq sis-default-cursor-color "#02C389" ; 英文光标色
+        sis-other-cursor-color "#F95B5B" ; 中文光标色
         ;; sis-inline-tighten-head-rule 'all ; 删除头部空格，默认1，删除一个空格，1/0/'all
         sis-inline-tighten-tail-rule 'all ; 删除尾部空格，默认1，删除一个空格，1/0/'all
         sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
-        sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
+        sis-inline-with-other nil) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
   ;; 特殊 buffer 禁用 sis 前缀,使用 Emacs 原生快捷键  setqsis-prefix-override-buffer-disable-predicates
   (setq sis-prefix-override-buffer-disable-predicates
         (list 'minibufferp

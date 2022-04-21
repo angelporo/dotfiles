@@ -43,7 +43,7 @@
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
-(setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode e web-mode)) ; Ignore format on save for some languages
+(setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode  web-mode)) ; Ignore format on save for some languages
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist t)  ; Alist of symbol prettifications for `org-mode'
@@ -105,10 +105,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ag-ignore-list
+   '("/Volumes/D/shide/Intelligent-ransportation-waring-frontend/.agignore"))
  '(all-the-icons-color-icons t)
  '(centaur-completion-style 'childframe)
  '(centaur-package-archives 'melpa)
- '(company-async-redisplay-delay 0.0)
+ '(company-async-redisplay-delay 0.2)
  '(company-backends
    '(company-tabnine
      (company-capf :with company-yasnippet)
@@ -117,8 +119,8 @@
  '(company-begin-commands '(self-insert-command))
  '(company-box-doc-delay 0.2)
  '(company-box-enable-icon nil)
- '(company-idle-delay 0)
- '(company-minimum-prefix-length 2)
+ '(company-idle-delay 0.2)
+ '(company-minimum-prefix-length 3)
  '(company-tabnine-max-restart-count 40)
  '(company-tabnine-show-annotation t)
  '(company-tabnine-wait 0.1)
@@ -133,8 +135,8 @@
  '(jit-lock-stealth-time 16)
  '(js-jsx-indent-level 2)
  '(line-spacing 2)
- '(lsp-ui-doc-delay 0.13 t)
- '(lsp-ui-doc-position 'top t)
+ '(lsp-ui-doc-delay 0.13)
+ '(lsp-ui-doc-position 'top)
  '(lsp-ui-doc-show-with-cursor t)
  '(lsp-ui-doc-use-webkit nil)
  '(ns-alternate-modifier 'super)
