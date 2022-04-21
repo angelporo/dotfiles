@@ -128,10 +128,10 @@
         (lambda(source) (start-process "set-input-source" nil "macism" source "40000")))
   (setq sis-default-cursor-color "#02C389" ; 英文光标色
         sis-other-cursor-color "#F95B5B" ; 中文光标色
-        ;; sis-inline-tighten-head-rule 'all ; 删除头部空格，默认1，删除一个空格，1/0/'all
+        sis-inline-tighten-head-rule 'all ; 删除头部空格，默认1，删除一个空格，1/0/'all
         sis-inline-tighten-tail-rule 'all ; 删除尾部空格，默认1，删除一个空格，1/0/'all
         sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
-        sis-inline-with-other nil) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
+        sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
   ;; 特殊 buffer 禁用 sis 前缀,使用 Emacs 原生快捷键  setqsis-prefix-override-buffer-disable-predicates
   (setq sis-prefix-override-buffer-disable-predicates
         (list 'minibufferp
