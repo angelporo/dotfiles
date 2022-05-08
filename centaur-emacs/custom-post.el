@@ -26,9 +26,10 @@
 ;; Visual (UI) configurations for better lookings and appearances.
 ;;
 ;;; Code:
-(add-to-list 'load-path (expand-file-name "~/elisp"))
+;; (add-to-list 'load-path (expand-file-name "~/elisp"))
 
-(require 'company-english-helper)
+
+
 (setq frame-resize-pixelwise t)
 (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
 ;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
@@ -86,7 +87,7 @@
   (setq company-idle-delay 0.0
         company-tooltip-idle-delay 0.0
         company-show-numbers t
-        company-minimum-prefix-length 1
+        company-minimum-prefix-length 2
         company-tabnine-max-restart-count 40
         company-tabnine-max-num-results 30
         lsp-headerline-breadcrumb-mode t
