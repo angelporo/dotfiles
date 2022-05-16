@@ -31,7 +31,9 @@
                             (display-line-numbers-mode -1)
                             (global-set-key (kbd "C-a") 'beginning-of-line)
                             (global-set-key (kbd "C-e") 'end-of-line)
+                            (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
                             ))
+
 
 (setq frame-resize-pixelwise t)
 
@@ -46,6 +48,7 @@
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
 (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
 (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode  web-mode)) ; Ignore format on save for some languages
+(setq centaur-tree-sitter nil)                 ; Enable `tree-sitter' or not: t or nil
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist t)  ; Alist of symbol prettifications for `org-mode'
@@ -88,9 +91,9 @@
 
 ;; Calendar
 ;; Set location , then press `S' can show the time of sunrise and sunset
-;; (setq calendar-location-name "Chengdu"
-;;       calendar-latitude 30.67
-;;       calendar-longitude 104.07)
+(setq calendar-location-name "Chengdu"
+      calendar-latitude 30.67
+      calendar-longitude 104.07)
 
 ;; Misc.
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -128,6 +131,7 @@
  '(company-tooltip-idle-delay 0)
  '(doom-modeline-mode t)
  '(eglot-send-changes-idle-time 0.0)
+ '(exec-path-from-shell-warn-duration-millis 2000)
  '(fci-rule-color "#a3a1a1")
  '(font-lock-maximum-size 50000000)
  '(font-lock-support-mode 'jit-lock-mode)

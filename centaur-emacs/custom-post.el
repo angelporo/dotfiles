@@ -26,8 +26,9 @@
 ;; Visual (UI) configurations for better lookings and appearances.
 ;;
 ;;; Code:
-;; (add-to-list 'load-path (expand-file-name "~/elisp"))
+(add-to-list 'load-path (expand-file-name "~/elisp"))
 
+(require 'company-english-helper)
 
 
 (setq frame-resize-pixelwise t)
@@ -36,7 +37,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-
 
 (use-package company-tabnine
   :ensure t
@@ -146,8 +146,6 @@
   )
 
 
-
-
 ;; (setq prettier-js-args '(
 ;;                          ;; 尽可能尾随逗号
 ;;                          "--trailing-comma" "all"
@@ -195,16 +193,17 @@
   )
 
 
-(use-package add-node-modules-path
-  :ensure t
-  :config
-  (eval-after-load 'js-mode
-    '(add-hook 'js-mode-hook #'add-node-modules-path))
-  (eval-after-load 'web-mode
-    '(progn
-       (add-hook 'web-mode-hook #'add-node-modules-path)
-       (add-hook 'web-mode-hook #'prettier-js-mode)))
-  )
+;; (use-package add-node-modules-path
+;;   :ensure t
+;;   :config
+;;   (eval-after-load 'js-mode
+;;     '(add-hook 'js-mode-hook #'add-node-modules-path))
+;;   (eval-after-load 'web-mode
+;;     '(progn
+;;        (add-hook 'web-mode-hook #'add-node-modules-path)
+;;        (add-hook 'web-mode-hook #'prettier-js-mode)
+;;        ))
+;;   )
 
 
 (with-eval-after-load 'company
