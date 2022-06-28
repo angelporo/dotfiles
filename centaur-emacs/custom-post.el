@@ -30,70 +30,84 @@
 
 (require 'company-english-helper)
 
+(add-to-list 'load-path (expand-file-name "~/elisp/lsp-bridge"))
+
+(require 'yasnippet)
+(yas-global-mode 1)
+
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
 
 (setq frame-resize-pixelwise t)
-(add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
+;; (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
 ;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 
-(use-package company-tabnine
-  :ensure t
-  :init
-  (add-to-list 'company-backends #'company-tabnine)
-  (defun company//sort-by-tabnine (candidates)
-    "Integrate company-tabnine with lsp-mode"
-    (if (or (functionp company-backend)
-            (not (and (listp company-backend) (memq 'company-tabnine company-backends))))
-        candidates
-      (let ((candidates-table (make-hash-table :test #'equal))
-            candidates-lsp
-            candidates-tabnine)
-        (dolist (candidate candidates)
-          (if (eq (get-text-property 0 'company-backend candidate)
-                  'company-tabnine)
-              (unless (gethash candidate candidates-table)
-                (push candidate candidates-tabnine))
-            (push candidate candidates-lsp)
-            (puthash candidate t candidates-table)))
-        (setq candidates-lsp (nreverse candidates-lsp))
-        (setq candidates-tabnine (nreverse candidates-tabnine))
-        (nconc (seq-take candidates-tabnine 3)
-               (seq-take candidates-lsp 6)))))
-  (defun lsp-after-open-tabnine ()
-    "Hook to attach to `lsp-after-open'."
-    (setq-local company-tabnine-max-num-results 5)
-    ;; (add-to-list 'company-transformers 'company//sort-by-tabnine t)
-    ;; (add-to-list 'company-backends '(company-capf :with company-tabnine :separate))
-    )
-  (defun company-tabnine-toggle (&optional enable)
-    "Enable/Disable TabNine. If ENABLE is non-nil, definitely enable it."
-    (interactive)
-    (if (or enable (not (memq 'company-tabnine company-backends)))
-        (progn
-          ;; (add-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
-          (add-to-list 'company-backends #'company-tabnine)
-          ;; (when (bound-and-true-p lsp-mode) (lsp-after-open-tabnine))
-          (message "TabNine enabled."))
-      (setq company-backends (delete 'company-tabnine company-backends))
-      (setq company-backends (delete '(company-capf :with company-tabnine :separate) company-backends))
-      ;; (remove-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
-      (company-tabnine-kill-process)
-      (message "TabNine disabled.")))
-  :hook
-  (kill-emacs . company-tabnine-kill-process)
-  :config
-  (setq company-idle-delay 0.0
-        company-tooltip-idle-delay 0.0
-        company-show-numbers t
-        company-minimum-prefix-length 2
-        company-tabnine-max-restart-count 40
-        company-tabnine-max-num-results 30
-        lsp-headerline-breadcrumb-mode t
-        )
-  (company-tabnine-toggle t)
-  )
+(setq counsel-ag-base-command '(
+                                "ag"
+                                "--vimgrep" "%s"
+                                "--ignore" "*node_modules*"
+                                ))
+
+;; (use-package company-tabnine
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'company-backends #'company-tabnine)
+;;   (defun company//sort-by-tabnine (candidates)
+;;     "Integrate company-tabnine with lsp-mode"
+;;     (if (or (functionp company-backend)
+;;             (not (and (listp company-backend) (memq 'company-tabnine company-backends))))
+;;         candidates
+;;       (let ((candidates-table (make-hash-table :test #'equal))
+;;             candidates-lsp
+;;             candidates-tabnine)
+;;         (dolist (candidate candidates)
+;;           (if (eq (get-text-property 0 'company-backend candidate)
+;;                   'company-tabnine)
+;;               (unless (gethash candidate candidates-table)
+;;                 (push candidate candidates-tabnine))
+;;             (push candidate candidates-lsp)
+;;             (puthash candidate t candidates-table)))
+;;         (setq candidates-lsp (nreverse candidates-lsp))
+;;         (setq candidates-tabnine (nreverse candidates-tabnine))
+;;         (nconc (seq-take candidates-tabnine 3)
+;;                (seq-take candidates-lsp 6)))))
+;;   (defun lsp-after-open-tabnine ()
+;;     "Hook to attach to `lsp-after-open'."
+;;     (setq-local company-tabnine-max-num-results 9)
+;;     ;; (add-to-list 'company-transformers 'company//sort-by-tabnine t)
+;;     ;; (add-to-list 'company-backends '(company-capf :with company-tabnine :separate))
+;;     )
+;;   (defun company-tabnine-toggle (&optional enable)
+;;     "Enable/Disable TabNine. If ENABLE is non-nil, definitely enable it."
+;;     (interactive)
+;;     (if (or enable (not (memq 'company-tabnine company-backends)))
+;;         (progn
+;;           ;; (add-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
+;;           (add-to-list 'company-backends #'company-tabnine)
+;;           ;; (when (bound-and-true-p lsp-mode) (lsp-after-open-tabnine))
+;;           (message "TabNine enabled."))
+;;       (setq company-backends (delete 'company-tabnine company-backends))
+;;       (setq company-backends (delete '(company-capf :with company-tabnine :separate) company-backends))
+;;       ;; (remove-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
+;;       (company-tabnine-kill-process)
+;;       (message "TabNine disabled.")))
+;;   :hook
+;;   (kill-emacs . company-tabnine-kill-process)
+;;   :config
+;;   (setq company-idle-delay 0.0
+;;         company-tooltip-idle-delay 0.0
+;;         company-show-numbers t
+;;         company-minimum-prefix-length 1
+;;         company-tabnine-max-restart-count 40
+;;         company-tabnine-max-num-results 30
+;;         lsp-headerline-breadcrumb-mode t
+;;         )
+;;   (company-tabnine-toggle t)
+;;   )
 
 
 
@@ -109,7 +123,6 @@
   (add-hook 'text-mode-hook #'sis-set-other)
   (add-hook 'typescript-mode-hook #'sis-set-english)
   (add-hook 'dashboard-mode-hook #'sis-set-english)
-
   (sis-ism-lazyman-config
    "com.apple.keylayout.ABC"
    ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
@@ -165,6 +178,8 @@
 ;;                          "--jsx-bracket-same-line" "true"
 ;;                          ))
 
+
+
 ;; (defun sanityinc/disable-features-during-macro-call (orig &rest args)
 ;;   "When running a macro, disable features that might be expensive.
 ;; ORIG is the advised function, which is called with its ARGS."
@@ -193,19 +208,6 @@
   )
 
 
-;; (use-package add-node-modules-path
-;;   :ensure t
-;;   :config
-;;   (eval-after-load 'js-mode
-;;     '(add-hook 'js-mode-hook #'add-node-modules-path))
-;;   (eval-after-load 'web-mode
-;;     '(progn
-;;        (add-hook 'web-mode-hook #'add-node-modules-path)
-;;        (add-hook 'web-mode-hook #'prettier-js-mode)
-;;        ))
-;;   )
-
-
 (with-eval-after-load 'company
   (dolist (map (list company-active-map company-search-map))
     (define-key map (kbd "C-n") nil)
@@ -219,11 +221,7 @@
   )
 
 
-(use-package lsp-mode
-  :ensure t
-  :config
-  (global-set-key (kbd "C-M-m") 'lsp-execute-code-action)
-  )
+(global-set-key (kbd "M-s") 'save-buffer)
 
 
 ;; 尝试 github copilot

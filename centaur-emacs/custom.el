@@ -27,27 +27,34 @@
                             (diff-hl-flydiff-mode -1)
                             (global-diff-hl-mode -1)
                             (flyspell-mode -1)
+                            ;; (persistent-scratch-mode -1)
+                            ;; (persistent-scratch-autosave-mode -1)
                             (magit-todos-mode -1)
                             (display-line-numbers-mode -1)
                             (global-set-key (kbd "C-a") 'beginning-of-line)
                             (global-set-key (kbd "C-e") 'end-of-line)
                             (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
+                            (global-company-mode -1)
                             ))
 
 
 (setq frame-resize-pixelwise t)
 
-(add-hook 'typescript-mode-hook (lambda ()  ( prettier-js-mode t)))
+(add-hook 'typescript-mode-hook (lambda ()
+                                  (global-set-key (kbd "M-.") 'lsp-bridge-find-def)
+                                  (global-set-key (kbd "M-,") 'lsp-bridge-return-from-def)
+                                  ))
+
 (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
 
 
 (setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'night)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'minibuffer)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
-(setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
-(setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode  web-mode)) ; Ignore format on save for some languages
+(setq centaur-lsp 'nil)                   ; Set LSP client: lsp-mode, eglot or nil
+(setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode  web-mode typescript-mode)) ; Ignore format on save for some languages
 (setq centaur-tree-sitter nil)                 ; Enable `tree-sitter' or not: t or nil
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
@@ -114,17 +121,19 @@
    '("/Volumes/D/shide/Intelligent-ransportation-waring-frontend/.agignore"))
  '(all-the-icons-color-icons t)
  '(centaur-completion-style 'childframe)
+ '(centaur-lsp nil)
  '(centaur-package-archives 'melpa)
  '(company-async-redisplay-delay 0)
  '(company-backends
-   '((company-capf :with company-yasnippet :with company-capf)
+   '(company-tabnine
+     (company-capf)
      (company-dabbrev-code company-keywords company-files)
      company-dabbrev))
  '(company-begin-commands '(self-insert-command))
  '(company-box-doc-delay 0.2)
  '(company-box-enable-icon nil)
  '(company-idle-delay 0)
- '(company-minimum-prefix-length 2)
+ '(company-minimum-prefix-length 1)
  '(company-tabnine-max-restart-count 40)
  '(company-tabnine-show-annotation t)
  '(company-tabnine-wait 0.1)
@@ -137,13 +146,13 @@
  '(font-lock-support-mode 'jit-lock-mode)
  '(frame-resize-pixelwise t)
  '(gc-cons-percentage 0.5)
+ '(ivy-fixed-height-minibuffer t)
+ '(ivy-use-virtual-buffers t)
  '(jit-lock-stealth-time 16)
  '(js-jsx-indent-level 2)
  '(line-spacing 2)
- '(lsp-ui-doc-delay 0.13)
- '(lsp-ui-doc-position 'top)
- '(lsp-ui-doc-show-with-cursor t)
- '(lsp-ui-doc-use-webkit nil)
+ '(lsp-bridge-enable-candidate-doc-preview t)
+ '(lsp-bridge-enable-diagnostics t)
  '(ns-alternate-modifier 'super)
  '(ns-command-modifier 'meta)
  '(objed-cursor-color "#c82829")
@@ -180,6 +189,7 @@
  '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
  '(ivy-posframe ((t (:inherit tooltip))))
  '(ivy-posframe-border ((t (:background "#a5a4a5"))))
+ '(lsp-bridge-diagnostics-error-face ((t (:inherit nil))))
  '(lsp-headerline-breadcrumb-path-error-face ((t :underline (:style wave :color "#ff6c6b") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-hint-face ((t :underline (:style wave :color "#98be65") :inherit lsp-headerline-breadcrumb-path-face)))
  '(lsp-headerline-breadcrumb-path-info-face ((t :underline (:style wave :color "#98be65") :inherit lsp-headerline-breadcrumb-path-face)))
