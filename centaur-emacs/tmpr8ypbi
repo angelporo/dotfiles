@@ -5,7 +5,20 @@
 ;;; Code:
 
 ;; (setq centaur-logo nil)                        ; Logo file or nil (official logo)
+(setq centaur-full-name "angelporo")              ; User full name
+(setq centaur-mail-address "940079461@qq.com")    ; Email address
+(setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
+;; Enable proxy
+(proxy-http-enable)
 
+;; (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
+(setq scroll-step 0
+      scroll-conservatively 0
+      lsp-ui-doc-position 'top
+      ns-alternate-modifier 'super
+      ns-command-modifier 'meta
+      centaur-icon t ; Display icons or not: t or nil
+      )
 
 (add-hook 'prog-mode-hook (lambda()
                             (global-subword-mode -1)
@@ -14,38 +27,35 @@
                             (diff-hl-flydiff-mode -1)
                             (global-diff-hl-mode -1)
                             (flyspell-mode -1)
+                            ;; (persistent-scratch-mode -1)
+                            ;; (persistent-scratch-autosave-mode -1)
                             (magit-todos-mode -1)
                             (display-line-numbers-mode -1)
                             (global-set-key (kbd "C-a") 'beginning-of-line)
                             (global-set-key (kbd "C-e") 'end-of-line)
                             (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
-
-                            (persistent-scratch-mode -1)
-                            (persistent-scratch-autosave-mode -1)
                             (global-company-mode -1)
                             ))
 
 
-
-
-(setq centaur-full-name "angelporo")              ; User full name
-(setq centaur-mail-address "940079461@qq.com")    ; Email address
-(setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
-;; Enable proxy
-(proxy-http-enable)
-
-(setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
-
 (setq frame-resize-pixelwise t)
+
+;; (add-hook 'typescript-mode-hook (lambda ()
+;;                                   (global-set-key (kbd "M-.") 'lsp-bridge-find-def)
+;;                                   (global-set-key (kbd "M-,") 'lsp-bridge-return-from-def)
+;;                                   ))
+
+;; (add-hook 'js-mode-hook (lambda ()  ( prettier-js-mode t)))
+
 
 (setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
 (setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'minibuffer)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry nil)      ; Restore the frame's geometry at startup: t or nil
-(setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
+(setq centaur-lsp 'nil)                   ; Set LSP client: lsp-mode, eglot or nil
 ;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode  web-mode typescript-mode)) ; Ignore format on save for some languages
-(setq centaur-tree-sitter 'tree-sitter)                 ; Enable `tree-sitter' or not: t or nil
+(setq centaur-tree-sitter nil)                 ; Enable `tree-sitter' or not: t or nil
 (setq centaur-chinese-calendar t)              ; Use Chinese calendar or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist t)  ; Alist of symbol prettifications for `org-mode'
@@ -130,6 +140,9 @@
  '(company-tooltip-idle-delay 0)
  '(doom-modeline-mode t)
  '(eglot-send-changes-idle-time 0.0)
+ '(exec-path
+   '("/Users/liyuan/.rbenv/bin" "/Users/liyuan/.rbenv/shims" "/usr/local/bin" "/usr/bin" "/bin/" "/usr/sbin" "/sbin" "/Users/liyuan/Library/pnpm" "/opt/miniconda3/bin" "/opt/miniconda3/condabin"))
+ '(exec-path-from-shell-warn-duration-millis 2000)
  '(fci-rule-color "#a3a1a1")
  '(font-lock-maximum-size 50000000)
  '(font-lock-support-mode 'jit-lock-mode)
@@ -163,8 +176,6 @@
  '(aw-minibuffer-leading-char-face ((t (:inherit font-lock-keyword-face :bold t :height 1.0))))
  '(aw-mode-line-face ((t (:inherit mode-line-emphasis :bold t))))
  '(cfrs-border-color ((t (:background "#9ca0a4"))))
- '(company-box-selection ((t (:inherit company-tooltip :weight semibold :extend t))) t)
- '(company-tooltip-annotation ((t (:inherit completions-annotations :foreground nil))))
  '(dashboard-heading ((t (:inherit (font-lock-string-face bold)))))
  '(diff-hl-change ((t (:foreground "#51afef" :background nil))))
  '(diff-hl-delete ((t (:inherit diff-removed :background nil))))
@@ -174,15 +185,10 @@
  '(flycheck-posframe-border-face ((t (:inherit font-lock-comment-face))))
  '(flycheck-posframe-face ((t (:foreground "#718c00"))))
  '(flycheck-posframe-info-face ((t (:foreground "#718c00"))))
- '(forge-topic-label ((t (:inherit variable-pitch :height 0.9 :width condensed :weight regular :underline nil))))
  '(git-timemachine-minibuffer-author-face ((t (:inherit success))))
  '(git-timemachine-minibuffer-detail-face ((t (:inherit warning))))
  '(hl-todo ((t (:inherit variable-pitch :box (:line-width -1) :height 0.85 :width condensed :weight semibold :underline nil :inverse-video t))))
- '(ivy-current-match ((t (:inherit region :distant-foreground nil :background nil))))
  '(ivy-minibuffer-match-face-1 ((t (:inherit font-lock-doc-face :foreground nil))))
- '(ivy-minibuffer-match-face-2 ((t (:distant-foreground nil :background nil))))
- '(ivy-minibuffer-match-face-3 ((t (:distant-foreground nil :background nil))))
- '(ivy-minibuffer-match-face-4 ((t (:distant-foreground nil :background nil))))
  '(ivy-posframe ((t (:inherit tooltip))))
  '(ivy-posframe-border ((t (:background "#a5a4a5"))))
  '(lsp-bridge-diagnostics-error-face ((t (:inherit nil))))
@@ -200,8 +206,6 @@
  '(org-pomodoro-mode-line ((t (:inherit warning))))
  '(org-pomodoro-mode-line-break ((t (:inherit success))))
  '(org-pomodoro-mode-line-overtime ((t (:inherit error))))
- '(paradox-archive-face ((t (:inherit font-lock-doc-face))))
- '(paradox-description-face ((t (:inherit completions-annotations))))
  '(pulse-highlight-face ((t (:inherit region))))
  '(pulse-highlight-start-face ((t (:inherit region))))
  '(symbol-overlay-default-face ((t (:inherit (region bold)))))

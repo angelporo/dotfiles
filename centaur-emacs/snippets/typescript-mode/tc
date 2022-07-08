@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: tc
+# key: tc
+# --
+
+/**
+ * @title             $1
+ * @description       $2
+ * @default           $3
+ */

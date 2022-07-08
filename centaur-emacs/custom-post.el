@@ -27,31 +27,74 @@
 ;;
 ;;; Code:
 (add-to-list 'load-path (expand-file-name "~/elisp"))
-
 (require 'company-english-helper)
 
-(add-to-list 'load-path (expand-file-name "~/elisp/lsp-bridge"))
+(use-package lsp-volar
+  :straight t
+  :load-path "~/elisp/lsp-volar"
+  )
 
-(require 'yasnippet)
-(yas-global-mode 1)
 
-(require 'lsp-bridge)
-(global-lsp-bridge-mode)
+(defun init-centaur  ()
+  (global-hl-line-mode  -1)
+  (setq scroll-step 0)
+  (setq scroll-conservatively 0)
+  (setq ns-alternate-modifier 'super)
+  (setq ns-command-modifier 'meta)
+  (setq centaur-icon t)
+  (setq frame-resize-pixelwise t)
+  (global-set-key (kbd "M-s") 'save-buffer)
+  (setq counsel-ag-base-command '(
+                                  "ag"
+                                  "--vimgrep" "%s"
+                                  "--ignore" "*node_modules*"
+                                  ))
+  )
 
-(setq frame-resize-pixelwise t)
+
+(init-centaur)
+
+
+(use-package lsp-bridge
+  :ensure nil
+  :load-path "~/elisp/lsp-bridge"
+  :hook (prog-mode . lsp-bridge-mode)
+  :bind (:map lsp-bridge-mode
+         ("C-s-j" . lsp-bridge-jump-to-next-diagnostic) ;显示下一个错误
+         ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
+         ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
+         ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
+         ("M-." . lsp-bridge-find-def)
+         ("M-," . lsp-bridge-return-from-def)
+         ("M-?" . lsp-bridge-find-references)
+         ("M-RET" . lsp-bridge-code-action)
+         )
+  :config
+  (global-lsp-bridge-mode)
+  ;; (setq lsp-bridge-default-mode-hooks
+  ;; (remove 'org-mode-hook lsp-bridge-default-mode-hooks)
+  )
+
+
 ;; (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
-;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 
-(setq counsel-ag-base-command '(
-                                "ag"
-                                "--vimgrep" "%s"
-                                "--ignore" "*node_modules*"
-                                ))
+(add-hook 'lsp-mode-hook (lambda ()
+                           (global-set-key (kbd "M-RET") 'lsp-execute-code-action)
+                           ))
 
+(defun lsp-bridge-start ()
+  (global-set-key (kbd "M-.") 'lsp-bridge-find-def)
+  (global-set-key (kbd "M-,") 'lsp-bridge-return-from-def)
+  (global-set-key (kbd "M-?") 'lsp-bridge-find-references)
+  (global-set-key (kbd "M-RET") 'lsp-bridge-code-action)
+  (global-set-key (kbd "C-n") 'next-line)
+  (global-set-key (kbd "C-p") 'previous-line)
+  )
 ;; (use-package company-tabnine
 ;;   :ensure t
 ;;   :init
@@ -91,16 +134,17 @@
 ;;           ;; (when (bound-and-true-p lsp-mode) (lsp-after-open-tabnine))
 ;;           (message "TabNine enabled."))
 ;;       (setq company-backends (delete 'company-tabnine company-backends))
-;;       (setq company-backends (delete '(company-capf :with company-tabnine :separate) company-backends))
+;;       ;; (setq company-backends (delete '(company-capf :with company-tabnine :separate) company-backends))
 ;;       ;; (remove-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
 ;;       (company-tabnine-kill-process)
 ;;       (message "TabNine disabled.")))
 ;;   :hook
 ;;   (kill-emacs . company-tabnine-kill-process)
 ;;   :config
-;;   (setq company-idle-delay 0.0
-;;         company-tooltip-idle-delay 0.0
-;;         company-show-numbers t
+;;   (setq company-idle-delay 0.2
+;;         company-async-redisplay-delay 0.2
+;;         company-tooltip-idle-delay 0.2
+;;         company-show-numbers nil
 ;;         company-minimum-prefix-length 1
 ;;         company-tabnine-max-restart-count 40
 ;;         company-tabnine-max-num-results 30
@@ -221,7 +265,11 @@
   )
 
 
-(global-set-key (kbd "M-s") 'save-buffer)
+
+
+
+
+
 
 
 ;; 尝试 github copilot
