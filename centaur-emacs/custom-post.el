@@ -26,33 +26,25 @@
 ;; Visual (UI) configurations for better lookings and appearances.
 ;;
 ;;; Code:
-(add-to-list 'load-path (expand-file-name "~/elisp"))
+(add-to-list 'load-path (expand-file-name "~/elisp/company-english-helper"))
 (require 'company-english-helper)
 
-(use-package lsp-volar
-  :straight t
-  :load-path "~/elisp/lsp-volar"
-  )
 
-
-(defun init-centaur  ()
-  (global-hl-line-mode  -1)
-  (setq scroll-step 0)
-  (setq scroll-conservatively 0)
-  (setq ns-alternate-modifier 'super)
-  (setq ns-command-modifier 'meta)
-  (setq centaur-icon t)
-  (setq frame-resize-pixelwise t)
+(defun start-centaur-bind-keys ()
   (global-set-key (kbd "M-s") 'save-buffer)
-  (setq counsel-ag-base-command '(
-                                  "ag"
-                                  "--vimgrep" "%s"
-                                  "--ignore" "*node_modules*"
-                                  ))
+  (global-set-key (kbd "C-a") 'beginning-of-line)
+  (global-set-key (kbd "C-e") 'end-of-line)
+  (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
   )
 
 
-(init-centaur)
+(start-centaur-bind-keys)
+
+(setq counsel-ag-base-command '(
+                                "ag"
+                                "--vimgrep" "%s"
+                                "--ignore" "*node_modules*"
+                                ))
 
 
 (use-package lsp-bridge
@@ -60,20 +52,33 @@
   :load-path "~/elisp/lsp-bridge"
   :hook (prog-mode . lsp-bridge-mode)
   :bind (:map lsp-bridge-mode
-         ("C-s-j" . lsp-bridge-jump-to-next-diagnostic) ;显示下一个错误
-         ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
-         ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
-         ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
-         ("M-." . lsp-bridge-find-def)
-         ("M-," . lsp-bridge-return-from-def)
-         ("M-?" . lsp-bridge-find-references)
-         ("M-RET" . lsp-bridge-code-action)
-         )
+              ("C-s-j" . lsp-bridge-jump-to-next-diagnostic) ;显示下一个错误
+              ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
+              ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
+              ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
+              ("M-." . lsp-bridge-find-def)
+              ("M-," . lsp-bridge-return-from-def)
+              ("M-?" . lsp-bridge-find-references)
+              ("C-c RET" . lsp-bridge-lookup-documentation)
+              ("M-RET" . lsp-bridge-code-action)
+              )
   :config
+  (setq acm-candidate-match-function 'orderless-regexp)
   (global-lsp-bridge-mode)
-  ;; (setq lsp-bridge-default-mode-hooks
-  ;; (remove 'org-mode-hook lsp-bridge-default-mode-hooks)
   )
+
+(use-package ag
+  :ensure t
+  )
+
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion))))
+  )
+
 
 
 ;; (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
@@ -83,9 +88,9 @@
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
 
-(add-hook 'lsp-mode-hook (lambda ()
-                           (global-set-key (kbd "M-RET") 'lsp-execute-code-action)
-                           ))
+;; (add-hook 'lsp-mode-hook (lambda ()
+;;                            (global-set-key (kbd "M-RET") 'lsp-execute-code-action)
+;;                            ))
 
 (defun lsp-bridge-start ()
   (global-set-key (kbd "M-.") 'lsp-bridge-find-def)
@@ -183,7 +188,7 @@
   ;; (global-set-key (kbd "C-M-<spc>") 'sis-switch) ; 切换输入法
   ;; 特殊定制
   (setq sis-do-set
-        (lambda(source) (start-process "set-input-source" nil "macism" source "40000")))
+        (lambda(source) (start-process "set-input-source" nil "macism" source "50000")))
   (setq sis-default-cursor-color "#02C389" ; 英文光标色
         sis-other-cursor-color "#F95B5B" ; 中文光标色
         sis-inline-tighten-head-rule 'all ; 删除头部空格，默认1，删除一个空格，1/0/'all
@@ -236,12 +241,12 @@
 ;; (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
 
-;; (use-package flutter
-;;   :after dart-mode
-;;   :bind (:map dart-mode-map
-;;          ("C-M-x" . #'flutter-run-or-hot-reload))
-;;   :custom
-;;   (flutter-sdk-path "/Users/angel/.flutter"))
+(use-package flutter
+  :after dart-mode
+  :bind (:map dart-mode-map
+         ("C-M-x" . #'flutter-run-or-hot-reload))
+  :custom
+  (flutter-sdk-path "/Users/angel/.flutter"))
 
 
 (use-package emmet-mode
@@ -252,25 +257,17 @@
   )
 
 
-(with-eval-after-load 'company
-  (dolist (map (list company-active-map company-search-map))
-    (define-key map (kbd "C-n") nil)
-    (define-key map (kbd "C-p") nil)
-    (define-key company-active-map (kbd "M-q") 'company-other-backend)
-    (define-key company-active-map (kbd "C-i") 'yas-expand)
-    (define-key company-active-map (kbd "C-n") 'next-line)
-    (define-key company-active-map (kbd "C-p") 'previous-line)
-    (define-key map (kbd "M-n") #'company-select-next)
-    (define-key map (kbd "M-p") #'company-select-previous))
-  )
-
-
-
-
-
-
-
-
+;; (with-eval-after-load 'company
+;;   (dolist (map (list company-active-map company-search-map))
+;;     (define-key map (kbd "C-n") nil)
+;;     (define-key map (kbd "C-p") nil)
+;;     (define-key company-active-map (kbd "M-q") 'company-other-backend)
+;;     (define-key company-active-map (kbd "C-i") 'yas-expand)
+;;     (define-key company-active-map (kbd "C-n") 'next-line)
+;;     (define-key company-active-map (kbd "C-p") 'previous-line)
+;;     (define-key map (kbd "M-n") #'company-select-next)
+;;     (define-key map (kbd "M-p") #'company-select-previous))
+;;   )
 
 ;; 尝试 github copilot
 ;; (load-file "~/elisp/copilot.el/copilot.el")

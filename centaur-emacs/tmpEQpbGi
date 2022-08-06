@@ -41,7 +41,7 @@
 (setq frame-resize-pixelwise t)
 
 (setq centaur-package-archives 'ustc)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'doom-dracula)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'minibuffer)    ; Completion display style: minibuffer or childframe
 ;; (setq centaur-dashboard nil)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry t)      ; Restore the frame's geometry at startup: t or nil
@@ -148,6 +148,8 @@
  '(lsp-bridge-enable-auto-format-code nil)
  '(lsp-bridge-enable-candidate-doc-preview t)
  '(lsp-bridge-enable-diagnostics t)
+ '(lsp-bridge-enable-signature-help t)
+ '(lsp-bridge-signature-help-fetch-idle 0.5)
  '(ns-alternate-modifier 'super)
  '(ns-command-modifier 'meta)
  '(objed-cursor-color "#c82829")
