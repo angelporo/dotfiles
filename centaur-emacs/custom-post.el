@@ -52,16 +52,16 @@
   :load-path "~/elisp/lsp-bridge"
   :hook (prog-mode . lsp-bridge-mode)
   :bind (:map lsp-bridge-mode
-              ("C-s-j" . lsp-bridge-jump-to-next-diagnostic) ;显示下一个错误
-              ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
-              ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
-              ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
-              ("M-." . lsp-bridge-find-def)
-              ("M-," . lsp-bridge-return-from-def)
-              ("M-?" . lsp-bridge-find-references)
-              ("C-c RET" . lsp-bridge-lookup-documentation)
-              ("M-RET" . lsp-bridge-code-action)
-              )
+         ("C-s-j" . lsp-bridge-jump-to-next-diagnostic) ;显示下一个错误
+         ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
+         ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
+         ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
+         ("M-." . lsp-bridge-find-def)
+         ("M-," . lsp-bridge-find-def-return)
+         ("M-?" . lsp-bridge-find-references)
+         ("C-c RET" . lsp-bridge-lookup-documentation)
+         ("M-RET" . lsp-bridge-code-action)
+         )
   :config
   (setq acm-candidate-match-function 'orderless-regexp)
   (global-lsp-bridge-mode)

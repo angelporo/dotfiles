@@ -32,7 +32,7 @@
 (setq centaur-icon t)
 (setq centaur-full-name "angelporo")              ; User full name
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
-(setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
+(setq centaur-proxy "127.0.0.1:1086")             ; Network proxy
 ;; Enable proxy
 (proxy-http-enable)
 
