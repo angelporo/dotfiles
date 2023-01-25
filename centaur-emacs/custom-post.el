@@ -29,12 +29,15 @@
 (add-to-list 'load-path (expand-file-name "~/elisp/company-english-helper"))
 (require 'company-english-helper)
 
+(add-to-list 'default-frame-alist '(undecorated-round . t))
+
 
 (defun start-centaur-bind-keys ()
   (global-set-key (kbd "M-s") 'save-buffer)
   (global-set-key (kbd "C-a") 'beginning-of-line)
   (global-set-key (kbd "C-e") 'end-of-line)
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
+  (global-set-key (kbd "C-i") 'yas-expand)
   )
 
 
@@ -46,7 +49,6 @@
                                 "--ignore" "*node_modules*"
                                 ))
 
-
 (use-package lsp-bridge
   :ensure nil
   :load-path "~/elisp/lsp-bridge"
@@ -56,14 +58,30 @@
          ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
          ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
          ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
+         ("C-c e l" . lsp-bridge-list-diagnostics)
+         ("C-s-u" . lsp-bridge-ignore-current-diagnostic) ;插入注视忽略当前诊断
          ("M-." . lsp-bridge-find-def)
          ("M-," . lsp-bridge-find-def-return)
          ("M-?" . lsp-bridge-find-references)
-         ("C-c RET" . lsp-bridge-lookup-documentation)
+         ("C-c RET" . lsp-bridge-popup-documentation)
+         ("C-c m" . lsp-bridge-rename)
          ("M-RET" . lsp-bridge-code-action)
          )
   :config
-  (setq acm-candidate-match-function 'orderless-regexp)
+  (setq acm-enable-tabnine nil)
+  (setq acm-enable-yas nil)
+  (setq acm-enable-tempel nil)
+  (setq lsp-bridge-enable-hover-diagnostic t)
+  (setq lsp-bridge-enable-auto-format-code nil)
+  (setq acm-backend-yas-candidates-number 4)
+  (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
+                                                      (("vue") . "volar_emmet")
+                                                      (("html") . "html_emmet")
+                                                      (("tsx") . "tsx_emmet")
+                                                      ))
+
+  ;; 这些字符的后面不再弹出补全菜单
+  ;; (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
   (global-lsp-bridge-mode)
   )
 
@@ -79,86 +97,12 @@
   (completion-category-overrides '((file (styles basic partial-completion))))
   )
 
-
-
 ;; (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 ;; (add-hook 'lsp-mode-hook (lambda ()
 ;;                            (global-set-key (kbd "M-RET") 'lsp-execute-code-action)
 ;;                            ))
-
-(defun lsp-bridge-start ()
-  (global-set-key (kbd "M-.") 'lsp-bridge-find-def)
-  (global-set-key (kbd "M-,") 'lsp-bridge-return-from-def)
-  (global-set-key (kbd "M-?") 'lsp-bridge-find-references)
-  (global-set-key (kbd "M-RET") 'lsp-bridge-code-action)
-  (global-set-key (kbd "C-n") 'next-line)
-  (global-set-key (kbd "C-p") 'previous-line)
-  )
-;; (use-package company-tabnine
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'company-backends #'company-tabnine)
-;;   (defun company//sort-by-tabnine (candidates)
-;;     "Integrate company-tabnine with lsp-mode"
-;;     (if (or (functionp company-backend)
-;;             (not (and (listp company-backend) (memq 'company-tabnine company-backends))))
-;;         candidates
-;;       (let ((candidates-table (make-hash-table :test #'equal))
-;;             candidates-lsp
-;;             candidates-tabnine)
-;;         (dolist (candidate candidates)
-;;           (if (eq (get-text-property 0 'company-backend candidate)
-;;                   'company-tabnine)
-;;               (unless (gethash candidate candidates-table)
-;;                 (push candidate candidates-tabnine))
-;;             (push candidate candidates-lsp)
-;;             (puthash candidate t candidates-table)))
-;;         (setq candidates-lsp (nreverse candidates-lsp))
-;;         (setq candidates-tabnine (nreverse candidates-tabnine))
-;;         (nconc (seq-take candidates-tabnine 3)
-;;                (seq-take candidates-lsp 6)))))
-;;   (defun lsp-after-open-tabnine ()
-;;     "Hook to attach to `lsp-after-open'."
-;;     (setq-local company-tabnine-max-num-results 9)
-;;     ;; (add-to-list 'company-transformers 'company//sort-by-tabnine t)
-;;     ;; (add-to-list 'company-backends '(company-capf :with company-tabnine :separate))
-;;     )
-;;   (defun company-tabnine-toggle (&optional enable)
-;;     "Enable/Disable TabNine. If ENABLE is non-nil, definitely enable it."
-;;     (interactive)
-;;     (if (or enable (not (memq 'company-tabnine company-backends)))
-;;         (progn
-;;           ;; (add-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
-;;           (add-to-list 'company-backends #'company-tabnine)
-;;           ;; (when (bound-and-true-p lsp-mode) (lsp-after-open-tabnine))
-;;           (message "TabNine enabled."))
-;;       (setq company-backends (delete 'company-tabnine company-backends))
-;;       ;; (setq company-backends (delete '(company-capf :with company-tabnine :separate) company-backends))
-;;       ;; (remove-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
-;;       (company-tabnine-kill-process)
-;;       (message "TabNine disabled.")))
-;;   :hook
-;;   (kill-emacs . company-tabnine-kill-process)
-;;   :config
-;;   (setq company-idle-delay 0.2
-;;         company-async-redisplay-delay 0.2
-;;         company-tooltip-idle-delay 0.2
-;;         company-show-numbers nil
-;;         company-minimum-prefix-length 1
-;;         company-tabnine-max-restart-count 40
-;;         company-tabnine-max-num-results 30
-;;         lsp-headerline-breadcrumb-mode t
-;;         )
-;;   (company-tabnine-toggle t)
-;;   )
-
-
 
 (use-package sis
   :ensure t
@@ -169,9 +113,9 @@
         sis-respect-restore-triggers
         (list 'isearch-exit 'isearch-abort))   ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
   :config
-  (add-hook 'text-mode-hook #'sis-set-other)
-  (add-hook 'typescript-mode-hook #'sis-set-english)
-  (add-hook 'dashboard-mode-hook #'sis-set-english)
+  ;; (add-hook 'text-mode-hook #'sis-set-other)
+  ;; (add-hook 'typescript-mode-hook #'sis-set-english)
+  ;; (add-hook 'dashboard-mode-hook #'sis-set-english)
   (sis-ism-lazyman-config
    "com.apple.keylayout.ABC"
    ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
@@ -185,7 +129,7 @@
   (sis-global-context-mode t)
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t)  ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
-  ;; (global-set-key (kbd "C-M-<spc>") 'sis-switch) ; 切换输入法
+  ;; (global-set-key (kbd "M-<spc>") 'sis-switch) ; 切换输入法
   ;; 特殊定制
   (setq sis-do-set
         (lambda(source) (start-process "set-input-source" nil "macism" source "50000")))
@@ -199,10 +143,12 @@
   (setq sis-prefix-override-buffer-disable-predicates
         (list 'minibufferp
               (lambda (buffer) ; magit revision magit的keymap是基于text property的，优先级比sis更高。进入 magit 后，disable sis 的映射
-                (sis--string-match-p "^magit-revision:" (buffer-name buffer)))
+                (sis--string-match-p "^magit-revision:" (buffer-name buffer))
+                )
               (lambda (buffer) ; special buffer，所有*打头的buffer，但是不包括*Scratch* *New, *About GNU等buffer
                 (and (sis--string-match-p "^\*" (buffer-name buffer))
                      (not (sis--string-match-p "^\*About GNU Emacs" (buffer-name buffer))) ; *About GNU Emacs" 仍可使用 C-h/C-x/C-c 前缀
+                     (not (sis--string-match-p "css-mode" (buffer-name buffer)))
                      (not (sis--string-match-p "^\*New" (buffer-name buffer)))
                      (not (sis--string-match-p "^\*Scratch" (buffer-name buffer))))))) ; *Scratch*  仍可使用 C-h/C-x/C-c 前缀
   )
@@ -241,12 +187,12 @@
 ;; (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
 
-(use-package flutter
-  :after dart-mode
-  :bind (:map dart-mode-map
-         ("C-M-x" . #'flutter-run-or-hot-reload))
-  :custom
-  (flutter-sdk-path "/Users/angel/.flutter"))
+;; (use-package flutter
+;;   :after dart-mode
+;;   :bind (:map dart-mode-map
+;;          ("C-M-x" . #'flutter-run-or-hot-reload))
+;;   :custom
+;;   (flutter-sdk-path "/Users/angel/.flutter"))
 
 
 (use-package emmet-mode
@@ -255,30 +201,15 @@
   (css-mode . emmet-mode)
   (typescript-mode . emmet-mode)
   )
-
-
-;; (with-eval-after-load 'company
-;;   (dolist (map (list company-active-map company-search-map))
-;;     (define-key map (kbd "C-n") nil)
-;;     (define-key map (kbd "C-p") nil)
-;;     (define-key company-active-map (kbd "M-q") 'company-other-backend)
-;;     (define-key company-active-map (kbd "C-i") 'yas-expand)
-;;     (define-key company-active-map (kbd "C-n") 'next-line)
-;;     (define-key company-active-map (kbd "C-p") 'previous-line)
-;;     (define-key map (kbd "M-n") #'company-select-next)
-;;     (define-key map (kbd "M-p") #'company-select-previous))
-;;   )
-
-;; 尝试 github copilot
-;; (load-file "~/elisp/copilot.el/copilot.el")
-
-;; (use-package copilot
-;;   :straight (:host github :repo "zerolfx/copilot.el"
-;;              :files ("dist" "copilot.el"))
-;;   :ensure t
-;;   :config
-;;   ;; provide completion when typing
-;;   (add-hook 'post-command-hook (lambda ()
-;;                                  (copilot-clear-overlay)
-;;                                  (when (evil-insert-state-p)
-;;                                    (copilot-complete)))))
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  (eval-after-load 'js-mode
+    '(add-hook 'js-mode-hook #'add-node-modules-path))
+  (eval-after-load 'web-mode
+    '(progn
+       (add-hook 'web-mode-hook #'add-node-modules-path)
+       (add-hook 'web-mode-hook #'prettier-js-mode)
+       (add-hook 'typescript-mode-hook #'prettier-js-mode)
+       ))
+  )

@@ -8,11 +8,6 @@
 # Modified Hosts Start
 
 # Localhost (DO NOT REMOVE) Start
-172.17.0.2  localhost
-127.0.0.1	localhost
-# Localhost (DO NOT REMOVE) End
-10.7.0.21       node021
-10.7.0.22       node022
 # GoogleHosts Start
 2.56.240.163	ss-3.googlehosts.org
 204.44.66.78	204-44-66-78.googlehosts.org
