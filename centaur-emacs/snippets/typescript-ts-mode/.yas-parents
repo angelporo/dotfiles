@@ -1,0 +1,9 @@
+# name:
+# key: trigger-key
+# keybinding : keybinding
+# expand-env : ()
+# contributor :
+# expand-env : ()
+# key: vars
+# --
+js-mode

@@ -29,6 +29,25 @@
 (add-to-list 'load-path (expand-file-name "~/elisp/company-english-helper"))
 (require 'company-english-helper)
 
+
+
+
+
+(defun setupEmacs29BindBuffer ()
+  (add-to-list 'auto-mode-alist '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
+  )
+
+
+(when emacs/>=29p
+  (setupEmacs29BindBuffer)
+  )
+
+
+
 (add-to-list 'default-frame-alist '(undecorated-round . t))
 
 
@@ -121,7 +140,7 @@
    ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
    "com.sogou.inputmethod.sogou.pinyin" ;; 搜狗输入法
    )
-  ;; enable the /cursor color/ mode 中英文光标颜色模式
+
   (sis-global-cursor-color-mode t)
   ;; enable the /respect/ mode buffer 输入法状态记忆模式
   (sis-global-respect-mode t)
@@ -140,17 +159,17 @@
         sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
         sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
   ;; 特殊 buffer 禁用 sis 前缀,使用 Emacs 原生快捷键  setqsis-prefix-override-buffer-disable-predicates
-  (setq sis-prefix-override-buffer-disable-predicates
-        (list 'minibufferp
-              (lambda (buffer) ; magit revision magit的keymap是基于text property的，优先级比sis更高。进入 magit 后，disable sis 的映射
-                (sis--string-match-p "^magit-revision:" (buffer-name buffer))
-                )
-              (lambda (buffer) ; special buffer，所有*打头的buffer，但是不包括*Scratch* *New, *About GNU等buffer
-                (and (sis--string-match-p "^\*" (buffer-name buffer))
-                     (not (sis--string-match-p "^\*About GNU Emacs" (buffer-name buffer))) ; *About GNU Emacs" 仍可使用 C-h/C-x/C-c 前缀
-                     (not (sis--string-match-p "css-mode" (buffer-name buffer)))
-                     (not (sis--string-match-p "^\*New" (buffer-name buffer)))
-                     (not (sis--string-match-p "^\*Scratch" (buffer-name buffer))))))) ; *Scratch*  仍可使用 C-h/C-x/C-c 前缀
+  ;; (setq sis-prefix-override-buffer-disable-predicates
+  ;;       (list 'minibufferp
+  ;;             (lambda (buffer) ; magit revision magit的keymap是基于text property的，优先级比sis更高。进入 magit 后，disable sis 的映射
+  ;;               (sis--string-match-p "^magit-revision:" (buffer-name buffer))
+  ;;               )
+  ;;             (lambda (buffer) ; special buffer，所有*打头的buffer，但是不包括*Scratch* *New, *About GNU等buffer
+  ;;               (and (sis--string-match-p "^\*" (buffer-name buffer))
+  ;;                    (not (sis--string-match-p "^\*About GNU Emacs" (buffer-name buffer))) ; *About GNU Emacs" 仍可使用 C-h/C-x/C-c 前缀
+  ;;                    (not (sis--string-match-p "^\*New" (buffer-name buffer)))
+  ;;                    (not (sis--string-match-p "^\*Scratch" (buffer-name buffer)))))))
+                                        ; *Scratch*  仍可使用 C-h/C-x/C-c 前缀
   )
 
 
@@ -201,15 +220,15 @@
   (css-mode . emmet-mode)
   (typescript-mode . emmet-mode)
   )
-(use-package add-node-modules-path
-  :ensure t
-  :config
-  (eval-after-load 'js-mode
-    '(add-hook 'js-mode-hook #'add-node-modules-path))
-  (eval-after-load 'web-mode
-    '(progn
-       (add-hook 'web-mode-hook #'add-node-modules-path)
-       (add-hook 'web-mode-hook #'prettier-js-mode)
-       (add-hook 'typescript-mode-hook #'prettier-js-mode)
-       ))
-  )
+;; (use-package add-node-modules-path
+;;   :ensure t
+;;   :config
+;;   (eval-after-load 'js-mode
+;;     '(add-hook 'js-mode-hook #'add-node-modules-path))
+;;   (eval-after-load 'web-mode
+;;     '(progn
+;;        (add-hook 'web-mode-hook #'add-node-modules-path)
+;;        (add-hook 'web-mode-hook #'prettier-js-mode)
+;;        (add-hook 'typescript-mode-hook #'prettier-js-mode)
+;;        ))
+;;   )
