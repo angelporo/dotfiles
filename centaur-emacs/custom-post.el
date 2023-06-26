@@ -26,17 +26,13 @@
 ;; Visual (UI) configurations for better lookings and appearances.
 ;;
 ;;; Code:
-(add-to-list 'load-path (expand-file-name "~/elisp/company-english-helper"))
-(require 'company-english-helper)
-
-
-
-
 
 (defun setupEmacs29BindBuffer ()
   (add-to-list 'auto-mode-alist '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.wxml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
   )
@@ -45,9 +41,6 @@
 (when emacs/>=29p
   (setupEmacs29BindBuffer)
   )
-
-
-
 (add-to-list 'default-frame-alist '(undecorated-round . t))
 
 
@@ -59,14 +52,71 @@
   (global-set-key (kbd "C-i") 'yas-expand)
   )
 
-
 (start-centaur-bind-keys)
+
+
+
+
+
+
+
+
+(use-package pyim
+  :ensure t
+  :demand t
+  :config
+  ;; 我使用全拼
+  (setq pyim-default-scheme 'xiaohe-shuangpin)
+  (setq default-input-method "pyim")
+  (use-package pyim-basedict
+    :ensure t
+    :config
+    ;; 加载 basedict 拼音词库。
+    (pyim-basedict-enable))
+
+  ;; 设置 pyim 探针
+  ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
+  ;; 我自己使用的中英文动态切换规则是：
+  ;; 1. 光标只有在注释里面时，才可以输入中文。
+  ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
+  (setq-default pyim-english-input-switch-functions
+                '(pyim-probe-program-mode
+                  pyim-probe-dynamic-english
+                  pyim-probe-auto-englishe
+                  pyim-probe-org-structure-template))
+
+  (setq-default pyim-punctuation-half-width-functions
+                '(pyim-probe-punctuation-line-beginning
+                  pyim-probe-punctuation-after-punctuation))
+  ;; ;; 开启代码搜索中文功能（比如拼音，五笔码等）
+  ;; (pyim-isearch-mode 1)
+  ;; 设置 pyim 是否使用云拼音
+  (setq pyim-cloudim 'google)
+
+  ;; (setq pyim-dicts
+  ;;       '((:name "dict1" :file "~/elisp/scel2pyim/前端工程师必备词库.pyim")
+  ;;         (:name "dict2" :file "~/elisp/scel2pyim/开发大神专用词库【官方推荐】.pyim")
+  ;;         (:name "dict3" :file "~/elisp/scel2pyim/实用IT词汇.pyim")
+  ;;         (:name "dict4" :file "~/elisp/scel2pyim/编程开发.pyim")
+  ;;         ))
+
+  ;; 选词框显示5个候选词
+  (setq pyim-page-length 9)
+
+  ;; 让 Emacs 启动时自动加载 pyim 词库
+  ;; (add-hook 'emacs-startup-hook
+  ;;           #'(lambda () (pyim-restart-1 t)))
+  (global-set-key (kbd "M-j") 'pyim-convert-string-at-point)
+  )
+
 
 (setq counsel-ag-base-command '(
                                 "ag"
                                 "--vimgrep" "%s"
                                 "--ignore" "*node_modules*"
                                 ))
+(setenv "LANG" "Chinese")
+
 
 (use-package lsp-bridge
   :ensure nil
@@ -88,8 +138,10 @@
          )
   :config
   (setq acm-enable-tabnine nil)
+  (setq acm-enable-codeium nil)
   (setq acm-enable-yas nil)
   (setq acm-enable-tempel nil)
+  (setq lsp-bridge-auto-format-code-idle -1)
   (setq lsp-bridge-enable-hover-diagnostic t)
   (setq lsp-bridge-enable-auto-format-code nil)
   (setq acm-backend-yas-candidates-number 4)
@@ -100,7 +152,7 @@
                                                       ))
 
   ;; 这些字符的后面不再弹出补全菜单
-  ;; (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
+  (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
   (global-lsp-bridge-mode)
   )
 
@@ -116,61 +168,45 @@
   (completion-category-overrides '((file (styles basic partial-completion))))
   )
 
-;; (add-to-list 'lsp-language-id-configuration '(".*\\.less" . "css"))
-;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+;; (use-package sis
+;;   :ensure t
+;;   :init
+;;   ;; `C-s/r' 默认优先使用英文 必须在 sis-global-respect-mode 前配置
+;;   (setq sis-respect-go-english-triggers
+;;         (list 'isearch-forward 'isearch-backward) ; isearch-forward 命令时默认进入
+;;         sis-respect-restore-triggers
+;;         (list 'isearch-exit 'isearch-abort))   ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
+;;   :config
+;;   (setq sis-english-source "com.apple.keylayout.ABC")
+;;   (setq sis-other-source "com.sogou.inputmethod.sogou.pinyin")
+;;   ;; (sis-ism-lazyman-config
+;;   ;;  "com.apple.keylayout.ABC"
+;;   ;;  ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
+;;   ;;  "com.sogou.inputmethod.sogou.pinyin" ;; 搜狗输入法
+;;   ;;  )
+;;   (sis-global-cursor-color-mode t)
 
-;; (add-hook 'lsp-mode-hook (lambda ()
-;;                            (global-set-key (kbd "M-RET") 'lsp-execute-code-action)
-;;                            ))
+;;   ;; enable the /respect/ mode buffer 输入法状态记忆模式
+;;   (sis-global-respect-mode t)
+;;   ;; enable the /follow context/ mode for all buffers
+;;   (sis-global-context-mode t)
+;;   ;; enable the /inline english/ mode for all buffers
+;;   (sis-global-inline-mode t)  ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
+;;   ;; (global-set-key (kbd "M-<spc>") 'sis-switch) ; 切换输入法
+;;   ;; 特殊定制
+;;   (setq sis-do-set
+;;         (lambda(source) (start-process "set-input-source" nil "macism" source "30000")))
 
-(use-package sis
-  :ensure t
-  :init
-  ;; `C-s/r' 默认优先使用英文 必须在 sis-global-respect-mode 前配置
-  (setq sis-respect-go-english-triggers
-        (list 'isearch-forward 'isearch-backward) ; isearch-forward 命令时默认进入
-        sis-respect-restore-triggers
-        (list 'isearch-exit 'isearch-abort))   ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
-  :config
-  ;; (add-hook 'text-mode-hook #'sis-set-other)
-  ;; (add-hook 'typescript-mode-hook #'sis-set-english)
-  ;; (add-hook 'dashboard-mode-hook #'sis-set-english)
-  (sis-ism-lazyman-config
-   "com.apple.keylayout.ABC"
-   ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
-   "com.sogou.inputmethod.sogou.pinyin" ;; 搜狗输入法
-   )
+;;   (setq sis-prefix-override-keys (list "C-c" "C-x" "C-h" "C-c e"))
 
-  (sis-global-cursor-color-mode t)
-  ;; enable the /respect/ mode buffer 输入法状态记忆模式
-  (sis-global-respect-mode t)
-  ;; enable the /follow context/ mode for all buffers
-  (sis-global-context-mode t)
-  ;; enable the /inline english/ mode for all buffers
-  (sis-global-inline-mode t)  ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
-  ;; (global-set-key (kbd "M-<spc>") 'sis-switch) ; 切换输入法
-  ;; 特殊定制
-  (setq sis-do-set
-        (lambda(source) (start-process "set-input-source" nil "macism" source "50000")))
-  (setq sis-default-cursor-color "#02C389" ; 英文光标色
-        sis-other-cursor-color "#F95B5B" ; 中文光标色
-        sis-inline-tighten-head-rule 'all ; 删除头部空格，默认1，删除一个空格，1/0/'all
-        sis-inline-tighten-tail-rule 'all ; 删除尾部空格，默认1，删除一个空格，1/0/'all
-        sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
-        sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
-  ;; 特殊 buffer 禁用 sis 前缀,使用 Emacs 原生快捷键  setqsis-prefix-override-buffer-disable-predicates
-  ;; (setq sis-prefix-override-buffer-disable-predicates
-  ;;       (list 'minibufferp
-  ;;             (lambda (buffer) ; magit revision magit的keymap是基于text property的，优先级比sis更高。进入 magit 后，disable sis 的映射
-  ;;               (sis--string-match-p "^magit-revision:" (buffer-name buffer))
-  ;;               )
-  ;;             (lambda (buffer) ; special buffer，所有*打头的buffer，但是不包括*Scratch* *New, *About GNU等buffer
-  ;;               (and (sis--string-match-p "^\*" (buffer-name buffer))
-  ;;                    (not (sis--string-match-p "^\*About GNU Emacs" (buffer-name buffer))) ; *About GNU Emacs" 仍可使用 C-h/C-x/C-c 前缀
-  ;;                    (not (sis--string-match-p "^\*New" (buffer-name buffer)))
-  ;;                    (not (sis--string-match-p "^\*Scratch" (buffer-name buffer)))))))
-                                        ; *Scratch*  仍可使用 C-h/C-x/C-c 前缀
-  )
+;;   (add-hook 'org-capture-mode-hook #'sis-set-other)
+;;   (setq sis-default-cursor-color "#02C389" ; 英文光标色
+;;         sis-other-cursor-color "#F95B5B" ; 中文光标色
+;;         sis-inline-tighten-head-rule 'zero ; 删除头部空格，默认1，删除一个空格，1/0/'all
+;;         sis-inline-tighten-tail-rule 'zero ; 删除尾部空格，默认1，删除一个空格，1/0/'all
+;;         sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
+;;         sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
+;;   )
 
 
 ;; (setq prettier-js-args '(
@@ -194,16 +230,17 @@
 
 
 
-;; (defun sanityinc/disable-features-during-macro-call (orig &rest args)
-;;   "When running a macro, disable features that might be expensive.
-;; ORIG is the advised function, which is called with its ARGS."
-;;   (let (post-command-hook
-;;         font-lock-mode
-;;         (tab-always-indent (or (eq 'complete tab-always-indent) tab-always-indent)))
-;;     (apply orig args)))
-
-
-;; (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
+(with-eval-after-load 'company
+  (dolist (map (list company-active-map company-search-map))
+    (define-key map (kbd "C-n") nil)
+    (define-key map (kbd "C-p") nil)
+    (define-key company-active-map (kbd "M-q") 'company-other-backend)
+    (define-key company-active-map (kbd "C-i") 'yas-expand)
+    (define-key company-active-map (kbd "C-n") 'next-line)
+    (define-key company-active-map (kbd "C-p") 'previous-line)
+    (define-key map (kbd "M-n") #'company-select-next)
+    (define-key map (kbd "M-p") #'company-select-previous))
+  )
 
 
 ;; (use-package flutter
@@ -220,15 +257,3 @@
   (css-mode . emmet-mode)
   (typescript-mode . emmet-mode)
   )
-;; (use-package add-node-modules-path
-;;   :ensure t
-;;   :config
-;;   (eval-after-load 'js-mode
-;;     '(add-hook 'js-mode-hook #'add-node-modules-path))
-;;   (eval-after-load 'web-mode
-;;     '(progn
-;;        (add-hook 'web-mode-hook #'add-node-modules-path)
-;;        (add-hook 'web-mode-hook #'prettier-js-mode)
-;;        (add-hook 'typescript-mode-hook #'prettier-js-mode)
-;;        ))
-;;   )

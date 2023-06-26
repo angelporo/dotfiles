@@ -43,7 +43,7 @@
 (setq frame-resize-pixelwise t)
 
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'random)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
 ;; (setq centaur-restore-frame-geometry t)      ; Restore the frame's geometry at startup: t or nil
@@ -51,52 +51,14 @@
 ;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode )) ; Ignore format on save for some languages
 (setq centaur-tree-sitter t)                 ; Enable `tree-sitter' or not: t or nil
 (setq centaur-chinese-calendar nil)              ; Use Chinese calendar or not: t or nil
-(setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
+(setq centaur-prettify-symbols-alist t)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist nil)  ; Alist of symbol prettifications for `org-mode'
 
 ;; For Emacs devel
 ;; (setq package-user-dir (locate-user-emacs-file (format "elpa-%s" emacs-major-version)))
 ;; (setq desktop-base-file-name (format ".emacs-%s.desktop" emacs-major-version))
 ;; (setq desktop-base-lock-name (format ".emacs-%s.desktop.lock" emacs-major-version))
-
-;; Fonts
-(when (display-graphic-p)
-  ;; Set default font
-  (cl-loop for font in '("SF Mono" "Hack" "Source Code Pro" "Fira Code"
-                         "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
-           when (font-installed-p font)
-           return (set-face-attribute 'default nil
-                                      :font font
-                                      :height (cond (sys/mac-x-p 130)
-                                                    (sys/win32p 110)
-                                                    (t 100))))
-
-  ;; Specify font for all unicode characters
-  (cl-loop for font in '("Apple Color Emoji" "Segoe UI Symbol" "Symbola" "Symbol")
-           when (font-installed-p font)
-           return(set-fontset-font t 'unicode font nil 'prepend))
-
-  ;; Specify font for Chinese characters
-  (cl-loop for font in '("WenQuanYi Micro Hei" "Microsoft Yahei")
-           when (font-installed-p font)
-           return (set-fontset-font t '(#x4e00 . #x9fff) font)))
-
-;; Mail
-;; (setq message-send-mail-function 'smtpmail-send-it
-;;       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-;;       smtpmail-auth-credentials '(("smtp.gmail.com" 587
-;;                                    user-mail-address nil))
-;;       smtpmail-default-smtp-server "smtp.gmail.com"
-;;       smtpmail-smtp-server "smtp.gmail.com"
-;;       smtpmail-smtp-service 587)
-
-;; Calendar
-;; Set location , then press `S' can show the time of sunrise and sunset
-(setq calendar-location-name "TaiYuan"
-      calendar-latitude 30.67
-      calendar-longitude 104.07)
-
-;; Misc.
+                                                                                                                             ;; Misc.
 (setq confirm-kill-emacs 'y-or-n-p)
 
 
@@ -106,116 +68,7 @@
 ;;   (set-frame-parameter nil 'left 1920))
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(acm-enable-path t)
- '(all-the-icons-color-icons t)
- '(auto-save-default t)
- '(centaur-completion-style 'childframe)
- '(centaur-lsp nil)
- '(centaur-tree-sitter t)
- '(connection-local-criteria-alist
-   '(((:application tramp :machine "localhost")
-      tramp-connection-local-darwin-ps-profile)
-     ((:application tramp :machine "MacBook-Pro.local")
-      tramp-connection-local-darwin-ps-profile)
-     ((:application tramp)
-      tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
- '(connection-local-profile-alist
-   '((tramp-connection-local-darwin-ps-profile
-      (tramp-process-attributes-ps-args "-acxww" "-o" "pid,uid,user,gid,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state=abcde" "-o" "ppid,pgid,sess,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etime,pcpu,pmem,args")
-      (tramp-process-attributes-ps-format
-       (pid . number)
-       (euid . number)
-       (user . string)
-       (egid . number)
-       (comm . 52)
-       (state . 5)
-       (ppid . number)
-       (pgrp . number)
-       (sess . number)
-       (ttname . string)
-       (tpgid . number)
-       (minflt . number)
-       (majflt . number)
-       (time . tramp-ps-time)
-       (pri . number)
-       (nice . number)
-       (vsize . number)
-       (rss . number)
-       (etime . tramp-ps-time)
-       (pcpu . number)
-       (pmem . number)
-       (args)))
-     (tramp-connection-local-busybox-ps-profile
-      (tramp-process-attributes-ps-args "-o" "pid,user,group,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "stat=abcde" "-o" "ppid,pgid,tty,time,nice,etime,args")
-      (tramp-process-attributes-ps-format
-       (pid . number)
-       (user . string)
-       (group . string)
-       (comm . 52)
-       (state . 5)
-       (ppid . number)
-       (pgrp . number)
-       (ttname . string)
-       (time . tramp-ps-time)
-       (nice . number)
-       (etime . tramp-ps-time)
-       (args)))
-     (tramp-connection-local-bsd-ps-profile
-      (tramp-process-attributes-ps-args "-acxww" "-o" "pid,euid,user,egid,egroup,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state,ppid,pgid,sid,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etimes,pcpu,pmem,args")
-      (tramp-process-attributes-ps-format
-       (pid . number)
-       (euid . number)
-       (user . string)
-       (egid . number)
-       (group . string)
-       (comm . 52)
-       (state . string)
-       (ppid . number)
-       (pgrp . number)
-       (sess . number)
-       (ttname . string)
-       (tpgid . number)
-       (minflt . number)
-       (majflt . number)
-       (time . tramp-ps-time)
-       (pri . number)
-       (nice . number)
-       (vsize . number)
-       (rss . number)
-       (etime . number)
-       (pcpu . number)
-       (pmem . number)
-       (args)))
-     (tramp-connection-local-default-shell-profile
-      (shell-file-name . "/bin/sh")
-      (shell-command-switch . "-c"))
-     (tramp-connection-local-default-system-profile
-      (path-separator . ":")
-      (null-device . "/dev/null"))))
- '(fci-rule-color "#a3a1a1")
- '(frame-resize-pixelwise t)
- '(js-jsx-indent-level 2)
- '(line-spacing 2)
- '(lsp-bridge-auto-format-code-idle 1)
- '(lsp-bridge-enable-auto-format-code nil)
- '(lsp-bridge-enable-candidate-doc-preview t)
- '(lsp-bridge-enable-diagnostics t)
- '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
- '(max-lisp-eval-depth 13000)
- '(ns-alternate-modifier 'super)
- '(ns-command-modifier 'meta)
- '(objed-cursor-color "#c82829")
- '(pdf-view-midnight-colors (cons "#4d4d4c" "#ffffff") t)
- '(scroll-conservatively 0)
- '(scroll-step 0)
- '(typescript-indent-level 2)
- '(warning-minimum-level :error)
- '(warning-suppress-log-types '((use-package)))
- '(warning-suppress-types '((use-package))))
+ )
 
 
 (custom-set-faces
