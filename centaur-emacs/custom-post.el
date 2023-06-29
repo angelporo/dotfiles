@@ -44,6 +44,75 @@
 (add-to-list 'default-frame-alist '(undecorated-round . t))
 
 
+;; (use-package pyim
+;;   :ensure t
+;;   :demand t
+;;   :init
+;;   (add-hook 'emacs-startup-hook
+;;             (lambda () (pyim-restart-1 t)))
+;;   :hook ((js-mode js2-mode css-mode sgml-mode web-mode tsx-ts-mode typescript-ts-mode) . toggle-input-method)
+;;   :config
+;;   ;; 我使用全拼
+;;   (setq pyim-default-scheme 'xiaohe-shuangpin)
+;;   (setq default-input-method "pyim")
+;;   (use-package pyim-basedict
+;;     :ensure t
+;;     :config
+;;     ;; 加载 basedict 拼音词库。
+;;     ;; (pyim-basedict-enable)
+;;     )
+
+;;   (add-to-list 'load-path "~/elisp/pyim-tsinghua-dict")
+;;   (require 'pyim-tsinghua-dict)
+;;   (pyim-tsinghua-dict-enable)
+
+
+;;   ;; 设置 pyim 探针
+;;   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
+;;   ;; 我自己使用的中英文动态切换规则是：
+;;   ;; 1. 光标只有在注释里面时，才可以输入中文。
+;;   ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。这段代码使用
+;;   (setq-default pyim-english-input-switch-functions
+;;                 '(pyim-probe-program-mode
+;;                   pyim-probe-dynamic-english
+;;                   pyim-probe-auto-english
+;;                   pyim-probe-org-structure-template))
+
+;;   (setq-default pyim-punctuation-half-width-functions
+;;                 '(pyim-probe-punctuation-line-beginning
+;;                   pyim-probe-punctuation-after-punctuation))
+
+;;   ;; ;; 开启代码搜索中文功能（比如拼音，五笔码等）
+;;   ;; (pyim-isearch-mode 1)
+;;   ;; 设置 pyim 是否使用云拼音
+;;   (setq pyim-cloudim 'baidu)
+;;   ;; 关闭当前buffer,自动搜索词汇功能
+;;   (setq pyim-candidates-search-buffer-p nil)
+;;   (setq pyim-dicts
+;;         '(
+;;           (:name "dict7" :file "~/elisp/scel2pyim/前端工程师必备词库.pyim")
+;;           (:name "dict2" :file "~/elisp/scel2pyim/开发大神专用词库【官方推荐】.pyim")
+;;           (:name "dict3" :file "~/elisp/scel2pyim/实用IT词汇.pyim")
+;;           (:name "dict4" :file "~/elisp/scel2pyim/编程开发.pyim")
+;;           (:name "dict5" :file "~/elisp/scel2pyim/前端开发常用词库.pyim")
+;;           (:name "dict6" :file "~/elisp/scel2pyim/物流词汇大全【官方推荐】.pyim")
+;;           ))
+
+
+;;   ;; 选词框显示5个候选词
+;;   (setq pyim-page-length 9)
+;;   ;; 模糊音
+;;   (setq pyim-pinyin-fuzzy-alist
+;;         '(("z" "zh")
+;;           ("c" "ch")
+;;           ("s" "sh")
+;;           ("en" "eng")
+;;           ("in" "ing")))
+;;   ;; 让 Emacs 启动时自动加载 pyim 词库
+;;   (global-set-key (kbd "M-l") 'pyim-convert-string-at-point)
+;;   )
+
+
 (defun start-centaur-bind-keys ()
   (global-set-key (kbd "M-s") 'save-buffer)
   (global-set-key (kbd "C-a") 'beginning-of-line)
@@ -53,62 +122,6 @@
   )
 
 (start-centaur-bind-keys)
-
-
-
-
-
-
-
-
-(use-package pyim
-  :ensure t
-  :demand t
-  :config
-  ;; 我使用全拼
-  (setq pyim-default-scheme 'xiaohe-shuangpin)
-  (setq default-input-method "pyim")
-  (use-package pyim-basedict
-    :ensure t
-    :config
-    ;; 加载 basedict 拼音词库。
-    (pyim-basedict-enable))
-
-  ;; 设置 pyim 探针
-  ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
-  ;; 我自己使用的中英文动态切换规则是：
-  ;; 1. 光标只有在注释里面时，才可以输入中文。
-  ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
-  (setq-default pyim-english-input-switch-functions
-                '(pyim-probe-program-mode
-                  pyim-probe-dynamic-english
-                  pyim-probe-auto-englishe
-                  pyim-probe-org-structure-template))
-
-  (setq-default pyim-punctuation-half-width-functions
-                '(pyim-probe-punctuation-line-beginning
-                  pyim-probe-punctuation-after-punctuation))
-  ;; ;; 开启代码搜索中文功能（比如拼音，五笔码等）
-  ;; (pyim-isearch-mode 1)
-  ;; 设置 pyim 是否使用云拼音
-  (setq pyim-cloudim 'google)
-
-  ;; (setq pyim-dicts
-  ;;       '((:name "dict1" :file "~/elisp/scel2pyim/前端工程师必备词库.pyim")
-  ;;         (:name "dict2" :file "~/elisp/scel2pyim/开发大神专用词库【官方推荐】.pyim")
-  ;;         (:name "dict3" :file "~/elisp/scel2pyim/实用IT词汇.pyim")
-  ;;         (:name "dict4" :file "~/elisp/scel2pyim/编程开发.pyim")
-  ;;         ))
-
-  ;; 选词框显示5个候选词
-  (setq pyim-page-length 9)
-
-  ;; 让 Emacs 启动时自动加载 pyim 词库
-  ;; (add-hook 'emacs-startup-hook
-  ;;           #'(lambda () (pyim-restart-1 t)))
-  (global-set-key (kbd "M-j") 'pyim-convert-string-at-point)
-  )
-
 
 (setq counsel-ag-base-command '(
                                 "ag"
@@ -168,46 +181,88 @@
   (completion-category-overrides '((file (styles basic partial-completion))))
   )
 
-;; (use-package sis
-;;   :ensure t
-;;   :init
-;;   ;; `C-s/r' 默认优先使用英文 必须在 sis-global-respect-mode 前配置
-;;   (setq sis-respect-go-english-triggers
-;;         (list 'isearch-forward 'isearch-backward) ; isearch-forward 命令时默认进入
-;;         sis-respect-restore-triggers
-;;         (list 'isearch-exit 'isearch-abort))   ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
-;;   :config
-;;   (setq sis-english-source "com.apple.keylayout.ABC")
-;;   (setq sis-other-source "com.sogou.inputmethod.sogou.pinyin")
-;;   ;; (sis-ism-lazyman-config
-;;   ;;  "com.apple.keylayout.ABC"
-;;   ;;  ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法
-;;   ;;  "com.sogou.inputmethod.sogou.pinyin" ;; 搜狗输入法
-;;   ;;  )
-;;   (sis-global-cursor-color-mode t)
+(defvar sis-context-hooks
+  '(post-command-hook)
+  "Hooks trigger the set of input source following context.")
 
-;;   ;; enable the /respect/ mode buffer 输入法状态记忆模式
-;;   (sis-global-respect-mode t)
-;;   ;; enable the /follow context/ mode for all buffers
-;;   (sis-global-context-mode t)
-;;   ;; enable the /inline english/ mode for all buffers
-;;   (sis-global-inline-mode t)  ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
-;;   ;; (global-set-key (kbd "M-<spc>") 'sis-switch) ; 切换输入法
-;;   ;; 特殊定制
-;;   (setq sis-do-set
-;;         (lambda(source) (start-process "set-input-source" nil "macism" source "30000")))
+(use-package sis
+  :ensure t
+  :init
+  ;; `C-s/r' 默认优先使用英文 必须在 sis-global-respect-mode 前配置
+  ;; (setq sis-respect-go-english-triggers
+  ;;       (list 'isearch-forward 'isearch-backward) ; isearch-forward 命令时默认进入
+  ;;       sis-respect-restore-triggers
+  ;;       (list 'isearch-exit 'isearch-abort))
+                                        ; isearch-forward 恢复, isearch-exit `<Enter>', isearch-abor `C-g'
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (sis-set-english)))
+  :config
+  (setq sis-english-source "com.apple.keylayout.ABC")
+  (setq sis-other-source "com.sogou.inputmethod.sogou.pinyin")
+  ;; (sis-ism-lazyman-config
+  ;;  "com.apple.keylayout.ABC"
+  ;;  ;; "com.apple.inputmethod.SCIM.Shuangpin" ;; 苹果自带双拼输入法这里
+  ;;  "com.sogou.inputmethod.sogou.pinyin" ;; 搜狗输入法
+  ;; (global-set-key (kbd "M-<spc>") 'sis-switch) ; 切换输入法
 
-;;   (setq sis-prefix-override-keys (list "C-c" "C-x" "C-h" "C-c e"))
+  (sis-global-cursor-color-mode t)
 
-;;   (add-hook 'org-capture-mode-hook #'sis-set-other)
-;;   (setq sis-default-cursor-color "#02C389" ; 英文光标色
-;;         sis-other-cursor-color "#F95B5B" ; 中文光标色
-;;         sis-inline-tighten-head-rule 'zero ; 删除头部空格，默认1，删除一个空格，1/0/'all
-;;         sis-inline-tighten-tail-rule 'zero ; 删除尾部空格，默认1，删除一个空格，1/0/'all
-;;         sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
-;;         sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
-;;   )
+  ;; enable the /respect/ mode buffer 输入法状态记忆模式
+  (sis-global-respect-mode t)
+  ;; enable the /follow context/ mode for all buffers
+  (sis-global-context-mode t)
+  ;; enable the /inline english/ mode for all buffers
+  (sis-global-inline-mode t)  ; 中文输入法状态下，中文后<spc>自动切换英文，结束后自动切回中文
 
+  ;; 特殊定制
+  (setq sis-do-set
+        (lambda(source) (start-process "set-input-source" nil "macism" source "40000")))
+
+  (setq sis-prefix-override-keys (list "C-c" "C-x" "C-h" "C-c e"))
+
+  (add-hook 'org-capture-mode-hook #'sis-set-other)
+  (setq sis-default-cursor-color "#02C389" ; 英文光标色
+        sis-other-cursor-color "#F95B5B" ; 中文光标色
+        sis-inline-tighten-head-rule 'zero ; 删除头部空格，默认1，删除一个空格，1/0/'all
+        sis-inline-tighten-tail-rule 'zero ; 删除尾部空格，默认1，删除一个空格，1/0/'all
+        sis-inline-with-english t ; 默认是t, 中文context下输入<spc>进入内联英文
+        sis-inline-with-other t) ; 默认是nil，而且prog-mode不建议开启, 英文context下输入<spc><spc>进行内联中文
+
+
+  (defvar my-debounce-interval 0.8
+    "Debounce interval for cursor movement in seconds.")
+
+  (defvar my-debounce-timer nil
+    "Timer used for debouncing cursor movement.")
+
+  (defvar my-last-position nil
+    "Last known position of the cursor.")
+
+  (defun my-debounce-cursor-movement ()
+    "Debounced version of cursor movement."
+    (when (timerp my-debounce-timer)
+      (cancel-timer my-debounce-timer))
+    (setq my-debounce-timer (run-with-idle-timer my-debounce-interval nil #'my-real-cursor-movement)))
+
+  (defun my-real-cursor-movement ()
+    "Actual handling of cursor movement."
+    (when (and (bound-and-true-p my-last-position)
+               (equal my-last-position (point)))
+      (run-hooks 'sis-context-shooks))
+    (setq my-last-position (point)))
+
+  (add-hook 'post-command-hook #'my-debounce-cursor-movement)
+
+  (defun my-set-last-position ()
+    "Set the last known position of the cursor."
+    (setq my-last-position (point)))
+
+  (add-hook 'pre-command-hook #'my-set-last-position)
+
+
+
+  )
 
 ;; (setq prettier-js-args '(
 ;;                          ;; 尽可能尾随逗号
@@ -230,17 +285,17 @@
 
 
 
-(with-eval-after-load 'company
-  (dolist (map (list company-active-map company-search-map))
-    (define-key map (kbd "C-n") nil)
-    (define-key map (kbd "C-p") nil)
-    (define-key company-active-map (kbd "M-q") 'company-other-backend)
-    (define-key company-active-map (kbd "C-i") 'yas-expand)
-    (define-key company-active-map (kbd "C-n") 'next-line)
-    (define-key company-active-map (kbd "C-p") 'previous-line)
-    (define-key map (kbd "M-n") #'company-select-next)
-    (define-key map (kbd "M-p") #'company-select-previous))
-  )
+;; (with-eval-after-load 'company
+;;   (dolist (map (list company-active-map company-search-map))
+;;     (define-key map (kbd "C-n") nil)
+;;     (define-key map (kbd "C-p") nil)
+;;     (define-key company-active-map (kbd "M-q") 'company-other-backend)
+;;     (define-key company-active-map (kbd "C-i") 'yas-expand)
+;;     (define-key company-active-map (kbd "C-n") 'next-line)
+;;     (define-key company-active-map (kbd "C-p") 'previous-line)
+;;     (define-key map (kbd "M-n") #'company-select-next)
+;;     (define-key map (kbd "M-p") #'company-select-previous))
+;;   )
 
 
 ;; (use-package flutter
