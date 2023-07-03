@@ -1,0 +1,16 @@
+# Rime user dictionary
+#@/db_name	rime_ice
+#@/db_type	userdb
+#@/rime_version	1.7.1
+#@/tick	14
+#@/user_id	1562f873-abc2-4831-9f9f-3340be45a13d
+ha ha 	哈哈	c=2 d=1.91202 t=14
+ha ha ha 	哈哈哈	c=3 d=2.91238 t=14
+ha ha ha ha 	哈哈哈哈	c=1 d=0.946485 t=14
+hu hu 	忽忽	c=1 d=0.995012 t=14
+kan lai 	看来	c=1 d=0.955997 t=14
+ke ji lu de 	可记录的	c=2 d=1.97516 t=14
+shi 	是	c=1 d=0.97531 t=14
+song da fang shi 	送达方式	c=1 d=1 t=14
+zhe ge 	这个	c=1 d=0.965605 t=14
+zhen de 	真的	c=1 d=0.970446 t=14

@@ -49,8 +49,8 @@
               (buffer-substring (point) (1+ (point)))))
       nil))
 
-  :hook
-  (emacs-startup . (lambda () (setq default-input-method "rime")))
+  ;; :hook
+  ;; (emacs-startup . (lambda () (setq default-input-method "rime")))
   :bind
   ( :map rime-active-mode-map
     ;; 在已经激活 Rime 候选菜单时，强制在中英文之间切换，直到按回车。
@@ -91,7 +91,7 @@
           my/rime-predicate-punctuation-next-char-is-paired-p
           ))
   (setq rime-show-candidate 'posframe)
-  (setq default-input-method "rime")
+  ;; (setq default-input-method "rime")
 
   (setq rime-posframe-properties
         (list :background-color "#333333"
@@ -127,6 +127,63 @@
 
 
   )
+
+
+
+(use-package pyim
+  :ensure t
+  :demand t
+  :config
+  ;; 我使用全拼
+  (setq pyim-default-scheme ')
+  (setq default-input-method "pyim")
+  ;; (use-package pyim-basedict
+  ;;   :ensure t
+  ;;   :config
+  ;;   ;; 加载 basedict 拼音词库。
+  ;;   (pyim-basedict-enable))
+
+  ;; 设置 pyim 探针
+  ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
+  ;; 我自己使用的中英文动态切换规则是：
+  ;; 1. 光标只有在注释里面时，才可以输入中文。
+  ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
+  (setq-default pyim-english-input-switch-functions
+                '(pyim-probe-program-mode
+                  pyim-probe-dynamic-english
+                  pyim-probe-auto-englishe
+                  pyim-probe-org-structure-template))
+
+  (setq-default pyim-punctuation-half-width-functions
+                '(pyim-probe-punctuation-line-beginning
+                  pyim-probe-punctuation-after-punctuation))
+  ;; ;; 开启代码搜索中文功能（比如拼音，五笔码等）
+  ;; (pyim-isearch-mode 1)
+  ;; 设置 pyim 是否使用云拼音
+  (setq pyim-cloudim 'baidu)
+
+  ;; (setq pyim-dicts
+  ;;       '((:name "dict1" :file "~/elisp/scel2pyim/前端工程师必备词库.pyim")
+  ;;         (:name "dict2" :file "~/elisp/scel2pyim/开发大神专用词库【官方推荐】.pyim")
+  ;;         (:name "dict3" :file "~/elisp/scel2pyim/实用IT词汇.pyim")
+  ;;         (:name "dict4" :file "~/elisp/scel2pyim/编程开发.pyim")
+  ;;         ))
+
+  ;; 选词框显示5个候选词
+  (setq pyim-page-length 9)
+
+  ;; 让 Emacs 启动时自动加载 pyim 词库
+  ;; (add-hook 'emacs-startup-hook
+  ;;           #'(lambda () (pyim-restart-1 t)))
+  (global-set-key (kbd "M-j") 'pyim-convert-string-at-point)
+  )
+
+
+
+
+
+
+
 
 (add-to-list 'default-frame-alist '(undecorated-round . t))
 
