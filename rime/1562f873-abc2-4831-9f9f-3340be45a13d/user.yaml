@@ -1,7 +1,10 @@
 var:
-  last_build_time: 1688356098
+  last_build_time: 1688435065
   option:
-    full_shape: true
-  previously_selected_schema: luna_pinyin_simp
+    ascii_mode: false
+    ascii_punct: false
+    full_shape: false
+  previously_selected_schema: lufs_flypy
   schema_access_time:
+    lufs_flypy: 1688376859
     luna_pinyin_simp: 1684727302

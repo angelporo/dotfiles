@@ -1,0 +1,10 @@
+# Rime default settings
+# encoding: utf-8
+
+schema_list:
+  - schema: lufs_flypy # 小鹤双拼
+  - schema: lufs_pinyin # 朙月拼音
+
+speller:
+  enable_sentence_beginning: true
+  enable_sentence_end: true

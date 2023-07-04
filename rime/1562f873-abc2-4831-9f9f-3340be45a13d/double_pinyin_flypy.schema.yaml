@@ -100,14 +100,8 @@ date_translator:
 reduce_english_filter:
   # 降低到第 idx 个位置
   idx: 2
-  # 要降低的单词，匹配的是输入码，即全小写。
-  words: [nav,
-  rug, bus, ship, laos, bail, bam, bans, bib, bos, chic, chit, dab, dag,
-  dal, dit, dub, dug, fab, gam, ger, gus, hem, hep, hud, kat, lam, lax, lex, lug,
-  lux, moc, mos, mot, mum, nad, nay, nib, nip, pak, pap, pax, rig, rum, sac, sal,
-  sax, sec, shin, sis, ska, slang, sus, tad, taj, tac, tic, yep, yum, fax, cain,
-  key, mob, buy, dam, wap, yes, but, put, lag, buf, lip, aid, aim, dig, dim, din,
-  dip, pail, cad, chap, bend, lid]
+  # 要降低的单词，匹配的是输入码，即全小写
+  words: [nav, rug, bus, ship, laos, bail, bam, bans, bib, bos, chic, chit, dab, dag, dal, dit, dub, dug, fab, gam, ger, gus, hem, hep, hud, kat, lam, lax, lex, lug, lux, moc, mos, mot, mum, nad, nay, nib, nip, pak, pap, pax, rig, rum, sac, sal, sax, sec, shin, sis, ska, slang, sus, tad, taj, tac, tic, yep, yum, fax, cain, key, mob, buy, dam, wap, yes, but, put, lag, buf, lip, aid, aim, dig, dim, din, dip, pail, cad, chap, bend, lid]
 
 
 # 引入八股文
@@ -120,6 +114,7 @@ translator:
   dictionary: rime_ice          # 挂载词库 rime_ice.dict.yaml
   prism: double_pinyin_flypy    # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
   contextual_suggestions: true  # 开启八股文
+  enable_completion: true
   initial_quality: 1.2          # 拼音的权重应该比英文大
   preedit_format:               # preedit_format 影响到输入框的显示和“Shift+回车”上屏的字符
     - xform/([bpmfdtnljqx])n/$1iao/
@@ -170,7 +165,7 @@ melt_eng:
 liangfen:
   dictionary: liangfen     # 挂载两分词典 liangfen.dict.yaml
   prefix: "L"              # 以 L 开头来反查
-  enable_completion: true  # 补全提示
+  enable_completion: true  # 补全提示translator
   # tips: 〔两分〕          # 反查时显示的文字，建议注释掉，否则很多 L 开头的英文单词也会显示这个
 
 
@@ -227,13 +222,18 @@ key_binder:
   import_preset: default  # 从 default.yaml 继承通用的
   # bindings:             # 也可以再增加方案专有的
 
-
 # 拼写设定
 speller:
   # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
   alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
   delimiter: " '"  # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
   algebra:
+    - abbrev/^([a-z]).+$/$1/ #简拼（首字母）
+    - abbrev/^([zcs]h).+$/$1/ #简拼（zh, ch, sh） 
+    - derive/^([zcs])h/$1/ # zh, ch, sh => z, c, s
+    - derive/^([zcs])([^h])/$1h$2/ # z, c, s => zh, ch, sh
+    - derive/([aei])ng$/$1n/ # ang =>an, eng => en, ing => in（an ang 待改善）
+    - derive/([aei])n$/$1ng/ # an => ang, en => eng, in => ing（an ang 待改善）
     - erase/^xx$/
     - derive/^([jqxy])u$/$1v/
     - derive/^([aoe])([ioun])$/$1$1$2/
