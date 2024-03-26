@@ -28,13 +28,11 @@
 ;;; Code:
 
 
-
 (defun my/toggle-transparency ()
   (interactive)
   (set-frame-parameter (selected-frame) 'alpha '(90 . 90)) ;; 分别为 frame 获得焦点和失去焦点的不透明度。
   (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
   )
-
 
 (defun setupEmacs29BindBuffer ()
   (add-to-list 'auto-mode-alist '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
@@ -51,7 +49,6 @@
   (add-hook 'js2-mode-hook 'prettier-mode)
   (add-hook 'web-mode-hook 'prettier-mode)
   (add-hook 'css-mode-hook 'prettier-mode)
-
   )
 
 (defun start-centaur-bind-keys ()
@@ -60,8 +57,9 @@
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
   (global-set-key (kbd "C-i") 'yas-expand)
   (global-set-key (kbd "C-c i") 'project-find-file)
-  (global-set-key (kbd "M-RET") 'eglot-code-actions)
-  (global-set-key (kbd "M-s") 'save-buffer)
+
+  ;; (global-set-key (kbd "M-RET") 'eglot-code-actions)
+  ;; (global-set-key (kbd "M-s") 'save-buffer)
   )
 
 (when emacs/>=29p
@@ -72,36 +70,55 @@
   ;; (my/toggle-transparency)
   )
 
-
+;; Garbage Collector Magic Hack
+;; 提升 vterm buffer、json 文件响应性能。
+(use-package gcmh
+  :init
+  ;;(setq garbage-collection-messages t)
+  ;;(setq gcmh-verbose t)
+  (setq gcmh-idle-delay 'auto) ;; default is 15s
+  (setq gcmh-auto-idle-delay-factor 10)
+  (setq gcmh-high-cons-threshold (* 32 1024 1024))
+  (gcmh-mode 1)
+  (gcmh-set-high-threshold))
 
 (use-package emacs
   :init
-  ;; 在 minibuffer 中不显示光标。
+  ;; minibuffer 不显示光标.
   (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook (lambda () (setq default-input-method "rime")))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;; M-x 只显示当前 mode 支持的命令。
+  (setq read-extended-command-predicate #'command-completion-default-include-p)
+  ;; 开启 minibuffer 递归编辑。
+  (setq enable-recursive-minibuffers t)
   )
 
+;; 删除文件时, 将文件移动到回收站。
+(use-package osx-trash
+  :config
+  (when (eq system-type 'darwin)
+    (osx-trash-setup))
+  (setq-default delete-by-moving-to-trash t))
 
+
+;; 关闭日志打印，不卡emacs
+(setq-default eglot-events-buffer-size 0)
 
 
 (use-package lsp-bridge
   :ensure nil
   :load-path "~/elisp/lsp-bridge"
   :hook (prog-mode . lsp-bridge-mode)
-  ;; :bind (:map lsp-bridge-mode
-  ;;        ("C-s-j" . lsp-bridge-jump-to-next-diagnostic) ;显示下一个错误
-  ;;        ("C-s-k" . lsp-bridge-jump-to-prev-diagnostic) ;显示上一个错误
-  ;;        ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
-  ;;        ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
-  ;;        ("C-c e l" . lsp-bridge-list-diagnostics)
-  ;;        ("C-s-u" . lsp-bridge-ignore-current-diagnostic) ;插入注视忽略当前诊断
-  ;;        ("M-." . lsp-bridge-find-def)
-  ;;        ("M-," . lsp-bridge-find-def-return)
-  ;;        ("M-?" . lsp-bridge-find-references)
-  ;;        ("C-c RET" . lsp-bridge-popup-documentation)
-  ;;        ("C-c m" . lsp-bridge-rename)
-  ;;        ("M-RET" . lsp-bridge-code-action)
-  ;;        )
+  :bind (:map lsp-bridge-mode
+         ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
+         ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
+         ("M-." . lsp-bridge-find-def)
+         ("M-," . lsp-bridge-find-def-return)
+         ("M-?" . lsp-bridge-find-references)
+         ("C-c RET" . lsp-bridge-popup-documentation)
+         ("C-c m" . lsp-bridge-rename)
+         ("M-RET" . lsp-bridge-code-action)
+         )
   :config
   (setq acm-enable-tabnine nil)
   (setq acm-enable-codeium nil)
@@ -116,40 +133,9 @@
                                                       (("html") . "html_emmet")
                                                       (("tsx") . "tsx_emmet")
                                                       ))
-  ;; 增加 treesit 相关的 xx-ts-mode
-  (setq lsp-bridge-single-lang-server-mode-list
-        '(((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . lsp-bridge-c-lsp-server)
-          (cmake-mode . "cmake-language-server")
-          ((java-mode java-ts-mode) . "jdtls")
-          ((python-mode python-ts-mode) . lsp-bridge-python-lsp-server)
-          ((go-mode go-ts-mode) . "gopls")
-          ((js2-mode js-mode js-ts-mode rjsx-mode) . "javascript")
-          (typescript-tsx-mode . "typescriptreact")
-          ((typescript-mode typescript-ts-mode) . "typescript")
-          ((latex-mode Tex-latex-mode texmode context-mode texinfo-mode bibtex-mode) . lsp-bridge-tex-lsp-server)
-          ((sh-mode bash-ts-mode) . "bash-language-server")
-          ((css-mode css-ts-mode) . "vscode-css-language-server")
-          ((yaml-mode yaml-ts-mode) . "yaml-language-server")
-          ((json-mode json-ts-mode) . "vscode-json-language-server")
-          ((dockerfile-mode dockerfile-ts-mode) . "docker-langserver")))
   ;;; lsp-bridge
   ;; M-j 被预留给 pyim 使用。
   (define-key acm-mode-map (kbd "M-j") nil)
-  ;; 使用 TAB 而非回车键来选定。
-  ;;(define-key acm-mode-map (kbd "RET") nil)
-  (define-key lsp-bridge-mode-map (kbd "M-.") #'lsp-bridge-find-def)
-  (define-key lsp-bridge-mode-map (kbd "C-M-.") #'lsp-bridge-find-def-other-window)
-  (define-key lsp-bridge-mode-map (kbd "M-,") #'lsp-bridge-find-def-return)
-  (define-key lsp-bridge-mode-map (kbd "M-?") #'lsp-bridge-find-references)
-  ;; (define-key lsp-bridge-mode-map (kbd "M-d") #'lsp-bridge-popup-documentation)
-  ;; 这两个快捷键让位于 symobl-overlay
-  ;; (define-key lsp-bridge-mode-map (kbd "M-n") #'lsp-bridge-popup-documentation-scroll-up)
-  ;; (define-key lsp-bridge-mode-map (kbd "M-p") #'lsp-bridge-popup-documentation-scroll-down)
-  (define-key lsp-bridge-mode-map (kbd "M-RET") #'lsp-bridge-code-action)
-  (define-key lsp-bridge-mode-map (kbd "C-c C-f") #'lsp-bridge-code-format)
-  (define-key lsp-bridge-mode-map (kbd "C-s-d") #'lsp-bridge-diagnostic-list)
-  (define-key lsp-bridge-mode-map (kbd "C-s-n") #'lsp-bridge-diagnostic-jump-next)
-  (define-key lsp-bridge-mode-map (kbd "C-s-p") #'lsp-bridge-diagnostic-jump-prev)
 
   ;; 这些字符的后面不再弹出补全菜单
   (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
@@ -157,42 +143,41 @@
   )
 
 
-
-
 (use-package rime
   :ensure-system-package
   ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
   (rime-user-data-dir "~/Library/Rime/")
-  ;; (rime-share-data-dir "~/Library/Rime/")
   (rime-librime-root "~/.emacs.d/librime/dist")
   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@29/include")
   :hook
   (emacs-startup . (lambda () (setq default-input-method "rime")))
   :bind
-  (:map rime-active-mode-map
+  (
+   :map rime-active-mode-map
    ;; 在已经激活 Rime 候选菜单时，强制在中英文之间切换，直到按回车。
    ("M-j" . 'rime-inline-ascii)
    :map rime-mode-map
    ;; ;; 强制切换到中文模式
    ("M-j" . 'rime-force-enable)
    ;; 下面这些快捷键需要发送给 rime 来处理, 需要与 default.custom.yaml 文件中的 key_binder/bindings 配置相匹配。
+
    ;; 中英文切换
-   ("C-." . 'rime-send-keybinding)
-   ;; 输入法菜单
-   ("C-+" . 'rime-send-keybinding)
+   ;; ("C-," . 'rime-send-keybinding)
+
    ;; 中英文标点切换
-   ("C-," . 'rime-send-keybinding)
+   ;; ("C-." . 'rime-send-keybinding)
+
+
    ;; 菜单
-   ;; ("C-`" . 'rime-send-keybinding)
+   ("C-`" . 'rime-send-keybinding)
 
    ;; 全半角切换
    ;; ("C-," . 'rime-send-keybinding)
    )
   :config
-
   ;; 在 modline 高亮输入法图标, 可用来快速分辨分中英文输入状态。
-  ;; (setq mode-line-mule-info '((:eval (rime-lighter))))
+  (setq mode-line-mule-info '((:eval (rime-lighter))))
   ;; 将如下快捷键发送给 rime，同时需要在 rime 的 key_binder/bindings 的部分配置才会生效。
   (add-to-list 'rime-translate-keybindings "C-h") ;; 删除拼音字符
   (add-to-list 'rime-translate-keybindings "C-d")
@@ -207,15 +192,18 @@
           rime-predicate-after-alphabet-char-p
           rime-predicate-ace-window-p
           rime-predicate-current-uppercase-letter-p
+          ;; 在上一个字符是英文时才自动切换到英文，适合字符串中中英文混合的情况。
           rime-predicate-punctuation-after-ascii-p
+          ;; 代码块内不能输入中文, 但注释和字符串不受影响。
           rime-predicate-prog-in-code-p
           ))
   (setq rime-show-candidate 'posframe)
+  (setq default-input-method "rime")
 
   (setq rime-posframe-properties
         (list :background-color "#333333"
               :foreground-color "#dcdccc"
-              :internal-border-width 2))
+              :internal-border-width 4))
 
   ;; 部分 major-mode 关闭 RIME 输入法。
   (defadvice switch-to-buffer (after activate-input-method activate)
@@ -231,7 +219,12 @@
   (defvar input-method-cursor-color "Orange"
     "Default cursor color if using an input method.")
 
-  (defvar default-cursor-color (frame-parameter nil 'cursor-color)
+  (defun get-frame-cursor-color ()
+    "Get the cursor-color of current frame."
+    (interactive)
+    (frame-parameter nil 'cursor-color))
+
+  (defvar default-cursor-color (get-frame-cursor-color)
     "Default text cursor color.")
 
   (defun change-cursor-color-on-input-method ()
@@ -242,7 +235,7 @@
                                current-input-method)
                           input-method-cursor-color
                         default-cursor-color)))
-
+  (advice-add 'toggle-input-method :after 'change-cursor-color-on-input-method)
   (add-hook 'post-command-hook 'change-cursor-color-on-input-method)
   )
 
@@ -255,7 +248,7 @@
                                 "--ignore" "*node_modules*"
                                 ))
 
-(use-package emmet
+(use-package emmet-mode
   :ensure t
   :hook ((typescript-ts-mode  tsx-ts-mode web-mode) . emmet-mode)
   )
@@ -274,11 +267,3 @@
 (use-package ag
   :ensure t
   )
-
-
-;; (use-package flutter
-;;   :after dart-mode
-;;   :bind (:map dart-mode-map
-;;          ("C-M-x" . #'flutter-run-or-hot-reload))
-;;   :custom
-;;   (flutter-sdk-path "/Users/angel/.flutter"))

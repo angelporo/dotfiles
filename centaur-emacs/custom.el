@@ -7,6 +7,7 @@
 (add-hook 'prog-mode-hook (lambda()
                             (setq scroll-step 0)
                             (setq scroll-conservatively 0)
+
                             (global-hl-line-mode  -1)
                             (global-subword-mode -1)
                             (global-hungry-delete-mode -1)
@@ -20,10 +21,16 @@
 
                             (persistent-scratch-mode -1)
                             (persistent-scratch-autosave-mode -1)
+
                             (global-corfu-mode -1)
+
                             ))
 
-
+(setq dashboard-items '((recents   . 5)
+                        (bookmarks . 5)
+                        (projects  . 8)
+                        (agenda    . 5)
+                        (registers . 5)))
 (setq ns-alternate-modifier 'super)
 (setq ns-command-modifier 'meta)
 (setq centaur-icon t)
@@ -33,21 +40,17 @@
 (setq centaur-socks-proxy "127.0.0.1:1086")
 (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 
-(setq frame-resize-pixelwise t)
-
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'auto)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
-(setq centaur-restore-frame-geometry t)      ; Restore the frame's geometry at startup: t or nil
-(setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
+(setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nileg
 (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode web-mode )) ; Ignore format on save for some languages
 (setq centaur-tree-sitter t)                 ; Enable `tree-sitter' or not: t or nil
 (setq centaur-chinese-calendar nil)              ; Use Chinese calendar or not: t or nil
 (setq centaur-player t)                        ; Enable players or not: t or nil
 (setq centaur-prettify-symbols-alist nil)      ; Alist of symbol prettifications. Nil to use font supports ligatures.
 (setq centaur-prettify-org-symbols-alist nil)  ; Alist of symbol prettifications for `org-mode'
-
 
 ;; For Emacs devel
 ;; (setq package-user-dir (locate-user-emacs-file (format "elpa-%s" emacs-major-version)))
@@ -139,8 +142,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(eglot-events-buffer-size 0)
- '(line-spacing 0.2)
+ '(consult-async-input-debounce 0.5)
+ '(consult-preview-key "M-.")
+ '(dashboard-heading-icon-height 1.2)
+ '(eglot-autoreconnect 2)
+ '(eglot-events-buffer-size 0 t)
+ '(eglot-send-changes-idle-time 0.3 t)
+ '(lsp-bridge-python-command "python")
+ '(pixel-scroll-precision-mode nil)
  '(yasnippet-capf-lookup-by 'key))
 
 (custom-set-faces
