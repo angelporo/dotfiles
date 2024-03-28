@@ -22,15 +22,9 @@
                             (persistent-scratch-mode -1)
                             (persistent-scratch-autosave-mode -1)
 
-                            (global-corfu-mode -1)
-
+                            (corfu-mode -1)
                             ))
 
-(setq dashboard-items '((recents   . 5)
-                        (bookmarks . 5)
-                        (projects  . 8)
-                        (agenda    . 5)
-                        (registers . 5)))
 (setq ns-alternate-modifier 'super)
 (setq ns-command-modifier 'meta)
 (setq centaur-icon t)
@@ -41,7 +35,7 @@
 (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'doom-solarized-light)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
 (setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nileg
@@ -142,15 +136,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(consult-async-input-debounce 0.5)
- '(consult-preview-key "M-.")
  '(dashboard-heading-icon-height 1.2)
- '(eglot-autoreconnect 2)
- '(eglot-events-buffer-size 0 t)
- '(eglot-send-changes-idle-time 0.3 t)
- '(lsp-bridge-python-command "python")
- '(pixel-scroll-precision-mode nil)
- '(yasnippet-capf-lookup-by 'key))
+ '(lsp-bridge-python-command "python"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
