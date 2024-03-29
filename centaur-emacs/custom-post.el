@@ -143,15 +143,6 @@
   )
 
 
-(use-package nyan-mode
-  :ensure t
-  :config
-  (setq nyan-animate-nyancat t)
-  (setq nyan-wavy-trail t)
-  (nyan-mode)
-  (nyan-start-animation))
-
-
 (use-package rime
   :ensure-system-package
   ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
