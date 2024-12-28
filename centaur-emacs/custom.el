@@ -7,22 +7,20 @@
 (add-hook 'prog-mode-hook (lambda()
                             (setq scroll-step 0)
                             (setq scroll-conservatively 0)
-
+                            (indent-bars-mode -1)
                             (global-hl-line-mode  -1)
                             (global-subword-mode -1)
                             (global-hungry-delete-mode -1)
-                            (highlight-indent-guides-mode -1)
-                            (diff-hl-flydiff-mode -1)
-                            (global-diff-hl-mode -1)
                             (flyspell-mode -1)
                             (desktop-save-mode -1)
                             (tabspaces-mode -1)
                             (display-line-numbers-mode -1)
-
+                            (diff-hl-flydiff-mode -1)
+                            (global-diff-hl-mode -1)
                             (persistent-scratch-mode -1)
                             (persistent-scratch-autosave-mode -1)
 
-                            (corfu-mode -1)
+                            ;; (corfu-mode -1)
                             ))
 
 (setq ns-alternate-modifier 'super)
@@ -32,13 +30,14 @@
 (setq centaur-mail-address "940079461@qq.com")    ; Email address
 (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 (setq centaur-socks-proxy "127.0.0.1:1086")
+
 (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'doom-solarized-light)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-package-archives 'tuna)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+(setq centaur-theme 'night)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
-(setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nileg
+(setq centaur-lsp 'eglot)                   ; Set LSP client: lsp-mode, eglot or nileg
 (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode web-mode )) ; Ignore format on save for some languages
 (setq centaur-tree-sitter t)                 ; Enable `tree-sitter' or not: t or nil
 (setq centaur-chinese-calendar nil)              ; Use Chinese calendar or not: t or nil
@@ -56,13 +55,14 @@
   "Setup fonts."
   (when (display-graphic-p)
     ;; Set default font
-    (cl-loop for font in '("Cascadia Code" "Fira Code" "Jetbrains Mono"
-                           "SF Mono" "Hack" "Source Code Pro" "Menlo"
-                           "Monaco" "DejaVu Sans Mono" "Consolas")
+    (cl-loop for font in '("Source Code Pro" "Cascadia Code" "Monaco" "DejaVu Sans Mono" "Consolas"
+                           "Fira Code" "Jetbrains Mono"
+                           "SF Mono" "Hack" "Menlo"
+                           )
              when (font-installed-p font)
              return (set-face-attribute 'default nil
                                         :family font
-                                        :height (cond (sys/macp 130)
+                                        :height (cond (sys/macp 135)
                                                       (sys/win32p 110)
                                                       (t 100))))
 
@@ -94,15 +94,15 @@
                       (set-fontset-font t 'emoji (font-spec :family font) nil 'prepend))))
 
     ;; Specify font for Chinese characters
-    (cl-loop for font in '("Microsoft Yahei" "WenQuanYi Micro Hei" "PingFang SC" "STFangsong")
+    (cl-loop for font in '("WenQuanYi Micro Hei" "PingFang SC" "STFangsong" "Microsoft Yahei")
              when (font-installed-p font)
              return (progn
-                      (setq face-font-rescale-alist `((,font . 1.1)))
+                      (setq face-font-rescale-alist `((,font . 1)))
                       (set-fontset-font t '(#x4e00 . #x9fff) (font-spec :family font))))))
 
 (centaur-setup-fonts)
 (add-hook 'window-setup-hook #'centaur-setup-fonts)
-(add-hook 'server-after-make-frame-hook #'centaur-setup-fonts)
+;; (add-hook 'server-after-make-frame-hook #'centaur-setup-fonts)
 
 ;; Mail
 ;; (setq message-send-mail-function 'smtpmail-send-it
@@ -123,8 +123,8 @@
 (setq confirm-kill-emacs 'y-or-n-p)
 
 ;; Enable proxy
-(proxy-http-enable)
-(proxy-socks-enable)
+(enable-http-proxy)
+(enable-socks-proxy)
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
@@ -136,8 +136,23 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(consult-preview-key "C-i")
+ '(consult-preview-max-count 5)
+ '(corfu-bar-width 0.1)
+ '(custom-safe-themes
+   '("88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e"
+     "9f297216c88ca3f47e5f10f8bd884ab24ac5bc9d884f0f23589b0a46a608fe14" default))
  '(dashboard-heading-icon-height 1.2)
- '(lsp-bridge-python-command "python"))
+ '(diff-hl-show-staged-changes nil)
+ '(holo-layer-type-animation-style "hex")
+ '(lsp-bridge-python-command "python3")
+ '(lsp-bridge-remote-python-command "python3")
+ '(package-vc-selected-packages
+   '((eglot-booster :vc-backend Git :url
+       "https://github.com/jdtsmith/eglot-booster")))
+ '(safe-local-variable-values
+   '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
+     (web-mode-script-padding . 2) (web-mode-style-padding . 2))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -145,5 +160,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;;; custom.el ends here
