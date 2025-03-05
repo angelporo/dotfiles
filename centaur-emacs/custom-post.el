@@ -38,7 +38,7 @@
   (add-to-list 'auto-mode-alist '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.wxml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
@@ -49,13 +49,14 @@
   (add-hook 'js2-mode-hook 'prettier-mode)
   (add-hook 'web-mode-hook 'prettier-mode)
   (add-hook 'css-mode-hook 'prettier-mode)
+
   )
 
 (defun start-centaur-bind-keys ()
   (global-set-key (kbd "C-a") 'beginning-of-line)
   ;; (global-set-key (kbd "C-e") 'end-of-line)
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
-  (global-set-key (kbd "C-i") 'yas-expand)
+  ;; (global-set-key (kbd "C-i") 'yas-expand)
   (global-set-key (kbd "C-c i") 'project-find-file)
   (setq consult-preview-key nil)
   (global-set-key (kbd "M-RET") 'eglot-code-actions)
@@ -65,8 +66,18 @@
 (when emacs/>=29p
   (setupEmacs29BindBuffer)
   (start-centaur-bind-keys)
-  (add-to-list 'default-frame-alist '(undecorated . t))
 
+
+  (setq inhibit-compacting-font-caches t)
+
+  (setq-default cursor-type 'box)  ;; 你可以选择光标样式，例如 box、bar、hollow 等
+
+  (set-cursor-color "red")  ;; 设置光标颜色为红色
+
+  ;; 关闭平滑滚动效果
+  (ultra-scroll-mode -1)
+
+  (add-to-list 'default-frame-alist '(undecorated . t))
   ;; (my/toggle-transparency)
   )
 
@@ -106,42 +117,43 @@
 (setq-default eglot-events-buffer-size 0)
 
 
-;; (use-package lsp-bridge
-;;   :ensure nil
-;;   :load-path "~/elisp/lsp-bridge"
-;;   :hook (prog-mode . lsp-bridge-mode)
-;;   :bind (:map lsp-bridge-mode
-;;          ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ;向下滚动文档
-;;          ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ;向上滚动文档
-;;          ("M-." . lsp-bridge-find-def)
-;;          ("M-," . lsp-bridge-find-def-return)
-;;          ("M-?" . lsp-bridge-find-references)
-;;          ("C-c RET" . lsp-bridge-popup-documentation)
-;;          ("C-c m" . lsp-bridge-rename)
-;;          ("M-RET" . lsp-bridge-code-action)
-;;          )
-;;   :config
-;;   (setq acm-enable-tabnine nil)
-;;   (setq acm-enable-codeium nil)
-;;   (setq acm-enable-yas t)
-;;   (setq acm-enable-tempel nil)
-;;   (setq lsp-bridge-auto-format-code-idle -1)
-;;   (setq lsp-bridge-enable-hover-diagnostic t)
-;;   (setq lsp-bridge-enable-auto-format-code nil)
-;;   (setq acm-backend-yas-candidates-number 4)
-;;   (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
-;;                                                       (("vue") . "volar_emmet")
-;;                                                       (("html") . "html_emmet")
-;;                                                       ))
+(use-package lsp-bridge
+  :ensure nil
+  :load-path "~/elisp/lsp-bridge"
+  :hook (prog-mode . lsp-bridge-mode)
+  :bind (:map lsp-bridge-mode
+         ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ; 向下滚动文档
+         ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ; 向上滚动文档
+         ("M-." . lsp-bridge-find-def)
+         ("M-," . lsp-bridge-find-def-return)
+         ("M-?" . lsp-bridge-find-references)
+         ("C-c RET" . lsp-bridge-popup-documentation)
+         ("C-c m" . lsp-bridge-rename)
+         ("M-RET" . lsp-bridge-code-action)
+         )
+  :config
+  (setq acm-enable-tabnine nil)
+  (setq acm-enable-codeium nil)
+  (setq acm-enable-yas nil)
+  (setq acm-enable-copilot t)
+  (setq acm-enable-tempel nil)
+  (setq lsp-bridge-auto-format-code-idle -1)
+  (setq lsp-bridge-enable-hover-diagnostic t)
+  (setq lsp-bridge-enable-auto-format-code nil)
+  (setq acm-backend-yas-candidates-number 4)
+  (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
+                                                      (("vue") . "volar_emmet")
+                                                      (("html") . "html_emmet")
+                                                      ))
 
-;;   ;;; lsp-bridge
-;;   ;; M-j 被预留给 pyim 使用。
-;;   (define-key acm-mode-map (kbd "M-j") nil)
+  ;;; lsp-bridge
+  ;; M-j 被预留给 pyim 使用。
+  (define-key acm-mode-map (kbd "M-j") nil)
 
-;;   ;; 这些字符的后面不再弹出补全菜单
-;;   (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
-;;   (global-lsp-bridge-mode)
-;;   )
+  ;; 这些字符的后面不再弹出补全菜单
+  (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
+  (global-lsp-bridge-mode)
+  )
 
 
 (use-package rime
@@ -149,7 +161,7 @@
   ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
   (rime-user-data-dir "~/Library/Rime/")
-  (rime-librime-root "~/.emacs.d/librime/dist")
+  (rime-librime-root "~/.config/emacs/librime/dist")
   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
   :hook
   (emacs-startup . (lambda () (setq default-input-method "rime")))
@@ -169,7 +181,6 @@
    ;; 中英文标点切换
    ("C-." . 'rime-send-keybinding)
 
-
    ;; 菜单
    ("C-+" . 'rime-send-keybinding)
 
@@ -177,7 +188,6 @@
    ("C-," . 'rime-send-keybinding)
    )
   :config
-
 
   ;; 在 modline 高亮输入法图标, 可用来快速分辨分中英文输入状态。
   (setq mode-line-mule-info '((:eval (rime-lighter))))
@@ -189,39 +199,25 @@
   (add-to-list 'rime-translate-keybindings "C-e") ;; 跳转到最后一个拼音字符
   ;; support shift-l, shift-r, control-l, control-r, 只有当使用系统 RIME 输入法时才有效
   (setq rime-inline-ascii-trigger 'shift-l)
-
+  (setq rime-deactivate-when-exit-minibuffer nil)
 
   (defun rime-predicate-avy-p ()
     (bound-and-true-p avy-command))
 
+
   ;; 临时英文模式, 该列表中任何一个断言返回 t 时自动切换到英文。如何 rime-inline-predicates 不为空，
   ;; 则当其中任意一个断言也返回 t 时才会自动切换到英文（inline 等效于 ascii-mode）。
   ;; 自定义 avy 断言函数.
-  ;; (setq rime-disable-predicates
-  ;;       '(rime-predicate-ace-window-p
-  ;;         rime-predicate-hydra-p
-  ;;         ;;rime-predicate-current-uppercase-letter-p
-  ;;         ;; 在上一个字符是英文时才自动切换到英文，适合字符串中中英文混合的情况。
-  ;;         ;;rime-predicate-in-code-string-after-ascii-p
-  ;;         ;; 代码块内不能输入中文, 但注释和字符串不受影响。
-  ;;         ;;rime-predicate-prog-in-code-p
-  ;;         ;;rime-predicate-avy-p
-  ;;         ))
-
-
-
   (setq rime-disable-predicates
         '(rime-predicate-ace-window-p
           rime-predicate-hydra-p
-          ;;rime-predicate-after-ascii-char-p
+          rime-predicate-after-ascii-char-p
           rime-predicate-after-alphabet-char-p
           rime-predicate-prog-in-code-p
           rime-predicate-punctuation-after-space-cc-p
           rime-predicate-punctuation-after-ascii-p
           rime-predicate-auto-english-p
           ))
-
-
 
   (setq rime-show-candidate 'posframe)
   (setq default-input-method "rime")
