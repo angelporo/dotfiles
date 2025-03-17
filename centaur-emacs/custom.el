@@ -35,7 +35,7 @@
 (setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 
 (setq centaur-package-archives 'tuna)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'pro)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'random)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
 (setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
@@ -138,17 +138,16 @@
  ;; If there is more than one, they won't work right.
  '(acm-backend-codeium-accept t)
  '(acm-enable-codeium t)
- '(corfu-auto-delay 0.1)
- '(corfu-popupinfo-delay '(0.2 . 0.1))
  '(custom-safe-themes
    '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
      "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
  '(lsp-bridge-python-command "python3")
  '(lsp-bridge-remote-python-command "python3")
+ '(lsp-idle-delay 0.2)
  '(package-vc-selected-packages
    '((ultra-scroll :vc-backend Git :url "https://github.com/jdtsmith/ultra-scroll")
      (eglot-booster :vc-backend Git :url
-                    "https://github.com/jdtsmith/eglot-booster")))
+       "https://github.com/jdtsmith/eglot-booster")))
  '(rime-deactivate-when-exit-minibuffer nil)
  '(safe-local-variable-directories
    '("/Volumes/D/shide/zy/sd-operating-frontEnd/"

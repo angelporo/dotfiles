@@ -82,18 +82,6 @@
   )
 
 
-;; Garbage Collector Magic Hack
-;; 提升 vterm buffer、json 文件响应性能。
-(use-package gcmh
-  :init
-  ;;(setq garbage-collection-messages t)
-  ;;(setq gcmh-verbose t)
-  (setq gcmh-idle-delay 'auto) ;; default is 15s
-  (setq gcmh-auto-idle-delay-factor 10)
-  (setq gcmh-high-cons-threshold (* 32 1024 1024))
-  (gcmh-mode 1)
-  (gcmh-set-high-threshold))
-
 (use-package emacs
   :init
   ;; minibuffer 不显示光标.
@@ -134,12 +122,13 @@
   :config
   (setq acm-enable-tabnine nil)
   (setq acm-enable-codeium nil)
-  (setq acm-enable-yas nil)
+  (setq acm-enable-yas t)
   (setq acm-enable-copilot t)
   (setq acm-enable-tempel nil)
   (setq lsp-bridge-auto-format-code-idle -1)
   (setq lsp-bridge-enable-hover-diagnostic t)
   (setq lsp-bridge-enable-auto-format-code nil)
+  (setq acm-backend-yas-candidate-min-length 3)
   (setq acm-backend-yas-candidates-number 4)
   (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
                                                       (("vue") . "volar_emmet")
@@ -156,9 +145,26 @@
   )
 
 
+
+
+
+
+
+;; (use-package aidermacs
+;;   :bind (("C-c a" . aidermacs-transient-menu))
+;;   :ensure t
+;;   :config
+;;                                         ; Set API_KEY in .bashrc, that will automatically picked up by aider or in elisp
+;;   (setenv "ANTHROPIC_API_KEY" "sk-...")
+;;                                         ; defun my-get-openrouter-api-key yourself elsewhere for security reasons
+;;   (setenv "OPENROUTER_API_KEY" (my-get-openrouter-api-key))
+;;   :custom
+;;                                         ; See the Configuration section below
+;;   (aidermacs-use-architect-mode t)
+;;   (aidermacs-default-model "sonnet"))
+
+
 (use-package rime
-  :ensure-system-package
-  ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
   (rime-user-data-dir "~/Library/Rime/")
   (rime-librime-root "~/.config/emacs/librime/dist")
@@ -185,12 +191,12 @@
    ("C-+" . 'rime-send-keybinding)
 
    ;; 全半角切换
-   ("C-," . 'rime-send-keybinding)
+   ;; ("C-," . 'rime-send-keybinding)
    )
   :config
-
   ;; 在 modline 高亮输入法图标, 可用来快速分辨分中英文输入状态。
   (setq mode-line-mule-info '((:eval (rime-lighter))))
+
   ;; 将如下快捷键发送给 rime，同时需要在 rime 的 key_binder/bindings 的部分配置才会生效。
   (add-to-list 'rime-translate-keybindings "C-h") ;; 删除拼音字符
   (add-to-list 'rime-translate-keybindings "C-d")
@@ -210,6 +216,7 @@
   ;; 自定义 avy 断言函数.
   (setq rime-disable-predicates
         '(rime-predicate-ace-window-p
+          rime-predicate-avy-p
           rime-predicate-hydra-p
           rime-predicate-after-ascii-char-p
           rime-predicate-after-alphabet-char-p
@@ -280,10 +287,10 @@ When this mode is on, `im-change-cursor-color' control cursor changing."
                                 "--ignore" "*node_modules*"
                                 ))
 
-(use-package emmet-mode
-  :ensure t
-  :hook ((typescript-ts-mode  tsx-ts-mode web-mode) . emmet-mode)
-  )
+;; (use-package emmet-mode
+;;   :ensure t
+;;   :hook ((typescript-ts-mode  tsx-ts-mode web-mode) . emmet-mode)
+;;   )
 
 
 (use-package ag
