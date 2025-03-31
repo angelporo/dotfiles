@@ -49,11 +49,10 @@
   (add-hook 'js2-mode-hook 'prettier-mode)
   (add-hook 'web-mode-hook 'prettier-mode)
   (add-hook 'css-mode-hook 'prettier-mode)
-
   )
 
 (defun start-centaur-bind-keys ()
-  (global-set-key (kbd "C-a") 'beginning-of-line)
+  ;; (global-set-key (kbd "C-a") 'beginning-of-line)
   ;; (global-set-key (kbd "C-e") 'end-of-line)
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
   ;; (global-set-key (kbd "C-i") 'yas-expand)
@@ -116,20 +115,23 @@
          ("M-," . lsp-bridge-find-def-return)
          ("M-?" . lsp-bridge-find-references)
          ("C-c RET" . lsp-bridge-popup-documentation)
-         ("C-c m" . lsp-bridge-rename)
+         ;; ("C-c m" . lsp-bridge-rename)
          ("M-RET" . lsp-bridge-code-action)
          )
   :config
-  (setq acm-enable-tabnine nil)
+  ;; (setq lsp-bridge-python-command "~/.pyenv/versions/3.8.18/bin/python3")
+  (setq acm-enable-tabnine t)
   (setq acm-enable-codeium nil)
-  (setq acm-enable-yas t)
+  (setq acm-enable-yas nil)
   (setq acm-enable-copilot t)
   (setq acm-enable-tempel nil)
-  (setq lsp-bridge-auto-format-code-idle -1)
+  (setq lsp-bridge-auto-format-code-idle nil)
   (setq lsp-bridge-enable-hover-diagnostic t)
   (setq lsp-bridge-enable-auto-format-code nil)
   (setq acm-backend-yas-candidate-min-length 3)
   (setq acm-backend-yas-candidates-number 4)
+  (setq acm-backend-lsp-candidate-min-length 2)
+  (setq acm-backend-search-file-words-max-number 7)
   (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
                                                       (("vue") . "volar_emmet")
                                                       (("html") . "html_emmet")
@@ -145,23 +147,19 @@
   )
 
 
-
-
-
-
-
-;; (use-package aidermacs
-;;   :bind (("C-c a" . aidermacs-transient-menu))
-;;   :ensure t
-;;   :config
-;;                                         ; Set API_KEY in .bashrc, that will automatically picked up by aider or in elisp
-;;   (setenv "ANTHROPIC_API_KEY" "sk-...")
-;;                                         ; defun my-get-openrouter-api-key yourself elsewhere for security reasons
-;;   (setenv "OPENROUTER_API_KEY" (my-get-openrouter-api-key))
-;;   :custom
-;;                                         ; See the Configuration section below
-;;   (aidermacs-use-architect-mode t)
-;;   (aidermacs-default-model "sonnet"))
+(use-package aidermacs
+  :bind (("C-c a" . aidermacs-transient-menu))
+  :ensure t
+  :config
+  ;; Set API_KEY in .bashrc, that will automatically picked up by aider or in elisp
+  ;; (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
+  (with-eval-after-load 'exec-path-from-shell
+    (exec-path-from-shell-copy-env "DEEPSEEK_API_KEY"))
+  ;; defun my-get-openrouter-api-key yourself elsewhere for security reasons
+  ;; (setenv "OPENROUTER_API_KEY" (my-get-openrouter-api-key))
+  (setenv "AIDER_CHAT_LANGUAGE" "Chinese") ; 指定聊天中的语言
+  :custom
+  (aidermacs-default-model "deepseek/deepseek-chat"))
 
 
 (use-package rime

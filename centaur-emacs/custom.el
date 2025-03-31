@@ -20,7 +20,6 @@
                             (persistent-scratch-autosave-mode -1)
                             (rainbow-delimiters-mode -1)
                             (symbol-overlay-mode -1)
-                            ;; (doom-modeline-mode -1)
                             (corfu-mode -1)
                             ))
 
@@ -32,10 +31,10 @@
 (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 (setq centaur-socks-proxy "127.0.0.1:7897")
 
-(setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
+(setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 
-(setq centaur-package-archives 'tuna)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'random)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+(setq centaur-theme 'light)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
 (setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
@@ -56,24 +55,25 @@
   "Setup fonts."
   (when (display-graphic-p)
     ;; Set default font
-    (cl-loop for font in '("Cascadia Code" "Fira Code" "Jetbrains Mono"
-                           "SF Mono" "Hack" "Source Code Pro" "Menlo"
+    (cl-loop for font in '("SF Mono" "Cascadia Mono" "Cascadia Code" "Fira Code" "Source Code Pro" "Jetbrains Mono"
+                           "Hack" "Menlo"
                            "Monaco" "DejaVu Sans Mono" "Consolas")
              when (font-installed-p font)
              return (set-face-attribute 'default nil
                                         :family font
+                                        :weight 'heavy'
                                         :height (cond (sys/macp 132)
                                                       (sys/win32p 110)
                                                       (t 100))))
 
     ;; Set mode-line font
-    ;; (cl-loop for font in '("Menlo" "SF Pro Display" "Helvetica")
-    ;;          when (font-installed-p font)
-    ;;          return (progn
-    ;;                   (set-face-attribute 'mode-line nil :family font :height 120)
-    ;;                   (when (facep 'mode-line-active)
-    ;;                     (set-face-attribute 'mode-line-active nil :family font :height 120))
-    ;;                   (set-face-attribute 'mode-line-inactive nil :family font :height 120)))
+    (cl-loop for font in '("Menlo" "SF Pro Display" "Helvetica")
+             when (font-installed-p font)
+             return (progn
+                      (set-face-attribute 'mode-line nil :family font :height 120)
+                      (when (facep 'mode-line-active)
+                        (set-face-attribute 'mode-line-active nil :family font :height 120 ))
+                      (set-face-attribute 'mode-line-inactive nil :family font :height 120)))
 
     ;; Specify font for all unicode characters
     (cl-loop for font in '("Apple Symbols" "Segoe UI Symbol" "Symbola" "Symbol")
@@ -141,6 +141,7 @@
  '(custom-safe-themes
    '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
      "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
+ '(lsp-bridge-diagnostic-max-number 20)
  '(lsp-bridge-python-command "python3")
  '(lsp-bridge-remote-python-command "python3")
  '(lsp-idle-delay 0.2)
@@ -154,7 +155,8 @@
      "/Volumes/D/shide/lg/lg-dashboard-web/"))
  '(safe-local-variable-values
    '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
-     (web-mode-script-padding . 2) (web-mode-style-padding . 2))))
+     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
+ '(web-mode-enable-auto-indentation nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
