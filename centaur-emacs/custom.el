@@ -27,7 +27,7 @@
 (setq ns-command-modifier 'meta)
 (setq centaur-icon t)
 (setq centaur-full-name "angelporo")              ; User full name
-(setq centaur-mail-address "940079461@qq.com")    ; Email address
+(setq centaur-mail-address "940079461@qq.com")    ; Email addresscr
 (setq centaur-proxy "127.0.0.1:1087")             ; Network proxy
 (setq centaur-socks-proxy "127.0.0.1:7897")
 
@@ -55,25 +55,25 @@
   "Setup fonts."
   (when (display-graphic-p)
     ;; Set default font
-    (cl-loop for font in '("SF Mono" "Cascadia Mono" "Cascadia Code" "Fira Code" "Source Code Pro" "Jetbrains Mono"
-                           "Hack" "Menlo"
+    (cl-loop for font in '("Cascadia Code" "Fira Code" "Jetbrains Mono"
+                           "SF Mono" "Hack" "Source Code Pro" "Menlo"
                            "Monaco" "DejaVu Sans Mono" "Consolas")
              when (font-installed-p font)
              return (set-face-attribute 'default nil
                                         :family font
-                                        :weight 'heavy'
+                                        ;; :weight 'heavy'
                                         :height (cond (sys/macp 132)
                                                       (sys/win32p 110)
                                                       (t 100))))
 
     ;; Set mode-line font
-    (cl-loop for font in '("Menlo" "SF Pro Display" "Helvetica")
-             when (font-installed-p font)
-             return (progn
-                      (set-face-attribute 'mode-line nil :family font :height 120)
-                      (when (facep 'mode-line-active)
-                        (set-face-attribute 'mode-line-active nil :family font :height 120 ))
-                      (set-face-attribute 'mode-line-inactive nil :family font :height 120)))
+    ;; (cl-loop for font in '("Menlo" "SF Pro Display" "Helvetica")
+    ;;          when (font-installed-p font)
+    ;;          return (progn
+    ;;                   (set-face-attribute 'mode-line nil :family font :height 120)
+    ;;                   (when (facep 'mode-line-active)
+    ;;                     (set-face-attribute 'mode-line-active nil :family font :height 120 ))
+    ;;                   (set-face-attribute 'mode-line-inactive nil :family font :height 120)))
 
     ;; Specify font for all unicode characters
     (cl-loop for font in '("Apple Symbols" "Segoe UI Symbol" "Symbola" "Symbol")
@@ -145,8 +145,13 @@
  '(lsp-bridge-python-command "python3")
  '(lsp-bridge-remote-python-command "python3")
  '(lsp-idle-delay 0.2)
+ '(ns-antialias-text t)
  '(package-vc-selected-packages
-   '((ultra-scroll :vc-backend Git :url "https://github.com/jdtsmith/ultra-scroll")
+   '((lsp-bridge :vc-backend Git :url
+       "https://github.com/manateelazycat/lsp-bridge.git")
+     (emigo :vc-backend Git :url "https://github.com/MatthewZMD/emigo")
+     (ultra-scroll :vc-backend Git :url
+       "https://github.com/jdtsmith/ultra-scroll")
      (eglot-booster :vc-backend Git :url
        "https://github.com/jdtsmith/eglot-booster")))
  '(rime-deactivate-when-exit-minibuffer nil)

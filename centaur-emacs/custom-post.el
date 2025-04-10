@@ -27,20 +27,30 @@
 ;;
 ;;; Code:
 
+;; 解决GUI Emacs与终端环境变量不一致的问题
+(when (memq window-system '(mac ns x))
+  (use-package exec-path-from-shell
+    :ensure t
+    :config
+    ;; 设置要从shell复制到Emacs的环境变量列表
+    ;; 可以根据需要添加其他环境变量
+    (setq exec-path-from-shell-variables
+          '("PATH" "MANPATH" "LANG" "LC_ALL" "GOPATH" "GOROOT" "NVM_DIR" 
+            "JAVA_HOME" "ANDROID_HOME" "DEEPSEEK_API_KEY" "PYTHONPATH"))
+    (exec-path-from-shell-initialize)))
 
 (defun my/toggle-transparency ()
   (interactive)
   (set-frame-parameter (selected-frame) 'alpha '(90 . 90)) ;; 分别为 frame 获得焦点和失去焦点的不透明度
-  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
   )
 
 (defun setupEmacs29BindBuffer ()
   (add-to-list 'auto-mode-alist '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.wxml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
   (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
 
@@ -68,7 +78,6 @@
 
 
   (setq inhibit-compacting-font-caches t)
-
   (setq-default cursor-type 'box)  ;; 你可以选择光标样式，例如 box、bar、hollow 等
 
   (set-cursor-color "red")  ;; 设置光标颜色为红色
@@ -76,7 +85,6 @@
   ;; 关闭平滑滚动效果
   (ultra-scroll-mode -1)
 
-  (add-to-list 'default-frame-alist '(undecorated . t))
   ;; (my/toggle-transparency)
   )
 
@@ -104,8 +112,25 @@
 (setq-default eglot-events-buffer-size 0)
 
 
+(use-package aidermacs
+  :bind (("C-c a" . aidermacs-transient-menu))
+  :ensure t
+  :config
+  ;; Set API_KEY in .bashrc, that will automatically picked up by aider or in elisp
+  ;; (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
+  (with-eval-after-load 'exec-path-from-shell
+    (exec-path-from-shell-copy-env "DEEPSEEK_API_KEY"))
+  ;; defun my-get-openrouter-api-key yourself elsewhere for security reasons
+  ;; (setenv "OPENROUTER_API_KEY" (my-get-openrouter-api-key))
+  (setenv "AIDER_CHAT_LANGUAGE" "Chinese") ; 指定聊天中的语言
+  :custom
+  (aidermacs-default-model "deepseek/deepseek-chat"))
+
+
 (use-package lsp-bridge
   :ensure nil
+  :init (unless (package-installed-p 'lsp-bridge)
+          (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
   :load-path "~/elisp/lsp-bridge"
   :hook (prog-mode . lsp-bridge-mode)
   :bind (:map lsp-bridge-mode
@@ -145,21 +170,6 @@
   (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
   (global-lsp-bridge-mode)
   )
-
-
-(use-package aidermacs
-  :bind (("C-c a" . aidermacs-transient-menu))
-  :ensure t
-  :config
-  ;; Set API_KEY in .bashrc, that will automatically picked up by aider or in elisp
-  ;; (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
-  (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-env "DEEPSEEK_API_KEY"))
-  ;; defun my-get-openrouter-api-key yourself elsewhere for security reasons
-  ;; (setenv "OPENROUTER_API_KEY" (my-get-openrouter-api-key))
-  (setenv "AIDER_CHAT_LANGUAGE" "Chinese") ; 指定聊天中的语言
-  :custom
-  (aidermacs-default-model "deepseek/deepseek-chat"))
 
 
 (use-package rime
@@ -235,16 +245,20 @@
 
 
   ;; 部分 major-mode 关闭 RIME 输入法。
-  (defadvice switch-to-buffer (after activate-input-method activate)
-    (if (or (string-match "vterm-mode" (symbol-name major-mode))
-            (string-match "dired-mode" (symbol-name major-mode))
-            (string-match "image-mode" (symbol-name major-mode))
-            (string-match "compilation-mode" (symbol-name major-mode))
-            (string-match "isearch-mode" (symbol-name major-mode))
-            (string-match "minibuffer-mode" (symbol-name major-mode))
-            )
+  ;; 定义建议函数
+  (defun my-activate-input-method-after-switch (&rest _args)
+    (if (or (derived-mode-p 'vterm-mode)
+            (derived-mode-p 'dired-mode)
+            (derived-mode-p 'image-mode)
+            (derived-mode-p 'compilation-mode)
+            (derived-mode-p 'isearch-mode)
+            (derived-mode-p 'minibuffer-inactive-mode))
         (activate-input-method nil)
       (activate-input-method "rime")))
+
+  ;; 添加建议到 switch-to-buffer 的 :after 位置
+  (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
+
 
   (defvar im-cursor-color "Orange"
     "The color for input method.")
