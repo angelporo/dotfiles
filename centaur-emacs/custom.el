@@ -34,7 +34,7 @@
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
-(setq centaur-theme 'light)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
 (setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
@@ -61,8 +61,8 @@
              when (font-installed-p font)
              return (set-face-attribute 'default nil
                                         :family font
-                                        ;; :weight 'heavy'
-                                        :height (cond (sys/macp 132)
+                                        ;; :weight 'semi-bold'
+                                        :height (cond (sys/macp 134)
                                                       (sys/win32p 110)
                                                       (t 100))))
 
@@ -123,9 +123,9 @@
 ;; (enable-socks-proxy)
 
 ;; Display on the specified monitor
-(when (and (> (length (display-monitor-attributes-list)) 1)
-           (> (display-pixel-width) 1920))
-  (set-frame-parameter nil 'left 1920))
+;; (when (and (> (length (display-monitor-attributes-list)) 1)
+;;            (> (display-pixel-width) 1920))
+;;   (set-frame-parameter nil 'left 1920))
 
 ;; (put 'cl-destructuring-bind 'lisp-indent-function 'defun)
 ;; (put 'pdf-view-create-image 'lisp-indent-function 'defun)
@@ -138,9 +138,11 @@
  ;; If there is more than one, they won't work right.
  '(acm-backend-codeium-accept t)
  '(acm-enable-codeium t)
+ '(column-number-mode t)
  '(custom-safe-themes
    '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
      "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
+ '(emigo-python-command "python3")
  '(lsp-bridge-diagnostic-max-number 20)
  '(lsp-bridge-python-command "python3")
  '(lsp-bridge-remote-python-command "python3")
@@ -149,7 +151,7 @@
  '(package-vc-selected-packages
    '((lsp-bridge :vc-backend Git :url
        "https://github.com/manateelazycat/lsp-bridge.git")
-     (emigo :vc-backend Git :url "https://github.com/MatthewZMD/emigo")
+     (emigo :vc-backend Git :url "https://github.com/MatthewZMD/emigo.git")
      (ultra-scroll :vc-backend Git :url
        "https://github.com/jdtsmith/ultra-scroll")
      (eglot-booster :vc-backend Git :url
@@ -161,6 +163,8 @@
  '(safe-local-variable-values
    '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
      (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
+ '(size-indication-mode t)
+ '(warning-minimum-level :emergency)
  '(web-mode-enable-auto-indentation nil))
 
 (custom-set-faces

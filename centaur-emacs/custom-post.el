@@ -31,62 +31,59 @@
 (when (memq window-system '(mac ns x))
   (use-package exec-path-from-shell
     :ensure t
-    :config
-    ;; 设置要从shell复制到Emacs的环境变量列表
-    ;; 可以根据需要添加其他环境变量
+    :init
+    (setq exec-path-from-shell-check-startup-files nil) ; Faster initialization
     (setq exec-path-from-shell-variables
-          '("PATH" "MANPATH" "LANG" "LC_ALL" "GOPATH" "GOROOT" "NVM_DIR" 
+          '("PATH" "MANPATH" "LANG" "LC_ALL" "GOPATH" "GOROOT" "NVM_DIR" "OPENROUTER_API_KEY"
             "JAVA_HOME" "ANDROID_HOME" "DEEPSEEK_API_KEY" "PYTHONPATH"))
-    (exec-path-from-shell-initialize)))
+    :config
+    (exec-path-from-shell-initialize)
 
-(defun my/toggle-transparency ()
-  (interactive)
-  (set-frame-parameter (selected-frame) 'alpha '(90 . 90)) ;; 分别为 frame 获得焦点和失去焦点的不透明度
-  )
 
-(defun setupEmacs29BindBuffer ()
-  (add-to-list 'auto-mode-alist '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.wxml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
-  (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
+    ;; Cache the values to avoid future shell calls
+    (dolist (var exec-path-from-shell-variables)
+      (setenv var (getenv var)))))
 
-  (add-hook 'typescript-ts-mode-hook 'prettier-mode)
-  (add-hook 'tsx-ts-mode-hook 'prettier-mode)
-  (add-hook 'js2-mode-hook 'prettier-mode)
-  (add-hook 'web-mode-hook 'prettier-mode)
-  (add-hook 'css-mode-hook 'prettier-mode)
-  )
+(defun my/setup-emacs29-bindings ()
+  "Setup file associations and hooks for Emacs 29+."
+  ;; (dolist (mode '(("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode)
+  ;;                 ("\\.rs\\'" . rust-ts-mode)
+  ;;                 ("\\.wxml\\'" . web-mode)
+  ;;                 ("\\.ts\\'" . tsx-ts-mode)
+  ;;                 ("\\.js\\'" . tsx-ts-mode)
+  ;;                 ("\\.tsx\\'" . tsx-ts-mode)
+  ;;                 ("\\.less\\'" . less-css-mode)
+  ;;                 ("\\.ya?ml\\'" . yaml-ts-mode)))
+  ;;   (add-to-list 'auto-mode-alist mode))
 
-(defun start-centaur-bind-keys ()
-  ;; (global-set-key (kbd "C-a") 'beginning-of-line)
-  ;; (global-set-key (kbd "C-e") 'end-of-line)
-  (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
-  ;; (global-set-key (kbd "C-i") 'yas-expand)
-  (global-set-key (kbd "C-c i") 'project-find-file)
-  (setq consult-preview-key nil)
-  (global-set-key (kbd "M-RET") 'eglot-code-actions)
-  ;; (global-set-key (kbd "M-s") 'save-buffer)
-  )
+  (dolist (hook '(typescript-ts-mode-hook
+                  tsx-ts-mode-hook
+                  js2-mode-hook
+                  web-mode-hook
+                  css-mode-hook))
+    (add-hook hook 'prettier-mode)))
+
+(defun my/setup-keybindings ()
+  "Setup global keybindings."
+  (let ((map global-map))
+    (define-key map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
+    (define-key map (kbd "C-c i") 'project-find-file)
+    (define-key map (kbd "M-RET") 'eglot-code-actions))
+
+  ;; Disable consult preview
+  (setq consult-preview-key nil))
 
 (when emacs/>=29p
-  (setupEmacs29BindBuffer)
-  (start-centaur-bind-keys)
+  (my/setup-emacs29-bindings)
+  (my/setup-keybindings)
 
+  ;; UI enhancements
+  (setq inhibit-compacting-font-caches t) ; Better font rendering
+  (setq-default cursor-type 'box)         ; Box cursor
+  (set-cursor-color "red")                ; Red cursor color
 
-  (setq inhibit-compacting-font-caches t)
-  (setq-default cursor-type 'box)  ;; 你可以选择光标样式，例如 box、bar、hollow 等
-
-  (set-cursor-color "red")  ;; 设置光标颜色为红色
-
-  ;; 关闭平滑滚动效果
-  (ultra-scroll-mode -1)
-
-  ;; (my/toggle-transparency)
-  )
+  ;; Disable smooth scrolling for better performance
+  (ultra-scroll-mode -1))
 
 
 (use-package emacs
@@ -112,27 +109,42 @@
 (setq-default eglot-events-buffer-size 0)
 
 
-(use-package aidermacs
-  :bind (("C-c a" . aidermacs-transient-menu))
-  :ensure t
+(use-package emigo
+  :init
+  (unless (package-installed-p 'emigo)
+    (package-vc-install "https://github.com/MatthewZMD/emigo.git"))
+
   :config
-  ;; Set API_KEY in .bashrc, that will automatically picked up by aider or in elisp
-  ;; (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
-  (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-env "DEEPSEEK_API_KEY"))
-  ;; defun my-get-openrouter-api-key yourself elsewhere for security reasons
-  ;; (setenv "OPENROUTER_API_KEY" (my-get-openrouter-api-key))
-  (setenv "AIDER_CHAT_LANGUAGE" "Chinese") ; 指定聊天中的语言
+  (emigo-enable) ;; Starts the background process automatically
   :custom
-  (aidermacs-default-model "deepseek/deepseek-chat"))
+  ;; Encourage using OpenRouter with Deepseek
+  (emigo-model "deepseek-reasoner")
+  (emigo-base-url "https://api.deepseek.com/v1")
+  (emigo-api-key (getenv "DEEPSEEK_API_KEY")))
+
+
+(use-package aidermacs
+  :defer t  ; Defer loading until first use
+  :commands (aidermacs-transient-menu)
+  :bind (("C-c a" . aidermacs-transient-menu))
+  :init
+  ;; Cache API key at startup
+  (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
+  (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
+  :custom
+  ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
+  (aidermacs-default-model "deepseek/deepseek-chat")
+  )
 
 
 (use-package lsp-bridge
   :ensure nil
-  :init (unless (package-installed-p 'lsp-bridge)
-          (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
-  :load-path "~/elisp/lsp-bridge"
-  :hook (prog-mode . lsp-bridge-mode)
+  :init
+  (unless (package-installed-p 'lsp-bridge)
+    (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
+  :hook (prog-mode . (lambda ()
+                       (when (derived-mode-p 'prog-mode)
+                         (lsp-bridge-mode))))
   :bind (:map lsp-bridge-mode
          ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ; 向下滚动文档
          ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ; 向上滚动文档
@@ -176,7 +188,7 @@
   :custom
   (rime-user-data-dir "~/Library/Rime/")
   (rime-librime-root "~/.config/emacs/librime/dist")
-  (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
+  (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@31/incl/include")
   :hook
   (emacs-startup . (lambda () (setq default-input-method "rime")))
   :bind
@@ -224,14 +236,14 @@
   ;; 自定义 avy 断言函数.
   (setq rime-disable-predicates
         '(rime-predicate-ace-window-p
-          rime-predicate-avy-p
           rime-predicate-hydra-p
-          rime-predicate-after-ascii-char-p
-          rime-predicate-after-alphabet-char-p
-          rime-predicate-prog-in-code-p
-          rime-predicate-punctuation-after-space-cc-p
-          rime-predicate-punctuation-after-ascii-p
-          rime-predicate-auto-english-p
+          ;; rime-predicate-after-ascii-char-p
+          ;; rime-predicate-after-alphabet-char-p
+          ;; rime-predicate-prog-in-code-p
+          ;; rime-predicate-punctuation-after-space-cc-p
+          ;; rime-predicate-punctuation-after-ascii-p
+          ;; rime-predicate-auto-english-p
+          ;; rime-predicate-avy-p
           ))
 
   (setq rime-show-candidate 'posframe)
@@ -246,15 +258,15 @@
 
   ;; 部分 major-mode 关闭 RIME 输入法。
   ;; 定义建议函数
+  (defvar my-disable-input-method-modes
+    '(vterm-mode dired-mode image-mode compilation-mode
+                 isearch-mode minibuffer-inactive-mode)
+    "Major modes where input method should be disabled.")
+
   (defun my-activate-input-method-after-switch (&rest _args)
-    (if (or (derived-mode-p 'vterm-mode)
-            (derived-mode-p 'dired-mode)
-            (derived-mode-p 'image-mode)
-            (derived-mode-p 'compilation-mode)
-            (derived-mode-p 'isearch-mode)
-            (derived-mode-p 'minibuffer-inactive-mode))
-        (activate-input-method nil)
-      (activate-input-method "rime")))
+    "Activate input method based on current mode."
+    (let ((disable (cl-some #'derived-mode-p my-disable-input-method-modes)))
+      (activate-input-method (unless disable "rime"))))
 
   ;; 添加建议到 switch-to-buffer 的 :after 位置
   (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
