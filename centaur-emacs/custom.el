@@ -58,7 +58,7 @@
     (cl-loop for font in '("Cascadia Code" "Fira Code" "Jetbrains Mono"
                            "SF Mono" "Hack" "Source Code Pro" "Menlo"
                            "Monaco" "DejaVu Sans Mono" "Consolas")
-             when (font-installed-p font)
+             when (font-available-p font)
              return (set-face-attribute 'default nil
                                         :family font
                                         ;; :weight 'semi-bold'
@@ -77,12 +77,12 @@
 
     ;; Specify font for all unicode characters
     (cl-loop for font in '("Apple Symbols" "Segoe UI Symbol" "Symbola" "Symbol")
-             when (font-installed-p font)
+             when (font-available-p font)
              return (set-fontset-font t 'symbol (font-spec :family font) nil 'prepend))
 
     ;; Emoji
     (cl-loop for font in '("Noto Color Emoji" "Apple Color Emoji" "Segoe UI Emoji")
-             when (font-installed-p font)
+             when (font-available-p font)
              return (set-fontset-font t
                                       (if (< emacs-major-version 28)'symbol 'emoji)
                                       (font-spec :family font) nil 'prepend))
@@ -90,7 +90,7 @@
     ;; Specify font for Chinese characters
     (cl-loop for font in '("WenQuanYi Micro Hei Mono" "LXGW WenKai Screen"
                            "LXGW WenKai Mono" "PingFang SC" "Microsoft Yahei UI" "Simhei")
-             when (font-installed-p font)
+             when (font-available-p font)
              return (progn
                       (setq face-font-rescale-alist `((,font . 1.1)))
                       (set-fontset-font t 'han (font-spec :family font))))))
@@ -136,18 +136,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(acm-backend-codeium-accept t)
- '(acm-enable-codeium t)
- '(column-number-mode t)
- '(custom-safe-themes
-   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
-     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
+
  '(emigo-python-command "python3")
  '(lsp-bridge-diagnostic-max-number 20)
  '(lsp-bridge-python-command "python3")
  '(lsp-bridge-remote-python-command "python3")
  '(lsp-idle-delay 0.2)
- '(ns-antialias-text t)
  '(package-vc-selected-packages
    '((lsp-bridge :vc-backend Git :url
        "https://github.com/manateelazycat/lsp-bridge.git")
@@ -156,16 +150,9 @@
        "https://github.com/jdtsmith/ultra-scroll")
      (eglot-booster :vc-backend Git :url
        "https://github.com/jdtsmith/eglot-booster")))
- '(rime-deactivate-when-exit-minibuffer nil)
- '(safe-local-variable-directories
-   '("/Volumes/D/shide/zy/sd-operating-frontEnd/"
-     "/Volumes/D/shide/lg/lg-dashboard-web/"))
- '(safe-local-variable-values
-   '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
-     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
- '(size-indication-mode t)
- '(warning-minimum-level :emergency)
- '(web-mode-enable-auto-indentation nil))
+ '("/Volumes/D/shide/zy/sd-operating-frontEnd/"
+   "/Volumes/D/shide/lg/lg-dashboard-web/"))
+ )
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
