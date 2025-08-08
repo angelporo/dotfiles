@@ -188,7 +188,7 @@
   :custom
   (rime-user-data-dir "~/Library/Rime/")
   (rime-librime-root "~/.config/emacs/librime/dist")
-  (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
+  (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@31/incl/include")
   :hook
   (emacs-startup . (lambda () (setq default-input-method "rime")))
   :bind
@@ -237,13 +237,13 @@
   (setq rime-disable-predicates
         '(rime-predicate-ace-window-p
           rime-predicate-hydra-p
-          rime-predicate-after-ascii-char-p
-          rime-predicate-after-alphabet-char-p
-          rime-predicate-prog-in-code-p
-          rime-predicate-punctuation-after-space-cc-p
-          rime-predicate-punctuation-after-ascii-p
-          rime-predicate-auto-english-p
-          rime-predicate-avy-p
+          ;; rime-predicate-after-ascii-char-p
+          ;; rime-predicate-after-alphabet-char-p
+          ;; rime-predicate-prog-in-code-p
+          ;; rime-predicate-punctuation-after-space-cc-p
+          ;; rime-predicate-punctuation-after-ascii-p
+          ;; rime-predicate-auto-english-p
+          ;; rime-predicate-avy-p
           ))
 
   (setq rime-show-candidate 'posframe)
