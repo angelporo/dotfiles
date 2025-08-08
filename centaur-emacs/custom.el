@@ -150,9 +150,15 @@
        "https://github.com/jdtsmith/ultra-scroll")
      (eglot-booster :vc-backend Git :url
        "https://github.com/jdtsmith/eglot-booster")))
- '("/Volumes/D/shide/zy/sd-operating-frontEnd/"
-   "/Volumes/D/shide/lg/lg-dashboard-web/"))
- )
+ '(rime-deactivate-when-exit-minibuffer nil)
+ '(safe-local-variable-directories
+   '("/Volumes/D/shide/zy/sd-operating-frontEnd/"
+     "/Volumes/D/shide/lg/lg-dashboard-web/"))
+ '(safe-local-variable-values
+   '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
+     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
+ '(size-indication-mode t)
+ '(warning-minimum-level :emergency))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -160,5 +166,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; EPG 配置修复 (解决 OpenPGP 错误)
+(when (file-exists-p (expand-file-name "epg-fix.el" user-emacs-directory))
+  (load (expand-file-name "epg-fix.el" user-emacs-directory)))
+
+;; 输入法光标颜色变化配置
+(when (file-exists-p (expand-file-name "lisp/im-cursor-chg.el" user-emacs-directory))
+  (require 'im-cursor-chg)
+  (setq im-cursor-color "#FF3333"       ; 设置中文输入时的光标颜色为橙红色
+        im-default-cursor-color "#0066FF") ; 设置默认光标颜色为白色
+  (cursor-chg-mode 1)
+  (message "Input method cursor color change enabled!"))
 
 ;;; custom.el ends here

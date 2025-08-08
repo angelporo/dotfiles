@@ -23,18 +23,30 @@
 
 (defun im--chinese-p ()
   "Check if the current input state is Chinese."
-  (if (featurep 'rime)
-      (and (rime--should-enable-p)
-           (not (rime--should-inline-ascii-p))
-           current-input-method)
-    current-input-method))
+  (cond
+   ((featurep 'rime)
+    ;; 检查 rime 是否激活且不是内联ASCII模式
+    (and current-input-method
+         (string-match-p "rime" (symbol-name current-input-method))
+         (or (not (fboundp 'rime--should-inline-ascii-p))
+             (not (rime--should-inline-ascii-p)))))
+   (t
+    ;; 其他输入法的检查
+    (and current-input-method
+         (not (string-match-p "english" (symbol-name current-input-method)))))))
 
 (defun im-change-cursor-color ()
   "Set cursor color depending on input method."
   (interactive)
-  (set-cursor-color (if (im--chinese-p)
-                        im-cursor-color
-                      im-default-cursor-color)))
+  (condition-case err
+      (let ((is-chinese (im--chinese-p)))
+        ;; 调试信息（可选，在开发时启用）
+        ;; (message "Input method: %s, is-chinese: %s" current-input-method is-chinese)
+        (set-cursor-color (if is-chinese
+                              im-cursor-color
+                            im-default-cursor-color)))
+    (error
+     (message "Error in im-change-cursor-color: %s" err))))
 
 (define-minor-mode cursor-chg-mode
   "Toggle changing cursor color.
