@@ -46,15 +46,15 @@
 
 (defun my/setup-emacs29-bindings ()
   "Setup file associations and hooks for Emacs 29+."
-  ;; (dolist (mode '(("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode)
-  ;;                 ("\\.rs\\'" . rust-ts-mode)
-  ;;                 ("\\.wxml\\'" . web-mode)
-  ;;                 ("\\.ts\\'" . tsx-ts-mode)
-  ;;                 ("\\.js\\'" . tsx-ts-mode)
-  ;;                 ("\\.tsx\\'" . tsx-ts-mode)
-  ;;                 ("\\.less\\'" . less-css-mode)
-  ;;                 ("\\.ya?ml\\'" . yaml-ts-mode)))
-  ;;   (add-to-list 'auto-mode-alist mode))
+  (dolist (mode '(("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode)
+                  ("\\.rs\\'" . rust-ts-mode)
+                  ("\\.wxml\\'" . web-mode)
+                  ("\\.ts\\'" . tsx-ts-mode)
+                  ("\\.js\\'" . tsx-ts-mode)
+                  ("\\.tsx\\'" . tsx-ts-mode)
+                  ("\\.less\\'" . less-css-mode)
+                  ("\\.ya?ml\\'" . yaml-ts-mode)))
+    (add-to-list 'auto-mode-alist mode))
 
   (dolist (hook '(typescript-ts-mode-hook
                   tsx-ts-mode-hook
@@ -109,18 +109,18 @@
 (setq-default eglot-events-buffer-size 0)
 
 
-(use-package emigo
-  :init
-  (unless (package-installed-p 'emigo)
-    (package-vc-install "https://github.com/MatthewZMD/emigo.git"))
+;; (use-package emigo
+;;   :init
+;;   (unless (package-installed-p 'emigo)
+;;     (package-vc-install "https://github.com/MatthewZMD/emigo.git"))
 
-  :config
-  (emigo-enable) ;; Starts the background process automatically
-  :custom
-  ;; Encourage using OpenRouter with Deepseek
-  (emigo-model "deepseek-reasoner")
-  (emigo-base-url "https://api.deepseek.com/v1")
-  (emigo-api-key (getenv "DEEPSEEK_API_KEY")))
+;;   :config
+;;   (emigo-enable) ;; Starts the background process automatically
+;;   :custom
+;;   ;; Encourage using OpenRouter with Deepseek
+;;   (emigo-model "deepseek-reasoner")
+;;   (emigo-base-url "https://api.deepseek.com/v1")
+;;   (emigo-api-key (getenv "DEEPSEEK_API_KEY")))
 
 
 (use-package aidermacs
@@ -254,8 +254,6 @@
               :foreground-color "#dcdccc"
               :internal-border-width 4))
 
-
-
   ;; 部分 major-mode 关闭 RIME 输入法。
   ;; 定义建议函数
   (defvar my-disable-input-method-modes
@@ -310,7 +308,6 @@ When this mode is on, `im-change-cursor-color' control cursor changing."
                                 "--vimgrep" "%s"
                                 "--ignore" "*node_modules*"
                                 ))
-
 ;; (use-package emmet-mode
 ;;   :ensure t
 ;;   :hook ((typescript-ts-mode  tsx-ts-mode web-mode) . emmet-mode)

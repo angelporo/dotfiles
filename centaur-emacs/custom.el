@@ -136,7 +136,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
+ '(custom-safe-themes
+   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
+     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
  '(emigo-python-command "python3")
  '(lsp-bridge-diagnostic-max-number 20)
  '(lsp-bridge-python-command "python3")
@@ -145,12 +147,10 @@
  '(package-vc-selected-packages
    '((lsp-bridge :vc-backend Git :url
        "https://github.com/manateelazycat/lsp-bridge.git")
-     (emigo :vc-backend Git :url "https://github.com/MatthewZMD/emigo.git")
      (ultra-scroll :vc-backend Git :url
        "https://github.com/jdtsmith/ultra-scroll")
      (eglot-booster :vc-backend Git :url
        "https://github.com/jdtsmith/eglot-booster")))
- '(rime-deactivate-when-exit-minibuffer nil)
  '(safe-local-variable-directories
    '("/Volumes/D/shide/zy/sd-operating-frontEnd/"
      "/Volumes/D/shide/lg/lg-dashboard-web/"))
@@ -166,7 +166,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 ;; EPG 配置修复 (解决 OpenPGP 错误)
 (when (file-exists-p (expand-file-name "epg-fix.el" user-emacs-directory))
   (load (expand-file-name "epg-fix.el" user-emacs-directory)))
@@ -178,5 +177,4 @@
         im-default-cursor-color "#0066FF") ; 设置默认光标颜色为白色
   (cursor-chg-mode 1)
   (message "Input method cursor color change enabled!"))
-
 ;;; custom.el ends here
