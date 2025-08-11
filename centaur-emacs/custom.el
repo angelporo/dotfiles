@@ -23,8 +23,8 @@
                             (corfu-mode -1)
                             ))
 
-(setq ns-alternate-modifier 'super)
-(setq ns-command-modifier 'meta)
+
+
 (setq centaur-icon t)
 (setq centaur-full-name "angelporo")              ; User full name
 (setq centaur-mail-address "940079461@qq.com")    ; Email addresscr
@@ -33,7 +33,7 @@
 
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
+(setq centaur-package-archives 'bfsu)         ; Package repo: melpa, emacs-china, netease, ustc, tencent or tuna
 (setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-dashboard t)                   ; Use dashboard at startup or not: t or nil
@@ -62,8 +62,8 @@
              return (set-face-attribute 'default nil
                                         :family font
                                         ;; :weight 'semi-bold'
-                                        :height (cond (sys/macp 134)
-                                                      (sys/win32p 110)
+                                        :height (cond (sys/macp 136)
+                                                      (sys/win32p 120)
                                                       (t 100))))
 
     ;; Set mode-line font
@@ -137,26 +137,25 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
-     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
+   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
  '(emigo-python-command "python3")
  '(lsp-bridge-diagnostic-max-number 20)
  '(lsp-bridge-python-command "python3")
  '(lsp-bridge-remote-python-command "python3")
  '(lsp-idle-delay 0.2)
+ '(native-comp-speed 3 t)
  '(package-vc-selected-packages
-   '((lsp-bridge :vc-backend Git :url
-       "https://github.com/manateelazycat/lsp-bridge.git")
-     (ultra-scroll :vc-backend Git :url
-       "https://github.com/jdtsmith/ultra-scroll")
-     (eglot-booster :vc-backend Git :url
-       "https://github.com/jdtsmith/eglot-booster")))
+   '((lsp-bridge :vc-backend Git :url "https://github.com/manateelazycat/lsp-bridge.git")
+     (ultra-scroll :vc-backend Git :url "https://github.com/jdtsmith/ultra-scroll")
+     (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")))
+ '(ring-bell-function 'ignore)
  '(safe-local-variable-directories
-   '("/Volumes/D/shide/zy/sd-operating-frontEnd/"
-     "/Volumes/D/shide/lg/lg-dashboard-web/"))
+   '("/Volumes/D/shide/zy/sd-operating-frontEnd/" "/Volumes/D/shide/lg/lg-dashboard-web/"))
  '(safe-local-variable-values
-   '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
-     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
+   '((web-mode-indent-style . 2)
+     (web-mode-block-padding . 2)
+     (web-mode-script-padding . 2)
+     (web-mode-style-padding . 2)))
  '(size-indication-mode t)
  '(warning-minimum-level :emergency))
 

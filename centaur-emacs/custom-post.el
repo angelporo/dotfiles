@@ -49,12 +49,16 @@
   (dolist (mode '(("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode)
                   ("\\.rs\\'" . rust-ts-mode)
                   ("\\.wxml\\'" . web-mode)
-                  ("\\.ts\\'" . tsx-ts-mode)
-                  ("\\.js\\'" . tsx-ts-mode)
-                  ("\\.tsx\\'" . tsx-ts-mode)
-                  ("\\.less\\'" . less-css-mode)
+                  ("\\.ts\\'" . typescript-ts-mode)
+                  ("\\.js\\'" . typescript-ts-mode)
+                  ("\\.tsx\\'" . typescript-ts-mode)
+                  ("\\.less\\'" . css-mode)
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
+
+  (setq magit-todos-mode nil)
+
+
 
   (dolist (hook '(typescript-ts-mode-hook
                   tsx-ts-mode-hook
@@ -80,10 +84,24 @@
   ;; UI enhancements
   (setq inhibit-compacting-font-caches t) ; Better font rendering
   (setq-default cursor-type 'box)         ; Box cursor
-  (set-cursor-color "red")                ; Red cursor color
+  ;; (set-cursor-color "red")
+                                        ; Red cursor color
+  (setq native-comp-speed 3) ; 最大化编译优化
+  (setq native-comp-async-report-warnings-errors nil)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  ;; 开启 Metal 渲染（Emacs Mac Port 专属）
 
+
+  (setq mac-command-modifier 'meta)
+
+  ;; Option 键作为 Super
+  (setq mac-option-modifier 'super)
   ;; Disable smooth scrolling for better performance
-  (ultra-scroll-mode -1))
+  ;; (ultra-scroll-mode -1)
+
+  )
 
 
 (use-package emacs
@@ -135,7 +153,6 @@
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
   (aidermacs-default-model "deepseek/deepseek-chat")
   )
-
 
 (use-package lsp-bridge
   :ensure nil
@@ -291,16 +308,16 @@
                           im-cursor-color
                         im-default-cursor-color)))
 
-  (define-minor-mode cursor-chg-mode
-    "Toggle changing cursor color.
-With numeric ARG, turn cursor changing on if ARG is positive.
-When this mode is on, `im-change-cursor-color' control cursor changing."
-    :init-value nil :global t :group 'frames
-    (if cursor-chg-mode
-        (add-hook 'post-command-hook 'im-change-cursor-color)
-      (remove-hook 'post-command-hook 'im-change-cursor-color)))
+  ;; (define-minor-mode cursor-chg-mode
+;;     "Toggle changing cursor color.
+;; With numeric ARG, turn cursor changing on if ARG is positive.
+;; When this mode is on, `im-change-cursor-color' control cursor changing."
+;;     :init-value nil :global t :group 'frames
+;;     (if cursor-chg-mode
+;;         (add-hook 'post-command-hook 'im-change-cursor-color)
+;;       (remove-hook 'post-command-hook 'im-change-cursor-color)))
 
-  (cursor-chg-mode 1)
+  ;; (cursor-chg-mode 1)
   )
 
 (setq counsel-ag-base-command '(
@@ -308,10 +325,6 @@ When this mode is on, `im-change-cursor-color' control cursor changing."
                                 "--vimgrep" "%s"
                                 "--ignore" "*node_modules*"
                                 ))
-;; (use-package emmet-mode
-;;   :ensure t
-;;   :hook ((typescript-ts-mode  tsx-ts-mode web-mode) . emmet-mode)
-;;   )
 
 
 (use-package ag
