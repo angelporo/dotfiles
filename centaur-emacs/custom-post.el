@@ -53,26 +53,40 @@
                   ("\\.js\\'" . typescript-ts-mode)
                   ("\\.tsx\\'" . typescript-ts-mode)
                   ("\\.less\\'" . css-mode)
+                  ("\\.sess\\'" . css-mode)
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
 
   (setq magit-todos-mode nil)
 
+  ;; 禁用不必要的 UI 花哨功能
+  (setq inhibit-compacting-font-caches t) ; 提升字体渲染性能
+  (setq frame-resize-pixelwise nil)       ; 禁用逐像素调整，提升窗口调整性能
+  (setq use-dialog-box nil)               ; 禁用对话框
+  (setq use-file-dialog nil)              ; 禁用文件对话框
+  (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
 
+  ;; 图形特效和高亮优化
+  (setq jit-lock-defer-time 0.05)         ; 延迟语法高亮以提升滚动性能
+  (setq fast-but-imprecise-scrolling t)   ; 快速但不精确的滚动
+  (setq redisplay-skip-fontification-on-input t) ; 输入时跳过字体处理
 
   (dolist (hook '(typescript-ts-mode-hook
                   tsx-ts-mode-hook
                   js2-mode-hook
                   web-mode-hook
-                  css-mode-hook))
+                  css-mode-hook
+                  ))
     (add-hook hook 'prettier-mode)))
 
 (defun my/setup-keybindings ()
   "Setup global keybindings."
   (let ((map global-map))
-    (define-key map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
+    ;; (define-key map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
     (define-key map (kbd "C-c i") 'project-find-file)
-    (define-key map (kbd "M-RET") 'eglot-code-actions))
+    ;; (define-key map (kbd "M-RET") 'eglot-code-actions)
+    (global-set-key (kbd "C-M-<SPC>") 'er/expand-region)
+    )
 
   ;; Disable consult preview
   (setq consult-preview-key nil))
@@ -86,22 +100,30 @@
   (setq-default cursor-type 'box)         ; Box cursor
   ;; (set-cursor-color "red")
                                         ; Red cursor color
-  (setq native-comp-speed 3) ; 最大化编译优化
   (setq native-comp-async-report-warnings-errors nil)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
-  ;; 开启 Metal 渲染（Emacs Mac Port 专属）
+  (setq ns-command-modifier 'meta)
+  (setq ns-option-modifier 'super)
 
-
-  (setq mac-command-modifier 'meta)
-
-  ;; Option 键作为 Super
-  (setq mac-option-modifier 'super)
-  ;; Disable smooth scrolling for better performance
-  ;; (ultra-scroll-mode -1)
+  ;; 完全禁用 GUI 菜单系统
+  (menu-bar-mode -1)
+  (setq context-menu-functions nil)
+  ;; 针对 macOS 的额外设置
+  (when (eq system-type 'darwin)
+    (setq ns-pop-up-frames nil)          ; 禁止鼠标悬停创建新窗口
+    (setq mac-right-option-modifier 'none)) ; 禁用右键 Option 键功能
 
   )
+
+(use-package magit-todos
+  :after magit-status
+  :commands magit-todos-mode
+  :init
+  (setq magit-todos-nice (if (executable-find "nice") t nil))
+  (magit-todos-mode -1))
+
 
 
 (use-package emacs
@@ -168,6 +190,7 @@
          ("M-." . lsp-bridge-find-def)
          ("M-," . lsp-bridge-find-def-return)
          ("M-?" . lsp-bridge-find-references)
+
          ("C-c RET" . lsp-bridge-popup-documentation)
          ;; ("C-c m" . lsp-bridge-rename)
          ("M-RET" . lsp-bridge-code-action)
@@ -199,7 +222,6 @@
   (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
   (global-lsp-bridge-mode)
   )
-
 
 (use-package rime
   :custom
@@ -309,13 +331,13 @@
                         im-default-cursor-color)))
 
   ;; (define-minor-mode cursor-chg-mode
-;;     "Toggle changing cursor color.
-;; With numeric ARG, turn cursor changing on if ARG is positive.
-;; When this mode is on, `im-change-cursor-color' control cursor changing."
-;;     :init-value nil :global t :group 'frames
-;;     (if cursor-chg-mode
-;;         (add-hook 'post-command-hook 'im-change-cursor-color)
-;;       (remove-hook 'post-command-hook 'im-change-cursor-color)))
+  ;;     "Toggle changing cursor color.
+  ;; With numeric ARG, turn cursor changing on if ARG is positive.
+  ;; When this mode is on, `im-change-cursor-color' control cursor changing."
+  ;;     :init-value nil :global t :group 'frames
+  ;;     (if cursor-chg-mode
+  ;;         (add-hook 'post-command-hook 'im-change-cursor-color)
+  ;;       (remove-hook 'post-command-hook 'im-change-cursor-color)))
 
   ;; (cursor-chg-mode 1)
   )
@@ -330,3 +352,52 @@
 (use-package ag
   :ensure t
   )
+
+;; ====================
+;; 禁用 doom-modeline 以提升性能
+;; ====================
+
+;; 启动后自动关闭 doom-modeline
+(defun disable-doom-modeline-on-startup ()
+  "启动后自动禁用 doom-modeline 以提升性能."
+  (when (bound-and-true-p doom-modeline-mode)
+    (doom-modeline-mode -1)
+    (message "✓ 已自动禁用 doom-modeline 以提升性能")))
+
+;; 使用 run-with-idle-timer 确保在完全启动后执行
+(run-with-idle-timer 1 nil #'disable-doom-modeline-on-startup)
+
+;; ====================
+;; 高性能原生模式行配置
+;; ====================
+
+;; 自定义简洁高效的模式行
+(setq-default mode-line-format
+  '("%e"  ; 错误信息
+    ;; 缓冲区状态和名称
+    (:eval
+     (propertize
+      (concat
+       ;; 修改状态标记
+       (cond (buffer-read-only " RO")
+             ((buffer-modified-p) " **")
+             (t " --"))
+       ;; 缓冲区名称
+       " " (buffer-name))
+      'face 'mode-line-buffer-id))
+    ;; 位置信息（行号:列号）
+    " " (:eval (format "%d:%d" (line-number-at-pos) (current-column)))
+    ;; 主模式
+    " [" mode-name "]"
+    ;; VCS 信息（简化版）
+    (vc-mode (:eval (format " %s" (substring vc-mode 1))))
+    ;; 填充空格
+    (:eval (propertize " " 'display '(space :align-to (- right 8))))
+    ;; 时间（可选）
+    (:eval (format-time-string "%H:%M"))
+    " "))
+
+;; 模式行性能优化
+(setq mode-line-compact t                     ; 紧凑模式
+      mode-line-position-column-line-format '(" %l:%c")
+      mode-line-percent-position nil)         ; 禁用百分比位置
