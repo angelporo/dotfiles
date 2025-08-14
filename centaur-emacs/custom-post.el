@@ -359,7 +359,7 @@
   "启动后自动禁用 doom-modeline 以提升性能."
   (when (bound-and-true-p doom-modeline-mode)
     (doom-modeline-mode -1)
-    (message "✓ 已自动禁用 doom-modeline 以提升性能")))
+    ))
 
 ;; 使用 run-with-idle-timer 确保在完全启动后执行
 (run-with-idle-timer 1 nil #'disable-doom-modeline-on-startup)
