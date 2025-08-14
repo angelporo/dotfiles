@@ -57,19 +57,10 @@
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
 
-  (setq magit-todos-mode nil)
-
   ;; 禁用不必要的 UI 花哨功能
-  (setq inhibit-compacting-font-caches t) ; 提升字体渲染性能
-  (setq frame-resize-pixelwise nil)       ; 禁用逐像素调整，提升窗口调整性能
   (setq use-dialog-box nil)               ; 禁用对话框
   (setq use-file-dialog nil)              ; 禁用文件对话框
   (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
-
-  ;; 图形特效和高亮优化
-  (setq jit-lock-defer-time 0.05)         ; 延迟语法高亮以提升滚动性能
-  (setq fast-but-imprecise-scrolling t)   ; 快速但不精确的滚动
-  (setq redisplay-skip-fontification-on-input t) ; 输入时跳过字体处理
 
   (dolist (hook '(typescript-ts-mode-hook
                   tsx-ts-mode-hook
@@ -124,8 +115,6 @@
   (setq magit-todos-nice (if (executable-find "nice") t nil))
   (magit-todos-mode -1))
 
-
-
 (use-package emacs
   :init
   ;; minibuffer 不显示光标.
@@ -178,12 +167,14 @@
 
 (use-package lsp-bridge
   :ensure nil
-  :init
-  (unless (package-installed-p 'lsp-bridge)
-    (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
-  :hook (prog-mode . (lambda ()
-                       (when (derived-mode-p 'prog-mode)
-                         (lsp-bridge-mode))))
+  :load-path "~/elisp/lsp-bridge"
+  :hook (prog-mode . lsp-bridge-mode)
+  ;; :init
+  ;; (unless (package-installed-p 'lsp-bridge)
+  ;;   (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
+  ;; :hook (prog-mode . (lambda ()
+  ;;                      (when (derived-mode-p 'prog-mode)
+  ;;                        (lsp-bridge-mode))))
   :bind (:map lsp-bridge-mode
          ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ; 向下滚动文档
          ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ; 向上滚动文档
@@ -195,6 +186,10 @@
          ;; ("C-c m" . lsp-bridge-rename)
          ("M-RET" . lsp-bridge-code-action)
          )
+  (:map acm-mode
+   ("C-n" . next-line)
+   ("C-p" . previous-line)
+   )
   :config
   ;; (setq lsp-bridge-python-command "~/.pyenv/versions/3.8.18/bin/python3")
   (setq acm-enable-tabnine t)
@@ -224,6 +219,8 @@
   )
 
 (use-package rime
+  :ensure-system-package
+  ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
   (rime-user-data-dir "~/Library/Rime/")
   (rime-librime-root "~/.config/emacs/librime/dist")
@@ -401,3 +398,153 @@
 (setq mode-line-compact t                     ; 紧凑模式
       mode-line-position-column-line-format '(" %l:%c")
       mode-line-percent-position nil)         ; 禁用百分比位置
+
+;; =============================================================================
+;; 🚀 EMACS 全面性能优化配置
+;; =============================================================================
+
+;; -------------------
+;; 1. 核心性能优化
+;; -------------------
+
+;; 启动性能优化
+(setq-default
+
+ ;; 字体缓存优化
+ inhibit-compacting-font-caches t          ; 禁用字体缓存压缩
+
+ ;; 渲染优化
+ frame-resize-pixelwise nil               ; 禁用像素级调整
+ frame-inhibit-implied-resize t           ; 禁用隐含调整
+ redisplay-skip-fontification-on-input t  ; 输入时跳过字体处理
+ fast-but-imprecise-scrolling t           ; 快速滚动
+ jit-lock-stealth-time nil                ; 禁用隐形锁定
+ jit-lock-defer-time 0.05                 ; 延迟锁定时间
+
+ ;; UI 响应优化
+ idle-update-delay 1.0                    ; 空闲更新延迟
+ highlight-nonselected-windows nil        ; 不高亮非选中窗口
+ cursor-in-non-selected-windows nil       ; 非选中窗口不显示光标
+
+ ;; 自动保存优化
+ auto-save-default nil                    ; 禁用自动保存
+ make-backup-files nil                    ; 禁用备份文件
+ create-lockfiles nil)                    ; 禁用锁文件
+
+;; macOS 特定性能优化
+(when (eq system-type 'darwin)
+  (setq    ns-use-mwheel-acceleration t
+           ns-use-mwheel-momentum t
+           ns-use-native-fullscreen t
+           ns-use-fullscreen-animation t
+           mac-allow-anti-aliasing t
+           ns-antialias-text t))
+
+;; -------------------
+;; 2. 禁用耗性能的UI插件
+;; -------------------
+
+;; 简化 Doom Themes Visual Bell
+(with-eval-after-load 'doom-themes
+  (setq doom-themes-enable-bold nil
+        doom-themes-enable-italic nil)
+  ;; 禁用视觉铃声
+  (setq ring-bell-function 'ignore)
+  (advice-remove #'doom-themes-visual-bell-fn #'my-doom-themes-visual-bell-fn))
+
+;; 禁用 Minions (mode-line 图标)
+(with-eval-after-load 'minions
+  (minions-mode -1))
+
+;; 优化 Nerd Icons
+(with-eval-after-load 'nerd-icons
+  (setq nerd-icons-scale-factor 0.9    ; 减小图标大小
+        nerd-icons-default-adjust 0.0)) ; 不调整位置
+
+;; 禁用行号显示（如果不需要）
+;; (global-display-line-numbers-mode -1)
+;; (remove-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+;; -------------------
+;; 3. 禁用/优化特定功能
+;; -------------------
+
+;; 禁用不必要的 VC 功能
+(setq vc-handled-backends '(Git)        ; 只支持 Git
+      vc-follow-symlinks t              ; 自动跟随符号链接
+      vc-make-backup-files nil)         ; 不创建版本控制备份
+
+;; 禁用文件名缓存刷新
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+
+;; 优化项目检测
+(with-eval-after-load 'project
+  (setq project-vc-merge-submodules nil))
+
+;; 禁用不必要的自动模式
+(setq-default
+ auto-composition-mode nil            ; 禁用自动合成
+ bidi-paragraph-direction 'left-to-right ; 强制从左到右
+ bidi-inhibit-bpa t)                   ; 禁用双向括号算法
+
+;; -------------------
+;; 4. 网络和外部进程优化
+;; -------------------
+
+;; 禁用网络相关功能
+(setq url-automatic-caching nil         ; 禁用 URL 缓存
+      url-cookie-save-interval nil      ; 禁用 cookie 自动保存
+      tramp-verbose 1                   ; 减少 TRAMP 输出
+      remote-file-name-inhibit-cache 60); 缓存远程文件名
+
+;; -------------------
+;; 5. 插件特定优化
+;; -------------------
+
+;; Flycheck 优化 (如果使用)
+(with-eval-after-load 'flycheck
+  (setq flycheck-check-syntax-automatically '(save mode-enabled)
+        flycheck-idle-change-delay 2.0   ; 增加检查延迟
+        flycheck-display-errors-delay 1.0))
+
+;; -------------------
+;; 6. 字体和主题优化
+;; -------------------
+
+;; 禁用复杂的文本属性
+(setq inhibit-x-resources t             ; 禁用 X 资源
+      inhibit-default-init t)           ; 禁用默认初始化
+
+
+
+
+;; -------------------
+;; 9. 内存管理优化
+;; -------------------
+
+;; 定期强制垃圾回收
+(run-with-idle-timer 15 t #'garbage-collect)
+
+;; 清理不必要的变量
+(defun my-cleanup-variables ()
+  "清理不必要的变量以释放内存"
+  (setq command-history nil
+        extended-command-history (last extended-command-history 50)
+        kill-ring (last kill-ring 50)))
+
+(run-with-idle-timer 300 t #'my-cleanup-variables)
+
+;; -------------------
+;; 10. 监控和调试
+;; -------------------
+;; 启动时间监控
+(defun my-display-startup-time ()
+  "显示启动时间"
+  (message "✓ Emacs 启动完成，用时: %.3fs，GC 运行 %d 次"
+           (float-time (time-subtract after-init-time before-init-time))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'my-display-startup-time)
