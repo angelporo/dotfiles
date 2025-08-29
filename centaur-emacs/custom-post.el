@@ -379,6 +379,26 @@
   ;; 添加建议到 switch-to-buffer 的 :after 位置
   (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
 
+  ;; 确保在进入 vterm-mode 时禁用输入法
+  (defun my-disable-input-method-in-vterm ()
+    "Disable input method in vterm mode."
+    (when (derived-mode-p 'vterm-mode)
+      (deactivate-input-method)))
+  
+  ;; 添加钩子以确保在 vterm 中禁用输入法
+  (add-hook 'vterm-mode-hook #'my-disable-input-method-in-vterm)
+
+  ;; 在 vterm 中切换输入法的建议
+  (defun my-vterm-toggle-input-method ()
+    "Toggle input method for vterm."
+    (interactive)
+    (if (and (derived-mode-p 'vterm-mode) current-input-method)
+        (deactivate-input-method)
+      (message "在 vterm 中使用系统的输入法（如 Rime）直接输入")))
+  
+  ;; 绑定一个快捷键来切换输入法状态（可选）
+  (define-key vterm-mode-map (kbd "C-\\") 'my-vterm-toggle-input-method)
+
 
   ;; (defvar im-cursor-color "Orange"
   ;;   "The color for input method.")
