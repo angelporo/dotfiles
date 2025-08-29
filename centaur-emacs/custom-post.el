@@ -34,8 +34,7 @@
     :init
     (setq exec-path-from-shell-check-startup-files nil) ; Faster initialization
     (setq exec-path-from-shell-variables
-          '("PATH" "MANPATH" "LANG" "LC_ALL" "GOPATH" "GOROOT" "NVM_DIR" "OPENROUTER_API_KEY"
-            "JAVA_HOME" "ANDROID_HOME" "DEEPSEEK_API_KEY" "PYTHONPATH"))
+          '("PATH" "MANPATH" "LANG" "LC_ALL" "GOPATH" "GOROOT" "NVM_DIR" "OPENROUTER_API_KEY" "OLLAMA_API_BASE" "JAVA_HOME" "ANDROID_HOME" "DEEPSEEK_API_KEY" "PYTHONPATH"))
     :config
     (exec-path-from-shell-initialize)
 
@@ -47,28 +46,67 @@
 (defun my/setup-emacs29-bindings ()
   "Setup file associations and hooks for Emacs 29+."
   (dolist (mode '(("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode)
-                  ("\\.rs\\'" . rust-ts-mode)
                   ("\\.wxml\\'" . web-mode)
-                  ("\\.ts\\'" . typescript-ts-mode)
-                  ("\\.js\\'" . typescript-ts-mode)
-                  ("\\.tsx\\'" . typescript-ts-mode)
+                  ("\\.ts\\'" . tsx-ts-mode)
+                  ("\\.js\\'" . javascript-mode)
+                  ("\\.tsx\\'" . tsx-ts-mode)
                   ("\\.less\\'" . css-mode)
                   ("\\.sess\\'" . css-mode)
+                  ("\\.vue\\'" . web-mode)
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
+  (setq jit-lock-defer-time 0.3)   ; 语法高亮延迟（秒）
+  (setq jit-lock-stealth-time 1)    ; 空闲时再完全高亮
+  (setq jit-lock-chunk-size 500)          ; 减少每次高亮的块大小
+  ;; 减小输入去抖延迟（默认0.1秒）
+  (setq echo-keystrokes 0.04)
 
+  ;; 针对现代高性能设备优化
+  (setq idle-update-delay 0.4)
   ;; 禁用不必要的 UI 花哨功能
   (setq use-dialog-box nil)               ; 禁用对话框
   (setq use-file-dialog nil)              ; 禁用文件对话框
   (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
+  )
 
-  (dolist (hook '(typescript-ts-mode-hook
-                  tsx-ts-mode-hook
-                  js2-mode-hook
-                  web-mode-hook
-                  css-mode-hook
-                  ))
-    (add-hook hook 'prettier-mode)))
+
+(with-eval-after-load 'web-mode
+
+  ;; ----------------------------------------------------
+  ;; 【性能与干扰优化】- 建议关闭
+  ;; ----------------------------------------------------
+  (setq web-mode-enable-auto-indentation nil) ; 你已关闭，这是关键
+  (setq web-mode-enable-current-column-highlight nil)   ; 关闭当前列高亮，减少重绘
+  (setq web-mode-enable-current-element-highlight nil)  ; 关闭当前元素高亮，减少重绘
+  (setq web-mode-enable-css-colorization nil)   ; 关闭CSS颜色值背景色渲染，大幅提升CSS文件性能
+  (setq web-mode-enable-block-face nil)         ; 关闭代码块背景色，减少渲染负担
+  (setq web-mode-enable-part-face nil)          ; 关闭<style>/<script>标签背景色，减少渲染负担
+  (setq web-mode-enable-whitespace-fontification nil) ; 关闭空白字符可视化，避免显示一堆点
+  (setq web-mode-enable-heredoc-fontification nil)    ; 关闭Heredoc语法高亮，除非你常用PHP
+  (setq web-mode-enable-comment-annotation nil) ; 关闭注释内注解（如jsdoc）高亮，简化显示
+  (setq web-mode-enable-comment-interpolation nil) ; 关闭注释中的FIXME/TODO等高亮
+  (setq web-mode-enable-inlays nil)              ; 关闭LaTeX等内嵌高亮，非常用功能
+  (setq web-mode-enable-literal-interpolation nil) ; 关闭模板字面量高亮（如css`...`），简化显示
+  (setq web-mode-enable-sql-detection nil)       ; 关闭字符串内SQL语法高亮和缩进，提升性能
+
+  ;; ----------------------------------------------------
+  ;; 【自动补全与配对】- 根据习惯关闭
+  ;; ----------------------------------------------------
+  (setq web-mode-enable-auto-pairing t)          ; 【保留】自动括号配对，很有用
+  (setq web-mode-enable-auto-opening nil)        ; 关闭自动打开标签，容易误操作
+  (setq web-mode-enable-auto-closing t)          ; 【保留】自动关闭标签，很有用
+  (setq web-mode-enable-auto-quoting t)          ; 【保留】属性值自动加引号，很有用
+  (setq web-mode-enable-auto-expanding nil)      ; 关闭缩写扩展（如s/ -> <span>），容易误操作
+
+  ;; ----------------------------------------------------
+  ;; 【引擎与检测】- 通常无需改动
+  ;; ----------------------------------------------------
+  (setq web-mode-enable-engine-detection nil)    ; 关闭引擎检测，除非你用多种模板语言
+
+  (setq web-mode-ac-sources-alist nil)   ; 禁用内建补全
+  )
+
+
 
 (defun my/setup-keybindings ()
   "Setup global keybindings."
@@ -78,9 +116,7 @@
     ;; (define-key map (kbd "M-RET") 'eglot-code-actions)
     (global-set-key (kbd "C-M-<SPC>") 'er/expand-region)
     )
-
-  ;; Disable consult preview
-  (setq consult-preview-key nil))
+  )
 
 (when emacs/>=29p
   (my/setup-emacs29-bindings)
@@ -107,6 +143,41 @@
     (setq mac-right-option-modifier 'none)) ; 禁用右键 Option 键功能
 
   )
+
+;; 禁用所有 Ctrl+鼠标点击功能
+(global-set-key [C-down-mouse-1] 'ignore)
+(global-set-key [C-mouse-1] 'ignore)
+(global-set-key [C-double-mouse-1] 'ignore)
+
+;; 禁用所有 Ctrl+鼠标按键组合
+(dolist (key '([C-mouse-1] [C-mouse-2] [C-mouse-3]
+               [C-double-mouse-1] [C-double-mouse-2] [C-double-mouse-3]
+               [C-triple-mouse-1] [C-triple-mouse-2] [C-triple-mouse-3]))
+  (global-unset-key key))
+
+
+;; 智能缩放解决方案
+(defun disable-ctrl-mouse-zoom ()
+  "禁用 Ctrl+鼠标滚轮缩放，但保留其他功能"
+  (interactive)
+  (global-set-key (kbd "C-<wheel-up>") nil)
+  (global-set-key (kbd "C-<wheel-down>") nil)
+  (message "Ctrl+鼠标缩放已禁用"))
+
+;; 启用命令（可随时切换）
+(defun enable-ctrl-mouse-zoom ()
+  "恢复 Ctrl+鼠标滚轮缩放功能"
+  (interactive)
+  (global-set-key (kbd "C-<wheel-up>") 'text-scale-increase)
+  (global-set-key (kbd "C-<wheel-down>") 'text-scale-decrease)
+  (message "Ctrl+鼠标缩放已启用"))
+
+;; 默认禁用
+(disable-ctrl-mouse-zoom)
+
+;; 提供切换命令
+(global-set-key (kbd "C-c z") 'enable-ctrl-mouse-zoom)
+(global-set-key (kbd "C-c Z") 'disable-ctrl-mouse-zoom)
 
 (use-package magit-todos
   :after magit-status
@@ -163,6 +234,9 @@
   :custom
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
   (aidermacs-default-model "deepseek/deepseek-chat")
+  ;; default to nil
+  ;; (aidermacs-weak-model "deepseek/deepseek-chat")
+  ;; (aidermacs-default-model "ollama_chat/deepseek-coder")
   )
 
 (use-package lsp-bridge
@@ -192,14 +266,14 @@
    )
   :config
   ;; (setq lsp-bridge-python-command "~/.pyenv/versions/3.8.18/bin/python3")
-  (setq acm-enable-tabnine t)
-  (setq acm-enable-codeium nil)
+  ;; (setq acm-enable-tabnine nil)
+  ;; (setq acm-enable-codeium nil)
   (setq acm-enable-yas nil)
-  (setq acm-enable-copilot t)
+  ;; (setq acm-enable-copilot nil)
   (setq acm-enable-tempel nil)
   (setq lsp-bridge-auto-format-code-idle nil)
   (setq lsp-bridge-enable-hover-diagnostic t)
-  (setq lsp-bridge-enable-auto-format-code nil)
+  (setq lsp-bridge-enable-auto-format-code t)
   (setq acm-backend-yas-candidate-min-length 3)
   (setq acm-backend-yas-candidates-number 4)
   (setq acm-backend-lsp-candidate-min-length 2)
@@ -306,8 +380,8 @@
   (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
 
 
-  (defvar im-cursor-color "Orange"
-    "The color for input method.")
+  ;; (defvar im-cursor-color "Orange"
+  ;;   "The color for input method.")
 
   (defvar im-default-cursor-color (frame-parameter nil 'cursor-color)
     "The default cursor color.")
@@ -326,7 +400,6 @@
     (set-cursor-color (if (im--chinese-p)
                           im-cursor-color
                         im-default-cursor-color)))
-
   ;; (define-minor-mode cursor-chg-mode
   ;;     "Toggle changing cursor color.
   ;; With numeric ARG, turn cursor changing on if ARG is positive.
@@ -349,202 +422,3 @@
 (use-package ag
   :ensure t
   )
-
-;; ====================
-;; 禁用 doom-modeline 以提升性能
-;; ====================
-
-;; 启动后自动关闭 doom-modeline
-(defun disable-doom-modeline-on-startup ()
-  "启动后自动禁用 doom-modeline 以提升性能."
-  (when (bound-and-true-p doom-modeline-mode)
-    (doom-modeline-mode -1)
-    ))
-
-;; 使用 run-with-idle-timer 确保在完全启动后执行
-(run-with-idle-timer 1 nil #'disable-doom-modeline-on-startup)
-
-;; ====================
-;; 高性能原生模式行配置
-;; ====================
-
-;; 自定义简洁高效的模式行
-(setq-default mode-line-format
-  '("%e"  ; 错误信息
-    ;; 缓冲区状态和名称
-    (:eval
-     (propertize
-      (concat
-       ;; 修改状态标记
-       (cond (buffer-read-only " RO")
-             ((buffer-modified-p) " **")
-             (t " --"))
-       ;; 缓冲区名称
-       " " (buffer-name))
-      'face 'mode-line-buffer-id))
-    ;; 位置信息（行号:列号）
-    " " (:eval (format "%d:%d" (line-number-at-pos) (current-column)))
-    ;; 主模式
-    " [" mode-name "]"
-    ;; VCS 信息（简化版）
-    (vc-mode (:eval (format " %s" (substring vc-mode 1))))
-    ;; 填充空格
-    (:eval (propertize " " 'display '(space :align-to (- right 8))))
-    ;; 时间（可选）
-    (:eval (format-time-string "%H:%M"))
-    " "))
-
-;; 模式行性能优化
-(setq mode-line-compact t                     ; 紧凑模式
-      mode-line-position-column-line-format '(" %l:%c")
-      mode-line-percent-position nil)         ; 禁用百分比位置
-
-;; =============================================================================
-;; 🚀 EMACS 全面性能优化配置
-;; =============================================================================
-
-;; -------------------
-;; 1. 核心性能优化
-;; -------------------
-
-;; 启动性能优化
-(setq-default
-
- ;; 字体缓存优化
- inhibit-compacting-font-caches t          ; 禁用字体缓存压缩
-
- ;; 渲染优化
- frame-resize-pixelwise nil               ; 禁用像素级调整
- frame-inhibit-implied-resize t           ; 禁用隐含调整
- redisplay-skip-fontification-on-input t  ; 输入时跳过字体处理
- fast-but-imprecise-scrolling t           ; 快速滚动
- jit-lock-stealth-time nil                ; 禁用隐形锁定
- jit-lock-defer-time 0.05                 ; 延迟锁定时间
-
- ;; UI 响应优化
- idle-update-delay 1.0                    ; 空闲更新延迟
- highlight-nonselected-windows nil        ; 不高亮非选中窗口
- cursor-in-non-selected-windows nil       ; 非选中窗口不显示光标
-
- ;; 自动保存优化
- auto-save-default nil                    ; 禁用自动保存
- make-backup-files nil                    ; 禁用备份文件
- create-lockfiles nil)                    ; 禁用锁文件
-
-;; macOS 特定性能优化
-(when (eq system-type 'darwin)
-  (setq    ns-use-mwheel-acceleration t
-           ns-use-mwheel-momentum t
-           ns-use-native-fullscreen t
-           ns-use-fullscreen-animation t
-           mac-allow-anti-aliasing t
-           ns-antialias-text t))
-
-;; -------------------
-;; 2. 禁用耗性能的UI插件
-;; -------------------
-
-;; 简化 Doom Themes Visual Bell
-(with-eval-after-load 'doom-themes
-  (setq doom-themes-enable-bold nil
-        doom-themes-enable-italic nil)
-  ;; 禁用视觉铃声
-  (setq ring-bell-function 'ignore)
-  (advice-remove #'doom-themes-visual-bell-fn #'my-doom-themes-visual-bell-fn))
-
-;; 禁用 Minions (mode-line 图标)
-(with-eval-after-load 'minions
-  (minions-mode -1))
-
-;; 优化 Nerd Icons
-(with-eval-after-load 'nerd-icons
-  (setq nerd-icons-scale-factor 0.9    ; 减小图标大小
-        nerd-icons-default-adjust 0.0)) ; 不调整位置
-
-;; 禁用行号显示（如果不需要）
-;; (global-display-line-numbers-mode -1)
-;; (remove-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-;; -------------------
-;; 3. 禁用/优化特定功能
-;; -------------------
-
-;; 禁用不必要的 VC 功能
-(setq vc-handled-backends '(Git)        ; 只支持 Git
-      vc-follow-symlinks t              ; 自动跟随符号链接
-      vc-make-backup-files nil)         ; 不创建版本控制备份
-
-;; 禁用文件名缓存刷新
-(setq vc-ignore-dir-regexp
-      (format "%s\\|%s"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
-
-;; 优化项目检测
-(with-eval-after-load 'project
-  (setq project-vc-merge-submodules nil))
-
-;; 禁用不必要的自动模式
-(setq-default
- auto-composition-mode nil            ; 禁用自动合成
- bidi-paragraph-direction 'left-to-right ; 强制从左到右
- bidi-inhibit-bpa t)                   ; 禁用双向括号算法
-
-;; -------------------
-;; 4. 网络和外部进程优化
-;; -------------------
-
-;; 禁用网络相关功能
-(setq url-automatic-caching nil         ; 禁用 URL 缓存
-      url-cookie-save-interval nil      ; 禁用 cookie 自动保存
-      tramp-verbose 1                   ; 减少 TRAMP 输出
-      remote-file-name-inhibit-cache 60); 缓存远程文件名
-
-;; -------------------
-;; 5. 插件特定优化
-;; -------------------
-
-;; Flycheck 优化 (如果使用)
-(with-eval-after-load 'flycheck
-  (setq flycheck-check-syntax-automatically '(save mode-enabled)
-        flycheck-idle-change-delay 2.0   ; 增加检查延迟
-        flycheck-display-errors-delay 1.0))
-
-;; -------------------
-;; 6. 字体和主题优化
-;; -------------------
-
-;; 禁用复杂的文本属性
-(setq inhibit-x-resources t             ; 禁用 X 资源
-      inhibit-default-init t)           ; 禁用默认初始化
-
-
-
-
-;; -------------------
-;; 9. 内存管理优化
-;; -------------------
-
-;; 定期强制垃圾回收
-(run-with-idle-timer 15 t #'garbage-collect)
-
-;; 清理不必要的变量
-(defun my-cleanup-variables ()
-  "清理不必要的变量以释放内存"
-  (setq command-history nil
-        extended-command-history (last extended-command-history 50)
-        kill-ring (last kill-ring 50)))
-
-(run-with-idle-timer 300 t #'my-cleanup-variables)
-
-;; -------------------
-;; 10. 监控和调试
-;; -------------------
-;; 启动时间监控
-(defun my-display-startup-time ()
-  "显示启动时间"
-  (message "✓ Emacs 启动完成，用时: %.3fs，GC 运行 %d 次"
-           (float-time (time-subtract after-init-time before-init-time))
-           gcs-done))
-
-(add-hook 'emacs-startup-hook #'my-display-startup-time)
