@@ -55,18 +55,18 @@
                   ("\\.vue\\'" . web-mode)
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
-  (setq jit-lock-defer-time 0.3)   ; 语法高亮延迟（秒）
+  (setq jit-lock-defer-time 0.4)   ; 语法高亮延迟（秒）
   (setq jit-lock-stealth-time 1)    ; 空闲时再完全高亮
-  (setq jit-lock-chunk-size 500)          ; 减少每次高亮的块大小
+  (setq jit-lock-chunk-size 1000)          ; 减少每次高亮的块大小
   ;; 减小输入去抖延迟（默认0.1秒）
   (setq echo-keystrokes 0.04)
 
   ;; 针对现代高性能设备优化
-  (setq idle-update-delay 0.4)
+  ;; (setq idle-update-delay 0.4)
   ;; 禁用不必要的 UI 花哨功能
-  (setq use-dialog-box nil)               ; 禁用对话框
-  (setq use-file-dialog nil)              ; 禁用文件对话框
-  (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
+  ;; (setq use-dialog-box nil)               ; 禁用对话框
+  ;; (setq use-file-dialog nil)              ; 禁用文件对话框
+  ;; (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
   )
 
 
@@ -229,13 +229,14 @@
   :bind (("C-c a" . aidermacs-transient-menu))
   :init
   ;; Cache API key at startup
-  (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
+  ;; (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
   (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
   :custom
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
   (aidermacs-default-model "deepseek/deepseek-chat")
-  ;; default to nil
-  ;; (aidermacs-weak-model "deepseek/deepseek-chat")
+
+  ;; :custom
+  ;; ;; default to nil
   ;; (aidermacs-default-model "ollama_chat/deepseek-coder")
   )
 
@@ -277,6 +278,7 @@
   (setq acm-backend-yas-candidate-min-length 3)
   (setq acm-backend-yas-candidates-number 4)
   (setq acm-backend-lsp-candidate-min-length 2)
+  (setq lsp-bridge-diagnostic-max-number 20) ;; 限制诊断范围
   (setq acm-backend-search-file-words-max-number 7)
   (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
                                                       (("vue") . "volar_emmet")
@@ -296,7 +298,7 @@
   :ensure-system-package
   ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
-  (rime-user-data-dir "~/Library/Rime/")
+  (rime-user-data-dir "~/Library/Rime/libRime")
   (rime-librime-root "~/.config/emacs/librime/dist")
   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
   :hook
@@ -318,7 +320,11 @@
    ("C-." . 'rime-send-keybinding)
 
    ;; 菜单
-   ("C-+" . 'rime-send-keybinding)
+   ;; ("C-`" . 'rime-send-keybinding)
+
+
+   ;; 菜单
+   ("<f4>" . 'rime-send-keybinding)
 
    ;; 全半角切换
    ;; ("C-," . 'rime-send-keybinding)
@@ -378,27 +384,6 @@
 
   ;; 添加建议到 switch-to-buffer 的 :after 位置
   (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
-
-  ;; 确保在进入 vterm-mode 时禁用输入法
-  (defun my-disable-input-method-in-vterm ()
-    "Disable input method in vterm mode."
-    (when (derived-mode-p 'vterm-mode)
-      (deactivate-input-method)))
-  
-  ;; 添加钩子以确保在 vterm 中禁用输入法
-  (add-hook 'vterm-mode-hook #'my-disable-input-method-in-vterm)
-
-  ;; 在 vterm 中切换输入法的建议
-  (defun my-vterm-toggle-input-method ()
-    "Toggle input method for vterm."
-    (interactive)
-    (if (and (derived-mode-p 'vterm-mode) current-input-method)
-        (deactivate-input-method)
-      (message "在 vterm 中使用系统的输入法（如 Rime）直接输入")))
-  
-  ;; 绑定一个快捷键来切换输入法状态（可选）
-  (define-key vterm-mode-map (kbd "C-\\") 'my-vterm-toggle-input-method)
-
 
   ;; (defvar im-cursor-color "Orange"
   ;;   "The color for input method.")
