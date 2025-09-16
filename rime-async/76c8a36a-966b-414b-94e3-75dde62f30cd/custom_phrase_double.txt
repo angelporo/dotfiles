@@ -1,0 +1,4 @@
+# Rime table
+#@/db_name	custom_phrase_double.txt
+#@/db_type	tabledb
+#@/tick	0

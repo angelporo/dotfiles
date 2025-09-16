@@ -21,8 +21,8 @@
                             (persistent-scratch-autosave-mode -1)
                             (rainbow-delimiters-mode -1)
                             (symbol-overlay-mode -1)
-                            (global-corfu-mode -1)
-                            (ace-pinyin-global-mode -1)
+                            (prettify-symbols-mode -1)
+
                             (region-occurrences-highlighter-mode -1)
                             ))
 
@@ -35,7 +35,7 @@
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
-(setq centaur-theme 'default)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
@@ -58,14 +58,14 @@
   "Setup fonts."
   (when (display-graphic-p)
     ;; Set default font
-    (cl-loop for font in '("SF Mono" "Menlo" "Monaco" "Hack"
+    (cl-loop for font in '("SF Mono" "Menlo" "Monaco" "Fira Code" "Hack"
                            "Source Code Pro" "FiraCode Nerd Font"
-                           "Fira Code" "Cascadia Code" "Jetbrains Mono"
+                           "Cascadia Code" "Jetbrains Mono"
                            "Hack" "DejaVu Sans Mono" "Consolas")
              when (font-available-p font)
              return (set-face-attribute 'default nil
                                         :family font
-                                        :height (cond (sys/macp 150)
+                                        :height (cond (sys/macp 154)
                                                       (sys/win32p 130)
                                                       (t 100))))
 
@@ -141,10 +141,13 @@
  ;; If there is more than one, they won't work right.
  '(consult-preview-key '("M-."))
  '(custom-safe-themes
-   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
-     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
+   '("0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
+     "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" default))
  '(echo-keystrokes 0.04)
  '(idle-update-delay 0.5)
+ '(ignored-local-variable-values
+   '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
+     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
  '(jit-lock-defer-time 0.05)
  '(jit-lock-stealth-time 1))
 

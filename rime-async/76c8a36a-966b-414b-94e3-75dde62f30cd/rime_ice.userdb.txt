@@ -1,0 +1,1702 @@
+# Rime user dictionary
+#@/db_name	rime_ice
+#@/db_type	userdb
+#@/rime_version	1.13.0
+#@/tick	7086
+#@/user_id	76c8a36a-966b-414b-94e3-75dde62f30cd
+a 	啊	c=13 d=0.000374998 t=7086
+a li yun 	阿里云	c=1 d=8.8967e-08 t=7086
+ai ya 	哎呀	c=1 d=0.00121259 t=7086
+an jian 	按键	c=2 d=0.839457 t=7086
+an niu 	按钮	c=8 d=0.00716315 t=7086
+an pai 	安排	c=2 d=0.00755912 t=7086
+an quan 	安全	c=1 d=9.18981e-07 t=7086
+an zhao 	按照	c=3 d=0.301538 t=7086
+ang ang 	昂昂	c=1 d=0.865023 t=7086
+ao fu 	澳服	c=1 d=1.67478e-08 t=7086
+ao luo ta ding di yan ye 	奥洛他定滴眼液	c=1 d=1.21635e-10 t=7086
+ba 	把	c=53 d=1.55061 t=7086
+ba kong 	把控	c=1 d=6.16116e-09 t=7086
+ba ta 	把他	c=1 d=0.00012341 t=7086
+ba wen zi 	把文字	c=1 d=6.54326e-11 t=7086
+ba wo 	把我	c=2 d=1.54204e-05 t=7086
+bai 	白	c=1 d=2.46128e-08 t=7086
+bai lai 	白来	c=1 d=4.19237e-09 t=7086
+bai zhong 	百种	c=1 d=2.47362e-08 t=7086
+bai zong 	白总	c=1 d=2.48601e-08 t=7086
+ban ben 	版本	c=12 d=0.79558 t=7086
+ban hao 	办好	c=1 d=1.36742e-05 t=7086
+ban qiu 	半球	c=1 d=0.477114 t=7086
+bang ding 	绑定	c=1 d=0.843664 t=7086
+bang wo 	帮我	c=1 d=4.33049e-08 t=7086
+bao 	包	c=2 d=1.01501e-05 t=7086
+bao 	报	c=1 d=1.6453e-05 t=7086
+bao bei 	报备	c=1 d=0.00856561 t=7086
+bao cuo 	报错	c=5 d=0.912801 t=7086
+bao gao 	报告	c=2 d=0.79713 t=7086
+bao jia 	报价	c=1 d=0.000223746 t=7086
+bao kuo 	包括	c=1 d=0.0285814 t=7086
+bao li mian 	包里面	c=1 d=0.0333733 t=7086
+bao liu 	保留	c=2 d=0.00068303 t=7086
+bao zheng 	保证	c=3 d=0.027088 t=7086
+bei 	北	c=6 d=1.92165 t=7086
+bei 	被	c=4 d=1.28807e-05 t=7086
+bei ci 	背刺	c=1 d=3.07383e-05 t=7086
+bei duan 	北段	c=1 d=0.467666 t=7086
+bei jing se 	背景色	c=1 d=3.61713e-08 t=7086
+bei zhu 	备注	c=3 d=0.00832431 t=7086
+ben di 	本地	c=2 d=0.212248 t=7086
+ben lai 	本来	c=2 d=4.26091e-09 t=7086
+ben zhou 	本周	c=2 d=0.0270518 t=7086
+ben zhou si 	本周四	c=2 d=2.98572e-08 t=7086
+bi jiao 	比较	c=5 d=0.570129 t=7086
+bi mian 	避免	c=2 d=0.827253 t=7086
+bi sai 	鼻塞	c=1 d=1.12283e-10 t=7086
+bi tian 	必填	c=2 d=0.00139069 t=7086
+bi yan 	鼻炎	c=1 d=1.15125e-10 t=7086
+bi yao 	必要	c=1 d=0.386741 t=7086
+bian cheng 	变成	c=1 d=3.99755e-08 t=7086
+bian geng 	变更	c=2 d=0.856415 t=7086
+bian hua 	变化	c=5 d=0.00102973 t=7086
+bian ji 	编辑	c=11 d=1.73271e-08 t=7086
+bian jie 	边界	c=1 d=0.494109 t=7086
+bian liang 	变量	c=1 d=0.000187825 t=7086
+bian yi 	编译	c=3 d=0.000134918 t=7086
+biao 	表	c=0 d=0.00124629 t=7086
+biao dan 	表单	c=1 d=0.737123 t=7086
+biao li mian 	表里面	c=1 d=7.24644e-06 t=7086
+biao qian 	标签	c=1 d=5.03131e-08 t=7086
+biao shi 	标示	c=1 d=6.26833e-06 t=7086
+biao shi 	表示	c=1 d=6.23707e-06 t=7086
+biao tou 	表头	c=1 d=1.22815e-06 t=7086
+biao tou 	镖头	c=1 d=1.22203e-06 t=7086
+bin qie 	宾且	c=2 d=0.652904 t=7086
+bing 	并	c=2 d=0.913931 t=7086
+bing qie 	并且	c=2 d=0.209088 t=7086
+bu 	不	c=5 d=0.960789 t=7086
+bu 	补	c=0 d=0.0562705 t=7086
+bu 	部	c=1 d=0.0100518 t=7086
+bu bi yao 	不必要	c=3 d=1.24619 t=7086
+bu chi 	不吃	c=1 d=2.17207e-08 t=7086
+bu chi fan 	不吃饭	c=1 d=2.2049e-08 t=7086
+bu chong 	补充	c=9 d=4.73748 t=7086
+bu chong ji 	补充剂	c=1 d=0.232236 t=7086
+bu chong ji hua 	补充计划	c=1 d=0.307279 t=7086
+bu cong 	不从	c=3 d=1.11981 t=7086
+bu cong ji hua 	补从计划	c=2 d=0.656919 t=7086
+bu cong ji hua shang bao 	补从计划上报	c=1 d=0.918512 t=7086
+bu cun 	补存	c=2 d=1.49148 t=7086
+bu dai dian nao 	不带电脑	c=1 d=3.45738e-06 t=7086
+bu gan jing 	不干净	c=1 d=4.79914e-11 t=7086
+bu gou 	不够	c=1 d=1.59722e-09 t=7086
+bu guan 	不管	c=1 d=7.56298e-09 t=7086
+bu he shi 	不合适	c=3 d=4.08686e-05 t=7086
+bu huan 	不换	c=1 d=7.99196e-11 t=7086
+bu hui 	不会	c=0 d=2.06649e-11 t=7086
+bu hui qu 	不会去	c=1 d=9.20203e-07 t=7086
+bu ju 	布局	c=2 d=1.19337 t=7086
+bu ke 	不可	c=1 d=0.829702 t=7086
+bu ke cai 	不可才	c=2 d=1.50828 t=7086
+bu ke yi 	不可以	c=2 d=0.802519 t=7086
+bu liao 	不了	c=1 d=0.000290183 t=7086
+bu men 	部门	c=1 d=0.0120342 t=7086
+bu ming bai 	不明白	c=1 d=6.9827e-11 t=7086
+bu neng 	不能	c=6 d=1.68944 t=7086
+bu nong 	不弄	c=1 d=2.69261e-06 t=7086
+bu qi dong 	不启动	c=1 d=0.00124328 t=7086
+bu qing chu 	不清楚	c=1 d=0.215456 t=7086
+bu qu 	不去	c=1 d=0.00165327 t=7086
+bu quan 	补全	c=3 d=1.39078e-07 t=7086
+bu que ding 	不确定	c=2 d=0.311923 t=7086
+bu ran 	不然	c=3 d=0.159621 t=7086
+bu shao 	不少	c=1 d=3.81308e-11 t=7086
+bu shi 	不是	c=4 d=0.00148112 t=7086
+bu shou qu 	不收取	c=1 d=0.923116 t=7086
+bu tong 	不同	c=1 d=0.346456 t=7086
+bu wei kong 	不为空	c=1 d=0.57695 t=7086
+bu xiang tong 	不相同	c=1 d=0.279431 t=7086
+bu xiao xin 	不小心	c=1 d=0.810584 t=7086
+bu xing 	不行	c=2 d=1.35698e-07 t=7086
+bu xu yao 	不需要	c=1 d=1.13686e-09 t=7086
+bu yao 	不要	c=6 d=0.68058 t=7086
+bu ying gai 	不应该	c=2 d=0.000841773 t=7086
+bu yong 	不用	c=2 d=0.00400589 t=7086
+bu zai 	不再	c=1 d=5.31488e-06 t=7086
+bu zhan shi 	不展示	c=1 d=8.12959e-06 t=7086
+bu zhao ji 	不着急	c=2 d=0.557106 t=7086
+bu zhi dao 	不知道	c=3 d=0.498552 t=7086
+bu zhi jie 	不直接	c=1 d=1.00051e-06 t=7086
+bu zhou 	步骤	c=1 d=9.95521e-07 t=7086
+bu zu 	不足	c=2 d=0.101789 t=7086
+cai 	才	c=2 d=0.056836 t=7086
+cai 	猜	c=1 d=0.165299 t=7086
+cai dan 	菜单	c=22 d=2.90581 t=7086
+cai gou 	采购	c=13 d=2.13873 t=7086
+cai gou ji hua 	采购计划	c=1 d=0.239309 t=7086
+cai gou jing li 	采购经理	c=1 d=0.22313 t=7086
+cai hui 	才会	c=1 d=0.767206 t=7086
+cai ke yi 	才可以	c=1 d=6.22203e-07 t=7086
+cai neng 	才能	c=3 d=0.0762984 t=7086
+cai wu 	财务	c=1 d=0.0130365 t=7086
+cai yong 	采用	c=1 d=0.416862 t=7086
+can kao 	参考	c=3 d=1.21013 t=7086
+can shu 	参数	c=8 d=0.00329221 t=7086
+cang jin 	藏进	c=1 d=0.606531 t=7086
+cao zuo 	操作	c=8 d=1.76745 t=7086
+cao zuo jian 	操作键	c=1 d=0.472366 t=7086
+ce chu 	测出	c=1 d=0.66034 t=7086
+ce lve 	策略	c=1 d=0.0065062 t=7086
+ce shi 	测试	c=19 d=0.955997 t=7086
+cha dao 	查到	c=1 d=0.000567086 t=7086
+cha jian 	插件	c=1 d=1.12264e-08 t=7086
+cha ju 	差距	c=1 d=1.55403e-10 t=7086
+cha kan 	查看	c=5 d=0.410656 t=7086
+cha xun 	查询	c=1 d=0.76338 t=7086
+chai you 	柴油	c=1 d=1.04404e-07 t=7086
+chan pin 	产品	c=3 d=0.0222207 t=7086
+chang cheng 	长城	c=1 d=2.25449e-05 t=7086
+chang jing 	场景	c=2 d=0.609571 t=7086
+chang zi 	肠子	c=0 d=4.68065e-12 t=7086
+chang zi li 	厂子里	c=0 d=4.70411e-12 t=7086
+chang zi li mian 	厂子里面	c=1 d=4.72769e-11 t=7086
+chang zi li mian 	肠子里面	c=1 d=4.70411e-11 t=7086
+che dai 	车贷	c=1 d=8.78394e-05 t=7086
+che hou 	车后	c=1 d=8.19428e-11 t=7086
+che li mian 	车里面	c=1 d=9.09837e-07 t=7086
+che liang 	车辆	c=3 d=2.02431 t=7086
+che pai hao 	车牌号	c=2 d=0.487068 t=7086
+che wang 	车旺	c=33 d=0.0251109 t=7086
+che zhu 	车主	c=7 d=1.35285 t=7086
+cheng 	城	c=2 d=4.34198e-05 t=7086
+cheng 	成	c=8 d=1.69182 t=7086
+cheng ben 	成本	c=1 d=0.00708341 t=7086
+cheng le 	成了	c=1 d=7.65616e-06 t=7086
+cheng li 	成立	c=1 d=0.010889 t=7086
+cheng yun dan wei 	承运单位	c=3 d=1.11743 t=7086
+chi 	吃	c=3 d=4.08097e-08 t=7086
+chi le 	吃了	c=1 d=0.0773047 t=7086
+chi xi 	吃席	c=1 d=0.000181365 t=7086
+chi yao 	吃药	c=1 d=0.0728029 t=7086
+chong tu 	冲突	c=1 d=9.71272e-11 t=7086
+chong xin 	重新	c=5 d=0.923116 t=7086
+chong zhi 	重置	c=2 d=0.0273415 t=7086
+chou kong 	抽空	c=1 d=0.847894 t=7086
+chu 	出	c=1 d=0.246597 t=7086
+chu lai 	出来	c=6 d=1.04246 t=7086
+chu le 	除了	c=1 d=0.0029528 t=7086
+chu li 	处理	c=19 d=4.23867 t=7086
+chu li cheng 	处理成	c=1 d=4.25428e-05 t=7086
+chu shi hua 	初始化	c=1 d=0.70822 t=7086
+chu shi zhi 	初始值	c=1 d=0.759572 t=7086
+chu xian 	出现	c=1 d=0.740819 t=7086
+chu zai na li 	出在那里	c=1 d=7.67859e-11 t=7086
+chuan 	川	c=1 d=0.000235217 t=7086
+chuan guo 	穿过	c=1 d=0.000706632 t=7086
+chuan guo qu 	穿过去	c=1 d=0.000710174 t=7086
+chuang jian 	创建	c=2 d=0.00438314 t=7086
+ci chang 	磁场	c=2 d=0.722527 t=7086
+ci pin 	词频	c=1 d=7.9906e-09 t=7086
+ci xing 	磁性	c=0 d=2.14491e-08 t=7086
+cong 	从	c=0 d=0.0562705 t=7086
+cong xin 	从新	c=0 d=0.0551562 t=7086
+cuan 	窜	c=0 d=0.0499074 t=7086
+cun 	寸	c=2 d=1.02892e-08 t=7086
+cun zai 	存在	c=1 d=2.65939e-07 t=7086
+cuo 	错	c=2 d=2.83293e-06 t=7086
+cuo wu 	错误	c=10 d=0.939303 t=7086
+da 	大	c=0 d=0.0275271 t=7086
+da dian hua 	打电话	c=1 d=1.3138e-05 t=7086
+da gai lv 	大概率	c=1 d=0.0196437 t=7086
+da jia 	大家	c=2 d=0.0105524 t=7086
+da kai 	打开	c=1 d=4.39594e-08 t=7086
+da le 	打了	c=1 d=0.08291 t=7086
+da pin 	打拼	c=3 d=0.845879 t=7086
+da ping 	大屏	c=1 d=0.298197 t=7086
+da ping mu 	大屏幕	c=1 d=0.276651 t=7086
+da xiao 	大小	c=1 d=0.847894 t=7086
+da yi miao 	打疫苗	c=1 d=0.0916297 t=7086
+da yu 	大于	c=1 d=9.37865e-11 t=7086
+da zhen 	打针	c=1 d=0.0753961 t=7086
+da zhi 	大致	c=1 d=1.72608e-10 t=7086
+da zi 	打字	c=2 d=0.00292063 t=7086
+dai 	带	c=0 d=9.28217e-08 t=7086
+dai ban 	代办	c=0 d=2.53537e-05 t=7086
+dai ban shi yi 	代办事宜	c=1 d=0.000254808 t=7086
+dai bu hui qu 	带不会去	c=1 d=9.3287e-07 t=7086
+dai chu li 	待处理	c=3 d=1.51431 t=7086
+dai dian nao 	带电脑	c=1 d=1.93611e-08 t=7086
+dai ma 	代码	c=19 d=1.15649 t=7086
+dai ma kuai 	代码块	c=1 d=3.85074e-09 t=7086
+dai zhe er ji 	戴着耳机	c=1 d=0.704688 t=7086
+dan 	但	c=0 d=0.0546074 t=7086
+dan chu 	淡出	c=1 d=0.278037 t=7086
+dan den 	但扽	c=1 d=0.618783 t=7086
+dan di shang 	但地上	c=1 d=0.548812 t=7086
+dan du 	单独	c=3 d=0.830995 t=7086
+dan ren 	担任	c=1 d=0.0122161 t=7086
+dan shi 	但是	c=3 d=0.812186 t=7086
+dan teng 	蛋疼	c=1 d=0.625002 t=7086
+dan wei 	单位	c=0 d=0.054335 t=7086
+dan xin 	担心	c=1 d=1.87404e-07 t=7086
+dan yuan ge 	单元格	c=1 d=1.40954e-09 t=7086
+dan zi 	单子	c=2 d=0.73355 t=7086
+dan zi 	胆子	c=1 d=0.000102566 t=7086
+dang 	党	c=4 d=2.08938e-09 t=7086
+dang qian 	当前	c=2 d=0.843208 t=7086
+dao 	到	c=20 d=3.49145 t=7086
+dao chu 	到处	c=2 d=5.80576e-10 t=7086
+dao chu 	导出	c=5 d=0.00017892 t=7086
+dao ri 	到日	c=1 d=5.05739e-10 t=7086
+dao ru 	导入	c=8 d=3.57668e-09 t=7086
+dao shi hou 	到时候	c=3 d=0.0758854 t=7086
+dao zhi 	导致	c=3 d=0.737123 t=7086
+de 	德	c=1 d=0.0923116 t=7086
+de 	的	c=2076 d=11.741 t=7086
+deng 	等	c=0 d=3.55686e-09 t=7086
+deng deng 	等等	c=1 d=1.88831e-08 t=7086
+deng geng 	等更	c=0 d=3.6469e-09 t=7086
+deng geng dang 	等更党	c=1 d=1.81427e-08 t=7086
+deng geng duo 	等更多	c=1 d=1.80522e-08 t=7086
+deng geng he 	等更和	c=1 d=1.85092e-08 t=7086
+deng gong deng 	等宫灯	c=2 d=3.64835e-08 t=7086
+deng wo 	等我	c=3 d=0.226955 t=7086
+deng xia 	等下	c=1 d=8.1086e-05 t=7086
+deng zhe 	等着	c=1 d=0.113608 t=7086
+di 	地	c=0 d=0.0240509 t=7086
+di dian 	地点	c=1 d=0.29523 t=7086
+di fang 	地方	c=2 d=6.74707e-06 t=7086
+di gui 	递归	c=1 d=0.826959 t=7086
+di kang li 	抵抗力	c=1 d=0.101266 t=7086
+di san fang 	第三方	c=1 d=1.39215e-10 t=7086
+di shang 	地上	c=0 d=0.0546074 t=7086
+di wan 	滴丸	c=2 d=2.23059e-10 t=7086
+di yi bu 	第一步	c=0 d=0.00124629 t=7086
+di yi bu biao 	第一步表	c=1 d=0.0125254 t=7086
+di yi bu fen 	第一部分	c=1 d=3.86939e-07 t=7086
+di zhi 	地址	c=7 d=0.665854 t=7086
+dian hua 	电话	c=1 d=1.18285e-05 t=7086
+dian ji 	点击	c=3 d=0.352529 t=7086
+dian le 	点了	c=1 d=8.19009e-05 t=7086
+dian nao 	电脑	c=2 d=0.394554 t=7086
+diao 	掉	c=1 d=5.70219e-10 t=7086
+diao du 	调度	c=1 d=0.00711891 t=7086
+diao huan 	调换	c=1 d=0.0124629 t=7086
+diao pei 	调配	c=1 d=0.0135686 t=7086
+diao yong 	调用	c=6 d=0.600495 t=7086
+ding 	顶	c=1 d=0.484324 t=7086
+ding dan 	订单	c=18 d=0.0146992 t=7086
+ding le 	定了	c=0 d=8.27663e-12 t=7086
+ding le mei you 	定了没有	c=1 d=8.31812e-11 t=7086
+ding shang 	顶上	c=1 d=0.44264 t=7086
+ding wei 	定位	c=1 d=0.00489275 t=7086
+ding yi 	定义	c=1 d=0.0593087 t=7086
+ding yi hao 	定义好	c=1 d=2.36437e-06 t=7086
+ding zhi 	定制	c=1 d=0.529935 t=7086
+dong 	动	c=0 d=1.8325e-09 t=7086
+dong fang 	东方	c=1 d=1.86019e-08 t=7086
+dong gong deng 	动宫灯	c=1 d=1.84168e-08 t=7086
+dong jie 	冻结	c=1 d=1.29424e-05 t=7086
+dong tai 	动态	c=6 d=0.00073365 t=7086
+dong xi 	东西	c=3 d=0.504095 t=7086
+dou 	都	c=11 d=0.822834 t=7086
+dou hao 	逗号	c=1 d=1.86501e-09 t=7086
+dou hao 	都好	c=2 d=3.70215e-09 t=7086
+dou ping 	都平	c=1 d=1.83724e-09 t=7086
+dou shi 	都是	c=3 d=0.0614212 t=7086
+dou yong 	都用	c=1 d=4.53999e-05 t=7086
+dou you 	都有	c=1 d=3.4153e-09 t=7086
+du 	度	c=1 d=0.0222592 t=7086
+du 	杜	c=1 d=0.0223708 t=7086
+du li 	独立	c=1 d=0.000978001 t=7086
+duan 	段	c=2 d=0.0190696 t=7086
+duan 	端	c=2 d=0.0464823 t=7086
+dui 	对	c=4 d=0.210136 t=7086
+dui bi 	对比	c=27 d=1.3375 t=7086
+dui bu dui 	对不对	c=2 d=0.343542 t=7086
+dui bu shang 	对不上	c=1 d=1.03865e-05 t=7086
+dui jie 	对接	c=10 d=0.835125 t=7086
+dui jie wan 	对接完	c=1 d=2.18824e-07 t=7086
+dui ni 	对你	c=1 d=0.226502 t=7086
+dui xiang 	对象	c=4 d=7.41943e-10 t=7086
+dui ying 	对应	c=1 d=2.88883e-10 t=7086
+dui yu 	对于	c=1 d=5.97806e-07 t=7086
+duo 	多	c=2 d=2.78767e-09 t=7086
+duo ci 	多次	c=3 d=1.18025 t=7086
+duo ge 	多个	c=2 d=0.439825 t=7086
+duo jiu 	多久	c=1 d=0.0788664 t=7086
+duo shao 	多少	c=1 d=1.31425e-09 t=7086
+en 	嗯	c=7 d=0.0714064 t=7086
+en en 	嗯嗯	c=0 d=3.64467e-10 t=7086
+en na 	嗯呐	c=7 d=0.0851383 t=7086
+er 	儿	c=1 d=1.67074e-09 t=7086
+er ci 	二次	c=2 d=0.000259507 t=7086
+er ci que ren 	二次确认	c=1 d=0.000128446 t=7086
+er qie 	而且	c=7 d=0.567376 t=7086
+fa 	发	c=3 d=5.06941e-05 t=7086
+fa ba 	发吧	c=1 d=0.748264 t=7086
+fa ban 	发版	c=6 d=0.0782981 t=7086
+fa ban 	法办	c=1 d=4.15998e-06 t=7086
+fa biao qing 	发表情	c=1 d=6.47816e-11 t=7086
+fa bu 	发布	c=2 d=0.000134929 t=7086
+fa chu lai 	发出来	c=1 d=0.00109719 t=7086
+fa chu qu 	发出去	c=1 d=6.60902e-11 t=7086
+fa dao 	发到	c=1 d=1.38809e-05 t=7086
+fa guo qu 	发过去	c=1 d=1.58079e-05 t=7086
+fa huo 	发货	c=1 d=0.293758 t=7086
+fa huo di dian 	发货地点	c=1 d=0.290835 t=7086
+fa huo yuan 	发货员	c=1 d=0.0584257 t=7086
+fa ji ge 	发几个	c=1 d=0.0665368 t=7086
+fa li 	法力	c=1 d=0.733446 t=7086
+fa qun li 	发群里	c=0 d=3.19156e-07 t=7086
+fa qun li mian 	发群里面	c=1 d=3.20756e-06 t=7086
+fa sheng 	发生	c=2 d=0.20089 t=7086
+fa sheng le 	发生了	c=0 d=0.020089 t=7086
+fa sheng le yi cang 	发生了义仓	c=1 d=0.201896 t=7086
+fa song 	发送	c=1 d=0.891366 t=7086
+fa xia 	发下	c=1 d=2.4001e-06 t=7086
+fa xian 	发现	c=11 d=0.000171346 t=7086
+fa yi xia 	发一下	c=3 d=0.0277369 t=7086
+fa zuo 	发作	c=1 d=1.16282e-10 t=7086
+fan 	反	c=1 d=2.18296e-08 t=7086
+fan hui 	返回	c=13 d=1.89656 t=7086
+fan hui lai 	翻回来	c=1 d=0.00120654 t=7086
+fan xian 	反显	c=2 d=6.16389e-06 t=7086
+fan yi 	翻译	c=1 d=7.17556e-08 t=7086
+fan zheng 	反正	c=2 d=0.0987849 t=7086
+fang 	放	c=1 d=0.0293049 t=7086
+fang 	方	c=2 d=0.458946 t=7086
+fang an 	方案	c=1 d=7.63639e-05 t=7086
+fang bian 	方便	c=2 d=0.408607 t=7086
+fang da 	放大	c=2 d=0.433874 t=7086
+fang fang 	芳芳	c=4 d=9.99705e-05 t=7086
+fang ni 	放你	c=1 d=0.0332068 t=7086
+fang shi 	方式	c=1 d=2.28935e-09 t=7086
+fang yi qi 	放一起	c=1 d=6.75654e-06 t=7086
+fang zhi 	防止	c=1 d=1.85123e-10 t=7086
+fei 	非	c=4 d=0.903344 t=7086
+fei chang 	非常	c=2 d=4.14342e-08 t=7086
+fei chang da 	非常大	c=1 d=1.96063e-09 t=7086
+fei jin 	费劲	c=0 d=1.62136e-10 t=7086
+fei kong 	非空	c=2 d=4.72064e-09 t=7086
+fei wang huo 	非网货	c=3 d=0.000101546 t=7086
+fei yi hui 	飞一会	c=0 d=0.00372538 t=7086
+fen 	分	c=1 d=1.78725e-08 t=7086
+fen bie 	分别	c=5 d=0.0141019 t=7086
+fen fang 	芬芳	c=0 d=1.82336e-09 t=7086
+fen hen 	愤恨	c=1 d=1.82336e-08 t=7086
+fen kai 	分开	c=4 d=0.685311 t=7086
+fen xi 	分析	c=14 d=0.337864 t=7086
+fen zhi 	分支	c=2 d=3.67628e-05 t=7086
+fen zhong 	分钟	c=1 d=0.110251 t=7086
+fen zi 	分子	c=1 d=4.26529e-06 t=7086
+feng 	冯	c=1 d=0.000232877 t=7086
+feng ge 	风格	c=3 d=0.161811 t=7086
+fou ze 	否则	c=1 d=0.606531 t=7086
+fu cha 	复查	c=1 d=4.3642e-11 t=7086
+fu gai 	覆盖	c=2 d=6.09557e-10 t=7086
+fu he 	符合	c=2 d=0.946485 t=7086
+fu he 	附和	c=1 d=6.74254e-11 t=7086
+fu jian 	附件	c=1 d=0.25666 t=7086
+fu wen ben 	富文本	c=1 d=0.524662 t=7086
+fu wu 	服务	c=4 d=6.78445e-07 t=7086
+fu xian 	复现	c=1 d=0.000288735 t=7086
+fu xian 	浮现	c=1 d=0.000287295 t=7086
+fu za 	复杂	c=1 d=0.516851 t=7086
+fu ze ren 	负责人	c=3 d=0.76338 t=7086
+fu zhi 	复制	c=1 d=1.86437e-05 t=7086
+gai 	改	c=1 d=1.60468e-05 t=7086
+gai 	该	c=4 d=0.0699741 t=7086
+gai cheng 	改成	c=6 d=0.120284 t=7086
+gai dong 	改动	c=1 d=2.69307e-08 t=7086
+gai fa 	该法	c=0 d=1.67911e-10 t=7086
+gai fen 	该分	c=1 d=1.79621e-08 t=7086
+gai hao 	盖好	c=3 d=0.00029664 t=7086
+gai hao le 	改好了	c=1 d=1.23452e-08 t=7086
+gai le 	改了	c=2 d=0.359684 t=7086
+gai tu 	改土	c=1 d=2.78227e-09 t=7086
+gai wo 	该我	c=1 d=1.98e-07 t=7086
+gai yi xia 	改一下	c=2 d=2.53615e-05 t=7086
+gan huo 	干活	c=1 d=6.84444e-11 t=7086
+gan jin 	赶紧	c=1 d=0.540641 t=7086
+gan jing 	干净	c=1 d=0.537944 t=7086
+gan jue 	感觉	c=5 d=0.0626499 t=7086
+gan mao ling 	感冒灵	c=1 d=1.28512e-10 t=7086
+gan shou bu dao 	感受不到	c=1 d=3.68193e-11 t=7086
+gang 	刚	c=1 d=1.19803e-08 t=7086
+gang cai 	刚才	c=2 d=5.57145e-05 t=7086
+gang hao 	刚好	c=1 d=1.12846e-10 t=7086
+gao 	高	c=1 d=0.00423234 t=7086
+gao ding 	搞定	c=1 d=8.41916e-06 t=7086
+gao shao 	高烧	c=2 d=0.0744348 t=7086
+gao su 	告诉	c=1 d=7.50711e-10 t=7086
+gao su ta 	告诉他	c=1 d=5.41009e-09 t=7086
+gao xing de 	高兴的	c=1 d=0.00124951 t=7086
+gao xing neng 	高性能	c=3 d=0.0275559 t=7086
+ge 	个	c=5 d=0.000751174 t=7086
+ge ge guo jia you ge ge guo jia de guo ge 	各个国家有各个国家的国歌	c=2 d=0.00163682 t=7086
+ge le 	隔了	c=1 d=0.0784731 t=7086
+ge ren 	个人	c=2 d=0.317629 t=7086
+ge shi 	格式	c=5 d=0.499074 t=7086
+gei 	给	c=9 d=5.78733e-06 t=7086
+gei ni 	给你	c=7 d=0.0536053 t=7086
+gei wo 	给我	c=22 d=1.55853 t=7086
+gen ju 	根据	c=1 d=0.0132336 t=7086
+geng duo 	更多	c=0 d=1.79621e-09 t=7086
+geng gai 	更改	c=1 d=0.000116223 t=7086
+geng hao 	更好	c=4 d=0.00661226 t=7086
+geng hao yong 	更好用	c=1 d=1.15683e-08 t=7086
+geng huan 	更换	c=2 d=8.86012e-08 t=7086
+geng jia 	更加	c=2 d=0.941765 t=7086
+geng rong yi 	更容易	c=1 d=0.084163 t=7086
+geng xin 	更新	c=14 d=1.30225 t=7086
+geng xin shi yong 	更新使用	c=1 d=0.414783 t=7086
+gong deng 	宫灯	c=2 d=2.42499e-08 t=7086
+gong gao 	公告	c=3 d=1.74915 t=7086
+gong ju 	工具	c=1 d=3.04428e-09 t=7086
+gong neng 	功能	c=14 d=1.79629 t=7086
+gong shang 	工商	c=1 d=1.17108e-05 t=7086
+gong xi 	恭喜	c=1 d=4.30816e-06 t=7086
+gong ying lian 	供应链	c=2 d=0.00692042 t=7086
+gong ying shang 	供应商	c=1 d=0.224248 t=7086
+gong yong 	公用	c=1 d=0.806541 t=7086
+gong zuo 	工作	c=1 d=0.927743 t=7086
+gong zuo shi 	工作室	c=1 d=0.000347412 t=7086
+gou 	购	c=1 d=0.873716 t=7086
+gu ding 	固定	c=1 d=1.58488e-06 t=7086
+gu ji 	估计	c=7 d=0.151987 t=7086
+gu ji yi hui 	估计一会	c=1 d=0.031273 t=7086
+gu ran 	固然	c=1 d=0.414783 t=7086
+gua ban 	刮板	c=1 d=0.00019258 t=7086
+guan 	关	c=2 d=0.932394 t=7086
+guan bi 	关闭	c=4 d=0.758388 t=7086
+guan jian 	关键	c=1 d=7.3041e-11 t=7086
+guan li 	管理	c=10 d=1.65932 t=7086
+guan li mian 	管理面	c=1 d=0.0081887 t=7086
+guan li yuan 	管理员	c=1 d=0.865022 t=7086
+guan lian 	关联	c=1 d=7.54217e-06 t=7086
+guan xi 	关系	c=3 d=0.0982736 t=7086
+guan yu 	关于	c=1 d=0.00680566 t=7086
+guan zhu 	关注	c=3 d=0.00445005 t=7086
+guang ba 	光把	c=2 d=0.000944976 t=7086
+guang biao 	光标	c=1 d=5.82947e-05 t=7086
+guang chang 	广场	c=1 d=3.41588e-11 t=7086
+gui bu gui fan 	规不规范	c=1 d=1.86469e-07 t=7086
+gui ze 	规则	c=8 d=3.16553e-09 t=7086
+gui zhou 	贵州	c=1 d=0.937068 t=7086
+gun dong 	滚动	c=1 d=0.287941 t=7086
+guo 	过	c=1 d=1.92148e-07 t=7086
+guo 	郭	c=1 d=3.08977e-07 t=7086
+guo duo 	过多	c=1 d=1.29759e-06 t=7086
+guo ji 	国际	c=1 d=0.00995182 t=7086
+guo lai 	过来	c=4 d=0.294098 t=7086
+guo min 	过敏	c=2 d=0.0948935 t=7086
+guo min xing 	过敏性	c=1 d=1.14551e-10 t=7086
+guo qi 	过期	c=2 d=0.571595 t=7086
+guo qu 	过去	c=1 d=0.0746459 t=7086
+guo wai 	国外	c=1 d=6.70662e-07 t=7086
+guo wen 	过问	c=1 d=3.10525e-07 t=7086
+guo wen 	郭文	c=1 d=3.12082e-07 t=7086
+guo xin 	国信	c=0 d=5.68747e-10 t=7086
+ha 	哈	c=2 d=1.61474e-05 t=7086
+ha ha 	哈哈	c=1 d=1.77834e-08 t=7086
+ha ha ha 	哈哈哈	c=3 d=1.92596 t=7086
+ha ha ha ha 	哈哈哈哈	c=3 d=0.729789 t=7086
+ha ha ha ha ha 	哈哈哈哈哈	c=3 d=0.000177774 t=7086
+ha ha ha hang 	哈哈哈行	c=2 d=1.69533e-08 t=7086
+hai 	还	c=16 d=1.3646 t=7086
+hai hen 	还很	c=1 d=3.8707e-11 t=7086
+hai hui 	还会	c=1 d=0.0526021 t=7086
+hai shi 	还是	c=16 d=0.00464812 t=7086
+hai xu yao 	还需要	c=1 d=0.00202943 t=7086
+hai you 	还有	c=14 d=0.051611 t=7086
+hai zhun 	还准	c=1 d=2.2611e-10 t=7086
+hai zi 	孩子	c=1 d=9.42245e-07 t=7086
+han shu 	函数	c=1 d=0.831104 t=7086
+hang 	行	c=2 d=3.94268e-09 t=7086
+hao 	号	c=1 d=0.0338776 t=7086
+hao 	好	c=73 d=2.25684 t=7086
+hao ba 	好吧	c=1 d=0.0266491 t=7086
+hao de 	好的	c=2 d=0.0590324 t=7086
+hao fan 	好烦	c=1 d=0.000283018 t=7086
+hao fei jin 	好费劲	c=1 d=1.62949e-09 t=7086
+hao gong zuo 	好工作	c=1 d=0.00324708 t=7086
+hao ji ge 	好几个	c=1 d=0.0629761 t=7086
+hao kun 	好困	c=1 d=7.82971e-05 t=7086
+hao le 	好了	c=2 d=2.38196e-05 t=7086
+hao rong yi 	好容易	c=1 d=0.0930145 t=7086
+hao xiang 	好像	c=1 d=3.87874e-06 t=7086
+hao yong 	好用	c=3 d=1.94427e-08 t=7086
+he 	和	c=57 d=2.00172 t=7086
+he bing 	合并	c=1 d=1.54777e-09 t=7086
+he jiu 	喝酒	c=1 d=0.000176005 t=7086
+he li 	合理	c=1 d=0.25924 t=7086
+he ni 	和你	c=1 d=1.01301e-05 t=7086
+he pi jiu 	喝啤酒	c=1 d=0.0337087 t=7086
+he shi 	合适	c=1 d=1.34057e-07 t=7086
+he tian qi 	和天气	c=1 d=0.414783 t=7086
+he tong 	合同	c=2 d=1.14624 t=7086
+he wo 	和我	c=1 d=4.67985e-09 t=7086
+he zhe ge 	和这个	c=1 d=1.14809e-07 t=7086
+hen 	很	c=2 d=7.45124e-07 t=7086
+hen bu cuo 	很不错	c=1 d=0.00121866 t=7086
+hen da 	很大	c=2 d=4.96993e-07 t=7086
+hen hao 	很好	c=1 d=0.000202454 t=7086
+hen hao yong 	很好用	c=2 d=2.85281e-07 t=7086
+hen man 	很慢	c=2 d=1.72677e-07 t=7086
+hen mang 	很忙	c=1 d=0.00169512 t=7086
+hen nan 	很难	c=1 d=3.57311e-11 t=7086
+hou 	厚	c=3 d=0.57279 t=7086
+hou 	后	c=11 d=0.767206 t=7086
+hou duan 	后端	c=7 d=1.03098 t=7086
+hou dui bi 	后对比	c=1 d=0.000953854 t=7086
+hou mian 	后面	c=12 d=1.12042 t=7086
+hou qi 	后期	c=1 d=0.666977 t=7086
+hou tian 	后天	c=1 d=9.85615e-07 t=7086
+hu mu jing 	护目镜	c=1 d=4.63407e-11 t=7086
+hua 	话	c=1 d=0.202909 t=7086
+hua yan 	化验	c=3 d=1.18771 t=7086
+huan 	换	c=3 d=3.50338e-06 t=7086
+huan jin 	换进	c=9 d=0.923116 t=7086
+huan jing 	环境	c=3 d=0.00896059 t=7086
+huan kuan 	还款	c=1 d=1.20674e-05 t=7086
+huan yuan 	还原	c=17 d=1.85086 t=7086
+hui 	会	c=9 d=0.188385 t=7086
+hui bao 	汇报	c=1 d=0.0108347 t=7086
+hui bu hui 	会不会	c=4 d=0.640793 t=7086
+hui che 	回车	c=2 d=0.0112562 t=7086
+hui da 	回答	c=2 d=1.33571e-06 t=7086
+hui dao zhi 	会导致	c=1 d=0.68045 t=7086
+hui diao han shu 	回调函数	c=1 d=0.38868 t=7086
+hui fen 	灰分	c=2 d=0.680944 t=7086
+hui fu 	回复	c=5 d=0.00107035 t=7086
+hui fu ni 	回复你	c=1 d=1.37783e-06 t=7086
+hui hui 	会会	c=1 d=0.0328764 t=7086
+hui jia 	回家	c=5 d=5.47043e-06 t=7086
+hui qu 	回去	c=7 d=0.000672886 t=7086
+hui tou 	回头	c=1 d=3.71766e-07 t=7086
+hui tui 	回退	c=2 d=0.0004881 t=7086
+hui you 	会有	c=3 d=0.00148649 t=7086
+hui zhong 	回中	c=2 d=0.445638 t=7086
+hui zong 	汇总	c=2 d=0.4489 t=7086
+huo 	或	c=1 d=0.722527 t=7086
+huo qu 	获取	c=2 d=0.622289 t=7086
+huo yuan 	货源	c=2 d=0.147122 t=7086
+huo yun 	货运	c=2 d=0.0113251 t=7086
+huo zhe 	或者	c=7 d=1.3391 t=7086
+huo zhu 	货主	c=6 d=2.10274 t=7086
+ji 	几	c=1 d=0.481909 t=7086
+ji 	级	c=1 d=0.794533 t=7086
+ji ben 	基本	c=3 d=0.00936833 t=7086
+ji ceng 	基层	c=1 d=0.00129402 t=7086
+ji cheng 	集成	c=1 d=0.00130051 t=7086
+ji cheng xian ka 	集成显卡	c=1 d=0.0156858 t=7086
+ji chu 	基础	c=3 d=0.00336899 t=7086
+ji chu shang 	基础上	c=1 d=5.99251e-06 t=7086
+ji de 	记得	c=2 d=1.12762e-06 t=7086
+ji gai 	技改	c=1 d=0.00540733 t=7086
+ji guang wu qi 	激光武器	c=1 d=0.818731 t=7086
+ji hua 	计划	c=24 d=5.98016 t=7086
+ji hua min kua chu 	计划民跨出	c=1 d=0.955997 t=7086
+ji hua shang bao 	计划上报	c=1 d=0.913931 t=7086
+ji hui 	机会	c=0 d=2.21595e-09 t=7086
+ji ke 	即可	c=1 d=9.42566e-11 t=7086
+ji qi 	机器	c=1 d=0.694196 t=7086
+ji qi 	极其	c=1 d=0.690735 t=7086
+ji shu 	技术	c=1 d=0.0110536 t=7086
+ji suan qi 	计算器	c=1 d=0.0380064 t=7086
+ji tian 	几天	c=1 d=0.00144449 t=7086
+ji tuan 	集团	c=0 d=0.0923116 t=7086
+ji xian 	极限	c=1 d=0.697676 t=7086
+ji xu 	继续	c=3 d=0.0829638 t=7086
+ji yao 	纪要	c=1 d=0.0057417 t=7086
+ji zhong 	集中	c=1 d=0.292292 t=7086
+ji zhuang xiang 	集装箱	c=1 d=0.00673795 t=7086
+jia 	家	c=1 d=0.000234044 t=7086
+jia ban 	加班	c=4 d=0.0198439 t=7086
+jia ge 	价格	c=1 d=5.97907e-09 t=7086
+jia hao 	加号	c=1 d=1.2849e-08 t=7086
+jia jia 	加价	c=4 d=4.23661e-07 t=7086
+jia li mian 	家里面	c=1 d=0.00168667 t=7086
+jia qi 	假期	c=1 d=8.87373e-07 t=7086
+jia shang 	加上	c=1 d=2.99071e-06 t=7086
+jian 	键	c=11 d=2.05333e-08 t=7086
+jian 	间	c=1 d=0.474735 t=7086
+jian bu dao 	见不到	c=1 d=0.000171659 t=7086
+jian cha 	检查	c=1 d=4.09805e-06 t=7086
+jian dan 	简单	c=2 d=0.0562964 t=7086
+jian hao 	建好	c=3 d=1.43949e-05 t=7086
+jian kong 	监控	c=5 d=2.36211 t=7086
+jian mian 	见面	c=1 d=0.00140882 t=7086
+jian rong 	兼容	c=1 d=0.384813 t=7086
+jian shao 	减少	c=1 d=3.20037e-09 t=7086
+jian she 	建设	c=1 d=0.0117959 t=7086
+jian yi 	建议	c=2 d=5.5141e-06 t=7086
+jian zheng 	见证	c=1 d=0.245367 t=7086
+jiao 	叫	c=1 d=2.65252e-06 t=7086
+jiao fang 	交房	c=1 d=8.87524e-09 t=7086
+jiao hu 	交互	c=1 d=0.00923273 t=7086
+jiao shou jia 	脚手架	c=1 d=0.044601 t=7086
+jiao yan 	教研	c=1 d=0.494109 t=7086
+jiao yan 	校验	c=6 d=0.496585 t=7086
+jie guo 	结果	c=12 d=0.85982 t=7086
+jie jue 	解决	c=6 d=0.232236 t=7086
+jie kou 	接口	c=48 d=1.92039 t=7086
+jie mian 	界面	c=14 d=2.27743 t=7086
+jie qian 	节前	c=1 d=0.010358 t=7086
+jie qu 	截取	c=1 d=0.00388746 t=7086
+jie ri 	节日	c=2 d=0.0150076 t=7086
+jie shou 	接受	c=1 d=0.179066 t=7086
+jie suan 	结算	c=2 d=0.276651 t=7086
+jie suan dan 	结算单	c=1 d=8.40029e-09 t=7086
+jie tu 	截图	c=1 d=0.00377257 t=7086
+jie wo 	接我	c=2 d=0.0858632 t=7086
+jie xi 	解析	c=4 d=0.0536181 t=7086
+jie xia lai 	接下来	c=1 d=9.14554e-09 t=7086
+jie zhe 	接着	c=1 d=5.86068e-09 t=7086
+jin 	晋	c=1 d=0.856415 t=7086
+jin cheng 	进程	c=2 d=5.34783e-07 t=7086
+jin du 	进度	c=7 d=0.1392 t=7086
+jin e 	金额	c=1 d=1.62528e-08 t=7086
+jin li 	尽力	c=1 d=0.355226 t=7086
+jin qu 	进去	c=2 d=0.771052 t=7086
+jin ru 	进入	c=1 d=3.75439e-05 t=7086
+jin tian 	今天	c=10 d=0.9125 t=7086
+jin wan 	今晚	c=4 d=0.0335449 t=7086
+jin xing 	进行	c=1 d=3.90894e-09 t=7086
+jin zhi 	禁止	c=2 d=1.85133 t=7086
+jing cha 	净差	c=1 d=0.394554 t=7086
+jing chang 	经常	c=1 d=2.76792e-07 t=7086
+jing fei 	经费	c=1 d=0.00301245 t=7086
+jing gao 	警告	c=1 d=9.35285e-08 t=7086
+jing jia cai gou 	竞价采购	c=1 d=0.00975476 t=7086
+jing jing 	静静	c=3 d=0.000485056 t=7086
+jing li 	经理	c=1 d=0.358796 t=7086
+jing qu 	景区	c=1 d=4.17217e-11 t=7086
+jing se 	景色	c=5 d=4.29191 t=7086
+jing you 	静游	c=5 d=1.6966 t=7086
+jiu 	就	c=36 d=2.17923 t=7086
+jiu hui 	就会	c=1 d=0.000117391 t=7086
+jiu ke yi 	就可以	c=1 d=0.018043 t=7086
+jiu shi 	就是	c=14 d=0.103887 t=7086
+jiu xu yao 	就需要	c=0 d=6.06944e-10 t=7086
+jiu xu yao ni 	就需要你	c=1 d=6.09986e-09 t=7086
+jiu yong 	就用	c=1 d=7.12376e-11 t=7086
+ju gong 	鞠躬	c=0 d=0.0211189 t=7086
+jue de 	觉得	c=2 d=0.00034956 t=7086
+jue dui 	绝对	c=1 d=0.0349094 t=7086
+jue se 	角色	c=3 d=0.755784 t=7086
+ka 	卡	c=3 d=0.000200132 t=7086
+ka dun 	卡顿	c=4 d=0.00326114 t=7086
+ka ka 	卡卡	c=1 d=0.00135358 t=7086
+kai 	凯	c=1 d=8.56998e-09 t=7086
+kai 	开	c=1 d=8.6323e-06 t=7086
+kai fa 	开发	c=11 d=0.923116 t=7086
+kai guan 	开关	c=3 d=2.36103e-05 t=7086
+kai hui 	开会	c=1 d=0.00299743 t=7086
+kai kai 	凯凯	c=1 d=0.878095 t=7086
+kai kai 	开开	c=1 d=0.873716 t=7086
+kai qi 	开启	c=3 d=2.05474e-05 t=7086
+kai shi 	开始	c=5 d=0.866901 t=7086
+kai xin 	开心	c=2 d=0.0699954 t=7086
+kan 	看	c=8 d=1.34266 t=7086
+kan kan 	看看	c=8 d=0.865023 t=7086
+kan lai 	看来	c=10 d=1.6613 t=7086
+kan le 	看了	c=1 d=4.2141e-11 t=7086
+kan ni 	看你	c=1 d=0.162838 t=7086
+kan xi 	看戏	c=1 d=0.000185956 t=7086
+kan xia 	看下	c=6 d=0.356136 t=7086
+kan zhe 	看着	c=2 d=2.49331e-05 t=7086
+kan zhe ge 	看这个	c=1 d=3.9096e-11 t=7086
+ke 	可	c=1 d=8.89822e-10 t=7086
+ke bu shao 	可不少	c=1 d=0.00311976 t=7086
+ke cai 	可采	c=2 d=1.8695 t=7086
+ke cai ji hua 	可采计划	c=1 d=0.218712 t=7086
+ke hu 	客户	c=1 d=4.30963e-10 t=7086
+ke hu duan 	客户端	c=1 d=4.24546e-10 t=7086
+ke li 	颗粒	c=1 d=1.29156e-10 t=7086
+ke neng 	可能	c=1 d=1.4595e-07 t=7086
+ke shi 	可是	c=1 d=0.000652304 t=7086
+ke yi 	可以	c=45 d=2.37096 t=7086
+kong 	空	c=3 d=7.98271e-09 t=7086
+kong zhi 	控制	c=1 d=0.214381 t=7086
+kou han 	口含	c=2 d=2.21946e-10 t=7086
+ku bi 	苦逼	c=1 d=0.0850088 t=7086
+ku bi 	酷毙	c=1 d=0.0845849 t=7086
+ku dou 	裤兜	c=1 d=0.0291588 t=7086
+kua chu 	跨出	c=0 d=0.095123 t=7086
+kua yu 	跨域	c=1 d=0.380983 t=7086
+kuai 	快	c=1 d=2.75458e-09 t=7086
+kuai jie jian 	快捷键	c=2 d=0.00554422 t=7086
+kuai le 	快乐	c=2 d=3.46574e-05 t=7086
+kuai le 	快了	c=1 d=3.48311e-05 t=7086
+kuan 	款	c=4 d=0.46778 t=7086
+kuang 	矿	c=1 d=0.900324 t=7086
+kuang jia 	框架	c=1 d=0.301194 t=7086
+kuang yu 	诳语	c=1 d=0.379083 t=7086
+kui dun 	亏顿	c=1 d=0.38868 t=7086
+lai 	来	c=13 d=0.336218 t=7086
+lai bu ji 	来不及	c=1 d=6.85982e-08 t=7086
+lai shuo 	来说	c=1 d=0.19593 t=7086
+lang 	狼	c=1 d=1.21007e-08 t=7086
+lao jiu 	老旧	c=1 d=6.0684e-07 t=7086
+lao mi 	老米	c=3 d=3.8034e-06 t=7086
+lao po 	老婆	c=1 d=2.06614e-08 t=7086
+lao shu 	老鼠	c=6 d=0.00162866 t=7086
+lao ye jia 	姥爷家	c=1 d=0.000185029 t=7086
+le 	了	c=180 d=10.785 t=7086
+lei bao 	雷暴	c=1 d=4.09874e-08 t=7086
+lei xin 	雷新	c=3 d=1.15482 t=7086
+lei xing 	类型	c=6 d=1.1606 t=7086
+li 	立	c=2 d=2.3332e-06 t=7086
+li 	里	c=2 d=0.506617 t=7086
+li ao 	利奥	c=5 d=7.84906e-08 t=7086
+li jie 	理解	c=1 d=0.000626727 t=7086
+li jin 	礼金	c=1 d=3.60779e-07 t=7086
+li mian 	里面	c=20 d=0.661113 t=7086
+li shuang 	立爽	c=1 d=1.22244e-10 t=7086
+li yuan 	李渊	c=6 d=0.806541 t=7086
+lian he 	联合	c=1 d=0.0102549 t=7086
+lian jie 	连接	c=3 d=1.19205 t=7086
+lian xu 	连续	c=1 d=0.180866 t=7086
+lian xu hao ji tian 	连续好几天	c=1 d=0.000170803 t=7086
+liang ge 	两个	c=5 d=0.000704356 t=7086
+liang hang 	两行	c=1 d=1.7564e-09 t=7086
+liang tao 	两套	c=1 d=4.8091e-06 t=7086
+liang xiang 	亮相	c=1 d=0.826959 t=7086
+liao jie 	了解	c=1 d=1.60523e-09 t=7086
+lie 	列	c=13 d=1.63302e-05 t=7086
+lie biao 	列表	c=33 d=0.894177 t=7086
+lie chu 	列出	c=1 d=0.344728 t=7086
+ling dao 	领导	c=1 d=3.04325e-05 t=7086
+ling yi ge 	另一个	c=1 d=2.26618e-07 t=7086
+liu 	流	c=1 d=0.0229371 t=7086
+liu cheng 	流程	c=5 d=0.102863 t=7086
+liu lan qi 	浏览器	c=2 d=0.000252515 t=7086
+lou 	楼	c=1 d=8.74311e-09 t=7086
+lu gang 	陆港	c=3 d=1.08771 t=7086
+lu you 	路由	c=1 d=0.000241172 t=7086
+luo ji 	逻辑	c=17 d=3.59613 t=7086
+luo shi 	落实	c=1 d=0.0101022 t=7086
+luo suo 	啰唆	c=1 d=0.418951 t=7086
+ma 	吗	c=45 d=1.28314 t=7086
+ma 	妈	c=1 d=8.65464e-07 t=7086
+ma shang 	马上	c=1 d=0.0342181 t=7086
+man 	慢	c=1 d=3.86873e-05 t=7086
+man 	满	c=2 d=3.86629e-05 t=7086
+man man 	慢慢	c=1 d=6.80914e-09 t=7086
+mang 	忙	c=1 d=6.94669e-09 t=7086
+me 	么	c=1 d=4.06916e-11 t=7086
+mei cang 	煤仓	c=3 d=1.46483 t=7086
+mei ci 	每次	c=3 d=0.0016219 t=7086
+mei ji du 	每季度	c=1 d=0.0123389 t=7086
+mei ju 	枚举	c=4 d=0.43914 t=7086
+mei ju zhi 	枚举值	c=1 d=0.290835 t=7086
+mei quan xian 	没权限	c=1 d=0.918512 t=7086
+mei sha 	没啥	c=1 d=0.00304273 t=7086
+mei shi 	没事	c=2 d=0.205991 t=7086
+mei tan 	煤炭	c=1 d=0.00687406 t=7086
+mei tan zhi liang 	煤炭质量	c=1 d=0.00729913 t=7086
+mei tian 	每天	c=1 d=0.00852289 t=7086
+mei wen ti 	没问题	c=1 d=0.00527382 t=7086
+mei yong 	没用	c=1 d=2.1232e-05 t=7086
+mei you 	没有	c=33 d=1.61696 t=7086
+mei zhi 	媒质	c=1 d=0.0106202 t=7086
+mei zhi 	每只	c=1 d=3.55347e-05 t=7086
+mei zhi 	煤质	c=1 d=0.0107269 t=7086
+men di 	门第	c=0 d=4.36272e-08 t=7086
+men kou 	门口	c=1 d=0.529936 t=7086
+mian 	面	c=1 d=4.12222e-07 t=7086
+mian qian 	面前	c=1 d=3.0585e-05 t=7086
+miao kai kai 	苗凯凯	c=2 d=0.891179 t=7086
+miao shu 	描述	c=4 d=0.0224929 t=7086
+min 	民	c=0 d=0.095123 t=7086
+min su 	民俗	c=1 d=0.00173804 t=7086
+min zi 	抿子	c=1 d=0.261846 t=7086
+ming 	名	c=1 d=2.42422e-06 t=7086
+ming cheng 	名称	c=9 d=0.301194 t=7086
+ming hou tian 	明后天	c=1 d=0.000273105 t=7086
+ming ri 	明日	c=3 d=0.0844293 t=7086
+ming tian 	明天	c=11 d=0.0839739 t=7086
+ming xi 	明细	c=1 d=0.960789 t=7086
+ming xian 	明显	c=1 d=0.000665481 t=7086
+ming zi 	名字	c=2 d=0.263158 t=7086
+mo 	魔	c=0 d=2.21595e-09 t=7086
+mo ban 	末班	c=5 d=1.37683e-09 t=7086
+mo ban 	模板	c=10 d=3.06802e-08 t=7086
+mo hu 	模糊	c=2 d=1.91678 t=7086
+mo hu yin 	模糊音	c=2 d=1.84645 t=7086
+mo ji hui 	魔机会	c=1 d=2.22706e-08 t=7086
+mo ren 	默认	c=3 d=0.70822 t=7086
+mo ren zhi 	默认值	c=2 d=0.694196 t=7086
+mo shi 	模式	c=2 d=0.00618895 t=7086
+mo xing 	模型	c=1 d=4.84654e-09 t=7086
+mu biao 	目标	c=1 d=0.0125881 t=7086
+mu cai 	木材	c=1 d=0.00615802 t=7086
+mu qian 	目前	c=5 d=0.0328674 t=7086
+na 	那	c=1 d=1.11415e-07 t=7086
+na bian 	那边	c=3 d=0.774989 t=7086
+na dao 	拿到	c=1 d=0.000717312 t=7086
+na ge 	那个	c=28 d=1.48985 t=7086
+na hui 	那会	c=3 d=0.666129 t=7086
+na jiu 	那就	c=2 d=0.000267872 t=7086
+na li 	那里	c=9 d=0.995042 t=7086
+na me 	那么	c=2 d=0.440432 t=7086
+na ni 	那你	c=2 d=0.0257325 t=7086
+na wo 	那我	c=3 d=0.00396603 t=7086
+na xie 	那些	c=4 d=0.077888 t=7086
+na zhong gan shou 	那种感受	c=1 d=3.60902e-11 t=7086
+nan 	南	c=2 d=0.98945 t=7086
+nan dao 	难道	c=2 d=0.782704 t=7086
+nan duan 	南端	c=2 d=0.965555 t=7086
+ne 	呢	c=9 d=0.83527 t=7086
+nei 	内	c=2 d=0.00157306 t=7086
+nei bu 	内部	c=1 d=0.59452 t=7086
+nei cun 	内存	c=1 d=0.467666 t=7086
+nei rong 	内容	c=40 d=3.23848 t=7086
+nei zhi 	内置	c=1 d=3.57128e-05 t=7086
+neng li 	能力	c=1 d=0.0049667 t=7086
+ni 	你	c=40 d=2.30049 t=7086
+ni an zhao 	你按照	c=1 d=8.29523e-08 t=7086
+ni ba 	你把	c=1 d=1.54238e-07 t=7086
+ni ba ni de 	你把你的	c=1 d=2.93908e-07 t=7086
+ni chou kong 	你抽空	c=2 d=1.58914e-05 t=7086
+ni dao 	你到	c=3 d=0.112075 t=7086
+ni de 	你的	c=2 d=1.12657e-05 t=7086
+ni gei wo 	你给我	c=1 d=3.88816e-05 t=7086
+ni gei wo you hua 	你给我优化	c=1 d=3.12135e-09 t=7086
+ni hai shi 	你还是	c=1 d=5.36921e-08 t=7086
+ni hao 	你好	c=6 d=0.479332 t=7086
+ni hou mian 	你后面	c=1 d=1.5383e-08 t=7086
+ni jiu 	你就	c=1 d=6.98033e-07 t=7086
+ni kan kan 	你看看	c=2 d=0.00393167 t=7086
+ni kan xia 	你看下	c=1 d=0.726149 t=7086
+ni ke yi 	你可以	c=2 d=6.86503e-09 t=7086
+ni lai 	你来	c=1 d=9.56648e-09 t=7086
+ni mai 	你买	c=1 d=8.61294e-09 t=7086
+ni men 	你们	c=5 d=0.65703 t=7086
+ni na bian 	你那边	c=1 d=0.00110269 t=7086
+ni qu 	你去	c=1 d=6.67545e-11 t=7086
+ni ru guo 	你如果	c=1 d=0.140156 t=7086
+ni shuo 	你说	c=1 d=2.87393e-08 t=7086
+ni ti yan 	你体验	c=1 d=1.70009e-08 t=7086
+ni wen xia 	你问下	c=1 d=1.37451e-07 t=7086
+ni xian mang 	你先忙	c=1 d=4.87167e-11 t=7086
+ni xian zai 	你现在	c=2 d=0.690735 t=7086
+ni xiang 	你想	c=1 d=2.10243e-07 t=7086
+ni xiang yao 	你想要	c=1 d=3.97829e-10 t=7086
+ni xu yao 	你需要	c=1 d=6.77518e-09 t=7086
+ni yao 	你要	c=0 d=3.60779e-08 t=7086
+ni yao bu 	你要不	c=2 d=0.214553 t=7086
+ni yao you 	你要有	c=1 d=3.62588e-07 t=7086
+ni yi hui 	你一会	c=1 d=2.07649e-08 t=7086
+ni you 	你有	c=1 d=8.10998e-07 t=7086
+ni zai 	你在	c=2 d=0.32304 t=7086
+nong 	弄	c=2 d=2.58708e-06 t=7086
+nong hao 	弄好	c=1 d=3.30637e-10 t=7086
+nong le 	弄了	c=1 d=0.062662 t=7086
+nong yi ge 	弄一个	c=1 d=2.06045e-05 t=7086
+nuo 	诺	c=1 d=0.000209665 t=7086
+pai zhao pian 	拍照片	c=1 d=2.51057e-06 t=7086
+pan duan 	判断	c=4 d=1.4166 t=7086
+pang bian 	旁边	c=1 d=1.82305e-06 t=7086
+pao tong 	跑通	c=1 d=0.219808 t=7086
+pei cuo 	配错	c=1 d=9.87998e-06 t=7086
+pei he 	配合	c=3 d=1.58356e-07 t=7086
+pei zhi 	配置	c=20 d=1.43068 t=7086
+pei zhi xiang 	配置项	c=1 d=0.198891 t=7086
+pi liang 	批量	c=1 d=0.0361528 t=7086
+pi pei 	匹配	c=1 d=0.456119 t=7086
+pi zhong 	皮重	c=1 d=1.08421e-10 t=7086
+pian 	片	c=1 d=1.25339e-10 t=7086
+pian duan 	片段	c=1 d=0.0483156 t=7086
+piao 	票	c=1 d=0.00927901 t=7086
+pin hua 	拼花	c=1 d=0.285076 t=7086
+pin pu 	频谱	c=1 d=0.869358 t=7086
+pin yin 	拼音	c=1 d=0.95123 t=7086
+ping hua 	平滑	c=1 d=0.286505 t=7086
+ping jie 	凭借	c=1 d=1.87436e-09 t=7086
+ping mu 	屏幕	c=3 d=0.921249 t=7086
+ping pu 	平铺	c=2 d=0.882497 t=7086
+ping shen 	评审	c=4 d=1.76072 t=7086
+ping shi 	平时	c=2 d=0.0214113 t=7086
+ping tai 	平台	c=1 d=0.0127147 t=7086
+po bing 	破冰	c=1 d=0.00802655 t=7086
+pu di lan 	蒲地蓝	c=1 d=1.24092e-10 t=7086
+qi dao 	起到	c=2 d=0.0278959 t=7086
+qi dong 	启动	c=5 d=0.0287333 t=7086
+qi jian 	期间	c=2 d=0.0150828 t=7086
+qi lai 	起来	c=1 d=3.32984e-05 t=7086
+qi pao 	旗袍	c=2 d=0.468148 t=7086
+qi pao 	气泡	c=0 d=0.0227638 t=7086
+qi pao ti shi 	气泡提示	c=1 d=0.228778 t=7086
+qi shi 	其实	c=1 d=1.51907e-07 t=7086
+qi ta 	其他	c=6 d=0.00156769 t=7086
+qi ye 	企业	c=1 d=0.000256085 t=7086
+qi yong 	弃用	c=1 d=0.196912 t=7086
+qi yun 	汽运	c=1 d=0.00790705 t=7086
+qian duan 	前端	c=9 d=1.91306 t=7086
+qian fen hao 	千分号	c=1 d=0.509156 t=7086
+qian mian 	前面	c=1 d=1.56559e-09 t=7086
+qian ming 	签名	c=1 d=6.30083e-08 t=7086
+qian zhui 	前缀	c=1 d=2.03012e-07 t=7086
+qiang 	强	c=3 d=0.0272868 t=7086
+qiang 	枪	c=1 d=0.465334 t=7086
+qiang ji 	枪机	c=2 d=1.0088 t=7086
+qiang xin 	强心	c=1 d=0.23457 t=7086
+qiang xing 	强行	c=1 d=0.235746 t=7086
+qie 	且	c=1 d=9.75974e-09 t=7086
+qie huan 	切换	c=7 d=0.909373 t=7086
+qin 	亲	c=0 d=0.0548812 t=7086
+qin chong xin 	亲重新	c=1 d=0.551562 t=7086
+qin hai 	侵害	c=1 d=1.62921e-07 t=7086
+qin kuang 	亲况	c=1 d=0.66034 t=7086
+qin qiu 	亲求	c=4 d=0.941641 t=7086
+qing 	请	c=1 d=0.0551562 t=7086
+qing bang 	轻磅	c=1 d=0.479505 t=7086
+qing cong xin 	请从新	c=1 d=0.554327 t=7086
+qing hua 	清华	c=1 d=1.63738e-07 t=7086
+qing jia 	请假	c=1 d=2.56748e-05 t=7086
+qing kuang 	情况	c=4 d=0.66365 t=7086
+qing kuang xia 	情况下	c=1 d=0.00127476 t=7086
+qing qiu 	请求	c=7 d=1.3938 t=7086
+qiu ji 	球机	c=4 d=1.88449 t=7086
+qu 	去	c=2 d=5.43716e-07 t=7086
+qu chu 	取出	c=3 d=0.971128 t=7086
+qu diao 	去掉	c=2 d=0.236928 t=7086
+qu fen 	区分	c=1 d=7.06993e-10 t=7086
+quan fang mian 	全方面	c=1 d=0.0116786 t=7086
+quan ju 	全局	c=27 d=0.97032 t=7086
+quan ping 	全屏	c=1 d=1.51932e-09 t=7086
+quan xian 	权限	c=12 d=1.73038 t=7086
+quan xin 	全新	c=1 d=0.20089 t=7086
+que ding 	确定	c=4 d=0.32712 t=7086
+que ren 	确认	c=2 d=0.000260807 t=7086
+que shao 	缺少	c=2 d=9.71359e-06 t=7086
+que shi 	确实	c=1 d=3.41414e-05 t=7086
+qun li mian 	群里面	c=1 d=4.13066e-11 t=7086
+ran 	然	c=0 d=1.78294e-10 t=7086
+ran bu shi 	然不是	c=1 d=1.79188e-09 t=7086
+ran hou 	然后	c=9 d=0.0583245 t=7086
+ran zhi 	染指	c=0 d=1.54229e-10 t=7086
+rang 	让	c=10 d=0.83527 t=7086
+rang ni 	让你	c=2 d=0.0485578 t=7086
+rang qiu 	让球	c=1 d=9.42406e-09 t=7086
+rang ta 	让他	c=2 d=0.301194 t=7086
+rang wo 	让我	c=3 d=8.65763e-07 t=7086
+rao 	绕	c=0 d=1.54229e-10 t=7086
+rao da ran zhi 	绕大染指	c=1 d=1.55002e-09 t=7086
+ren 	人	c=3 d=0.00313555 t=7086
+ren he 	任何	c=1 d=0.00196945 t=7086
+ren li 	人力	c=1 d=0.0131675 t=7086
+ren men 	人们	c=1 d=5.65814e-07 t=7086
+ren wu 	任务	c=7 d=0.572928 t=7086
+ren yuan 	人员	c=5 d=0.0141552 t=7086
+ren zheng 	认证	c=1 d=0.25666 t=7086
+ri li 	日历	c=1 d=0.615697 t=7086
+ri qi 	日期	c=1 d=0.790571 t=7086
+ri zhi 	日志	c=8 d=0.786628 t=7086
+ri zhi guan li 	日志管理	c=2 d=0.000495794 t=7086
+rong cuo lv 	容错率	c=1 d=0.438235 t=7086
+ru 	如	c=0 d=5.68747e-10 t=7086
+ru guo 	如果	c=11 d=1.98417 t=7086
+ru guo xin 	如国信	c=1 d=5.71598e-09 t=7086
+ru he 	如何	c=20 d=1.54678 t=7086
+ru ku 	入库	c=0 d=2.56085e-05 t=7086
+ru ku ming xi 	入库明细	c=1 d=0.000257369 t=7086
+ruan jian 	软件	c=1 d=1.40614e-10 t=7086
+ruan mu 	软木	c=0 d=1.39215e-11 t=7086
+sai feng 	赛风	c=1 d=0.852143 t=7086
+san chu 	三处	c=1 d=0.205975 t=7086
+san chu 	散出	c=2 d=0.978055 t=7086
+sang zi 	嗓子	c=3 d=1.8791e-10 t=7086
+se zhi 	色织	c=2 d=1.34961 t=7086
+sha 	啥	c=0 d=2.09772e-11 t=7086
+sha deng 	纱灯	c=1 d=3.77292e-10 t=7086
+sha deng sai feng 	纱灯赛风	c=1 d=1.66241e-09 t=7086
+sha fa 	沙发	c=1 d=1.86952e-08 t=7086
+sha sai feng 	啥赛风	c=1 d=2.10823e-10 t=7086
+shai 	晒	c=0 d=1.99127e-09 t=7086
+shai fen fang 	晒芬芳	c=1 d=1.8325e-08 t=7086
+shai gai fa 	晒该法	c=1 d=1.68753e-09 t=7086
+shan chu 	删除	c=9 d=1.79875 t=7086
+shan yi 	善意	c=1 d=0.008396 t=7086
+shang 	上	c=3 d=0.449338 t=7086
+shang bao 	上报	c=5 d=1.81481 t=7086
+shang bao fang 	上报放	c=1 d=0.22091 t=7086
+shang cheng 	商城	c=18 d=0.0203527 t=7086
+shang chuan 	上传	c=13 d=2.08438 t=7086
+shang ci 	上次	c=1 d=0.000476044 t=7086
+shang cuan 	上窜	c=5 d=1.69087 t=7086
+shang hu 	商户	c=1 d=0.486752 t=7086
+shang mian 	上面	c=10 d=1.38104 t=7086
+shang pin 	商品	c=4 d=2.41352e-06 t=7086
+shang qu 	上去	c=1 d=2.8025e-06 t=7086
+shang wu 	上午	c=1 d=3.33041e-07 t=7086
+shang xian 	上线	c=4 d=0.0082409 t=7086
+shang xian 	上限	c=5 d=2.16539e-05 t=7086
+shang yi ge 	上一个	c=1 d=0.00568457 t=7086
+shao dong xi 	烧东西	c=1 d=5.7864e-06 t=7086
+she bu de 	舍不得	c=1 d=0.00146632 t=7086
+she ding 	设定	c=2 d=1.45695 t=7086
+she ji 	设计	c=2 d=0.0113976 t=7086
+she ji gao 	设计稿	c=1 d=0.0539337 t=7086
+she zhi 	设置	c=60 d=2.40375 t=7086
+shen ai 	深爱	c=1 d=1.76065e-08 t=7086
+shen deng 	神灯	c=1 d=1.69599e-09 t=7086
+shen he 	审核	c=1 d=0.29427 t=7086
+shen he jie mian 	审核界面	c=1 d=0.25924 t=7086
+shen pi 	审批	c=2 d=0.000438827 t=7086
+shen qing 	申请	c=1 d=0.000221519 t=7086
+shen xian 	神仙	c=1 d=5.38219e-07 t=7086
+sheng bing 	生病	c=1 d=0.0934807 t=7086
+sheng cheng 	生成	c=3 d=0.187308 t=7086
+sheng he 	生和	c=1 d=0.257947 t=7086
+sheng huo 	生活	c=1 d=1.73443e-08 t=7086
+sheng ji 	升级	c=3 d=0.781349 t=7086
+sheng ri 	生日	c=1 d=6.31821e-11 t=7086
+sheng ri kuai le 	生日快乐	c=1 d=6.38171e-11 t=7086
+sheng xia 	剩下	c=1 d=3.3396e-10 t=7086
+sheng yu 	剩余	c=3 d=2.67877 t=7086
+shi 	世	c=0 d=0.0923116 t=7086
+shi 	是	c=63 d=1.70292 t=7086
+shi bu shi 	是不是	c=10 d=0.995699 t=7086
+shi chang 	市场	c=1 d=0.0701173 t=7086
+shi chang fei huo yuan 	市场非货源	c=2 d=1.48349 t=7086
+shi chang hua 	市场化	c=1 d=0.00786762 t=7086
+shi dang 	适当	c=1 d=0.0124007 t=7086
+shi de 	是的	c=8 d=0.955997 t=7086
+shi de ji tuan 	世德集团	c=2 d=0.927743 t=7086
+shi fei 	是非	c=1 d=0.701173 t=7086
+shi fou 	是否	c=1 d=0.28224 t=7086
+shi hou 	时候	c=19 d=2.21059 t=7086
+shi jian 	时间	c=7 d=1.06243 t=7086
+shi me 	什么	c=24 d=0.782987 t=7086
+shi ni 	是你	c=1 d=4.43936e-06 t=7086
+shi qing 	事情	c=2 d=8.52912e-06 t=7086
+shi shou 	实收	c=1 d=0.339596 t=7086
+shi wo 	是我	c=2 d=0.0015415 t=7086
+shi xian 	实现	c=2 d=3.50797e-09 t=7086
+shi xiao 	失效	c=1 d=6.33241e-08 t=7086
+shi xu yao 	视需要	c=1 d=0.000921047 t=7086
+shi yi 	事宜	c=0 d=2.53537e-05 t=7086
+shi yong 	使用	c=319 d=4.02419 t=7086
+shi zhe yang zi 	是这样子	c=1 d=2.15009e-06 t=7086
+shou dao 	收到	c=2 d=0.00172944 t=7086
+shou gou 	收购	c=1 d=4.92063e-11 t=7086
+shou shang 	手上	c=2 d=2.55876e-06 t=7086
+shou suo 	收缩	c=6 d=2.12812 t=7086
+shu chu 	输出	c=3 d=0.1867 t=7086
+shu ju 	数据	c=19 d=2.72342 t=7086
+shu ju yuan 	数据源	c=1 d=0.00116504 t=7086
+shu liang 	数量	c=1 d=0.71177 t=7086
+shu ru 	输入	c=12 d=0.955997 t=7086
+shu ru fa 	输入法	c=9 d=2.67466 t=7086
+shu ru ji hua 	输入计划	c=1 d=2.10752e-06 t=7086
+shu xie 	书写	c=2 d=0.0495764 t=7086
+shu xin 	舒心	c=1 d=0.852143 t=7086
+shu xing 	属性	c=1 d=0.856415 t=7086
+shu zhu 	属猪	c=1 d=0.895834 t=7086
+shu zu 	数组	c=4 d=0.900324 t=7086
+shua xin 	刷新	c=2 d=0.000254197 t=7086
+shuai a 	帅啊	c=0 d=1.24973e-06 t=7086
+shuang 	爽	c=1 d=9.85951e-11 t=7086
+shui fen 	水分	c=2 d=0.675838 t=7086
+shun bian 	顺便	c=1 d=0.000160856 t=7086
+shuo 	说	c=2 d=5.73353e-07 t=7086
+shuo min 	说民	c=2 d=0.88477 t=7086
+shuo ming 	说明	c=3 d=0.889204 t=7086
+shuo ni 	说你	c=1 d=1.33044e-06 t=7086
+shuo shi 	说是	c=1 d=0.000636198 t=7086
+shuo shi hua 	说实话	c=1 d=0.00142298 t=7086
+shuo xia 	说下	c=2 d=0.0769223 t=7086
+si ji 	司机	c=1 d=0.10383 t=7086
+si wu ji dan 	肆无忌惮	c=1 d=0.000174253 t=7086
+sou gou 	搜狗	c=6 d=8.22436e-07 t=7086
+sou suo 	搜索	c=3 d=0.00497824 t=7086
+su du 	速度	c=2 d=9.36401e-08 t=7086
+sun jia gou 	孙家沟	c=1 d=0.0105672 t=7086
+suo xia 	所辖	c=1 d=3.14405e-06 t=7086
+suo yi 	所以	c=1 d=6.91322e-11 t=7086
+suo you 	所有	c=6 d=0.000156112 t=7086
+ta 	他	c=4 d=0.757988 t=7086
+ta hui 	他会	c=1 d=5.63088e-09 t=7086
+ta jiu 	他就	c=1 d=5.80237e-09 t=7086
+ta men 	他们	c=2 d=3.29836e-07 t=7086
+tai 	太	c=1 d=4.17146e-09 t=7086
+tan chi she 	贪吃蛇	c=1 d=6.67431e-09 t=7086
+tan kuang 	弹框	c=4 d=0.433878 t=7086
+tao can 	套餐	c=1 d=0.951229 t=7086
+te bie 	特别	c=1 d=0.00951391 t=7086
+teng 	疼	c=3 d=1.94384e-10 t=7086
+ti ce 	提测	c=5 d=0.193508 t=7086
+ti che 	提车	c=2 d=1.31157e-07 t=7086
+ti che shi jian 	提车时间	c=1 d=8.27663e-11 t=7086
+ti huan 	替换	c=1 d=5.67375e-10 t=7086
+ti hui 	体会	c=1 d=3.59102e-11 t=7086
+ti jiao 	提交	c=16 d=1.12153 t=7086
+ti qian 	提前	c=2 d=0.0107926 t=7086
+ti sheng 	提升	c=7 d=0.899035 t=7086
+ti shi 	提示	c=22 d=0.917393 t=7086
+ti wen 	提问	c=1 d=3.92853e-09 t=7086
+ti xian 	体现	c=1 d=0.158025 t=7086
+ti xing 	提醒	c=1 d=0.00848038 t=7086
+ti yan 	体验	c=2 d=5.59235e-07 t=7086
+tian 	天	c=2 d=5.66199e-09 t=7086
+tian 	田	c=1 d=8.52724e-09 t=7086
+tian an men 	天安门	c=1 d=3.39885e-11 t=7086
+tian chang 	天长	c=1 d=0.329559 t=7086
+tian cheng 	天成	c=4 d=1.36207 t=7086
+tian jia 	添加	c=44 d=9.13957 t=7086
+tian ju 	填具	c=1 d=0.937068 t=7086
+tiao 	条	c=0 d=0.0211189 t=7086
+tiao jian 	条件	c=1 d=5.60375e-11 t=7086
+tiao ju gong 	条鞠躬	c=1 d=0.212248 t=7086
+tiao pei 	调配	c=1 d=0.0263839 t=7086
+tiao yong 	条用	c=1 d=0.000432902 t=7086
+tiao zheng 	调整	c=2 d=0.927743 t=7086
+tiao zhuan 	跳转	c=2 d=1.40278 t=7086
+tie lu 	铁路	c=2 d=0.970397 t=7086
+ting 	厅	c=0 d=1.70038e-11 t=7086
+ting zhang 	厅长	c=2 d=0.000302223 t=7086
+tong bu 	同步	c=2 d=1.95556 t=7086
+tong guo 	通过	c=8 d=0.00436124 t=7086
+tong ku 	痛苦	c=1 d=0.0800583 t=7086
+tong yang 	同样	c=1 d=0.814648 t=7086
+tong yi 	统一	c=3 d=0.660386 t=7086
+tong yi ge 	同一个	c=1 d=0.810584 t=7086
+tong yi xiu gai 	同意修改	c=1 d=0.657047 t=7086
+tong zhi 	通知	c=3 d=0.106994 t=7086
+tu 	吐	c=1 d=2.79621e-09 t=7086
+tu biao 	图标	c=1 d=0.418951 t=7086
+tu pian 	图片	c=2 d=1.23841e-06 t=7086
+tu ran 	突然	c=1 d=2.42463e-08 t=7086
+tuan dui 	团队	c=1 d=0.0132999 t=7086
+tui huan 	退还	c=1 d=1.23729e-05 t=7086
+tui hui lai 	退回来	c=1 d=1.22498e-05 t=7086
+tui hui qu 	退回去	c=1 d=1.32039e-05 t=7086
+tui song 	推送	c=1 d=0.410656 t=7086
+tuo yun 	托运	c=1 d=0.631287 t=7086
+tuo yun dan wei 	托运单位	c=1 d=0.546074 t=7086
+wa 	娃	c=1 d=8.48327e-07 t=7086
+wai fu 	外敷	c=1 d=1.75186e-08 t=7086
+wai jie 	外界	c=1 d=0.0145524 t=7086
+wan 	完	c=0 d=2.17732e-08 t=7086
+wan bi 	完毕	c=1 d=0.037068 t=7086
+wan cheng 	完成	c=2 d=0.0819341 t=7086
+wan dian zou 	晚点走	c=1 d=0.0902655 t=7086
+wan le 	弯了	c=1 d=4.27706e-09 t=7086
+wan shang 	晚上	c=2 d=0.0678809 t=7086
+wan zi 	弯子	c=1 d=1.63766e-09 t=7086
+wang 	网	c=1 d=5.52032e-11 t=7086
+wang guan 	网管	c=1 d=0.927743 t=7086
+wang huo 	网货	c=1 d=8.7446e-11 t=7086
+wang ji 	忘记	c=1 d=0.00414854 t=7086
+wang luo 	网络	c=1 d=0.54335 t=7086
+wang yun 	王允	c=1 d=1.68317e-08 t=7086
+wang yun fei 	王云飞	c=5 d=0.0224059 t=7086
+wang zhan 	网站	c=1 d=6.77403e-07 t=7086
+wei 	为	c=3 d=0.0268474 t=7086
+wei 	未	c=2 d=0.524704 t=7086
+wei chu li 	未处理	c=1 d=0.364219 t=7086
+wei dui jie 	为对接	c=1 d=0.26982 t=7086
+wei he 	为何	c=1 d=0.882497 t=7086
+wei hu 	维护	c=1 d=0.00914087 t=7086
+wei le 	为了	c=3 d=0.40657 t=7086
+wei luan 	未乱	c=1 d=1.99541e-10 t=7086
+wei sha 	为啥	c=1 d=0.00318278 t=7086
+wei tuo cai gou 	委托采购	c=1 d=0.449329 t=7086
+wei xiang ying 	未响应	c=1 d=2.78179e-07 t=7086
+wei xin 	微信	c=2 d=1.43184e-05 t=7086
+wei yuan hui 	委员会	c=2 d=0.0230197 t=7086
+wei yue jin 	违约金	c=1 d=1.21887e-05 t=7086
+wen 	文	c=1 d=1.19206e-08 t=7086
+wen an 	文案	c=2 d=0.458406 t=7086
+wen ben 	文本	c=2 d=0.511709 t=7086
+wen ben nei rong 	文本内容	c=2 d=1.1867 t=7086
+wen dang 	文档	c=5 d=0.160884 t=7086
+wen ding 	稳定	c=1 d=0.00778933 t=7086
+wen ding xing 	稳定性	c=1 d=0.0128424 t=7086
+wen gang 	文刚	c=7 d=0.026703 t=7086
+wen hao 	文浩	c=3 d=1.86014 t=7086
+wen jian 	文件	c=34 d=1.2756 t=7086
+wen ti 	问题	c=15 d=1.20688 t=7086
+wen zi 	文字	c=11 d=1.89771 t=7086
+wo 	我	c=90 d=2.66199 t=7086
+wo an zhao 	我按照	c=1 d=0.360595 t=7086
+wo ba 	我把	c=4 d=1.14094 t=7086
+wo bu 	我不	c=0 d=1.60108e-09 t=7086
+wo bu gei ni 	我不给你	c=1 d=1.60911e-08 t=7086
+wo bu ming bai 	我不明白	c=1 d=7.56427e-11 t=7086
+wo bu shu 	我不熟	c=1 d=8.14925e-05 t=7086
+wo chong xin 	我重新	c=1 d=1.88311e-05 t=7086
+wo da dian hua 	我打电话	c=1 d=1.3606e-05 t=7086
+wo dai 	我带	c=0 d=3.78426e-11 t=7086
+wo dai ma 	我带吗	c=1 d=3.80323e-10 t=7086
+wo dai zhe 	我带着	c=1 d=8.35697e-07 t=7086
+wo dan xin 	我担心	c=1 d=0.111359 t=7086
+wo de 	我的	c=12 d=1.3547 t=7086
+wo de dao 	我得到	c=1 d=0.0018363 t=7086
+wo dian ji 	我点击	c=1 d=6.0548e-10 t=7086
+wo dian le 	我点了	c=1 d=0.701174 t=7086
+wo dian nao 	我电脑	c=1 d=0.000323925 t=7086
+wo dou 	我都	c=1 d=1.45573e-06 t=7086
+wo fa xian 	我发现	c=4 d=0.000117009 t=7086
+wo fen bie 	我分别	c=1 d=0.000409735 t=7086
+wo gai yi xia 	我改一下	c=1 d=1.7646e-05 t=7086
+wo gei ni 	我给你	c=2 d=5.0468e-05 t=7086
+wo hai 	我还	c=1 d=1.25967e-10 t=7086
+wo he bing 	我合并	c=1 d=1.45975e-09 t=7086
+wo hui qu 	我回去	c=1 d=3.29727e-07 t=7086
+wo jiang 	我将	c=0 d=5.44943e-07 t=7086
+wo jiang ni 	我将你	c=1 d=5.47674e-06 t=7086
+wo jin wan 	我今晚	c=1 d=1.91685e-08 t=7086
+wo jiu 	我就	c=3 d=0.000469543 t=7086
+wo kan 	我看	c=2 d=2.8089e-05 t=7086
+wo ke yi 	我可以	c=1 d=6.59196e-10 t=7086
+wo li jie 	我理解	c=1 d=1.43777e-07 t=7086
+wo liu 	我留	c=0 d=0.000423234 t=7086
+wo liu zhe ba 	我留这把	c=1 d=0.00425356 t=7086
+wo ma 	我妈	c=1 d=9.00784e-07 t=7086
+wo mei kan dao 	我没看到	c=1 d=4.11005e-11 t=7086
+wo mei mei 	我妹妹	c=1 d=1.41979e-06 t=7086
+wo men 	我们	c=3 d=0.0319149 t=7086
+wo men di 	我门第	c=1 d=4.38459e-07 t=7086
+wo ming hou tian 	我明后天	c=1 d=2.55468e-05 t=7086
+wo ming tian 	我明天	c=1 d=3.27236e-06 t=7086
+wo mu qian 	我目前	c=1 d=1.43455e-10 t=7086
+wo qian duan 	我前端	c=2 d=0.292339 t=7086
+wo rang ni 	我让你	c=1 d=0.0544757 t=7086
+wo ru he 	我如何	c=1 d=5.21053e-08 t=7086
+wo ru he se zhi 	我如何色织	c=1 d=0.814648 t=7086
+wo shan chu 	我删除	c=1 d=0.00410726 t=7086
+wo sheng ji 	我升级	c=1 d=3.19928e-05 t=7086
+wo shi 	我是	c=3 d=0.00387349 t=7086
+wo shi bu shi 	我是不是	c=1 d=7.63899e-09 t=7086
+wo shi yong 	我是用	c=3 d=0.000225701 t=7086
+wo shuo 	我说	c=1 d=4.04886e-11 t=7086
+wo shuo de 	我说的	c=1 d=0.00147367 t=7086
+wo ting 	我听	c=1 d=4.57612e-10 t=7086
+wo wu fa 	我无法	c=1 d=7.35846e-10 t=7086
+wo xi fu 	我媳妇	c=1 d=8.23255e-07 t=7086
+wo xi tong 	我系统	c=1 d=7.4107e-05 t=7086
+wo xi wang 	我希望	c=4 d=0.0179331 t=7086
+wo xia zai 	我下载	c=1 d=2.77556e-10 t=7086
+wo xian ba 	我先把	c=1 d=0.000110321 t=7086
+wo xian ba wo 	我先把我	c=1 d=0.00108086 t=7086
+wo xian mu 	我羡慕	c=1 d=0.0434998 t=7086
+wo xiang 	我想	c=4 d=0.2982 t=7086
+wo yao 	我要	c=1 d=6.44256e-05 t=7086
+wo ye 	我也	c=2 d=0.56271 t=7086
+wo yi ge ren 	我一个人	c=2 d=1.83352e-06 t=7086
+wo you 	我有	c=0 d=1.7252e-05 t=7086
+wo you ke yi 	我有可以	c=1 d=0.000173384 t=7086
+wo zai 	我在	c=1 d=7.96997e-08 t=7086
+wo zhe bian 	我这边	c=6 d=0.756952 t=7086
+wo zhe ji tian 	我这几天	c=2 d=1.78706e-06 t=7086
+wo zhi qian 	我之前	c=1 d=4.66697e-06 t=7086
+wo zhou si 	我周四	c=2 d=3.92646e-06 t=7086
+wo zuo 	我做	c=1 d=0.594521 t=7086
+wu fa 	无法	c=6 d=1.01471e-06 t=7086
+wu fa jie jue 	无法解决	c=1 d=3.05902e-07 t=7086
+wu liao guan li 	物料管理	c=1 d=0.000253537 t=7086
+wu liu 	物流	c=4 d=0.962375 t=7086
+wu liu gong si 	物流公司	c=2 d=0.494429 t=7086
+wu liu ji hua 	物流计划	c=1 d=0.246597 t=7086
+wu shu ju 	无数据	c=1 d=0.810584 t=7086
+wu wen jian 	无文件	c=1 d=0.657046 t=7086
+wu xian 	无线	c=1 d=1.86051e-10 t=7086
+wu xu 	无须	c=1 d=0.00442715 t=7086
+wu yong 	无用	c=4 d=0.414036 t=7086
+xi fu 	媳妇	c=1 d=9.60459e-07 t=7086
+xi tong 	系统	c=6 d=1.46089 t=7086
+xi wang 	希望	c=2 d=0.00269928 t=7086
+xia 	下	c=19 d=0.666977 t=7086
+xia ban 	下班	c=3 d=0.121958 t=7086
+xia la 	下拉	c=1 d=1.01826e-07 t=7086
+xia lai 	下来	c=1 d=2.53667e-10 t=7086
+xia mian 	下面	c=3 d=1.58979e-05 t=7086
+xia yi ge 	下一个	c=1 d=0.00562801 t=7086
+xia zai 	下载	c=9 d=0.238 t=7086
+xia zuan 	下钻	c=1 d=1.86984e-10 t=7086
+xian 	先	c=15 d=0.573404 t=7086
+xian chi 	先吃	c=0 d=0.0071719 t=7086
+xian chi yao 	先吃药	c=1 d=0.0720785 t=7086
+xian hui jia 	先回家	c=1 d=2.09736e-08 t=7086
+xian jin 	现金	c=3 d=3.39952e-06 t=7086
+xian ka 	显卡	c=3 d=0.481863 t=7086
+xian shi 	显示	c=3 d=2.90324e-05 t=7086
+xian shi qi 	显示器	c=1 d=0.0146253 t=7086
+xian xiang 	现象	c=3 d=0.00168469 t=7086
+xian yong 	先用	c=1 d=7.87298e-11 t=7086
+xian zai 	现在	c=13 d=0.752015 t=7086
+xian zhi 	限制	c=3 d=5.50078e-08 t=7086
+xian zhu 	显著	c=2 d=1.12105e-06 t=7086
+xiang ba 	想把	c=1 d=2.76077e-06 t=7086
+xiang mu 	项目	c=1 d=0.0437178 t=7086
+xiang mu zu 	项目组	c=1 d=0.0103063 t=7086
+xiang qing 	详情	c=8 d=1.43595 t=7086
+xiang tong 	相同	c=2 d=0.465841 t=7086
+xiang xiang 	想象	c=3 d=0.00012421 t=7086
+xiang yao 	想要	c=1 d=6.44585e-11 t=7086
+xiang yong 	享用	c=1 d=7.83371e-11 t=7086
+xiang zhe 	想着	c=0 d=0.000263203 t=7086
+xiang zhe yang zi 	想着样子	c=1 d=0.00264522 t=7086
+xiao guo 	效果	c=4 d=0.289384 t=7086
+xiao hao 	消耗	c=2 d=5.1834e-09 t=7086
+xiao shi 	小时	c=1 d=1.0365e-10 t=7086
+xiao shu dian 	小数点	c=2 d=0.000185633 t=7086
+xiao xi 	消息	c=3 d=7.37581e-07 t=7086
+xiao yan 	消炎	c=1 d=1.24714e-10 t=7086
+xie 	些	c=2 d=0.860708 t=7086
+xie 	写	c=5 d=1.78551 t=7086
+xie 	谢	c=3 d=0.0577859 t=7086
+xie dao 	写到	c=1 d=7.13856e-06 t=7086
+xie fa 	写法	c=1 d=0.421052 t=7086
+xie hao 	写好	c=1 d=4.04817e-09 t=7086
+xie shi 	写实	c=1 d=1.28158e-07 t=7086
+xie si 	写死	c=1 d=1.28801e-07 t=7086
+xie yi 	协议	c=1 d=4.66856e-10 t=7086
+xie yi ge 	写一个	c=2 d=0.822834 t=7086
+xin 	心	c=2 d=0.000666076 t=7086
+xin 	新	c=9 d=5.16529 t=7086
+xin 	辛	c=1 d=1.56965e-10 t=7086
+xin jian 	新建	c=5 d=0.272532 t=7086
+xin kuang 	锌矿	c=1 d=0.00126207 t=7086
+xin neng 	新能	c=1 d=0.631284 t=7086
+xin xi 	信息	c=2 d=1.87888 t=7086
+xin yong ka 	信用卡	c=2 d=0.000101345 t=7086
+xin zeng 	新增	c=12 d=0.820289 t=7086
+xin zi duan 	新字段	c=1 d=5.68844e-11 t=7086
+xin zong 	辛总	c=7 d=0.207008 t=7086
+xing jia bi 	性价比	c=1 d=4.77439e-09 t=7086
+xing neng 	性能	c=13 d=0.888622 t=7086
+xing shi 	形式	c=4 d=1.71406e-09 t=7086
+xiu fu 	修复	c=4 d=0.874679 t=7086
+xiu gai 	修改	c=25 d=3.80993 t=7086
+xiu gai hou 	修改后	c=1 d=2.24325e-05 t=7086
+xiu xi 	休息	c=1 d=8.02792e-05 t=7086
+xu 	许	c=2 d=8.33581e-06 t=7086
+xu feng 	旭峰	c=8 d=1.60906 t=7086
+xu gong 	徐公	c=1 d=2.36517e-10 t=7086
+xu qiu 	需求	c=4 d=0.177352 t=7086
+xu yao 	需要	c=28 d=0.608272 t=7086
+xuan ran 	渲染	c=2 d=2.11503e-09 t=7086
+xuan yong 	选用	c=1 d=7.56041e-05 t=7086
+xuan ze 	选择	c=3 d=0.0217096 t=7086
+xue xi 	学习	c=1 d=0.00663763 t=7086
+xun 	寻	c=0 d=1.24973e-06 t=7086
+xun shuai a 	寻帅啊	c=1 d=1.25599e-05 t=7086
+ya 	呀	c=5 d=0.000162011 t=7086
+yan 	咽	c=1 d=9.81033e-11 t=7086
+yan chi 	延迟	c=1 d=7.45039e-09 t=7086
+yan fa 	研发	c=10 d=0.156588 t=7086
+yan jing 	眼睛	c=2 d=1.61166e-10 t=7086
+yan se 	颜色	c=1 d=3.89885e-08 t=7086
+yan shi 	演示	c=1 d=5.84555e-08 t=7086
+yan zheng 	验证	c=2 d=0.683861 t=7086
+yan zhong 	严重	c=3 d=0.178825 t=7086
+yang 	养	c=1 d=1.18631e-10 t=7086
+yang 	痒	c=1 d=1.19226e-10 t=7086
+yang le 	痒了	c=1 d=4.49711e-11 t=7086
+yang le 	阳了	c=1 d=0.0792617 t=7086
+yang shi 	样式	c=1 d=2.95381e-07 t=7086
+yang zi 	样子	c=1 d=0.10306 t=7086
+yao 	药	c=2 d=0.226112 t=7086
+yao 	要	c=5 d=0.0461242 t=7086
+yao bu 	要不	c=3 d=8.93498e-05 t=7086
+yao qiu 	要求	c=2 d=9.94759e-09 t=7086
+yao shi 	要是	c=2 d=1.50457e-10 t=7086
+yao xiao 	药效	c=1 d=0.0742736 t=7086
+yao zhi 	要职	c=1 d=0.0122773 t=7086
+ye 	也	c=10 d=0.393151 t=7086
+ye hao 	也好	c=1 d=6.44475e-09 t=7086
+ye hui 	也会	c=1 d=0.00158844 t=7086
+ye ji 	业绩	c=1 d=0.0134335 t=7086
+ye jiu 	也就	c=1 d=0.0327124 t=7086
+ye mian 	页面	c=1 d=1.47442e-09 t=7086
+ye shi 	也是	c=7 d=0.208826 t=7086
+ye wu 	业务	c=18 d=0.603505 t=7086
+yi ba 	一把	c=1 d=1.71718e-08 t=7086
+yi bu 	一部	c=1 d=5.83046e-07 t=7086
+yi bu 	异步	c=1 d=5.94824e-07 t=7086
+yi cang 	义仓	c=3 d=0.659253 t=7086
+yi chang 	异常	c=6 d=1.52359 t=7086
+yi chang yun dan 	异常运单	c=1 d=0.319819 t=7086
+yi chu li 	以处理	c=2 d=0.580025 t=7086
+yi chuang jian 	已创建	c=2 d=0.937676 t=7086
+yi ci 	一次	c=2 d=2.06788e-10 t=7086
+yi ci 	以此	c=1 d=0.000930303 t=7086
+yi ci xing 	一次性	c=2 d=2.1888e-07 t=7086
+yi dian 	一点	c=2 d=9.78408e-05 t=7086
+yi ding 	一定	c=3 d=0.00166169 t=7086
+yi ding yao 	一定要	c=2 d=7.94804e-05 t=7086
+yi dong 	移动	c=1 d=5.85869e-05 t=7086
+yi ge 	一个	c=14 d=1.71756 t=7086
+yi ge yi ge 	一个一个	c=1 d=2.12393e-09 t=7086
+yi hang 	一行	c=1 d=2.12675e-09 t=7086
+yi hang shi 	一行诗	c=0 d=2.33559e-10 t=7086
+yi hang shi yi hang 	一行诗一行	c=1 d=2.3473e-09 t=7086
+yi he 	已和	c=0 d=0.00274607 t=7086
+yi he bing 	已和并	c=1 d=0.0275983 t=7086
+yi hui 	一会	c=1 d=0.0902725 t=7086
+yi ji 	以及	c=2 d=0.740819 t=7086
+yi jin 	一斤	c=1 d=0.384813 t=7086
+yi jing 	已经	c=13 d=1.97456 t=7086
+yi kai shi 	一开始	c=1 d=4.99414e-09 t=7086
+yi lie 	一列	c=3 d=6.86338e-06 t=7086
+yi miao 	疫苗	c=1 d=0.0833256 t=7086
+yi qi 	一起	c=1 d=0.0682212 t=7086
+yi qie 	一切	c=1 d=0.00644146 t=7086
+yi qing 	疫情	c=1 d=0.0997588 t=7086
+yi qing hou 	疫情后	c=1 d=0.100259 t=7086
+yi ran 	依然	c=2 d=5.44431e-07 t=7086
+yi rong 	毅蓉	c=1 d=0.690734 t=7086
+yi shang xian 	已上线	c=1 d=0.0290133 t=7086
+yi sheng 	医生	c=1 d=0.0765355 t=7086
+yi shi 	一是	c=1 d=7.08461e-05 t=7086
+yi si 	意思	c=2 d=0.13406 t=7086
+yi tian 	一天	c=1 d=3.18332e-05 t=7086
+yi wen 	疑问	c=1 d=0.00109172 t=7086
+yi xia 	一下	c=10 d=0.308327 t=7086
+yi xie 	一些	c=7 d=0.789828 t=7086
+yi yang 	一样	c=10 d=0.0034978 t=7086
+yi ye 	一夜	c=1 d=0.0502874 t=7086
+yi zhi 	一直	c=1 d=0.637628 t=7086
+yi zhi 	一致	c=1 d=0.640824 t=7086
+yi zu 	一组	c=1 d=1.97046e-09 t=7086
+yin hang 	银行	c=3 d=0.0358067 t=7086
+yin wei 	因为	c=7 d=0.314801 t=7086
+ying gai 	应该	c=5 d=0.462715 t=7086
+ying xiao guan li 	营销管理	c=0 d=0.0232236 t=7086
+ying xiao guan li tan kuang 	营销管理弹框	c=1 d=0.233401 t=7086
+ying yong 	应用	c=1 d=0.0116203 t=7086
+yong 	用	c=9 d=0.00510022 t=7086
+yong de 	用的	c=1 d=7.48901e-11 t=7086
+yong duan 	用段	c=1 d=0.00514361 t=7086
+yong hu 	用户	c=3 d=0.97531 t=7086
+yong lai 	用来	c=1 d=1.36459e-10 t=7086
+yong shi 	勇士	c=1 d=1.80086e-09 t=7086
+you 	又	c=11 d=0.304018 t=7086
+you 	有	c=29 d=1.31001 t=7086
+you bian 	右边	c=2 d=0.299692 t=7086
+you ce 	右侧	c=1 d=0.425283 t=7086
+you che 	有车	c=1 d=0.423162 t=7086
+you dian 	有点	c=6 d=0.0319445 t=7086
+you dian duo 	有点多	c=1 d=0.506617 t=7086
+you fu 	优抚	c=1 d=0.369723 t=7086
+you guan 	有关	c=1 d=0.00195963 t=7086
+you hua 	优化	c=12 d=2.65624 t=7086
+you ji zhong 	有几种	c=1 d=0.000188766 t=7086
+you jian yi 	有建议	c=1 d=0.00546167 t=7086
+you kong 	有空	c=3 d=0.026277 t=7086
+you le 	有了	c=1 d=3.74597e-08 t=7086
+you li yu 	有利于	c=1 d=0.650509 t=7086
+you mei you 	有没有	c=6 d=0.54091 t=7086
+you na xie 	有哪些	c=1 d=5.17115e-07 t=7086
+you pin 	优品	c=2 d=9.61851e-05 t=7086
+you pin 	油品	c=1 d=5.5175e-05 t=7086
+you qi 	尤其	c=1 d=2.39431e-07 t=7086
+you qi 	油气	c=3 d=0.0038759 t=7086
+you qi shi 	尤其是	c=1 d=0.67368 t=7086
+you shi jian 	有时间	c=1 d=1.75157e-06 t=7086
+you wen ti 	有问题	c=6 d=0.677057 t=7086
+you wu 	有无	c=1 d=0.228778 t=7086
+you wu 	有误	c=1 d=0.229926 t=7086
+you yi dian 	有一点	c=1 d=5.94723e-05 t=7086
+you yi ge 	有一个	c=1 d=9.35444e-10 t=7086
+you yi xie 	有一些	c=1 d=0.527292 t=7086
+you zhan 	油站	c=12 d=0.00729041 t=7086
+yu gu 	预估	c=2 d=1.03198e-08 t=7086
+yu jie 	玉洁	c=1 d=0.95123 t=7086
+yu jing 	预警	c=2 d=0.0002639 t=7086
+yu yan 	语言	c=1 d=0.0448245 t=7086
+yuan 	愿	c=1 d=1.65383e-07 t=7086
+yuan 	源	c=1 d=1.66212e-07 t=7086
+yuan huan 	圆环	c=2 d=0.687289 t=7086
+yuan lai 	原来	c=3 d=0.000452556 t=7086
+yuan shi 	原始	c=4 d=0.000485565 t=7086
+yuan wen jian 	源文件	c=1 d=0.117655 t=7086
+yuan you 	原有	c=2 d=1.25977e-06 t=7086
+yuan you 	缘由	c=1 d=5.21141e-10 t=7086
+yue bing 	阅兵	c=1 d=0.71177 t=7086
+yun dan 	运单	c=4 d=1.19739 t=7086
+yun shu zhong xin 	运输中心	c=1 d=0.00334597 t=7086
+yun wei 	运维	c=1 d=0.0213864 t=7086
+yun wei 	韵味	c=1 d=0.0212797 t=7086
+yun xing 	运行	c=1 d=0.00782838 t=7086
+yun ying 	运营	c=8 d=0.0410452 t=7086
+za ban 	咋办	c=1 d=0.000186693 t=7086
+zai 	在	c=29 d=1.338 t=7086
+zai deng 	在等	c=1 d=0.109701 t=7086
+zai guo lai 	再过来	c=1 d=0.110803 t=7086
+zai na li 	在那里	c=0 d=7.64029e-12 t=7086
+zai wo 	在我	c=1 d=1.25296e-06 t=7086
+zai yi 	在意	c=0 d=2.14491e-08 t=7086
+zai yi ci xing 	在意磁性	c=1 d=2.15566e-07 t=7086
+zai yi hang 	在一行	c=1 d=8.50667e-10 t=7086
+zai zhi 	在职	c=1 d=0.0119742 t=7086
+zan men 	咱们	c=3 d=0.0261217 t=7086
+zan ting 	暂停	c=2 d=2.912e-08 t=7086
+zan wu 	暂无	c=12 d=2.81122 t=7086
+zao 	早	c=3 d=0.000302276 t=7086
+zao dian 	早点	c=1 d=7.98788e-05 t=7086
+ze 	则	c=3 d=1.39304 t=7086
+ze en 	则嗯	c=1 d=3.91772e-06 t=7086
+ze en en 	则嗯嗯	c=1 d=3.66294e-09 t=7086
+ze ke 	则可	c=0 d=1.67421e-05 t=7086
+ze ke za ban 	则可咋办	c=1 d=0.00016826 t=7086
+zeng jia 	增加	c=1 d=0.00719046 t=7086
+zeng liang 	增量	c=1 d=0.0072265 t=7086
+zeng qiang 	增强	c=3 d=1.02929 t=7086
+zhai zi 	摘自	c=1 d=0.0119145 t=7086
+zhan dian 	站点	c=13 d=3.78169 t=7086
+zhan kai 	展开	c=1 d=0.00491728 t=7086
+zhan shi 	展示	c=16 d=1.06774 t=7086
+zhan tai 	展台	c=2 d=0.952175 t=7086
+zhang 	张	c=4 d=0.163592 t=7086
+zhang 	长	c=1 d=7.05168e-09 t=7086
+zhang cai 	张彩	c=3 d=1.61522 t=7086
+zhang hao 	账号	c=1 d=8.9167e-05 t=7086
+zhang jia 	涨价	c=1 d=1.91222e-09 t=7086
+zhang le 	长了	c=1 d=3.79406e-11 t=7086
+zhang zhao 	张昭	c=0 d=1.70038e-11 t=7086
+zhang zhao ting 	张昭厅	c=3 d=0.0220377 t=7086
+zhao 	找	c=2 d=2.30051e-07 t=7086
+zhao 	照	c=3 d=0.975259 t=7086
+zhao dao 	找到	c=1 d=0.00323088 t=7086
+zhao ji 	着急	c=1 d=1.77375e-07 t=7086
+zhao liang 	照亮	c=1 d=0.501576 t=7086
+zhao ni 	找你	c=1 d=3.19982e-07 t=7086
+zhao yi xia 	找一下	c=1 d=0.0219278 t=7086
+zhao zhou 	赵州	c=1 d=2.60044e-08 t=7086
+zhe ba 	这把	c=0 d=0.000423234 t=7086
+zhe bei zi 	这辈子	c=1 d=3.64529e-11 t=7086
+zhe bian 	这边	c=1 d=5.48512e-09 t=7086
+zhe bian bu hui 	这边不会	c=1 d=2.07685e-10 t=7086
+zhe bo 	这波	c=1 d=3.75631e-11 t=7086
+zhe ci 	这次	c=1 d=0.00143012 t=7086
+zhe di fang 	这地方	c=1 d=2.63337e-09 t=7086
+zhe dian 	这点	c=1 d=0.0298969 t=7086
+zhe er 	这儿	c=1 d=1.11128e-06 t=7086
+zhe ge 	这个	c=105 d=4.27298 t=7086
+zhe ji ge 	这几个	c=1 d=3.05164e-08 t=7086
+zhe ji tian 	这几天	c=1 d=4.75058e-09 t=7086
+zhe jiu shi 	这就是	c=1 d=2.87442e-10 t=7086
+zhe ke 	这可	c=1 d=0.000169103 t=7086
+zhe li 	这里	c=9 d=0.666977 t=7086
+zhe li dou 	这里都	c=1 d=3.33098e-09 t=7086
+zhe li mian 	这里面	c=4 d=0.00560587 t=7086
+zhe liang 	这两	c=1 d=2.94668e-08 t=7086
+zhe liang 	这辆	c=3 d=0.000699042 t=7086
+zhe liang en 	这辆嗯	c=1 d=1.13392e-08 t=7086
+zhe liang ge 	这两个	c=4 d=0.116734 t=7086
+zhe liang zhong 	这两种	c=1 d=2.83114e-08 t=7086
+zhe me 	这么	c=4 d=0.0820891 t=7086
+zhe me duo 	这么多	c=1 d=0.0294518 t=7086
+zhe shi 	这是	c=4 d=0.00260701 t=7086
+zhe shi wo 	这是我	c=1 d=0.0590129 t=7086
+zhe xie 	这些	c=3 d=0.00503894 t=7086
+zhe yang zi 	这样子	c=15 d=0.1399 t=7086
+zhe yi 	这一	c=0 d=1.56911e-07 t=7086
+zhe yi liang tian 	这一两天	c=1 d=1.35381e-05 t=7086
+zhe yi lie 	这一列	c=1 d=1.57698e-06 t=7086
+zhe ying gai 	这应该	c=1 d=0.00255424 t=7086
+zhe zhong 	这种	c=9 d=0.151922 t=7086
+zhen de 	真的	c=3 d=2.83895e-07 t=7086
+zhen dui 	针对	c=1 d=2.19958e-09 t=7086
+zheng chang 	正常	c=3 d=0.909373 t=7086
+zheng qiang 	争抢	c=1 d=0.431711 t=7086
+zheng que 	正确	c=1 d=0.137381 t=7086
+zheng shi 	正式	c=3 d=1.52688 t=7086
+zheng shi ban 	正式版	c=1 d=0.398519 t=7086
+zheng shi ji hua 	正式计划	c=2 d=0.539128 t=7086
+zheng shu 	整数	c=1 d=9.09683e-05 t=7086
+zhi 	值	c=5 d=0.71177 t=7086
+zhi 	只	c=2 d=2.63731e-06 t=7086
+zhi chi 	支持	c=6 d=5.06838e-06 t=7086
+zhi chi ruan mu 	支持软木	c=1 d=1.39913e-10 t=7086
+zhi dao 	知道	c=1 d=0.0488012 t=7086
+zhi de 	值得	c=1 d=0.000198445 t=7086
+zhi ding ren yuan 	指定人员	c=1 d=0.000142667 t=7086
+zhi gou 	智购	c=1 d=0.778801 t=7086
+zhi hao 	只好	c=1 d=3.51991e-11 t=7086
+zhi hou 	之后	c=14 d=0.272131 t=7086
+zhi hu 	知乎	c=1 d=5.12144e-11 t=7086
+zhi jie 	直接	c=9 d=0.568572 t=7086
+zhi lian 	直连	c=2 d=0.909373 t=7086
+zhi liang 	质量	c=2 d=0.00694315 t=7086
+zhi liao 	治疗	c=1 d=3.96869e-11 t=7086
+zhi neng 	智能	c=2 d=0.946485 t=7086
+zhi qian 	之前	c=10 d=0.794533 t=7086
+zhi shi yong 	只是用	c=1 d=0.00128757 t=7086
+zhi xing 	执行	c=3 d=0.0368843 t=7086
+zhi xu yao 	只需要	c=1 d=0.000330468 t=7086
+zhi yao 	只要	c=2 d=0.0144275 t=7086
+zhi you 	只有	c=4 d=1.17823 t=7086
+zhi yun xu 	只允许	c=1 d=2.81702e-08 t=7086
+zhong 	中	c=38 d=5.53739 t=7086
+zhong bang 	重磅	c=2 d=0.934822 t=7086
+zhong lei 	种类	c=2 d=3.13102e-07 t=7086
+zhong shi 	重视	c=1 d=0.00960953 t=7086
+zhong wen 	中文	c=2 d=1.39967e-06 t=7086
+zhong wu 	中午	c=3 d=4.47902e-06 t=7086
+zhong xin 	中心	c=4 d=0.000659578 t=7086
+zhong yao 	重要	c=1 d=0.726149 t=7086
+zhong yu 	终于	c=1 d=4.02798e-09 t=7086
+zhou hui 	周会	c=1 d=0.00571306 t=7086
+zhou ri 	周日	c=1 d=1.01057e-06 t=7086
+zhou si 	周四	c=2 d=8.31116e-07 t=7086
+zhu dong 	主动	c=1 d=0.000925663 t=7086
+zhu jian 	逐渐	c=2 d=1.25599 t=7086
+zhu shi 	注释	c=1 d=0.465334 t=7086
+zhu yao 	主要	c=1 d=3.16852e-09 t=7086
+zhu yao shi 	主要是	c=1 d=3.51812e-05 t=7086
+zhu yi 	注意	c=1 d=1.47036e-06 t=7086
+zhuan guo qu 	转过去	c=1 d=3.69912e-07 t=7086
+zhuan ru 	转入	c=1 d=8.96139e-05 t=7086
+zhuan ye hua 	专业化	c=1 d=0.00882647 t=7086
+zhuan yuan 	专员	c=1 d=0.0214936 t=7086
+zhuang che 	装车	c=1 d=0.00677172 t=7086
+zhuang huo 	装货	c=0 d=0.0240509 t=7086
+zhuang huo di 	装货地	c=2 d=0.487081 t=7086
+zhuang tai 	状态	c=5 d=0.43852 t=7086
+zhun bei 	准备	c=4 d=0.918512 t=7086
+zhun que 	准确	c=1 d=5.14624e-09 t=7086
+zi ce 	自测	c=1 d=0.771052 t=7086
+zi dai 	自带	c=3 d=0.941765 t=7086
+zi dan 	子弹	c=0 d=0.00372538 t=7086
+zi dan fei yi hui 	子弹飞一会	c=1 d=0.0374406 t=7086
+zi dian 	字典	c=2 d=0.453845 t=7086
+zi dong 	自动	c=2 d=0.0211407 t=7086
+zi duan 	字段	c=25 d=2.83658 t=7086
+zi duan ming 	字段名	c=1 d=2.93149e-06 t=7086
+zi fu 	字符	c=0 d=0.0499074 t=7086
+zi fu cheng 	字符成	c=1 d=1.65012e-10 t=7086
+zi fu chuan 	字符串	c=3 d=0.504091 t=7086
+zi fu cuan 	字符窜	c=1 d=0.501576 t=7086
+zi hao 	自豪	c=1 d=3.53756e-11 t=7086
+zi ti 	字体	c=10 d=2.83204 t=7086
+zi ti da xiao 	字体大小	c=1 d=0.831104 t=7086
+zi ying 	自营	c=2 d=0.778801 t=7086
+zong 	总	c=1 d=1.58542e-10 t=7086
+zong shi 	总是	c=4 d=3.77242e-05 t=7086
+zou 	走	c=5 d=0.132153 t=7086
+zou le 	走了	c=1 d=0.0207543 t=7086
+zou shi 	走势	c=1 d=3.13646e-07 t=7086
+zu jian 	组件	c=3 d=1.88402 t=7086
+zu jian 	组建	c=3 d=0.588605 t=7086
+zu jian ku 	组件库	c=1 d=0.0471227 t=7086
+zu zhang 	组长	c=1 d=0.00460782 t=7086
+zui da 	最大	c=1 d=6.84094e-05 t=7086
+zui gao 	最高	c=1 d=4.79832e-09 t=7086
+zui hao 	最好	c=5 d=0.780234 t=7086
+zui hao yong 	最好用	c=1 d=7.67598e-07 t=7086
+zui hou 	最后	c=1 d=3.16745e-05 t=7086
+zui jin 	最近	c=1 d=0.00305798 t=7086
+zuo 	做	c=5 d=0.283654 t=7086
+zuo cheng 	做成	c=5 d=0.634448 t=7086
+zuo de 	做的	c=1 d=0.600496 t=7086
+zuo hao 	做好	c=2 d=0.0143137 t=7086
+zuo le 	做了	c=1 d=1.48181e-09 t=7086
+zuo yi 	座椅	c=1 d=9.23588e-07 t=7086
+zuo yong 	作用	c=4 d=0.0281764 t=7086

@@ -55,19 +55,33 @@
                   ("\\.vue\\'" . web-mode)
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
-  (setq jit-lock-defer-time 0.4)   ; 语法高亮延迟（秒）
-  (setq jit-lock-stealth-time 1)    ; 空闲时再完全高亮
+
+  ;; ~/.emacs.d/lisp/init-vue.el 或直接放在你的 eglot 配置文件中
+  (setq jit-lock-defer-time 0.2)   ; 语法高亮延迟（秒）
+  ;; (setq jit-lock-stealth-time 1)    ; 空闲时再完全高亮
   (setq jit-lock-chunk-size 1000)          ; 减少每次高亮的块大小
   ;; 减小输入去抖延迟（默认0.1秒）
-  (setq echo-keystrokes 0.04)
+  (setq echo-keystrokes 0.05)
 
   ;; 针对现代高性能设备优化
-  ;; (setq idle-update-delay 0.4)
+  (setq idle-update-delay 0.2)
   ;; 禁用不必要的 UI 花哨功能
   ;; (setq use-dialog-box nil)               ; 禁用对话框
   ;; (setq use-file-dialog nil)              ; 禁用文件对话框
-  ;; (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
+  (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
   )
+
+                                        ; 2. 配置 Eglot 语言服务器
+(with-eval-after-load 'eglot
+  ;; HTML 语言服务器（支持.html文件）
+  (add-to-list 'eglot-server-programs '(html-mode . ("html-language-server" "--stdio")))
+  ;; CSS 语言服务器（支持.css/.less/.scss文件）
+  (add-to-list 'eglot-server-programs '(css-mode . ("css-language-server" "--stdio")))
+  ;; JavaScript 语言服务器（支持.js/.jsx文件）
+  (add-to-list 'eglot-server-programs '(javascript-mode . ("vscode-js-languageserver" "--stdio"))))
+
+
+
 
 
 (with-eval-after-load 'web-mode
@@ -130,6 +144,8 @@
   (setq native-comp-async-report-warnings-errors nil)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
+  (global-corfu-mode -1)
+  (ace-pinyin-global-mode -1)
   (scroll-bar-mode -1)
   (setq ns-command-modifier 'meta)
   (setq ns-option-modifier 'super)
@@ -233,7 +249,7 @@
   (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
   :custom
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
-  (aidermacs-default-model "deepseek/deepseek-chat")
+  (aidermacs-default-model "deepseek/deepseek-coder")
 
   ;; :custom
   ;; ;; default to nil
@@ -426,4 +442,4 @@
 
 (use-package ag
   :ensure t
-  )
+)
