@@ -323,8 +323,8 @@ speller:
     - derive/en$/eng/
     - derive/in$/ing/
     - derive/ing$/in/
-    - derive/ian$/iang/
-    - derive/iang$/ian/
+    # - derive/ian$/iang/
+    # - derive/iang$/ian/
 
     - xform/uo$/Ⓞ/
     - xform/ie$/Ⓟ/

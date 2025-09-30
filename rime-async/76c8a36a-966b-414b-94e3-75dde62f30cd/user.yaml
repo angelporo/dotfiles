@@ -1,5 +1,6 @@
 var:
-  last_build_time: 1757991937
+  last_build_time: 1759194342
   option:
-    ascii_punct: true
+    ascii_punct: false
+    full_shape: false
     search_single_char: false
