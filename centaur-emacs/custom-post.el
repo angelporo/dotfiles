@@ -51,20 +51,21 @@
                   ("\\.js\\'" . javascript-mode)
                   ("\\.tsx\\'" . tsx-ts-mode)
                   ("\\.less\\'" . css-mode)
-                  ("\\.sess\\'" . css-mode)
+                  ("\\.css\\'" . css-mode)
+                  ("\\.scss\\'" . css-mode)
                   ("\\.vue\\'" . web-mode)
                   ("\\.ya?ml\\'" . yaml-ts-mode)))
     (add-to-list 'auto-mode-alist mode))
 
   ;; ~/.emacs.d/lisp/init-vue.el 或直接放在你的 eglot 配置文件中
-  (setq jit-lock-defer-time 0.2)   ; 语法高亮延迟（秒）
-  ;; (setq jit-lock-stealth-time 1)    ; 空闲时再完全高亮
-  (setq jit-lock-chunk-size 1000)          ; 减少每次高亮的块大小
-  ;; 减小输入去抖延迟（默认0.1秒）
-  (setq echo-keystrokes 0.05)
+  ;; (setq jit-lock-defer-time 0.2)   ; 语法高亮延迟（秒）
+  ;; ;; (setq jit-lock-stealth-time 1)    ; 空闲时再完全高亮
+  ;; (setq jit-lock-chunk-size 1000)          ; 减少每次高亮的块大小
+  ;; ;; 减小输入去抖延迟（默认0.1秒）
+  ;; (setq echo-keystrokes 0.05)
 
-  ;; 针对现代高性能设备优化
-  (setq idle-update-delay 0.2)
+  ;; ;; 针对现代高性能设备优化
+  ;; (setq idle-update-delay 0.2)
   ;; 禁用不必要的 UI 花哨功能
   ;; (setq use-dialog-box nil)               ; 禁用对话框
   ;; (setq use-file-dialog nil)              ; 禁用文件对话框
@@ -145,6 +146,7 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (global-corfu-mode -1)
+  (global-prettier-mode 1)
   (ace-pinyin-global-mode -1)
   (scroll-bar-mode -1)
   (setq ns-command-modifier 'meta)

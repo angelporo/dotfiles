@@ -22,7 +22,6 @@
                             (rainbow-delimiters-mode -1)
                             (symbol-overlay-mode -1)
                             (prettify-symbols-mode -1)
-
                             (region-occurrences-highlighter-mode -1)
                             ))
 
@@ -34,7 +33,7 @@
 (setq centaur-socks-proxy "127.0.0.1:1087")    ; SOCKS proxy
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
+(setq centaur-package-archives 'bfsu)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
 (setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
@@ -143,13 +142,10 @@
  '(custom-safe-themes
    '("0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
      "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" default))
- '(echo-keystrokes 0.04)
- '(idle-update-delay 0.5)
  '(ignored-local-variable-values
    '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
      (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
- '(jit-lock-defer-time 0.05)
- '(jit-lock-stealth-time 1))
+ )
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
