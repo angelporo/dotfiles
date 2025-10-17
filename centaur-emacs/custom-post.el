@@ -441,6 +441,10 @@
                                 "--ignore" "*node_modules*"
                                 ))
 
+(use-package emmet-mode
+  :ensure t
+)
+
 
 (use-package ag
   :ensure t

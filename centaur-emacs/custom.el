@@ -31,10 +31,10 @@
 ;; (setq centaur-mail-address "user@email.com")   ; Email address
 (setq centaur-proxy "127.0.0.1:1087")          ; HTTP/HTTPS proxy
 (setq centaur-socks-proxy "127.0.0.1:1087")    ; SOCKS proxy
-(setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
+(setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
 (setq centaur-package-archives 'bfsu)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
-(setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
@@ -64,7 +64,7 @@
              when (font-available-p font)
              return (set-face-attribute 'default nil
                                         :family font
-                                        :height (cond (sys/macp 154)
+                                        :height (cond (sys/macp 158)
                                                       (sys/win32p 130)
                                                       (t 100))))
 
@@ -120,8 +120,8 @@
 ;; (setq package-check-signature nil)
 
 ;; Enable proxy
-(enable-http-proxy)
-(enable-socks-proxy)
+;; (enable-http-proxy)
+;; (enable-socks-proxy)
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
