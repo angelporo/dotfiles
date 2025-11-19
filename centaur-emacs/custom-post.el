@@ -82,9 +82,6 @@
   (add-to-list 'eglot-server-programs '(javascript-mode . ("vscode-js-languageserver" "--stdio"))))
 
 
-
-
-
 (with-eval-after-load 'web-mode
 
   ;; ----------------------------------------------------
@@ -146,9 +143,15 @@
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (global-corfu-mode -1)
-  (global-prettier-mode 1)
   (ace-pinyin-global-mode -1)
   (scroll-bar-mode -1)
+
+  (global-auto-revert-mode 1)
+  (setq auto-revert-interval 5)
+
+  ;; 静默刷新（不显示提示）
+  (setq auto-revert-verbose nil)
+
   (setq ns-command-modifier 'meta)
   (setq ns-option-modifier 'super)
 
@@ -172,6 +175,15 @@
                [C-double-mouse-1] [C-double-mouse-2] [C-double-mouse-3]
                [C-triple-mouse-1] [C-triple-mouse-2] [C-triple-mouse-3]))
   (global-unset-key key))
+
+
+(use-package prettier
+   :ensure t
+  :defer t  ; Defer loading until first use
+  :hook ((js-mode ts-mode vue-mode json-mode css-mode tsx-ts-mode) . prettier-mode)
+  :config
+  ;; 使用异步模式
+  (setq prettier-mode-sync-format nil))
 
 
 ;; 智能缩放解决方案
@@ -242,7 +254,9 @@
 
 
 (use-package aidermacs
+  :ensure t
   :defer t  ; Defer loading until first use
+  ;; :load-path "~/elisp/aidermacs"
   :commands (aidermacs-transient-menu)
   :bind (("C-c a" . aidermacs-transient-menu))
   :init
@@ -251,15 +265,11 @@
   (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
   :custom
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
-  (aidermacs-default-model "deepseek/deepseek-coder")
-
-  ;; :custom
-  ;; ;; default to nil
-  ;; (aidermacs-default-model "ollama_chat/deepseek-coder")
-  )
+  (aidermacs-default-model "deepseek/deepseek-chat"))
 
 (use-package lsp-bridge
   :ensure nil
+  :defer t  ; Defer loading until first use
   :load-path "~/elisp/lsp-bridge"
   :hook (prog-mode . lsp-bridge-mode)
   ;; :init
@@ -285,10 +295,10 @@
    )
   :config
   ;; (setq lsp-bridge-python-command "~/.pyenv/versions/3.8.18/bin/python3")
-  ;; (setq acm-enable-tabnine nil)
-  ;; (setq acm-enable-codeium nil)
+  (setq acm-enable-tabnine nil)
+  (setq acm-enable-codeium nil)
   (setq acm-enable-yas nil)
-  ;; (setq acm-enable-copilot nil)
+  (setq acm-enable-copilot nil)
   (setq acm-enable-tempel nil)
   (setq lsp-bridge-auto-format-code-idle nil)
   (setq lsp-bridge-enable-hover-diagnostic t)
@@ -313,6 +323,8 @@
   )
 
 (use-package rime
+  :ensure t
+  :defer t  ; Defer loading until first use
   :ensure-system-package
   ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
@@ -337,12 +349,9 @@
    ;; 中英文标点切换
    ("C-." . 'rime-send-keybinding)
 
-   ;; 菜单
-   ;; ("C-`" . 'rime-send-keybinding)
-
-
-   ;; 菜单
+   ;; F4 菜单 - 调出 Rime 输入方案选单
    ("<f4>" . 'rime-send-keybinding)
+
 
    ;; 全半角切换
    ;; ("C-," . 'rime-send-keybinding)
@@ -442,10 +451,13 @@
                                 ))
 
 (use-package emmet-mode
-  :ensure t
+   :ensure t
+  :defer t  ; Defer loading until first use
+  :hook ((js-mode ts-mode web-mode json-mode  tsx-ts-mode) . emmet-mode)
 )
 
 
 (use-package ag
   :ensure t
+  :defer t  ; Defer loading until first use
 )

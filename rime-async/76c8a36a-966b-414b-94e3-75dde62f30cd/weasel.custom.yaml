@@ -1,3 +1,8 @@
+app_options:
+  org.gnu.Emacs:
+    ascii_punct: true
+    no_inline: true  # 提升在Emacs中的响应速度
+
 patch:
   style:
     # color_scheme: ms_sogou

@@ -8,8 +8,10 @@
                             (setq scroll-step 0)
                             (setq scroll-conservatively 0)
                             (indent-bars-mode -1)
+                            (global-display-line-numbers-mode -1)
                             (global-hl-line-mode  -1)
                             (global-subword-mode -1)
+                            (symbol-overlay-mode -1)
                             (global-hungry-delete-mode -1)
                             (flyspell-mode -1)
                             (desktop-save-mode -1)
@@ -20,11 +22,17 @@
                             (persistent-scratch-mode -1)
                             (persistent-scratch-autosave-mode -1)
                             (rainbow-delimiters-mode -1)
-                            (symbol-overlay-mode -1)
                             (prettify-symbols-mode -1)
                             (region-occurrences-highlighter-mode -1)
+                            (drag-stuff-mode -1)
+                            (auto-fill-mode -1)
+                            (abbrev-mode -1)
+                            (diff-hl-show-hunk-mouse-mode -1)
+                            (colorful-mode -1)
+                            (page-break-lines-mode -1)
+                            (anzu-mode -1)
+                            (ace-pinyin-mode -1)
                             ))
-
 
 (setq centaur-logo nil)                        ; Logo file or nil (official logo)
 ;; (setq centaur-full-name "user name")           ; User full name
@@ -138,14 +146,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(aidermacs-backend 'comint)
+ '(blink-cursor-blinks 0)
  '(consult-preview-key '("M-."))
  '(custom-safe-themes
    '("0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
      "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" default))
+ '(echo-keystrokes 0.01)
+ '(idle-update-delay 0.1)
  '(ignored-local-variable-values
    '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
      (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
- )
+ '(warning-minimum-level :error))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -157,8 +169,8 @@
 ;; 输入法光标颜色变化配置
 (when (file-exists-p (expand-file-name "lisp/im-cursor-chg.el" user-emacs-directory))
   (require 'im-cursor-chg)
-  (setq im-cursor-color "#FF3333"       ; 设置中文输入时的光标颜色为橙红色
-        im-default-cursor-color "#00AA00") ; 设置默认光标颜色为白色
+  (setq im-cursor-color "#9932CC"       ; 设置中文输入时的光标颜色为紫色
+        im-default-cursor-color "#1E90FF") ; 设置默认光标颜色为深蓝色
   (cursor-chg-mode 1)
   (message "Input method cursor color change enabled!"))
 ;;; custom.el ends here

@@ -82,6 +82,9 @@ patch:
     - { when: composing, accept: Alt+v, send: Page_Up }
     - { when: composing, accept: Control+v, send: Page_Down }
 
+    # F4 键调出方案选单（专门为 Emacs librime 配置）
+    - { when: always, accept: F4, select: .next }
+    
     # 从用户数据库中删除误上屏的词语
     - { when: composing, accept: Control+k, send: Shift+Delete }
     - { when: composing, accept: Control+h, send: BackSpace }
@@ -140,3 +143,13 @@ patch:
     - derive/ing$/in/
     - derive/ian$/iang/
     - derive/iang$/ian/
+
+  # 方案选单配置（专门为 Emacs librime 优化）
+  switcher:
+    caption: 「方案选单」
+    hotkeys:
+      - F4
+      - "Control+plus"
+    fold_options: false
+    abbreviate_options: true
+    option_list_separator: ' / '
