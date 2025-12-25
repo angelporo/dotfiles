@@ -4,45 +4,47 @@
 ;;;       Put your own configurations in custom-post.el to override default configurations.
 ;;; Code:
 
-(add-hook 'prog-mode-hook (lambda()
-                            (setq scroll-step 0)
-                            (setq scroll-conservatively 0)
-                            (indent-bars-mode -1)
-                            (global-display-line-numbers-mode -1)
-                            (global-hl-line-mode  -1)
-                            (global-subword-mode -1)
-                            (symbol-overlay-mode -1)
-                            (global-hungry-delete-mode -1)
-                            (flyspell-mode -1)
-                            (desktop-save-mode -1)
-                            (tabspaces-mode -1)
-                            (display-line-numbers-mode -1)
-                            (diff-hl-flydiff-mode -1)
-                            (global-diff-hl-mode -1)
-                            (persistent-scratch-mode -1)
-                            (persistent-scratch-autosave-mode -1)
-                            (rainbow-delimiters-mode -1)
-                            (prettify-symbols-mode -1)
-                            (region-occurrences-highlighter-mode -1)
-                            (drag-stuff-mode -1)
-                            (auto-fill-mode -1)
-                            (abbrev-mode -1)
-                            (diff-hl-show-hunk-mouse-mode -1)
-                            (colorful-mode -1)
-                            (page-break-lines-mode -1)
-                            (anzu-mode -1)
-                            (ace-pinyin-mode -1)
-                            ))
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (setq scroll-step 0)
+            (setq scroll-conservatively 0)
+            ;; 使用 fboundp 检查函数是否存在，避免未加载包时出错
+            (when (fboundp 'indent-bars-mode) (indent-bars-mode -1))
+            (when (fboundp 'global-display-line-numbers-mode) (global-display-line-numbers-mode -1))
+            (when (fboundp 'global-hl-line-mode) (global-hl-line-mode -1))
+            (when (fboundp 'global-subword-mode) (global-subword-mode -1))
+            (when (fboundp 'symbol-overlay-mode) (symbol-overlay-mode -1))
+            (when (fboundp 'global-hungry-delete-mode) (global-hungry-delete-mode -1))
+            (when (fboundp 'flyspell-mode) (flyspell-mode -1))
+            (when (fboundp 'desktop-save-mode) (desktop-save-mode -1))
+            (when (fboundp 'tabspaces-mode) (tabspaces-mode -1))
+            (when (fboundp 'display-line-numbers-mode) (display-line-numbers-mode -1))
+            (when (fboundp 'diff-hl-flydiff-mode) (diff-hl-flydiff-mode -1))
+            (when (fboundp 'global-diff-hl-mode) (global-diff-hl-mode -1))
+            (when (fboundp 'persistent-scratch-mode) (persistent-scratch-mode -1))
+            (when (fboundp 'persistent-scratch-autosave-mode) (persistent-scratch-autosave-mode -1))
+            (when (fboundp 'rainbow-delimiters-mode) (rainbow-delimiters-mode -1))
+            (when (fboundp 'prettify-symbols-mode) (prettify-symbols-mode -1))
+            (when (fboundp 'region-occurrences-highlighter-mode) (region-occurrences-highlighter-mode -1))
+            (when (fboundp 'drag-stuff-mode) (drag-stuff-mode -1))
+            (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+            (when (fboundp 'auto-fill-mode) (auto-fill-mode -1))
+            (when (fboundp 'abbrev-mode) (abbrev-mode -1))
+            (when (fboundp 'diff-hl-show-hunk-mouse-mode) (diff-hl-show-hunk-mouse-mode -1))
+            (when (fboundp 'colorful-mode) (colorful-mode -1))
+            (when (fboundp 'page-break-lines-mode) (page-break-lines-mode -1))
+            (when (fboundp 'anzu-mode) (anzu-mode -1))
+            (when (fboundp 'ace-pinyin-mode) (ace-pinyin-mode -1))))
 
 (setq centaur-logo nil)                        ; Logo file or nil (official logo)
 ;; (setq centaur-full-name "user name")           ; User full name
 ;; (setq centaur-mail-address "user@email.com")   ; Email address
 (setq centaur-proxy "127.0.0.1:1087")          ; HTTP/HTTPS proxy
 (setq centaur-socks-proxy "127.0.0.1:1087")    ; SOCKS proxy
-(setq centaur-server nil)                      ; Enable `server-mode' or not: t or nil
+(setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
-(setq centaur-package-archives 'bfsu)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
-(setq centaur-theme 'day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-package-archives 'melpa)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
+(setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
@@ -128,8 +130,8 @@
 ;; (setq package-check-signature nil)
 
 ;; Enable proxy
-;; (enable-http-proxy)
-;; (enable-socks-proxy)
+(enable-http-proxy)
+(enable-socks-proxy)
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
@@ -146,18 +148,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(aidermacs-backend 'comint)
  '(blink-cursor-blinks 0)
+ '(blink-cursor-mode t)
  '(consult-preview-key '("M-."))
  '(custom-safe-themes
-   '("0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
-     "5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5" default))
- '(echo-keystrokes 0.01)
- '(idle-update-delay 0.1)
+   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
+     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
  '(ignored-local-variable-values
    '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
-     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
- '(warning-minimum-level :error))
+     (web-mode-script-padding . 2) (web-mode-style-padding . 2))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -169,8 +168,8 @@
 ;; 输入法光标颜色变化配置
 (when (file-exists-p (expand-file-name "lisp/im-cursor-chg.el" user-emacs-directory))
   (require 'im-cursor-chg)
-  (setq im-cursor-color "#9932CC"       ; 设置中文输入时的光标颜色为紫色
-        im-default-cursor-color "#1E90FF") ; 设置默认光标颜色为深蓝色
+  (setq im-cursor-color "#0077FF"       ; 设置中文输入时的光标颜色为亮红色
+        im-default-cursor-color "#FF0000") ; 设置默认光标颜色为亮蓝色
   (cursor-chg-mode 1)
   (message "Input method cursor color change enabled!"))
 ;;; custom.el ends here

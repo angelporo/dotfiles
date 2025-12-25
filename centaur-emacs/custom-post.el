@@ -261,11 +261,13 @@
   :bind (("C-c a" . aidermacs-transient-menu))
   :init
   ;; Cache API key at startup
-  ;; (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
+  (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
   (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
+  (setq aidermacs-backend 'vterm)
   :custom
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
-  (aidermacs-default-model "deepseek/deepseek-chat"))
+  (aidermacs-default-model "deepseek/deepseek-chat")
+  )
 
 (use-package lsp-bridge
   :ensure nil
@@ -325,11 +327,11 @@
 (use-package rime
   :ensure t
   :defer t  ; Defer loading until first use
-  :ensure-system-package
-  ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
+  ;; :ensure-system-package
+  ;; ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
   :custom
   (rime-user-data-dir "~/Library/Rime/libRime")
-  (rime-librime-root "~/.config/emacs/librime/dist")
+  ;; (rime-librime-root "/usr/local/Cellar/librime/1.15.0")
   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
   :hook
   (emacs-startup . (lambda () (setq default-input-method "rime")))
@@ -373,6 +375,10 @@
   (defun rime-predicate-avy-p ()
     (bound-and-true-p avy-command))
 
+  ;; 添加 vterm 断言函数，在 vterm 中禁用某些输入法行为
+  (defun rime-predicate-vterm-p ()
+    (derived-mode-p 'vterm-mode))
+
 
   ;; 临时英文模式, 该列表中任何一个断言返回 t 时自动切换到英文。如何 rime-inline-predicates 不为空，
   ;; 则当其中任意一个断言也返回 t 时才会自动切换到英文（inline 等效于 ascii-mode）。
@@ -387,6 +393,7 @@
           rime-predicate-punctuation-after-ascii-p
           rime-predicate-auto-english-p
           rime-predicate-avy-p
+          ;; rime-predicate-vterm-p
           ))
 
   (setq rime-show-candidate 'posframe)
@@ -400,7 +407,7 @@
   ;; 部分 major-mode 关闭 RIME 输入法。
   ;; 定义建议函数
   (defvar my-disable-input-method-modes
-    '(vterm-mode dired-mode image-mode compilation-mode
+    '(dired-mode image-mode compilation-mode
                  isearch-mode minibuffer-inactive-mode)
     "Major modes where input method should be disabled.")
 
@@ -411,6 +418,38 @@
 
   ;; 添加建议到 switch-to-buffer 的 :after 位置
   (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
+
+  ;; 在 vterm 中处理快捷键和输入法
+  (defun my-vterm-keybindings ()
+    "Setup keybindings for vterm mode."
+    ;; 使用 emacs 命令而不是发送给终端
+    (define-key vterm-mode-map (kbd "M-1") 'winum-select-window-1)
+    (define-key vterm-mode-map (kbd "M-2") 'winum-select-window-2)
+    (define-key vterm-mode-map (kbd "M-3") 'winum-select-window-3)
+    (define-key vterm-mode-map (kbd "M-4") 'winum-select-window-4)
+    (define-key vterm-mode-map (kbd "M-5") 'winum-select-window-5)
+    (define-key vterm-mode-map (kbd "M-6") 'winum-select-window-6)
+    (define-key vterm-mode-map (kbd "M-7") 'winum-select-window-7)
+    (define-key vterm-mode-map (kbd "M-8") 'winum-select-window-8)
+    (define-key vterm-mode-map (kbd "M-9") 'winum-select-window-9)
+    (define-key vterm-mode-map (kbd "M-0") 'winum-select-window-0-or-10)
+    ;; 输入法相关快捷键
+    (define-key vterm-mode-map (kbd "C-\\") 'toggle-input-method)
+    (define-key vterm-mode-map (kbd "M-j") 'rime-inline-ascii)
+    ;; 在 vterm 中启用输入法
+    (setq-local default-input-method "rime")
+    (activate-input-method "rime"))
+
+  (add-hook 'vterm-mode-hook 'my-vterm-keybindings)
+
+  ;; 确保在 vterm 中可以使用 C-\ 切换输入法
+  (defun my-vterm-input-method-setup ()
+    "Setup input method for vterm."
+    (setq-local default-input-method "rime")
+    (when (and (fboundp 'rime-lib--check) (rime-lib--check))
+      (activate-input-method "rime")))
+
+  (add-hook 'vterm-mode-hook 'my-vterm-input-method-setup)
 
   ;; (defvar im-cursor-color "Orange"
   ;;   "The color for input method.")
@@ -456,6 +495,11 @@
   :hook ((js-mode ts-mode web-mode json-mode  tsx-ts-mode) . emmet-mode)
 )
 
+
+(use-package winum
+  :ensure t
+  :config
+  (winum-mode))
 
 (use-package ag
   :ensure t
