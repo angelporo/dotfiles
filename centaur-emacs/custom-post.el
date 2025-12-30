@@ -263,7 +263,7 @@
   ;; Cache API key at startup
   (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
   (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
-  (setq aidermacs-backend 'vterm)
+  (setq aidermacs-backend 'comint)
   :custom
   ;; (aidermacs-default-model "deepseek/deepseek-reasoner")
   (aidermacs-default-model "deepseek/deepseek-chat")
@@ -394,7 +394,6 @@
           rime-predicate-punctuation-after-ascii-p
           rime-predicate-auto-english-p
           rime-predicate-avy-p
-          rime-predicate-vterm-p
           ))
 
   (setq rime-show-candidate 'posframe)
@@ -429,23 +428,14 @@
     (define-key vterm-mode-map (kbd "M-3") 'winum-select-window-3)
     (define-key vterm-mode-map (kbd "M-4") 'winum-select-window-4)
     ;; 输入法相关快捷键
-    (define-key vterm-mode-map (kbd "C-\\") 'toggle-input-method)
-    (define-key vterm-mode-map (kbd "M-j") 'rime-inline-ascii)
-    ;; 在 vterm 中启用输入法
-    (setq-local default-input-method "rime")
-    (activate-input-method "rime")
+    ;; (define-key vterm-mode-map (kbd "C-\\") 'toggle-input-method)
+    ;; (define-key vterm-mode-map (kbd "M-j") 'rime-force-enable)
+    ;; ;; 在 vterm 中启用输入法
+    ;; (setq-local default-input-method "rime")
+    ;; (activate-input-method "rime")
     )
 
   (add-hook 'vterm-mode-hook 'my-vterm-keybindings)
-
-  ;; 确保在 vterm 中可以使用 C-\ 切换输入法
-  (defun my-vterm-input-method-setup ()
-    "Setup input method for vterm."
-    (setq-local default-input-method "rime")
-    (when (and (fboundp 'rime-lib--check) (rime-lib--check))
-      (activate-input-method "rime")))
-
-  (add-hook 'vterm-mode-hook 'my-vterm-input-method-setup)
 
   ;; (defvar im-cursor-color "Orange"
   ;;   "The color for input method.")
