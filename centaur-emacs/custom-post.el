@@ -178,7 +178,7 @@
 
 
 (use-package prettier
-   :ensure t
+  :ensure t
   :defer t  ; Defer loading until first use
   :hook ((js-mode ts-mode vue-mode json-mode css-mode tsx-ts-mode) . prettier-mode)
   :config
@@ -327,8 +327,8 @@
 (use-package rime
   :ensure t
   :defer t  ; Defer loading until first use
-  ;; :ensure-system-package
-  ;; ("/Applications/SwitchKey.app" . "brew install --cask switchkey")
+  :ensure-system-package
+  ("/Applications/SwitchKey.app" . "brew install --cask switchkey") ;
   :custom
   (rime-user-data-dir "~/Library/Rime/libRime")
   ;; (rime-librime-root "/usr/local/Cellar/librime/1.15.0")
@@ -345,10 +345,11 @@
    ("M-j" . 'rime-force-enable)
    ;; 下面这些快捷键需要发送给 rime 来处理, 需要与 default.custom.yaml 文件中的 key_binder/bindings 配置相匹配。
 
-   ;; 中英文切换
-   ("C-," . 'rime-send-keybinding)
 
    ;; 中英文标点切换
+   ("C-," . 'rime-send-keybinding)
+
+   ;; 中英文切换
    ("C-." . 'rime-send-keybinding)
 
    ;; F4 菜单 - 调出 Rime 输入方案选单
@@ -393,7 +394,7 @@
           rime-predicate-punctuation-after-ascii-p
           rime-predicate-auto-english-p
           rime-predicate-avy-p
-          ;; rime-predicate-vterm-p
+          rime-predicate-vterm-p
           ))
 
   (setq rime-show-candidate 'posframe)
@@ -427,18 +428,13 @@
     (define-key vterm-mode-map (kbd "M-2") 'winum-select-window-2)
     (define-key vterm-mode-map (kbd "M-3") 'winum-select-window-3)
     (define-key vterm-mode-map (kbd "M-4") 'winum-select-window-4)
-    (define-key vterm-mode-map (kbd "M-5") 'winum-select-window-5)
-    (define-key vterm-mode-map (kbd "M-6") 'winum-select-window-6)
-    (define-key vterm-mode-map (kbd "M-7") 'winum-select-window-7)
-    (define-key vterm-mode-map (kbd "M-8") 'winum-select-window-8)
-    (define-key vterm-mode-map (kbd "M-9") 'winum-select-window-9)
-    (define-key vterm-mode-map (kbd "M-0") 'winum-select-window-0-or-10)
     ;; 输入法相关快捷键
     (define-key vterm-mode-map (kbd "C-\\") 'toggle-input-method)
     (define-key vterm-mode-map (kbd "M-j") 'rime-inline-ascii)
     ;; 在 vterm 中启用输入法
     (setq-local default-input-method "rime")
-    (activate-input-method "rime"))
+    (activate-input-method "rime")
+    )
 
   (add-hook 'vterm-mode-hook 'my-vterm-keybindings)
 
@@ -483,6 +479,7 @@
   ;; (cursor-chg-mode 1)
   )
 
+
 (setq counsel-ag-base-command '(
                                 "ag"
                                 "--vimgrep" "%s"
@@ -490,10 +487,10 @@
                                 ))
 
 (use-package emmet-mode
-   :ensure t
+  :ensure t
   :defer t  ; Defer loading until first use
   :hook ((js-mode ts-mode web-mode json-mode  tsx-ts-mode) . emmet-mode)
-)
+  )
 
 
 (use-package winum
@@ -504,4 +501,4 @@
 (use-package ag
   :ensure t
   :defer t  ; Defer loading until first use
-)
+  )

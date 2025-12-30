@@ -26,7 +26,7 @@
   ;; 在 vterm-mode 中总是返回 nil，因为输入法由终端处理
   (when (derived-mode-p 'vterm-mode)
     (return-from im--chinese-p nil))
-  
+
   (cond
    ((featurep 'rime)
     ;; 检查 rime 是否激活且不是内联ASCII模式

@@ -44,7 +44,7 @@
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
 (setq centaur-package-archives 'melpa)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
-(setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-theme 'doom-tomorrow-day)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
@@ -130,8 +130,8 @@
 ;; (setq package-check-signature nil)
 
 ;; Enable proxy
-(enable-http-proxy)
-(enable-socks-proxy)
+;; (enable-http-proxy)
+;; (enable-socks-proxy)
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
@@ -156,7 +156,9 @@
      "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
  '(ignored-local-variable-values
    '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
-     (web-mode-script-padding . 2) (web-mode-style-padding . 2))))
+     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
+ '(package-vc-selected-packages
+   '((vterm-extra :url "https://github.com/Sbozzolo/vterm-extra"))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
