@@ -18,14 +18,15 @@
 (defvar im-cursor-color "Orange"
   "The color for input method.")
 
-(defvar im-default-cursor-color (frame-parameter nil 'cursor-color)
-  "The default cursor color.")
+(defvar im-default-cursor-color nil
+  "The default cursor color.
+If nil, will use the current frame's cursor color when needed.")
 
 (defun im--chinese-p ()
   "Check if the current input state is Chinese."
   ;; 在 vterm-mode 中总是返回 nil，因为输入法由终端处理
   (when (derived-mode-p 'vterm-mode)
-    (return-from im--chinese-p nil))
+    (return nil))
 
   (cond
    ((featurep 'rime)
@@ -43,12 +44,14 @@
   "Set cursor color depending on input method."
   (interactive)
   (condition-case err
-      (let ((is-chinese (im--chinese-p)))
+      (let ((is-chinese (im--chinese-p))
+            (default-color (or im-default-cursor-color 
+                               (frame-parameter nil 'cursor-color))))
         ;; 调试信息（可选，在开发时启用）
         ;; (message "Input method: %s, is-chinese: %s" current-input-method is-chinese)
         (set-cursor-color (if is-chinese
                               im-cursor-color
-                            im-default-cursor-color)))
+                            default-color)))
     (error
      (message "Error in im-change-cursor-color: %s" err))))
 

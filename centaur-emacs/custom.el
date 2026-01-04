@@ -43,8 +43,8 @@
 (setq centaur-socks-proxy "127.0.0.1:1087")    ; SOCKS proxy
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
-(setq centaur-theme 'dark)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-package-archives 'bfsu)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
+(setq centaur-theme 'system)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
@@ -148,6 +148,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(aidermacs-watch-files t)
  '(blink-cursor-blinks 0)
  '(blink-cursor-mode t)
  '(consult-preview-key '("M-."))
