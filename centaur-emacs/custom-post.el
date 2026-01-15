@@ -27,6 +27,15 @@
 ;;
 ;;; Code:
 
+;; 本文件是Centaur Emacs的用户自定义配置文件，在Emacs启动的最后阶段加载。
+;; 它主要用于视觉外观、键位绑定、输入法、以及各种包的自定义配置。
+;; 配置分为几个部分：
+;; 1. 环境变量设置（针对GUI Emacs）
+;; 2. 文件关联和模式设置
+;; 3. 键位绑定
+;; 4. UI增强和性能调整
+;; 5. 各类包（如eglot、web-mode、prettier、rime、lsp-bridge等）的配置
+;; 6. 杂项设置（如禁用鼠标缩放、回收站等）
 
 ;; 解决GUI Emacs与终端环境变量不一致的问题
 (when (memq window-system '(mac ns x))
@@ -45,6 +54,13 @@
 
 (defun my/setup-emacs29-bindings ()
   "Setup file associations and hooks for Emacs 29+."
+  ;; 文件扩展名与 major mode 的映射关系
+  ;; cmake 文件使用 tree-sitter 增强的 cmake-ts-mode
+  ;; web 相关文件使用 web-mode (支持 HTML/XML)
+  ;; TypeScript/JavaScript 文件分别使用 tsx-ts-mode 和 javascript-mode
+  ;; 样式文件 (less/css/scss) 使用 css-mode
+  ;; Vue 单文件组件使用 web-mode
+  ;; YAML 文件使用 yaml-ts-mode (tree-sitter)
   (dolist (mode '(("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode)
                   ("\\.wxml\\'" . web-mode)
                   ("\\.ts\\'" . tsx-ts-mode)
@@ -73,6 +89,8 @@
   )
 
                                         ; 2. 配置 Eglot 语言服务器
+;; 配置eglot语言服务器客户端。
+;; 为html、css、javascript等模式添加语言服务器命令。
 (with-eval-after-load 'eglot
   ;; HTML 语言服务器（支持.html文件）
   (add-to-list 'eglot-server-programs '(html-mode . ("html-language-server" "--stdio")))
@@ -82,6 +100,8 @@
   (add-to-list 'eglot-server-programs '(javascript-mode . ("vscode-js-languageserver" "--stdio"))))
 
 
+;; 配置web-mode（用于编辑HTML/CSS/JS等web文件）。
+;; 以下设置旨在提升性能并减少干扰，关闭了许多高亮和自动功能。
 (with-eval-after-load 'web-mode
 
   ;; ----------------------------------------------------
@@ -120,6 +140,8 @@
 
 
 
+;; 定义全局键位绑定。
+;; 设置项目查找、区域扩展、窗口选择等快捷键。
 (defun my/setup-keybindings ()
   "Setup global keybindings."
   (let ((map global-map))
@@ -134,6 +156,8 @@
     )
   )
 
+;; 仅在Emacs版本>=29时执行以下配置。
+;; 包括文件关联、键位绑定、UI增强、性能调整等。
 (when emacs/>=29p
   (my/setup-emacs29-bindings)
   (my/setup-keybindings)
@@ -181,6 +205,8 @@
   (global-unset-key key))
 
 
+;; 集成Prettier代码格式化工具。
+;; 在特定模式下自动启用，使用异步模式避免阻塞。
 (use-package prettier
   :ensure t
   :defer t  ; Defer loading until first use
@@ -191,6 +217,7 @@
 
 
 ;; 智能缩放解决方案
+;; 禁用Ctrl+鼠标滚轮缩放功能，防止误操作。
 (defun disable-ctrl-mouse-zoom ()
   "禁用 Ctrl+鼠标滚轮缩放，但保留其他功能"
   (interactive)
@@ -199,6 +226,7 @@
   (message "Ctrl+鼠标缩放已禁用"))
 
 ;; 启用命令（可随时切换）
+;; 恢复Ctrl+鼠标滚轮缩放功能，允许使用C-<wheel-up>等快捷键调整字体大小。
 (defun enable-ctrl-mouse-zoom ()
   "恢复 Ctrl+鼠标滚轮缩放功能"
   (interactive)
@@ -213,6 +241,8 @@
 (global-set-key (kbd "C-c z") 'enable-ctrl-mouse-zoom)
 (global-set-key (kbd "C-c Z") 'disable-ctrl-mouse-zoom)
 
+;; magit-todos 在 magit 状态缓冲区中显示代码中的 TODO/FIXME 注释。
+;; 使用 `magit-todos-mode' 启用/禁用，这里默认禁用。
 (use-package magit-todos
   :after magit-status
   :commands magit-todos-mode
@@ -239,8 +269,6 @@
   (setq-default delete-by-moving-to-trash t))
 
 
-;; 关闭日志打印，不卡emacs
-(setq-default eglot-events-buffer-size 0)
 
 
 ;; (use-package emigo
@@ -275,6 +303,9 @@
   (setq aidermacs-watch-files t)
   )
 
+;; 配置lsp-bridge（LSP客户端，性能较好）。
+;; 设置补全来源、禁用某些后端、配置多语言服务器等。
+;; 定义快捷键用于跳转、查找引用、显示文档等。
 (use-package lsp-bridge
   :ensure nil
   :defer t  ; Defer loading until first use
@@ -330,6 +361,9 @@
   (global-lsp-bridge-mode)
   )
 
+;; 配置Rime输入法（小狼毫／鼠须管）。
+;; 设置用户数据目录、快捷键、候选框样式等。
+;; 提供中文输入支持，并在特定模式下自动切换中英文。
 (use-package rime
   :ensure t
   :defer t  ; Defer loading until first use
@@ -475,12 +509,17 @@
   )
 
 
+;; 设置 counsel-ag 命令的基础参数，使用 ag 进行搜索。
+;; --vimgrep 输出类似 vim 的格式，方便解析。
+;; --ignore 忽略 node_modules 目录。
 (setq counsel-ag-base-command '(
                                 "ag"
                                 "--vimgrep" "%s"
                                 "--ignore" "*node_modules*"
                                 ))
 
+;; 集成Emmet（Zen Coding）快速编写HTML/CSS。
+;; 在web开发相关模式下自动启用。
 (use-package emmet-mode
   :ensure t
   :defer t  ; Defer loading until first use
@@ -488,11 +527,14 @@
   )
 
 
+;; 启用winum（窗口数字导航），允许通过M-1等快捷键快速切换窗口。
 (use-package winum
   :ensure t
   :config
   (winum-mode))
 
+;; 集成ag（the silver searcher）代码搜索工具。
+;; 延迟加载，使用时才初始化。
 (use-package ag
   :ensure t
   :defer t  ; Defer loading until first use
