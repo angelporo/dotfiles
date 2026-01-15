@@ -1,8 +1,8 @@
-distribution_code_name: "emacs-rime"
-distribution_name: Rime
-distribution_version: 1.0.1
+distribution_code_name: Squirrel
+distribution_name: "鼠鬚管"
+distribution_version: 1.0.3
 install_time: "Mon Feb 10 17:20:59 2025"
 installation_id: "76c8a36a-966b-414b-94e3-75dde62f30cd"
-rime_version: 1.15.0
+rime_version: 1.13.0
 sync_dir: "/Users/liyuan/.dotfiles/rime-async"
-update_time: "Sat Nov 29 18:01:58 2025"
+update_time: "Wed Sep  3 08:58:54 2025"

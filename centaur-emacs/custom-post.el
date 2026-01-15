@@ -27,6 +27,7 @@
 ;;
 ;;; Code:
 
+
 ;; 解决GUI Emacs与终端环境变量不一致的问题
 (when (memq window-system '(mac ns x))
   (use-package exec-path-from-shell
@@ -37,7 +38,6 @@
           '("PATH" "MANPATH" "LANG" "LC_ALL" "GOPATH" "GOROOT" "NVM_DIR" "OPENROUTER_API_KEY" "OLLAMA_API_BASE" "JAVA_HOME" "ANDROID_HOME" "DEEPSEEK_API_KEY" "PYTHONPATH"))
     :config
     (exec-path-from-shell-initialize)
-
 
     ;; Cache the values to avoid future shell calls
     (dolist (var exec-path-from-shell-variables)
@@ -127,6 +127,10 @@
     (define-key map (kbd "C-c i") 'project-find-file)
     ;; (define-key map (kbd "M-RET") 'eglot-code-actions)
     (global-set-key (kbd "C-M-<SPC>") 'er/expand-region)
+    (global-set-key (kbd "M-1") 'winum-select-window-1)
+    (global-set-key (kbd "M-2") 'winum-select-window-2)
+    (global-set-key (kbd "M-3") 'winum-select-window-3)
+    (global-set-key (kbd "M-4") 'winum-select-window-4)
     )
   )
 
@@ -261,6 +265,7 @@
   :bind (("C-c a" . aidermacs-transient-menu))
   :init
   ;; Cache API key at startup
+  (exec-path-from-shell-copy-env "DEEPSEEK_API_KEY")
   (setq aider-api-key (getenv "DEEPSEEK_API_KEY"))
   (setenv "AIDER_CHAT_LANGUAGE" "Chinese")
   (setq aidermacs-backend 'vterm)
@@ -437,7 +442,36 @@
     )
 
   (add-hook 'vterm-mode-hook 'my-vterm-keybindings)
+  ;; (defvar im-cursor-color "Orange"
+  ;;   "The color for input method.")
 
+  (defvar im-default-cursor-color (frame-parameter nil 'cursor-color)
+    "The default cursor color.")
+
+  (defun im--chinese-p ()
+    "Check if the current input state is Chinese."
+    (if (featurep 'rime)
+        (and (rime--should-enable-p)
+             (not (rime--should-inline-ascii-p))
+             current-input-method)
+      current-input-method))
+
+  (defun im-change-cursor-color ()
+    "Set cursor color depending on input method."
+    (interactive)
+    (set-cursor-color (if (im--chinese-p)
+                          im-cursor-color
+                        im-default-cursor-color)))
+  ;; (define-minor-mode cursor-chg-mode
+  ;;     "Toggle changing cursor color.
+  ;; With numeric ARG, turn cursor changing on if ARG is positive.
+  ;; When this mode is on, `im-change-cursor-color' control cursor changing."
+  ;;     :init-value nil :global t :group 'frames
+  ;;     (if cursor-chg-mode
+  ;;         (add-hook 'post-command-hook 'im-change-cursor-color)
+  ;;       (remove-hook 'post-command-hook 'im-change-cursor-color)))
+
+  ;; (cursor-chg-mode 1)
   )
 
 
