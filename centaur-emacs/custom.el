@@ -37,18 +37,18 @@
             (when (fboundp 'ace-pinyin-mode) (ace-pinyin-mode -1))))
 
 (setq centaur-logo nil)                        ; Logo file or nil (official logo)
-;; (setq centaur-full-name "user name")           ; User full name
-;; (setq centaur-mail-address "user@email.com")   ; Email address
-;; (setq centaur-proxy "127.0.0.1:1087")          ; HTTP/HTTPS proxy
-;; (setq centaur-socks-proxy "127.0.0.1:1087")    ; SOCKS proxy
+(setq centaur-full-name "liyuan")           ; User full name
+(setq centaur-mail-address "940079461@qq.com")   ; Email address
+;;(setq centaur-proxy "127.0.0.1:33210")          ; HTTP/HTTPS proxy
+;;(setq centaur-socks-proxy "127.0.0.1:33211")    ; SOCKS proxy
 (setq centaur-server t)                      ; Enable `server-mode' or not: t or nil
 (setq centaur-icon t)                        ; Display icons or not: t or nil
-(setq centaur-package-archives 'melpa)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
-(setq centaur-theme 'night)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
+(setq centaur-package-archives 'tuna)         ; Package repo: melpa, bfsu, iscas, netease, sjtu, tencent, tuna or ustc
+(setq centaur-theme 'warm)                     ; Color theme: auto, random, system, default, pro, dark, light, warm, cold, day or night
 (setq centaur-completion-style 'childframe)    ; Completion display style: minibuffer or childframe
 (setq centaur-frame-maximized-on-startup t)    ; Maximize frame on startup or not: t or nil
 ;; (setq centaur-dashboard nil)                   ; Display dashboard at startup or not: t or nil
-;; (setq centaur-lsp 'lsp-mode)                   ; Set LSP client: lsp-mode, eglot or nil
+(setq centaur-lsp nil)                   ; Set LSP client: lsp-mode, eglot or nil
 ;; (setq centaur-lsp-format-on-save t)            ; Auto format buffers on save: t or nil
 ;; (setq centaur-lsp-format-on-save-ignore-modes '(c-mode c++-mode )) ; Ignore format on save for some languages
 (setq centaur-tree-sitter t)                 ; Enable tree-sitter or not: t or nil. Only available in 29+.
@@ -130,8 +130,8 @@
 ;; (setq package-check-signature nil)
 
 ;; Enable proxy
-;; (enable-http-proxy)
-;; (enable-socks-proxy)
+;;(enable-http-proxy)
+;;(enable-socks-proxy)
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
@@ -151,13 +151,14 @@
  '(aidermacs-watch-files t)
  '(blink-cursor-blinks 0)
  '(blink-cursor-mode t)
- '(consult-preview-key '("M-."))
+ '(consult-preview-key "M-.")
  '(custom-safe-themes
    '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
      "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
  '(ignored-local-variable-values
-   '((web-mode-indent-style . 2) (web-mode-block-padding . 2)
+   '((js-indent-level . 2) (web-mode-indent-style . 2) (web-mode-block-padding . 2)
      (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
+ '(line-spacing 2)
  '(package-vc-selected-packages
    '((vterm-extra :url "https://github.com/Sbozzolo/vterm-extra"))))
 
@@ -175,4 +176,6 @@
         im-default-cursor-color "#FF0000") ; 设置默认光标颜色为亮蓝色
   (cursor-chg-mode 1)
   (message "Input method cursor color change enabled!"))
+
+
 ;;; custom.el ends here

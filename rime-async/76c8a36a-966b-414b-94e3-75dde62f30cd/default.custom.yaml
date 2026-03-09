@@ -1,10 +1,10 @@
 patch:
   schema:
     font:
-      font_size: 14  # 你可以调整这里的数字，设置你希望的字体大小
+      font_size: 14 # 你可以调整这里的数字，设置你希望的字体大小
   # 菜单
   menu:
-    page_size: 5  # 候选词个数
+    page_size: 5 # 候选词个数
     # alternative_select_labels: [ ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩ ]  # 修改候选项标签
     # alternative_select_keys: ASDFGHJKL  # 如编码字符占用数字键，则需另设选字键
     # ascii_mode、inline、no_inline、vim_mode 等等设定，可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
@@ -14,23 +14,23 @@ patch:
   # （macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法）
   #
   # 切换中英：
-  # 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后： 
+  # 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
   # commit_code  上屏原始的编码，然后切换到英文
   # commit_text  上屏拼出的词句，然后切换到英文
   # clear        清除未上屏内容，然后切换到英文
   # inline_ascii 无输入时，切换中英；有输入时，切换到临时英文模式，按回车上屏后回到中文状态
   # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
   ascii_composer:
-    good_old_caps_lock: true  # true | false
+    good_old_caps_lock: true # true | false
     switch_key:
-      Caps_Lock: clear  # commit_code | commit_text | clear
-      Shift_L: clear     # commit_code | commit_text | inline_ascii | clear | noop
-      Shift_R: clear     # commit_code | commit_text | inline_ascii | clear | noop
-      Control_L: noop   # commit_code | commit_text | inline_ascii | clear | noop
-      Control_R: noop   # commit_code | commit_text | inline_ascii | clear | noop
-      
+      Caps_Lock: clear # commit_code | commit_text | clear
+      Shift_L: clear # commit_code | commit_text | inline_ascii | clear | noop
+      Shift_R: clear # commit_code | commit_text | inline_ascii | clear | noop
+      Control_L: noop # commit_code | commit_text | inline_ascii | clear | noop
+      Control_R: noop # commit_code | commit_text | inline_ascii | clear | noop
+
   key_binder/bindings:
-      # Tab / Shift+Tab 切换光标至下/上一个拼音
+    # Tab / Shift+Tab 切换光标至下/上一个拼音
     - { when: composing, accept: Shift+Tab, send: Shift+Left }
     - { when: composing, accept: Tab, send: Shift+Right }
     # Tab / Shift+Tab 翻页
@@ -42,7 +42,7 @@ patch:
     - { when: composing, accept: Alt+Right, send: Shift+Right }
 
     # 翻页 - =
-    - { when: has_menu, accept: minus, send: Page_Up }  # 上一页设置为 paging 时会导致直接上屏并输出减号
+    - { when: has_menu, accept: minus, send: Page_Up } # 上一页设置为 paging 时会导致直接上屏并输出减号
     - { when: has_menu, accept: equal, send: Page_Down }
 
     # 翻页 , .
@@ -57,12 +57,12 @@ patch:
     # numbered_mode_switch:
     # - { when: always, select: .next, accept: Control+Shift+1 }                  # 在最近的两个方案之间切换
     # - { when: always, select: .next, accept: Control+Shift+exclam }             # 在最近的两个方案之间切换
-    - { when: always, accept: "Control+period", toggle: ascii_mode}  # 中英文切换
-    - { when: always, accept: "Control+comma", toggle: ascii_punct}  # 中英文标点切换
+    - { when: always, accept: "Control+period", toggle: ascii_mode } # 中英文切换
+    - { when: always, accept: "Control+comma", toggle: ascii_punct } # 中英文标点切换
     # - { when: always, toggle: ascii_punct, accept: Control+Shift+3 }              # 切换中英标点
     # - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign }     # 切换中英标点
-    - { when: always, toggle: traditionalization, accept: Control+Shift+4 }       # 切换简繁
-    - { when: always, toggle: traditionalization, accept: Control+Shift+dollar }  # 切换简繁
+    - { when: always, toggle: traditionalization, accept: Control+Shift+4 } # 切换简繁
+    - { when: always, toggle: traditionalization, accept: Control+Shift+dollar } # 切换简繁
     # - { when: always, toggle: full_shape, accept: Control+Shift+5 }             # 切换全半角
     # - { when: always, toggle: full_shape, accept: Control+Shift+percent }       # 切换全半角
 
@@ -82,6 +82,9 @@ patch:
     - { when: composing, accept: Alt+v, send: Page_Up }
     - { when: composing, accept: Control+v, send: Page_Down }
 
+    # F4 键调出方案选单（专门为 Emacs librime 配置）
+    - { when: always, accept: F4, select: .next }
+
     # 从用户数据库中删除误上屏的词语
     - { when: composing, accept: Control+k, send: Shift+Delete }
     - { when: composing, accept: Control+h, send: BackSpace }
@@ -99,30 +102,30 @@ patch:
     # - { when: always, accept: Control+slash, toggle: traditionalization }
 
     # 将小键盘 0~9 . 映射到主键盘，数字金额大写的 Lua 如 R1234.5678 可使用小键盘输入
-    - {accept: KP_0, send: 0, when: composing}
-    - {accept: KP_1, send: 1, when: composing}
-    - {accept: KP_2, send: 2, when: composing}
-    - {accept: KP_3, send: 3, when: composing}
-    - {accept: KP_4, send: 4, when: composing}
-    - {accept: KP_5, send: 5, when: composing}
-    - {accept: KP_6, send: 6, when: composing}
-    - {accept: KP_7, send: 7, when: composing}
-    - {accept: KP_8, send: 8, when: composing}
-    - {accept: KP_9, send: 9, when: composing}
-    - {accept: KP_Decimal, send: period, when: composing}
+    - { accept: KP_0, send: 0, when: composing }
+    - { accept: KP_1, send: 1, when: composing }
+    - { accept: KP_2, send: 2, when: composing }
+    - { accept: KP_3, send: 3, when: composing }
+    - { accept: KP_4, send: 4, when: composing }
+    - { accept: KP_5, send: 5, when: composing }
+    - { accept: KP_6, send: 6, when: composing }
+    - { accept: KP_7, send: 7, when: composing }
+    - { accept: KP_8, send: 8, when: composing }
+    - { accept: KP_9, send: 9, when: composing }
+    - { accept: KP_Decimal, send: period, when: composing }
     # 将小键盘 + - * / 映射到主键盘，使计算器 如 1+2-3*4 可使用小键盘输入
-    - {accept: KP_Multiply, send: asterisk, when: composing}
-    - {accept: KP_Add,      send: plus,     when: composing}
-    - {accept: KP_Subtract, send: minus,    when: composing}
-    - {accept: KP_Divide,   send: slash,    when: composing}
+    - { accept: KP_Multiply, send: asterisk, when: composing }
+    - { accept: KP_Add, send: plus, when: composing }
+    - { accept: KP_Subtract, send: minus, when: composing }
+    - { accept: KP_Divide, send: slash, when: composing }
 
-  translator/spelling_hints: 0           # 不显示候选词的拼音。
+  translator/spelling_hints: 0 # 不显示候选词的拼音。
   translator/always_show_comments: false #不显示候选者的拼音。
-  translator/enable_user_dict: true      # 根据上屏自动调整词频, 否则根据 *.dict.yaml 中的静态定义的词频率。
+  translator/enable_user_dict: true # 根据上屏自动调整词频, 否则根据 *.dict.yaml 中的静态定义的词频率。
   # custom_phrase/user_dict: "opsnull_custom_phrase"  # 自定义短语词典文件，权重最高。
   speller/algebra:
-    - derive/^([zcs])h/$1/          # zh* ch* sh* 派生出 z* c* s*
-    - derive/^([zcs])([^h])/$1h$2/  # z* c* s*    派生出 zh* ch* sh*
+    - derive/^([zcs])h/$1/ # zh* ch* sh* 派生出 z* c* s*
+    - derive/^([zcs])([^h])/$1h$2/ # z* c* s*    派生出 zh* ch* sh*
     # - derive/^l/n/  # 解释：为 l 开头的拼写派生出 n 开头，即 nai 也可以输出 lai（来、莱、赖……）
     # - derive/^n/l/  #      lai 可输出 nai（奶、乃、奈……）。 可以单向或成对儿启用模糊音
     # - derive/^f/h/
@@ -140,3 +143,13 @@ patch:
     - derive/ing$/in/
     - derive/ian$/iang/
     - derive/iang$/ian/
+
+  # 方案选单配置（专门为 Emacs librime 优化）
+  switcher:
+    caption: 「方案选单」
+    hotkeys:
+      - F4
+      - "Control+plus"
+    fold_options: false
+    abbreviate_options: true
+    option_list_separator: " / "

@@ -9,9 +9,3 @@ octagram:
     translator/contextual_suggestions: true
     translator/max_homophones: 7
     translator/max_homographs: 7
-
-# 禁用 Shift 切换中英文
-patch:
-  ascii_composer/switch_key:
-    Shift_L: noop
-    Shift_R: noop

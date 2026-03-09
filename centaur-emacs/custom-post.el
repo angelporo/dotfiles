@@ -86,6 +86,7 @@
   ;; (setq use-dialog-box nil)               ; 禁用对话框
   ;; (setq use-file-dialog nil)              ; 禁用文件对话框
   (setq frame-title-format '("Emacs: %b")) ; 简化标题栏格式
+  (setq line-spacing 2)
   )
 
                                         ; 2. 配置 Eglot 语言服务器
@@ -168,7 +169,6 @@
   ;; (set-cursor-color "red")
                                         ; Red cursor color
   (setq native-comp-async-report-warnings-errors nil)
-  (menu-bar-mode -1)
   (tool-bar-mode -1)
   (global-corfu-mode -1)
   (ace-pinyin-global-mode -1)
@@ -269,8 +269,6 @@
   (setq-default delete-by-moving-to-trash t))
 
 
-
-
 ;; (use-package emigo
 ;;   :init
 ;;   (unless (package-installed-p 'emigo)
@@ -367,11 +365,11 @@
 (use-package rime
   :ensure t
   :defer t  ; Defer loading until first use
-  :ensure-system-package
-  ("/Applications/SwitchKey.app" . "brew install --cask switchkey") ;
+  ;; :ensure-system-package
+  ;; ("/Applications/SwitchKey.app" . "brew install --cask switchkey") ;
   :custom
   (rime-user-data-dir "~/Library/Rime/libRime")
-  ;; (rime-librime-root "/usr/local/Cellar/librime/1.15.0")
+  (rime-librime-root "~/.config/emacs/librime/dist")
   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
   :hook
   (emacs-startup . (lambda () (setq default-input-method "rime")))
@@ -387,10 +385,10 @@
 
 
    ;; 中英文标点切换
-   ("C-," . 'rime-send-keybinding)
+   ;; ("C-," . 'rime-send-keybinding)
 
    ;; 中英文切换
-   ("C-." . 'rime-send-keybinding)
+   ;; ("C-." . 'rime-send-keybinding)
 
    ;; F4 菜单 - 调出 Rime 输入方案选单
    ("<f4>" . 'rime-send-keybinding)
@@ -424,6 +422,21 @@
   ;; 临时英文模式, 该列表中任何一个断言返回 t 时自动切换到英文。如何 rime-inline-predicates 不为空，
   ;; 则当其中任意一个断言也返回 t 时才会自动切换到英文（inline 等效于 ascii-mode）。
   ;; 自定义 avy 断言函数.
+
+  ;; rime-disable-predicates 是一个列表，包含多个断言函数。
+  ;; 当这些断言中的任何一个返回 t 时，Rime 输入法会被临时禁用（即切换到英文输入模式）。
+  ;; 这主要用于特定场景下自动关闭中文输入，提高操作效率。
+  ;; 各个断言的作用如下：
+  ;;   - rime-predicate-ace-window-p: 使用 ace-window 选择窗口时禁用输入法
+  ;;   - rime-predicate-hydra-p: 激活 hydra 命令时禁用输入法
+  ;;   - rime-predicate-after-ascii-char-p: 光标前是 ASCII 字符时禁用输入法
+  ;;   - rime-predicate-after-alphabet-char-p: 光标前是字母字符时禁用输入法
+  ;;   - rime-predicate-prog-in-code-p: 在代码区域（非注释、非字符串）时禁用输入法
+  ;;   - rime-predicate-punctuation-after-space-cc-p: 空格后输入标点时禁用输入法
+  ;;   - rime-predicate-punctuation-after-ascii-p: ASCII 字符后输入标点时禁用输入法
+  ;;   - rime-predicate-auto-english-p: 自动英文模式，根据上下文自动切换
+  ;;   - rime-predicate-avy-p: 使用 avy 跳转时禁用输入法
+  ;;   - rime-predicate-vterm-p: 在 vterm 终端模式下禁用输入法
   (setq rime-disable-predicates
         '(rime-predicate-ace-window-p
           rime-predicate-hydra-p
@@ -434,6 +447,7 @@
           rime-predicate-punctuation-after-ascii-p
           rime-predicate-auto-english-p
           rime-predicate-avy-p
+          rime-predicate-vterm-p
           ))
 
   (setq rime-show-candidate 'posframe)
@@ -447,35 +461,10 @@
   ;; 部分 major-mode 关闭 RIME 输入法。
   ;; 定义建议函数
   (defvar my-disable-input-method-modes
-    '(dired-mode image-mode compilation-mode
+    '(dired-mode image-mode compilation-mode vterm-mode
                  isearch-mode minibuffer-inactive-mode)
     "Major modes where input method should be disabled.")
 
-  (defun my-activate-input-method-after-switch (&rest _args)
-    "Activate input method based on current mode."
-    (let ((disable (cl-some #'derived-mode-p my-disable-input-method-modes)))
-      (activate-input-method (unless disable "rime"))))
-
-  ;; 添加建议到 switch-to-buffer 的 :after 位置
-  (advice-add 'switch-to-buffer :after #'my-activate-input-method-after-switch)
-
-  ;; 在 vterm 中处理快捷键和输入法
-  (defun my-vterm-keybindings ()
-    "Setup keybindings for vterm mode."
-    ;; 使用 emacs 命令而不是发送给终端
-    (define-key vterm-mode-map (kbd "M-1") 'winum-select-window-1)
-    (define-key vterm-mode-map (kbd "M-2") 'winum-select-window-2)
-    (define-key vterm-mode-map (kbd "M-3") 'winum-select-window-3)
-    (define-key vterm-mode-map (kbd "M-4") 'winum-select-window-4)
-    ;; 输入法相关快捷键
-    ;; (define-key vterm-mode-map (kbd "C-\\") 'toggle-input-method)
-    ;; (define-key vterm-mode-map (kbd "M-j") 'rime-force-enable)
-    ;; ;; 在 vterm 中启用输入法
-    ;; (setq-local default-input-method "rime")
-    ;; (activate-input-method "rime")
-    )
-
-  (add-hook 'vterm-mode-hook 'my-vterm-keybindings)
   ;; (defvar im-cursor-color "Orange"
   ;;   "The color for input method.")
 
