@@ -368,7 +368,7 @@
   ;; :ensure-system-package
   ;; ("/Applications/SwitchKey.app" . "brew install --cask switchkey") ;
   :custom
-  (rime-user-data-dir "~/Library/Rime/libRime")
+  (rime-user-data-dir "~/Library/LibRime")
   (rime-librime-root "~/.config/emacs/librime/dist")
   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
   :hook
