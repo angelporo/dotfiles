@@ -1,0 +1,8 @@
+# Rime user dictionary
+#@/db_name	luna_pinyin
+#@/db_type	userdb
+#@/rime_version	1.16.0
+#@/tick	2
+#@/user_id	macbookpro-angel
+ni hao 	你好	c=1 d=1 t=2
+ni hui cong 	你會從	c=1 d=0.995012 t=2
