@@ -201,6 +201,9 @@ translator:
     - xform/(\w)b/$1in/
     - xform/(\w)m/$1ian/
     - xform/([aoe])\1(\w)/$1$2/
+    - "xform/(^|[ '])v/$1zh/"
+    - "xform/(^|[ '])i/$1ch/"
+    - "xform/(^|[ '])u/$1sh/"
     - xform/([jqxy])v/$1u/
     - xform/([nl])v/$1ü/
     - xform/ü/v/  # ü 显示为 v
@@ -336,10 +339,6 @@ speller:
     - erase/^xx$/
     - derive/^([jqxy])u$/$1v/
     - derive/^([aoe])([ioun])$/$1$1$2/
-    - derive/^([zc])h(.*)$/$1$2/
-    - derive/^([zc])([^h].*)$/$1h$2/
-    - derive/ing$/in/
-    - derive/in$/ing/
     - xform/^([aoe])(ng)?$/$1$1$2/
     - xform/iu$/Ⓠ/
     - xform/(.)ei$/$1Ⓦ/

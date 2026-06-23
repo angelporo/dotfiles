@@ -1,6 +1,5 @@
 patch:
   # ascii_mode、inline、no_inline、vim_mode 等等设定，可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
-  app_options:
   #com.raycast.macos:
   #  ascii_mode: true   # 初始爲西文模式
   #com.microsoft.VSCode:
@@ -11,9 +10,10 @@ patch:
   #  vim_mode: true
   #org.alacritty:
   #  ascii_mode: true   # 初始爲西文模式
-  #com.jetbrains.intellij:
-  #  ascii_mode: true
-  #  vim_mode: true
+  app_options:
+    com.jetbrains.intellij:
+      ascii_mode: true
+    #  vim_mode: true
 
   style:
     # 选择皮肤，亮色与暗色主题
