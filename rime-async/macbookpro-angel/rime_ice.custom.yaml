@@ -2,7 +2,7 @@ __patch:
 # Rx: iDvel/rime-ice:others/recipes/grammar:schema=rime_ice {
   - patch/+:
       grammar:
-        language: wanxiang-lts-zh-hant
+        language: wanxiang-lts-zh-hans
         collocation_max_length: 8
         collocation_min_length: 2
         collocation_penalty: -15

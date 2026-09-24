@@ -7,6 +7,26 @@ patch:
   translator/max_homophones: 7
   translator/max_homographs: 7
 
+  # 长词优先 & v 模式优先（参考 rime_ice 全拼方案）
+  engine/filters:
+    - lua_filter@*corrector
+    - reverse_lookup_filter@radical_reverse_lookup
+    - lua_filter@*autocap_filter
+    - lua_filter@*v_filter
+    - lua_filter@*pin_cand_filter
+    - lua_filter@*long_word_filter
+    - lua_filter@*reduce_english_filter
+    - simplifier@emoji
+    - simplifier@traditionalize
+    - lua_filter@*search@radical_pinyin
+    - uniquifier
+
+  # 语法罚分参数微调（参考 rime_ice 繁体配置，改用简体中文的保守值）
+  grammar/collocation_penalty: -10
+  grammar/non_collocation_penalty: -3
+  grammar/weak_collocation_penalty: -50
+  grammar/rear_penalty: -5
+
   # 拼写设定
   speller:
     # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射

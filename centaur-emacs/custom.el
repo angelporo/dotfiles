@@ -67,15 +67,15 @@
   "Setup fonts."
   (when (display-graphic-p)
     ;; Set default font
-    (cl-loop for font in '("SF Mono" "Menlo" "Monaco" "Fira Code" "Hack"
-                           "Source Code Pro" "FiraCode Nerd Font"
-                           "Cascadia Code" "Jetbrains Mono"
-                           "Hack" "DejaVu Sans Mono" "Consolas")
+    (cl-loop for font in '("FiraCode Nerd Font" "CaskaydiaCove Nerd Font"
+                           "Fira Code" "Cascadia Code" "Jetbrains Mono"
+                           "SF Mono" "Menlo" "Hack" "Source Code Pro"
+                           "Monaco" "DejaVu Sans Mono" "Consolas")
              when (font-available-p font)
              return (set-face-attribute 'default nil
                                         :family font
-                                        :height (cond (sys/macp 158)
-                                                      (sys/win32p 130)
+                                        :height (cond (sys/macp 136)
+                                                      (sys/win32p 116)
                                                       (t 100))))
 
     ;; Set mode-line font
@@ -98,8 +98,8 @@
              return (set-fontset-font t 'emoji (font-spec :family font) nil 'prepend))
 
     ;; Specify font for Chinese characters
-    ;; (cl-loop for font in '("LXGW Neo Xihei" "WenQuanYi Micro Hei Mono" "LXGW WenKai Screen"
-    ;;                        "LXGW WenKai Mono" "PingFang SC" "Microsoft Yahei UI" "Simhei")
+    ;; (cl-loop for font in '("LXGW Neo Xihei" "LXGW WenKai Mono" "WenQuanYi Micro Hei Mono"
+    ;;                        "PingFang SC" "Microsoft Yahei UI" "Simhei")
     ;;          when (font-available-p font)
     ;;          return (progn
     ;;                   (setq face-font-rescale-alist `((,font . 1.3)))
@@ -148,19 +148,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(aidermacs-watch-files t)
- '(blink-cursor-blinks 0)
- '(blink-cursor-mode t)
- '(consult-preview-key "M-.")
- '(custom-safe-themes
-   '("5c7720c63b729140ed88cf35413f36c728ab7c70f8cd8422d9ee1cedeb618de5"
-     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1" default))
- '(ignored-local-variable-values
-   '((js-indent-level . 2) (web-mode-indent-style . 2) (web-mode-block-padding . 2)
-     (web-mode-script-padding . 2) (web-mode-style-padding . 2)))
- '(line-spacing 2)
- '(package-vc-selected-packages
-   '((vterm-extra :url "https://github.com/Sbozzolo/vterm-extra"))))
+ '(custom-enabled-themes '(sanityinc-tomorrow-day))
+ '(session-use-package t nil (session)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

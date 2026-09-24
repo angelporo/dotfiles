@@ -157,54 +157,6 @@
     )
   )
 
-;; 仅在Emacs版本>=29时执行以下配置。
-;; 包括文件关联、键位绑定、UI增强、性能调整等。
-(when emacs/>=29p
-  (my/setup-emacs29-bindings)
-  (my/setup-keybindings)
-
-  ;; UI enhancements
-  (setq inhibit-compacting-font-caches t) ; Better font rendering
-  (setq-default cursor-type 'box)         ; Box cursor
-  ;; (set-cursor-color "red")
-                                        ; Red cursor color
-  (setq native-comp-async-report-warnings-errors nil)
-  (tool-bar-mode -1)
-  (global-corfu-mode -1)
-  (ace-pinyin-global-mode -1)
-  (scroll-bar-mode -1)
-
-  (global-auto-revert-mode 1)
-  (setq auto-revert-interval 5)
-
-  ;; 静默刷新（不显示提示）
-  (setq auto-revert-verbose nil)
-
-  (setq ns-command-modifier 'meta)
-  (setq ns-option-modifier 'super)
-
-  ;; 完全禁用 GUI 菜单系统
-  (menu-bar-mode -1)
-  (setq context-menu-functions nil)
-  ;; 针对 macOS 的额外设置
-  (when (eq system-type 'darwin)
-    (setq ns-pop-up-frames nil)          ; 禁止鼠标悬停创建新窗口
-    (setq mac-right-option-modifier 'none)) ; 禁用右键 Option 键功能
-
-  )
-
-;; 禁用所有 Ctrl+鼠标点击功能
-(global-set-key [C-down-mouse-1] 'ignore)
-(global-set-key [C-mouse-1] 'ignore)
-(global-set-key [C-double-mouse-1] 'ignore)
-
-;; 禁用所有 Ctrl+鼠标按键组合
-(dolist (key '([C-mouse-1] [C-mouse-2] [C-mouse-3]
-               [C-double-mouse-1] [C-double-mouse-2] [C-double-mouse-3]
-               [C-triple-mouse-1] [C-triple-mouse-2] [C-triple-mouse-3]))
-  (global-unset-key key))
-
-
 ;; 集成Prettier代码格式化工具。
 ;; 在特定模式下自动启用，使用异步模式避免阻塞。
 (use-package prettier
@@ -304,198 +256,198 @@
 ;; 配置lsp-bridge（LSP客户端，性能较好）。
 ;; 设置补全来源、禁用某些后端、配置多语言服务器等。
 ;; 定义快捷键用于跳转、查找引用、显示文档等。
-(use-package lsp-bridge
-  :ensure nil
-  :defer t  ; Defer loading until first use
-  :load-path "~/elisp/lsp-bridge"
-  :hook (prog-mode . lsp-bridge-mode)
-  ;; :init
-  ;; (unless (package-installed-p 'lsp-bridge)
-  ;;   (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
-  ;; :hook (prog-mode . (lambda ()
-  ;;                      (when (derived-mode-p 'prog-mode)
-  ;;                        (lsp-bridge-mode))))
-  :bind (:map lsp-bridge-mode
-         ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ; 向下滚动文档
-         ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ; 向上滚动文档
-         ("M-." . lsp-bridge-find-def)
-         ("M-," . lsp-bridge-find-def-return)
-         ("M-?" . lsp-bridge-find-references)
+;; (use-package lsp-bridge
+;;   :ensure nil
+;;   :defer t  ; Defer loading until first use
+;;   :load-path "~/elisp/lsp-bridge"
+;;   :hook (prog-mode . lsp-bridge-mode)
+;;   ;; :init
+;;   ;; (unless (package-installed-p 'lsp-bridge)
+;;   ;;   (package-vc-install "https://github.com/manateelazycat/lsp-bridge.git"))
+;;   ;; :hook (prog-mode . (lambda ()
+;;   ;;                      (when (derived-mode-p 'prog-mode)
+;;   ;;                        (lsp-bridge-mode))))
+;;   :bind (:map lsp-bridge-mode
+;;          ("C-s-n" . lsp-bridge-popup-documentation-scroll-up) ; 向下滚动文档
+;;          ("C-s-p" . lsp-bridge-popup-documentation-scroll-down) ; 向上滚动文档
+;;          ("M-." . lsp-bridge-find-def)
+;;          ("M-," . lsp-bridge-find-def-return)
+;;          ("M-?" . lsp-bridge-find-references)
 
-         ("C-c RET" . lsp-bridge-popup-documentation)
-         ;; ("C-c m" . lsp-bridge-rename)
-         ("M-RET" . lsp-bridge-code-action)
-         )
-  (:map acm-mode
-   ("C-n" . next-line)
-   ("C-p" . previous-line)
-   )
-  :config
-  ;; (setq lsp-bridge-python-command "~/.pyenv/versions/3.8.18/bin/python3")
-  (setq acm-enable-tabnine nil)
-  (setq acm-enable-codeium nil)
-  (setq acm-enable-yas nil)
-  (setq acm-enable-copilot nil)
-  (setq acm-enable-tempel nil)
-  (setq lsp-bridge-auto-format-code-idle nil)
-  (setq lsp-bridge-enable-hover-diagnostic t)
-  (setq lsp-bridge-enable-auto-format-code t)
-  (setq acm-backend-yas-candidate-min-length 3)
-  (setq acm-backend-yas-candidates-number 4)
-  (setq acm-backend-lsp-candidate-min-length 2)
-  (setq lsp-bridge-diagnostic-max-number 20) ;; 限制诊断范围
-  (setq acm-backend-search-file-words-max-number 7)
-  (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
-                                                      (("vue") . "volar_emmet")
-                                                      (("html") . "html_emmet")
-                                                      ))
+;;          ("C-c RET" . lsp-bridge-popup-documentation)
+;;          ;; ("C-c m" . lsp-bridge-rename)
+;;          ("M-RET" . lsp-bridge-code-action)
+;;          )
+;;   (:map acm-mode
+;;    ("C-n" . next-line)
+;;    ("C-p" . previous-line)
+;;    )
+;;   :config
+;;   ;; (setq lsp-bridge-python-command "~/.pyenv/versions/3.8.18/bin/python3")
+;;   (setq acm-enable-tabnine nil)
+;;   (setq acm-enable-codeium nil)
+;;   (setq acm-enable-yas nil)
+;;   (setq acm-enable-copilot nil)
+;;   (setq acm-enable-tempel nil)
+;;   (setq lsp-bridge-auto-format-code-idle nil)
+;;   (setq lsp-bridge-enable-hover-diagnostic t)
+;;   (setq lsp-bridge-enable-auto-format-code t)
+;;   (setq acm-backend-yas-candidate-min-length 3)
+;;   (setq acm-backend-yas-candidates-number 4)
+;;   (setq acm-backend-lsp-candidate-min-length 2)
+;;   (setq lsp-bridge-diagnostic-max-number 20) ;; 限制诊断范围
+;;   (setq acm-backend-search-file-words-max-number 7)
+;;   (setq lsp-bridge-multi-lang-server-extension-list '((("less") . "css_emmet")
+;;                                                       (("vue") . "volar_emmet")
+;;                                                       (("html") . "html_emmet")
+;;                                                       ))
 
-  ;;; lsp-bridge
-  ;; M-j 被预留给 pyim 使用。
-  (define-key acm-mode-map (kbd "M-j") nil)
+;;   ;;; lsp-bridge
+;;   ;; M-j 被预留给 pyim 使用。
+;;   (define-key acm-mode-map (kbd "M-j") nil)
 
-  ;; 这些字符的后面不再弹出补全菜单
-  (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
-  (global-lsp-bridge-mode)
-  )
+;;   ;; 这些字符的后面不再弹出补全菜单
+;;   (setq lsp-bridge-completion-hide-characters '("%" ":" ";" "(" ")" "[" "]" "{" "}" "," "=" ">" "\""))
+;;   (global-lsp-bridge-mode)
+;;   )
 
 ;; 配置Rime输入法（小狼毫／鼠须管）。
 ;; 设置用户数据目录、快捷键、候选框样式等。
 ;; 提供中文输入支持，并在特定模式下自动切换中英文。
-(use-package rime
-  :ensure t
-  :defer t  ; Defer loading until first use
-  ;; :ensure-system-package
-  ;; ("/Applications/SwitchKey.app" . "brew install --cask switchkey") ;
-  :custom
-  (rime-user-data-dir "~/Library/LibRime")
-  (rime-librime-root "~/.config/emacs/librime/dist")
-  (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
-  :hook
-  (emacs-startup . (lambda () (setq default-input-method "rime")))
-  :bind
-  (
-   :map rime-active-mode-map
-   ;; 在已经激活 Rime 候选菜单时，强制在中英文之间切换，直到按回车
-   ("M-j" . 'rime-inline-ascii)
-   :map rime-mode-map
-   ;; ;; 强制切换到中文模式
-   ("M-j" . 'rime-force-enable)
-   ;; 下面这些快捷键需要发送给 rime 来处理, 需要与 default.custom.yaml 文件中的 key_binder/bindings 配置相匹配。
+;; (use-package rime
+;;   :ensure t
+;;   :defer t  ; Defer loading until first use
+;;   ;; :ensure-system-package
+;;   ;; ("/Applications/SwitchKey.app" . "brew install --cask switchkey") ;
+;;   :custom
+;;   (rime-user-data-dir "~/Library/LibRime")
+;;   (rime-librime-root "~/.config/emacs/librime/dist")
+;;   (rime-emacs-module-header-root "/usr/local/opt/emacs-plus@30/include")
+;;   :hook
+;;   (emacs-startup . (lambda () (setq default-input-method "rime")))
+;;   :bind
+;;   (
+;;    :map rime-active-mode-map
+;;    ;; 在已经激活 Rime 候选菜单时，强制在中英文之间切换，直到按回车
+;;    ("M-j" . 'rime-inline-ascii)
+;;    :map rime-mode-map
+;;    ;; ;; 强制切换到中文模式
+;;    ("M-j" . 'rime-force-enable)
+;;    ;; 下面这些快捷键需要发送给 rime 来处理, 需要与 default.custom.yaml 文件中的 key_binder/bindings 配置相匹配。
 
 
-   ;; 中英文标点切换
-   ;; ("C-," . 'rime-send-keybinding)
+;;    ;; 中英文标点切换
+;;    ;; ("C-," . 'rime-send-keybinding)
 
-   ;; 中英文切换
-   ;; ("C-." . 'rime-send-keybinding)
+;;    ;; 中英文切换
+;;    ;; ("C-." . 'rime-send-keybinding)
 
-   ;; F4 菜单 - 调出 Rime 输入方案选单
-   ("<f4>" . 'rime-send-keybinding)
-
-
-   ;; 全半角切换
-   ;; ("C-," . 'rime-send-keybinding)
-   )
-  :config
-  ;; 在 modline 高亮输入法图标, 可用来快速分辨分中英文输入状态。
-  (setq mode-line-mule-info '((:eval (rime-lighter))))
-
-  ;; 将如下快捷键发送给 rime，同时需要在 rime 的 key_binder/bindings 的部分配置才会生效。
-  (add-to-list 'rime-translate-keybindings "C-h") ;; 删除拼音字符
-  (add-to-list 'rime-translate-keybindings "C-d")
-  (add-to-list 'rime-translate-keybindings "C-k")
-  (add-to-list 'rime-translate-keybindings "C-a") ;; 跳转到第一个拼音字符
-  (add-to-list 'rime-translate-keybindings "C-e") ;; 跳转到最后一个拼音字符
-  ;; support shift-l, shift-r, control-l, control-r, 只有当使用系统 RIME 输入法时才有效
-  (setq rime-inline-ascii-trigger 'shift-l)
-  (setq rime-deactivate-when-exit-minibuffer nil)
-
-  (defun rime-predicate-avy-p ()
-    (bound-and-true-p avy-command))
-
-  ;; 添加 vterm 断言函数，在 vterm 中禁用某些输入法行为
-  (defun rime-predicate-vterm-p ()
-    (derived-mode-p 'vterm-mode))
+;;    ;; F4 菜单 - 调出 Rime 输入方案选单
+;;    ("<f4>" . 'rime-send-keybinding)
 
 
-  ;; 临时英文模式, 该列表中任何一个断言返回 t 时自动切换到英文。如何 rime-inline-predicates 不为空，
-  ;; 则当其中任意一个断言也返回 t 时才会自动切换到英文（inline 等效于 ascii-mode）。
-  ;; 自定义 avy 断言函数.
+;;    ;; 全半角切换
+;;    ;; ("C-," . 'rime-send-keybinding)
+;;    )
+;;   :config
+;;   ;; 在 modline 高亮输入法图标, 可用来快速分辨分中英文输入状态。
+;;   (setq mode-line-mule-info '((:eval (rime-lighter))))
 
-  ;; rime-disable-predicates 是一个列表，包含多个断言函数。
-  ;; 当这些断言中的任何一个返回 t 时，Rime 输入法会被临时禁用（即切换到英文输入模式）。
-  ;; 这主要用于特定场景下自动关闭中文输入，提高操作效率。
-  ;; 各个断言的作用如下：
-  ;;   - rime-predicate-ace-window-p: 使用 ace-window 选择窗口时禁用输入法
-  ;;   - rime-predicate-hydra-p: 激活 hydra 命令时禁用输入法
-  ;;   - rime-predicate-after-ascii-char-p: 光标前是 ASCII 字符时禁用输入法
-  ;;   - rime-predicate-after-alphabet-char-p: 光标前是字母字符时禁用输入法
-  ;;   - rime-predicate-prog-in-code-p: 在代码区域（非注释、非字符串）时禁用输入法
-  ;;   - rime-predicate-punctuation-after-space-cc-p: 空格后输入标点时禁用输入法
-  ;;   - rime-predicate-punctuation-after-ascii-p: ASCII 字符后输入标点时禁用输入法
-  ;;   - rime-predicate-auto-english-p: 自动英文模式，根据上下文自动切换
-  ;;   - rime-predicate-avy-p: 使用 avy 跳转时禁用输入法
-  ;;   - rime-predicate-vterm-p: 在 vterm 终端模式下禁用输入法
-  (setq rime-disable-predicates
-        '(rime-predicate-ace-window-p
-          rime-predicate-hydra-p
-          rime-predicate-after-ascii-char-p
-          rime-predicate-after-alphabet-char-p
-          rime-predicate-prog-in-code-p
-          rime-predicate-punctuation-after-space-cc-p
-          rime-predicate-punctuation-after-ascii-p
-          rime-predicate-auto-english-p
-          rime-predicate-avy-p
-          rime-predicate-vterm-p
-          ))
+;;   ;; 将如下快捷键发送给 rime，同时需要在 rime 的 key_binder/bindings 的部分配置才会生效。
+;;   (add-to-list 'rime-translate-keybindings "C-h") ;; 删除拼音字符
+;;   (add-to-list 'rime-translate-keybindings "C-d")
+;;   (add-to-list 'rime-translate-keybindings "C-k")
+;;   (add-to-list 'rime-translate-keybindings "C-a") ;; 跳转到第一个拼音字符
+;;   (add-to-list 'rime-translate-keybindings "C-e") ;; 跳转到最后一个拼音字符
+;;   ;; support shift-l, shift-r, control-l, control-r, 只有当使用系统 RIME 输入法时才有效
+;;   (setq rime-inline-ascii-trigger 'shift-l)
+;;   (setq rime-deactivate-when-exit-minibuffer nil)
 
-  (setq rime-show-candidate 'posframe)
-  (setq default-input-method "rime")
+;;   (defun rime-predicate-avy-p ()
+;;     (bound-and-true-p avy-command))
 
-  (setq rime-posframe-properties
-        (list :background-color "#333333"
-              :foreground-color "#dcdccc"
-              :internal-border-width 4))
+;;   ;; 添加 vterm 断言函数，在 vterm 中禁用某些输入法行为
+;;   (defun rime-predicate-vterm-p ()
+;;     (derived-mode-p 'vterm-mode))
 
-  ;; 部分 major-mode 关闭 RIME 输入法。
-  ;; 定义建议函数
-  (defvar my-disable-input-method-modes
-    '(dired-mode image-mode compilation-mode vterm-mode
-                 isearch-mode minibuffer-inactive-mode)
-    "Major modes where input method should be disabled.")
 
-  ;; (defvar im-cursor-color "Orange"
-  ;;   "The color for input method.")
+;;   ;; 临时英文模式, 该列表中任何一个断言返回 t 时自动切换到英文。如何 rime-inline-predicates 不为空，
+;;   ;; 则当其中任意一个断言也返回 t 时才会自动切换到英文（inline 等效于 ascii-mode）。
+;;   ;; 自定义 avy 断言函数.
 
-  (defvar im-default-cursor-color (frame-parameter nil 'cursor-color)
-    "The default cursor color.")
+;;   ;; rime-disable-predicates 是一个列表，包含多个断言函数。
+;;   ;; 当这些断言中的任何一个返回 t 时，Rime 输入法会被临时禁用（即切换到英文输入模式）。
+;;   ;; 这主要用于特定场景下自动关闭中文输入，提高操作效率。
+;;   ;; 各个断言的作用如下：
+;;   ;;   - rime-predicate-ace-window-p: 使用 ace-window 选择窗口时禁用输入法
+;;   ;;   - rime-predicate-hydra-p: 激活 hydra 命令时禁用输入法
+;;   ;;   - rime-predicate-after-ascii-char-p: 光标前是 ASCII 字符时禁用输入法
+;;   ;;   - rime-predicate-after-alphabet-char-p: 光标前是字母字符时禁用输入法
+;;   ;;   - rime-predicate-prog-in-code-p: 在代码区域（非注释、非字符串）时禁用输入法
+;;   ;;   - rime-predicate-punctuation-after-space-cc-p: 空格后输入标点时禁用输入法
+;;   ;;   - rime-predicate-punctuation-after-ascii-p: ASCII 字符后输入标点时禁用输入法
+;;   ;;   - rime-predicate-auto-english-p: 自动英文模式，根据上下文自动切换
+;;   ;;   - rime-predicate-avy-p: 使用 avy 跳转时禁用输入法
+;;   ;;   - rime-predicate-vterm-p: 在 vterm 终端模式下禁用输入法
+;;   (setq rime-disable-predicates
+;;         '(rime-predicate-ace-window-p
+;;           rime-predicate-hydra-p
+;;           rime-predicate-after-ascii-char-p
+;;           rime-predicate-after-alphabet-char-p
+;;           rime-predicate-prog-in-code-p
+;;           rime-predicate-punctuation-after-space-cc-p
+;;           rime-predicate-punctuation-after-ascii-p
+;;           rime-predicate-auto-english-p
+;;           rime-predicate-avy-p
+;;           rime-predicate-vterm-p
+;;           ))
 
-  (defun im--chinese-p ()
-    "Check if the current input state is Chinese."
-    (if (featurep 'rime)
-        (and (rime--should-enable-p)
-             (not (rime--should-inline-ascii-p))
-             current-input-method)
-      current-input-method))
+;;   (setq rime-show-candidate 'posframe)
+;;   (setq default-input-method "rime")
 
-  (defun im-change-cursor-color ()
-    "Set cursor color depending on input method."
-    (interactive)
-    (set-cursor-color (if (im--chinese-p)
-                          im-cursor-color
-                        im-default-cursor-color)))
-  ;; (define-minor-mode cursor-chg-mode
-  ;;     "Toggle changing cursor color.
-  ;; With numeric ARG, turn cursor changing on if ARG is positive.
-  ;; When this mode is on, `im-change-cursor-color' control cursor changing."
-  ;;     :init-value nil :global t :group 'frames
-  ;;     (if cursor-chg-mode
-  ;;         (add-hook 'post-command-hook 'im-change-cursor-color)
-  ;;       (remove-hook 'post-command-hook 'im-change-cursor-color)))
+;;   (setq rime-posframe-properties
+;;         (list :background-color "#333333"
+;;               :foreground-color "#dcdccc"
+;;               :internal-border-width 4))
 
-  ;; (cursor-chg-mode 1)
-  )
+;;   ;; 部分 major-mode 关闭 RIME 输入法。
+;;   ;; 定义建议函数
+;;   (defvar my-disable-input-method-modes
+;;     '(dired-mode image-mode compilation-mode vterm-mode
+;;                  isearch-mode minibuffer-inactive-mode)
+;;     "Major modes where input method should be disabled.")
+
+;;   ;; (defvar im-cursor-color "Orange"
+;;   ;;   "The color for input method.")
+
+;;   (defvar im-default-cursor-color (frame-parameter nil 'cursor-color)
+;;     "The default cursor color.")
+
+;;   (defun im--chinese-p ()
+;;     "Check if the current input state is Chinese."
+;;     (if (featurep 'rime)
+;;         (and (rime--should-enable-p)
+;;              (not (rime--should-inline-ascii-p))
+;;              current-input-method)
+;;       current-input-method))
+
+;;   (defun im-change-cursor-color ()
+;;     "Set cursor color depending on input method."
+;;     (interactive)
+;;     (set-cursor-color (if (im--chinese-p)
+;;                           im-cursor-color
+;;                         im-default-cursor-color)))
+;;   ;; (define-minor-mode cursor-chg-mode
+;;   ;;     "Toggle changing cursor color.
+;;   ;; With numeric ARG, turn cursor changing on if ARG is positive.
+;;   ;; When this mode is on, `im-change-cursor-color' control cursor changing."
+;;   ;;     :init-value nil :global t :group 'frames
+;;   ;;     (if cursor-chg-mode
+;;   ;;         (add-hook 'post-command-hook 'im-change-cursor-color)
+;;   ;;       (remove-hook 'post-command-hook 'im-change-cursor-color)))
+
+;;   ;; (cursor-chg-mode 1)
+;;   )
 
 
 ;; 设置 counsel-ag 命令的基础参数，使用 ag 进行搜索。

@@ -25,7 +25,7 @@ patch:
     switch_key:
       Caps_Lock: clear  # commit_code | commit_text | clear
       Shift_L: commit_code     # commit_code | commit_text | inline_ascii | clear | noop
-      Shift_R: clear     # commit_code | commit_text | inline_ascii | clear | noop
+      Shift_R: commit_code     # commit_code | commit_text | inline_ascii | clear | noop
       Control_L: noop   # commit_code | commit_text | inline_ascii | clear | noop
       Control_R: noop   # commit_code | commit_text | inline_ascii | clear | noop
 
@@ -82,14 +82,6 @@ patch:
     - { when: composing, accept: Alt+v, send: Page_Up }
     - { when: composing, accept: Control+v, send: Page_Down }
 
-    # 从用户数据库中删除误上屏的词语
-    - { when: composing, accept: Control+k, send: Shift+Delete }
-    - { when: composing, accept: Control+h, send: BackSpace }
-    - { when: composing, accept: Control+g, send: Escape }
-    - { when: composing, accept: Control+bracketleft, send: Escape }
-    - { when: composing, accept: Control+y, send: Page_Up }
-    - { when: composing, accept: Alt+v, send: Page_Up }
-    - { when: composing, accept: Control+v, send: Page_Down }
 
     # optimized_mode_switch:
     # - { when: always, accept: Control+Shift+space, select: .next }

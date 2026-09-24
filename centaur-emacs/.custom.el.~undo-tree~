@@ -1,0 +1,73 @@
+(undo-tree-save-format-version . 1)
+"81b9a0d514ba1ba4c02d456e24388a6ec4cdeeee"
+[nil nil nil nil (27211 30805 363037 0) 0 nil]
+([nil current ((11908 . 12147) (#("(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )" 0 239 (fontified nil)) . -11908) (11864 . 11906) (#("
+" 0 1 (fontified nil)) . -11864) (11864 . 11865) (11801 . 11828) (#(" " 0 1 (fontified nil)) . 11801) (11800 . 11801) (11733 . 11760) (#(" " 0 1 (fontified nil)) . 11733) (11732 . 11733) (11676 . 11703) (#(" " 0 1 (fontified nil)) . 11676) (11675 . 11676) (11625 . 11652) (#(" " 0 1 (fontified nil)) . 11625) (11624 . 11625) (11561 . 11588) (#(" " 0 1 (fontified nil)) . 11561) (11560 . 11561) (11490 . 11517) (#(" " 0 1 (fontified nil)) . 11490) (11489 . 11490) (11433 . 11460) (#(" " 0 1 (fontified nil)) . 11433) (11432 . 11433) (11368 . 11395) (#(" " 0 1 (fontified nil)) . 11368) (11367 . 11368) (11310 . 11337) (#(" " 0 1 (fontified nil)) . 11310) (11309 . 11310) (11241 . 11268) (#(" " 0 1 (fontified nil)) . 11241) (11240 . 11241) (11173 . 11200) (#(" " 0 1 (fontified nil)) . 11173) (11172 . 11173) (11102 . 11129) (#(" " 0 1 (fontified nil)) . 11102) (11101 . 11102) (11041 . 11068) (#(" " 0 1 (fontified nil)) . 11041) (11040 . 11041) (10984 . 11011) (#(" " 0 1 (fontified nil)) . 10984) (10983 . 10984) (10921 . 10948) (#(" " 0 1 (fontified nil)) . 10921) (10920 . 10921) (10859 . 10886) (#(" " 0 1 (fontified nil)) . 10859) (10858 . 10859) (10798 . 10825) (#(" " 0 1 (fontified nil)) . 10798) (10797 . 10798) (10731 . 10758) (#(" " 0 1 (fontified nil)) . 10731) (10730 . 10731) (10670 . 10697) (#(" " 0 1 (fontified nil)) . 10670) (10669 . 10670) (10609 . 10636) (#(" " 0 1 (fontified nil)) . 10609) (10608 . 10609) (10538 . 10565) (#(" " 0 1 (fontified nil)) . 10538) (10537 . 10538) (10468 . 10495) (#(" " 0 1 (fontified nil)) . 10468) (10467 . 10468) (10402 . 10429) (#(" " 0 1 (fontified nil)) . 10402) (10401 . 10402) (10334 . 10361) (#(" " 0 1 (fontified nil)) . 10334) (10333 . 10334) (10273 . 10300) (#(" " 0 1 (fontified nil)) . 10273) (10272 . 10273) (10209 . 10236) (#(" " 0 1 (fontified nil)) . 10209) (10208 . 10209) (10143 . 10170) (#(" " 0 1 (fontified nil)) . 10143) (10142 . 10143) (10074 . 10101) (#(" " 0 1 (fontified nil)) . 10074) (10073 . 10074) (10010 . 10037) (#(" " 0 1 (fontified nil)) . 10010) (10009 . 10010) (9946 . 9973) (#(" " 0 1 (fontified nil)) . 9946) (9945 . 9946) (9883 . 9910) (#(" " 0 1 (fontified nil)) . 9883) (9882 . 9883) (9812 . 9839) (#(" " 0 1 (fontified nil)) . 9812) (9811 . 9812) (9748 . 9775) (#(" " 0 1 (fontified nil)) . 9748) (9747 . 9748) (9678 . 9705) (#(" " 0 1 (fontified nil)) . 9678) (9677 . 9678) (9608 . 9635) (#(" " 0 1 (fontified nil)) . 9608) (9607 . 9608) (9538 . 9565) (#(" " 0 1 (fontified nil)) . 9538) (9537 . 9538) (9475 . 9502) (#(" " 0 1 (fontified nil)) . 9475) (9474 . 9475) (9410 . 9437) (#(" " 0 1 (fontified nil)) . 9410) (9409 . 9410) (9354 . 9381) (#(" " 0 1 (fontified nil)) . 9354) (9353 . 9354) (9289 . 9316) (#(" " 0 1 (fontified nil)) . 9289) (9288 . 9289) (9234 . 9261) (#(" " 0 1 (fontified nil)) . 9234) (9233 . 9234) (9175 . 9202) (#(" " 0 1 (fontified nil)) . 9175) (9174 . 9175) (9110 . 9137) (#(" " 0 1 (fontified nil)) . 9110) (9109 . 9110) (9050 . 9077) (#(" " 0 1 (fontified nil)) . 9050) (9049 . 9050) (8982 . 9009) (#(" " 0 1 (fontified nil)) . 8982) (8981 . 8982) (8912 . 8939) (#(" " 0 1 (fontified nil)) . 8912) (8911 . 8912) (8843 . 8870) (#(" " 0 1 (fontified nil)) . 8843) (8842 . 8843) (8772 . 8799) (#(" " 0 1 (fontified nil)) . 8772) (8771 . 8772) (8706 . 8733) (#(" " 0 1 (fontified nil)) . 8706) (8705 . 8706) (8648 . 8675) (#(" " 0 1 (fontified nil)) . 8648) (8647 . 8648) (8589 . 8616) (#(" " 0 1 (fontified nil)) . 8589) (8588 . 8589) (8546 . 8573) (#(" " 0 1 (fontified nil)) . 8546) (8545 . 8546) (8478 . 8505) (#(" " 0 1 (fontified nil)) . 8478) (8477 . 8478) (8413 . 8440) (#(" " 0 1 (fontified nil)) . 8413) (8412 . 8413) (8339 . 10406) (#(" " 0 1 (fontified nil)) . 8339) (8014 . 8340) (#("(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(sanityinc-tomorrow-day))
+ '(package-selected-packages
+   '(add-node-modules-path aggressive-indent alert anzu auto-compile avy
+                           browse-kill-ring bug-reference-github
+                           cask-mode cider cl-libify cljsbuild-mode
+                           clojure-ts-mode
+                           color-theme-sanityinc-solarized
+                           color-theme-sanityinc-tomorrow
+                           command-log-mode consult consult-eglot
+                           corfu corfu-terminal crontab-mode css-eldoc
+                           csv-mode dash-at-point default-text-scale
+                           dhall-mode diff-hl diminish dimmer diredfl
+                           disable-mouse docker docker-compose-mode
+                           dockerfile-mode dotenv-mode dune
+                           dune-format eat eglot elisp-slime-nav
+                           elm-mode elm-test-runner embark
+                           embark-consult envrc erlang
+                           exec-path-from-shell flycheck-clojure
+                           flycheck-ledger flycheck-nim
+                           flycheck-relint flycheck-rust flymake
+                           flymake-actionlint flymake-flycheck
+                           flymake-ruff forge gcmh git-link git-modes
+                           git-timemachine github-clone github-review
+                           gnu-elpa-keyring-update gnuplot go-ts-mode
+                           grab-mac-link haml-mode haskell-mode
+                           highlight-escape-sequences highlight-quoted
+                           htmlize httprepl ibuffer-projectile
+                           ibuffer-vc immortal-scratch inf-ruby
+                           info-colors ipretty j-mode js-comint
+                           js2-mode json-mode just-mode just-ts-mode
+                           justl ledger-mode list-unicode-display
+                           lua-mode macrostep magit magit-todos
+                           marginalia markdown-mode mmm-mode
+                           mode-line-bell move-dup multiple-cursors
+                           nginx-mode nim-mode nix-ts-mode nixfmt
+                           nixpkgs-fmt ns-auto-titlebar ocaml-ts-mode
+                           orderless org-cliplink org-pomodoro origami
+                           osx-location package-lint-flymake
+                           page-break-lines paredit php-mode
+                           pip-requirements prettier-js projectile
+                           projectile-rails psci pulsar puni
+                           purescript-mode rainbow-delimiters
+                           rainbow-mode reformatter regex-tool
+                           restclient rg robe rspec-mode
+                           ruby-compilation ruby-hash-syntax
+                           ruff-format rust-mode sass-mode scratch seq
+                           session shfmt sly sly-asdf sly-macrostep
+                           sly-repl-ansi-color smarty-mode sqlformat
+                           sudo-edit switch-window symbol-overlay
+                           tagedit terraform-mode textile-mode
+                           toml-mode tuareg typescript-mode
+                           uiua-ts-mode unfill uptimes vc-darcs
+                           vertico vlf wgrep which-key
+                           whitespace-cleanup-mode
+                           whole-line-or-region windswap
+                           writeroom-mode xref-js2 yagist yaml-mode
+                           yard-mode yari zig-mode zig-ts-mode))
+ '(session-use-package t nil (session)))" 0 3885 (fontified nil)) . -8014) (t 27211 30726 168596 53000)) nil (27211 30805 363023 0) 0 nil])
+nil
