@@ -2,4 +2,20 @@
 #@/db_name	sequence
 #@/db_type	userdb
 #@/rime_version	1.16.0
+#@/tick	1
 #@/user_id	macbookpro-angel
+gegegojxyzgegegojxdegoge 	各个国家有各个国家的国歌	c=-15359 d=0 t=1
+gsyklm 	供应链	c=12271 d=0 t=1
+hahah 	哈哈哈	c=-22015 d=0 t=1
+hahahah 	哈哈哈哈	c=7143 d=0 t=1
+hahha 	哈行啊	c=14832 d=0 t=1
+haxbaa 	哈行啊	c=13295 d=0 t=1
+jb 	晋	c=-20991 d=0 t=0
+jbqu 	进去	c=-1535 d=0 t=0
+ni 	你	c=1012 d=0 t=0
+nich 	你常	c=1011 d=0 t=0
+nihc 	hello	c=-1535 d=0 t=1
+nihc 	你好	c=-3583 d=0 t=1
+uime 	什	c=34292 d=0 t=0
+vec 	这次	c=-27647 d=0 t=1
+vfdema 	真的吗	c=-30207 d=0 t=1

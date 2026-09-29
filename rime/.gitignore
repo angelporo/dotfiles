@@ -1,0 +1,15 @@
+# Rime 相关：以下都不进 git
+# —— 生成产物
+build/
+# —— 体积过大（万象 release 可重新下载）
+wanxiang-lts-zh-hans.gram
+wanxiang-lts-zh-hans.gram.off
+dicts/
+lua/
+opencc/
+custom/
+# —— 用户词库：含个人输入习惯，不建议提交
+*.userdb/
+*.userdb.txt
+# —— 建立软链时备份的本地原件
+*.orig-local

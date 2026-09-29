@@ -20,6 +20,23 @@ patch:
       - wanxiang_algebra:/26jian          # 26 键；手机可用 18jian / 14jian
       #- wanxiang_algebra:/小鹤双拼提权    # 提升部分四码字优先级，可选
 
+  # ── 语法模型（420MB gram）调轻 ──────────────────────────────────
+  # 实测：gram 是按键响应的瓶颈（移走后立刻跟手）。
+  # 万象默认是 max 6 / min 2，搜索范围比你原来雾凇（5/2）更宽。这里收敛：
+  #   collocation_max_length 6 → 5 ：最长只做 5 字搭配打分
+  #   collocation_min_length 2 → 3 ：2 字搭配不再参与打分（这项对计算量影响最大）
+  # 若还是觉得慢，把 gram 文件改名成 .off 即可彻底关闭（见文件末尾备忘）。
+  grammar/collocation_max_length: 5
+  grammar/collocation_min_length: 3
+
+  # ── 上屏流畅度：关掉「按段学词」 ────────────────────────────────
+  # 万象默认 core_word_length: 4，上屏时会把整句拆成 ≤4 字的片段再逐个写进用户词典，
+  # 这是确认瞬间的顿挫感的来源。设 0 关闭。
+  # 代价：不再自动把长句拆成词组来学，但整词自动调频（enable_user_dict）仍在，
+  # 需要记的词可以手动造（`` 引导）或写进 custom_phrase。
+  # 想恢复就删掉这行。
+  translator/core_word_length: 0
+
   # ── 候选数量 ───────────────────────────────────────────────────
   # 万象默认 6（且 7890 被用作声调键，最多 6），这里跟你原来的习惯保持 5
   menu/page_size: 5
