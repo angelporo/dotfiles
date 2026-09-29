@@ -38,3 +38,25 @@ fi
 
 echo "==> 4/4 应用个人配置"
 bash "$HERE/link.sh"
+
+cat <<EOF
+
+──────────────────────────────────────────
+装完了，还有两件事脚本没替你做：
+
+1. 改 config/installation.yaml 里的 sync_dir
+   现在写的是 /Users/liyuan/dotfiles/rime-async-wanxiang
+   换机器后用户名通常不一样，改完重新部署才生效。
+
+2. 搬词库（可选）
+   Rime 的词频不在本仓库里。老机器上：输入法菜单 →「同步」
+   （会导出到 rime-async-wanxiang），新机器设好 sync_dir 后
+   再点一次「同步」+「重新部署」即可。
+
+3. 屏蔽 ⌃⌘空格 表情弹框（可选，系统级，不是 Rime 配置）
+   defaults write -g NSUserKeyEquivalents -dict-add "表情与符号" '@~^E'
+   然后注销重登。
+
+最后：输入法菜单 →「重新部署」
+──────────────────────────────────────────
+EOF

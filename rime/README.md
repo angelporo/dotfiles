@@ -37,7 +37,19 @@ SKIP_GRAM=1 bash ~/dotfiles/rime/install.sh
 ```
 
 换机器后记得改 `config/installation.yaml` 里的 `sync_dir`（默认指向
-`/Users/liyuan/dotfiles/rime-async-wanxiang`）。
+`/Users/liyuan/dotfiles/rime-async-wanxiang`，用户名不同要改）。
+
+## 脚本不会替你做的三件事
+
+1. **词库 / 词频** —— 不在本仓库。老机器输入法菜单点「同步」导出到
+   `rime-async-wanxiang`，新机器设好 `sync_dir` 后点「同步」+「重新部署」。
+2. **屏蔽 ⌃⌘空格 表情弹框** —— 这是 macOS 系统级设置，不是 Rime 配置：
+   ```bash
+   defaults write -g NSUserKeyEquivalents -dict-add "表情与符号" '@~^E'
+   ```
+   注销重登后生效。撤销：`defaults delete -g NSUserKeyEquivalents`
+3. **万象版本** —— 脚本固定装在 v18.0.15。想装新版：
+   `WX_VERSION=新版本号 bash install.sh`
 
 ## 配置做了什么（相对万象默认）
 
