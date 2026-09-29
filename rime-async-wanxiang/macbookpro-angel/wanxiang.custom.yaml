@@ -1,0 +1,61 @@
+# 万象拼音 个性化补丁（由雾凇配置平移而来）
+# 本文件 copy 自 custom/wanxiang.custom.yaml，放在用户根目录生效。
+# 说明：补丁是「方案优先」的，translator / menu / key_binder 这类在 wanxiang.schema.yaml
+# 里已定义的项，必须写在这里才覆盖得住，写进 default.custom.yaml 无效。
+patch:
+  # ── 输入方案：小鹤双拼 ─────────────────────────────────────────
+  # 方案名可选：全拼，自然码, 自然龙, 汉心龙，小鹤双拼, 搜狗双拼, 微软双拼,
+  # 智能ABC, 紫光双拼, 国标双拼，拼音加加，乱序17
+  # 也可以直接在输入框打 /flypy 切换（会自动改写本文件的这一行）。
+  speller/algebra:
+    __patch:
+      # 模糊音（万象自带模块，等价于雾凇里手写的 z/zh、c/ch、s/sh、in/ing 双向容错）
+      - wanxiang_algebra:/模糊音_z_zh
+      - wanxiang_algebra:/模糊音_c_ch
+      - wanxiang_algebra:/模糊音_s_sh
+      - wanxiang_algebra:/模糊音_in_ing
+      # 其余可选：模糊音_nl（n/l）模糊音_ry（r/y）模糊音_hf（h/f）
+      #           模糊音_rl 模糊音_kg 模糊音_en_eng
+      - wanxiang_algebra:/base/小鹤双拼
+      - wanxiang_algebra:/26jian          # 26 键；手机可用 18jian / 14jian
+      #- wanxiang_algebra:/小鹤双拼提权    # 提升部分四码字优先级，可选
+
+  # ── 候选数量 ───────────────────────────────────────────────────
+  # 万象默认 6（且 7890 被用作声调键，最多 6），这里跟你原来的习惯保持 5
+  menu/page_size: 5
+
+  # ── 快捷键：用 /+ 追加，避免覆盖万象自带的一堆 Control+* 功能键 ────
+  key_binder/bindings/+:
+    # 中英切换（万象未占用 Control+period）
+    - { when: always, accept: "Control+period", toggle: ascii_mode }
+    # 中英标点（万象自带的是 Control+Shift+3，这里补一条你原来用的）
+    - { when: always, accept: "Control+comma", toggle: ascii_punct }
+    # 翻页 , . （万象默认注释掉了，这里启用；- = 翻页万象已自带）
+    - { when: paging, accept: comma, send: Page_Up }
+    - { when: has_menu, accept: period, send: Page_Down }
+    # 小键盘映射兜底（default.yaml 里有，但方案的 bindings 可能覆盖掉导入项）
+    - {accept: KP_0, send: 0, when: composing}
+    - {accept: KP_1, send: 1, when: composing}
+    - {accept: KP_2, send: 2, when: composing}
+    - {accept: KP_3, send: 3, when: composing}
+    - {accept: KP_4, send: 4, when: composing}
+    - {accept: KP_5, send: 5, when: composing}
+    - {accept: KP_6, send: 6, when: composing}
+    - {accept: KP_7, send: 7, when: composing}
+    - {accept: KP_8, send: 8, when: composing}
+    - {accept: KP_9, send: 9, when: composing}
+    - {accept: KP_Decimal, send: period, when: composing}
+    - {accept: KP_Multiply, send: asterisk, when: composing}
+    - {accept: KP_Add,      send: plus,     when: composing}
+    - {accept: KP_Subtract, send: minus,    when: composing}
+    - {accept: KP_Divide,   send: slash,    when: composing}
+
+# ── 未平移的部分（有意为之，避免和万象冲突）──────────────────────
+# · emacs 编辑键（Ctrl+a/e/g/p/k 等）：万象已把这些键分配给了自己的功能
+#     Ctrl+a 辅助码显示 / Ctrl+e 翻译模式 / Ctrl+g 字符集过滤
+#     Ctrl+p 候选置顶 / Ctrl+k 候选右移（手动调序 Ctrl+j k l p）
+#   强行平移会导致按键行为错乱，因此没有搬过来。
+# · 中英切换键位（Caps_Lock=clear、Shift 左右=commit_code、good_old_caps_lock）
+#   万象 default.yaml 的默认值和你原来的一模一样，无需改动。
+# · 简繁切换 Ctrl+Shift+4：万象已自带（开关名是 s2t，不是 traditionalization）。
+# · 拼音注释：万象默认是「注释关」的开关位，不会再出现占位置的全拼注释。

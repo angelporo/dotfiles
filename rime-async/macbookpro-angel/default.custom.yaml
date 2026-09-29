@@ -108,7 +108,9 @@ patch:
     - {accept: KP_Subtract, send: minus,    when: composing}
     - {accept: KP_Divide,   send: slash,    when: composing}
 
-  translator/spelling_hints: 0           # 不显示候选词的拼音。
-  translator/always_show_comments: false #不显示候选者的拼音。
-  translator/enable_user_dict: true      # 根据上屏自动调整词频, 否则根据 *.dict.yaml 中的静态定义的词频率。
+  # ⚠️ default.yaml 只是「全局默认值」，方案文件（double_pinyin_flypy.schema.yaml）里
+  # 显式定义的同名项优先级更高，会把它覆盖掉。
+  # 所以 translator/* 这类在方案里已经写死的项，写在这个文件里是不生效的
+  # （menu/page_size、key_binder 这些方案里没定义的才有效）。
+  # 候选拼音注释、自动调频都已经移到 double_pinyin_flypy.custom.yaml。
   # custom_phrase/user_dict: "opsnull_custom_phrase"  # 自定义短语词典文件，权重最高。

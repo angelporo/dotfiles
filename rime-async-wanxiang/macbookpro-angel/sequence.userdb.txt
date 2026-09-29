@@ -1,0 +1,5 @@
+# Rime user dictionary
+#@/db_name	sequence
+#@/db_type	userdb
+#@/rime_version	1.16.0
+#@/user_id	macbookpro-angel
