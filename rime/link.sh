@@ -10,7 +10,9 @@ CFG="$(cd "$(dirname "$0")" && pwd)/config"
 
 # 软链指定文件（Rime 不会改写它们，所以可以放心软链）
 link() {
-  local name="$1" dest="$RIME_DIR/$name" target="$CFG/$name"
+  local name="$1"
+  local dest="$RIME_DIR/$name"
+  local target="$CFG/$name"
   [[ -f "$target" ]] || { echo "✗ 缺少 $target"; exit 1; }
   if [[ -e "$dest" && ! -L "$dest" ]]; then
     mv "$dest" "$dest.orig-local"
