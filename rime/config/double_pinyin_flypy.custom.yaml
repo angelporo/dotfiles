@@ -1,0 +1,96 @@
+patch:
+  # ── 万象语言模型 ────────────────────────────────────────────────
+  # 参数改回官方 recipe（others/recipes/grammar）的推荐值。
+  # 之前六项惩罚全部往 0 调（-10/-3/-50/-5），等于把 420MB 模型的话语权削到接近半关；
+  # 先按官方值跑一周，觉得整句太激进再往回调。
+  grammar:
+    language: wanxiang-lts-zh-hans
+    collocation_max_length: 6     # 官方 6（原 5）
+    collocation_min_length: 3     # 官方 3（原 2，2 字搭配噪音偏多）
+  grammar/collocation_penalty: -14        # 原 -10
+  grammar/non_collocation_penalty: -6     # 原 -3
+  grammar/weak_collocation_penalty: -100  # 原 -50
+  grammar/rear_penalty: -20               # 原 -5
+
+  # 自动调频只在这里开启。rime-ice 官方对全拼 rime_ice 和英文 melt_eng
+  # 都显式禁用了用户词典（enable_user_dict: false），全局打开会让英文候选
+  # 也被调频、逐渐漂移，所以从 default.custom.yaml 下放到这里。
+  translator/enable_user_dict: true
+
+  # 候选词后面拖着的「全拼注释」：必须写在这里才生效（schema 里显式写了 8 / true）。
+  # spelling_hints = 显示注音的最大字数，0 = 完全不显示。
+  # 想只给单字保留注音（确认多音字、生僻字）就把 0 改成 1。
+  translator/spelling_hints: 0
+  translator/always_show_comments: false
+
+  # 上下文调频：官方 recipe 为 false。开启后候选顺序会随上文跳动，
+  # 破坏肌肉记忆，故关闭（原为 true）。
+  translator/contextual_suggestions: false
+  translator/max_homophones: 8   # 原 7
+  translator/max_homographs: 8   # 原 7
+
+  # 长词优先 & v 模式优先（顺序与 rime_ice 全拼方案保持一致）
+  engine/filters:
+    # corrector 已摘掉：default.custom.yaml 关掉了拼音注释，它拿不到 comment 里的拼音只会空转。
+    # 想恢复错音错字提示，取消下面这行注释，并把 default.custom.yaml 里的
+    # spelling_hints 改回 8、always_show_comments 改回 true。
+    # - lua_filter@*corrector
+    - reverse_lookup_filter@radical_reverse_lookup
+    - lua_filter@*autocap_filter
+    - lua_filter@*v_filter
+    - lua_filter@*pin_cand_filter
+    - lua_filter@*long_word_filter
+    - lua_filter@*reduce_english_filter
+    - simplifier@emoji
+    - simplifier@traditionalize
+    - lua_filter@*search@radical_pinyin
+    - uniquifier
+
+  # 拼写设定
+  speller:
+    # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
+    alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`
+    # initials 定义仅作为始码的按键，排除 ` 让单个的 ` 可以直接上屏
+    initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+    delimiter: " '"  # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
+    algebra:
+      - erase/^xx$/
+      - derive/^([jqxy])u$/$1v/
+      - derive/^([aoe])([ioun])$/$1$1$2/
+      # 模糊音：下面 1、2 两组都是「双向」的，双拼下每个音节都会裂成两个拼写，
+      # 整句搜索空间约翻倍，容错音也容易抢掉首选。
+      # 建议只保留你真会写错的方向：例如常把卷舌打成平舌，就注释掉带 h 的那条。
+      # 1. 平翘舌音不分 (z/zh, c/ch, s/sh)
+      - derive/^([zcs])h/$1/             # zh/ch/sh -> z/c/s (例如: "chi" -> "ci")
+      - derive/^([zcs])([^h])/$1h$2/     # z/c/s -> zh/ch/sh (例如: "ci" -> "chi")
+      # 2. 前后鼻音不分 (in/ing, en/eng)
+      - derive/([ei])n$/$1ng/            # in/en -> ing/eng (例如: "yin" -> "ying")
+      - derive/([ei])ng$/$1n/            # ing/eng -> in/en (例如: "ying" -> "yin")
+      - xform/^([aoe])(ng)?$/$1$1$2/
+      - xform/iu$/Ⓠ/
+      - xform/(.)ei$/$1Ⓦ/
+      - xform/uan$/Ⓡ/
+      - xform/[uv]e$/Ⓣ/
+      - xform/un$/Ⓨ/
+      - xform/^sh/Ⓤ/
+      - xform/^ch/Ⓘ/
+      - xform/^zh/Ⓥ/
+      - xform/uo$/Ⓞ/
+      - xform/ie$/Ⓟ/
+      - xform/(.)i?ong$/$1Ⓢ/
+      - xform/ing$|uai$/Ⓚ/
+      - xform/(.)ai$/$1Ⓓ/
+      - xform/(.)en$/$1Ⓕ/
+      - xform/(.)eng$/$1Ⓖ/
+      - xform/[iu]ang$/Ⓛ/
+      - xform/(.)ang$/$1Ⓗ/
+      - xform/ian$/Ⓜ/
+      - xform/(.)an$/$1Ⓙ/
+      - xform/(.)ou$/$1Ⓩ/
+      - xform/[iu]a$/Ⓧ/
+      - xform/iao$/Ⓝ/
+      - xform/(.)ao$/$1Ⓒ/
+      - xform/ui$/Ⓥ/
+      - xform/in$/Ⓑ/
+      - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
+      # - abbrev/^(.).+$/$1/  # 首字母简拼，开启后会导致 3 个字母时 kj'x 变成 k'jx 的问题

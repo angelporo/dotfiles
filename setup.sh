@@ -11,7 +11,7 @@
 #   bash ~/dotfiles/setup.sh            # 链接全部组件
 #   bash ~/dotfiles/setup.sh shell      # 只链接 shell
 #   bash ~/dotfiles/setup.sh git        # 只链接 git
-#   bash ~/dotfiles/setup.sh rime       # 调用 rime/link.sh
+#   bash ~/dotfiles/setup.sh rime       # 调用 rime/apply.sh（复制个人配置到 ~/Library/Rime）
 #   bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.emacs.d
 #   bash ~/dotfiles/setup.sh alfred     # 软链 Alfred 同步文件夹到 Application Support
 #   DRY=1 bash ~/dotfiles/setup.sh      # 只打印将要做什么，不真改
@@ -77,10 +77,10 @@ do_git() {
 
 do_rime() {
   echo "==> rime"
-  if [ -x "$HERE/rime/link.sh" ]; then
-    bash "$HERE/rime/link.sh"
+  if [ -x "$HERE/rime/apply.sh" ]; then
+    bash "$HERE/rime/apply.sh"
   else
-    echo "  ⓘ rime/link.sh 不存在，跳过"
+    echo "  ⓘ rime/apply.sh 不存在，跳过"
   fi
 }
 

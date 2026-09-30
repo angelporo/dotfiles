@@ -8,14 +8,14 @@ dotfiles 管理说明：配置存放在各组件目录，由 `setup.sh` 软链�
 
 ```bash
 git clone <你的仓库> ~/dotfiles
-bash ~/dotfiles/bootstrap.sh            # 全流程：CLT→MacPorts→端口→Squirrel→万象→软链→hosts备份→表情屏蔽
+bash ~/dotfiles/bootstrap.sh            # 全流程：CLT→MacPorts→端口→Squirrel→Rime个人配置→软链→hosts备份→表情屏蔽
 DRY=1 bash ~/dotfiles/bootstrap.sh      # 只看会做什么，不真改
 bash ~/dotfiles/bootstrap.sh ports      # 只想重装端口清单时
 ```
 
 引导脚本会自动：装 Xcode 命令行工具、按 macOS 大版本装对应 MacPorts pkg、装 38 个端口（含 emacs）、
-装 Squirrel 输入法、装万象拼音（含 420MB 语法模型）、软链全部 dotfiles（shell/git/rime/emacs/alfred）、
-备份 /etc/hosts、屏蔽 ⌃⌘空格 表情弹框。
+装 Squirrel 输入法、套用 Rime 个人配置（apply.sh，前提：官方 rime-ice 已先装到 ~/Library/Rime）、
+软链全部 dotfiles（shell/git/rime/emacs/alfred）、备份 /etc/hosts、屏蔽 ⌃⌘空格 表情弹框。
 装完注销重登一次让输入法与表情屏蔽生效；Squirrel 需到「系统设置→键盘→输入法」手动添加「鼠须管」。
 
 ## 只迁移配置（前置已就绪时）
@@ -24,7 +24,7 @@ bash ~/dotfiles/bootstrap.sh ports      # 只想重装端口清单时
 bash ~/dotfiles/setup.sh            # 链接全部（shell / git / rime / centaur-emacs）
 bash ~/dotfiles/setup.sh shell      # 只链接 shell
 bash ~/dotfiles/setup.sh git        # 只链接 git
-bash ~/dotfiles/setup.sh rime       # 调用 rime/link.sh
+bash ~/dotfiles/setup.sh rime       # 调用 rime/apply.sh（套用个人配置到 ~/Library/Rime）
 bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.emacs.d
 ```
 
@@ -34,7 +34,7 @@ bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.em
 |---|---|
 | `shell/` | `.zshrc` `.zprofile` `.bash_profile` `.profile`（路径已参数化为 `$HOME`） |
 | `git/` | `.gitconfig` `ignore`（全局忽略，软链到 `~/.config/git/ignore`） |
-| `rime/` | 万象拼音 Base + 小鹤双拼（`install.sh` / `link.sh` / `update.sh`） |
+| `rime/` | rime-ice 个人覆盖层（小鹤双拼 + 万象语法模型）：`config/*.custom.yaml` + `apply.sh` |
 | `macports/` | `ports-requested.txt` + `dump.sh` / `restore.sh` / `README.md` |
 | `centaur-emacs/` | Emacs 自定义层（custom.el / snippets 等），软链进 `~/.emacs.d`；核心需另装 |
 | `alfred/` | Alfred 同步文件夹 `Alfred.alfredpreferences`（含 26 个工作流+主题+偏好），软链到 `~/Library/Application Support/Alfred/` |

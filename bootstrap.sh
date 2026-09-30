@@ -7,7 +7,7 @@
 #   2. MacPorts 本体           —— 按 macOS 大版本下载对应 pkg 安装
 #   3. port selfupdate + 端口清单 —— macports/restore.sh（38 个包，含 emacs）
 #   4. Squirrel 输入法         —— 非 port，从 GitHub 下 .app 装到 /Library/Input Methods
-#   5. 万象拼音                —— rime/install.sh（Base + 420MB 语法模型）
+#   5. Rime 个人配置          —— rime/apply.sh（前提：官方 rime-ice 已先装到 ~/Library/Rime，含语法模型）
 #   6. dotfiles 软链           —— setup.sh all（shell/git/rime/centaur-emacs）
 #   7. 备份 /etc/hosts         —— 仅备份 + 打印差异，不覆盖
 #   8. 屏蔽 ⌃⌘空格 表情弹框     —— 系统级，注销后生效
@@ -120,9 +120,11 @@ step_squirrel() {
 
 # -----------------------------------------------------------------------------
 step_rime() {
-  dry_skip "安装万象拼音（Base + 语法模型）" && return
-  info "执行 rime/install.sh（默认含 420MB 语法模型；SKIP_GRAM=1 可跳过）"
-  SKIP_GRAM="${SKIP_GRAM:-0}" bash "$HERE/rime/install.sh"
+  dry_skip "套用 Rime 个人配置（apply.sh）" && return
+  info "套用个人 Rime 配置：rime/apply.sh"
+  info "ⓘ 前提：官方 rime-ice 需先安装到 ~/Library/Rime（含 420MB 语法模型）。"
+  info "   若尚未安装，请先按 rime-ice 官方文档部署，再单独跑：bash ~/dotfiles/rime/apply.sh"
+  bash "$HERE/rime/apply.sh"
 }
 
 # -----------------------------------------------------------------------------
