@@ -39,6 +39,27 @@ SKIP_GRAM=1 bash ~/dotfiles/rime/install.sh
 换机器后记得改 `config/installation.yaml` 里的 `sync_dir`（默认指向
 `/Users/liyuan/dotfiles/rime-async-wanxiang`，用户名不同要改）。
 
+## 更新万象
+
+```bash
+bash ~/dotfiles/rime/update.sh              # 更新到最新版
+WX_VERSION=18.1.0 bash ~/dotfiles/rime/update.sh   # 指定版本（也能用来回退）
+UPDATE_GRAM=1 bash ~/dotfiles/rime/update.sh       # 连 420MB 语法模型一起更新
+```
+
+脚本会：查最新版 → **APFS 克隆备份**整个 Rime 目录 → 覆盖安装 → 重建软链 → 预编译。
+跑完还要在输入法菜单点「重新部署」。
+
+**为什么能放心更新**：个人配置在 `config/` 里，万象新版只覆盖它自己的文件，
+软链会在第 5 步重新挂回去，两者不会互相覆盖。
+
+**风险点**：新版可能改字段名，导致 `wanxiang.custom.yaml` 里的补丁失效。
+所以每次更新后按脚本输出的清单抽验一遍（小鹤双拼、模糊音、快捷键）。
+真出问题就按脚本末尾的还原命令恢复备份。
+
+更新频率建议：词库更新比较频繁，一两个月一次即可；语法模型（420MB）更新很慢，
+半年看一次就行。
+
 ## 脚本不会替你做的三件事
 
 1. **词库 / 词频** —— 不在本仓库。老机器输入法菜单点「同步」导出到

@@ -1,5 +1,0 @@
-RIME_PLUGINS=hchunhui/librime-lua lotem/librime-octagram rime/librime-predict
-librime e42851c
-hchunhui/librime-lua 7c297e4
-lotem/librime-octagram a6ced5a
-rime/librime-predict 5c793c9
