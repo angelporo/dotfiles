@@ -2,5 +2,6 @@
 #@/db_name	en
 #@/db_type	userdb
 #@/rime_version	1.16.0
-#@/tick	0
+#@/tick	1
 #@/user_id	macbookpro-angel
+super 	super	c=1 d=1 t=1
