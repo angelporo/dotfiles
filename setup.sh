@@ -13,6 +13,7 @@
 #   bash ~/dotfiles/setup.sh git        # 只链接 git
 #   bash ~/dotfiles/setup.sh rime       # 调用 rime/link.sh
 #   bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.emacs.d
+#   bash ~/dotfiles/setup.sh alfred     # 软链 Alfred 同步文件夹到 Application Support
 #   DRY=1 bash ~/dotfiles/setup.sh      # 只打印将要做什么，不真改
 #
 # 全新机器一键迁移请用 bootstrap.sh（会先装 MacPorts/Squirrel 等前置）。
@@ -104,6 +105,34 @@ do_emacs() {
   fi
 }
 
+do_alfred() {
+  echo "==> alfred"
+  local src="$HERE/alfred/Alfred.alfredpreferences"
+  local dst="$HOME_DIR/Library/Application Support/Alfred/Alfred.alfredpreferences"
+  [ -d "$src" ] || { echo "  ⓘ alfred/Alfred.alfredpreferences 不存在，跳过"; return; }
+  mkdir -p "$(dirname "$dst")"
+
+  if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
+    echo "  ✓ 已链接 (跳过): $dst"
+    return 0
+  fi
+
+  if [ "$DRY" = "1" ]; then
+    echo "  → [DRY] link $dst -> $src"
+    return 0
+  fi
+
+  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+    local bak="$dst.orig-$(date +%Y%m%d%H%M%S)"
+    mv "$dst" "$bak"
+    echo "  ⓘ 备份原文件夹: $bak"
+  fi
+  rm -f "$dst"
+  ln -s "$src" "$dst"
+  echo "  ✅ 已链接: $dst -> $src"
+  echo "  ⓘ 换机后若 Alfred 没自动识别，到 偏好设置→高级 把「同步文件夹」指向该路径，或重启 Alfred。"
+}
+
 main() {
   local target="${1:-all}"
   case "$target" in
@@ -111,13 +140,15 @@ main() {
     git)   do_git ;;
     rime)  do_rime ;;
     emacs) do_emacs ;;
+    alfred) do_alfred ;;
     all)
       do_shell
       do_git
       do_rime
       do_emacs
+      do_alfred
       ;;
-    *) echo "未知组件: $target（可选 shell / git / rime / emacs / all）"; exit 1 ;;
+    *) echo "未知组件: $target（可选 shell / git / rime / emacs / alfred / all）"; exit 1 ;;
   esac
   echo
   echo "完成。新开一个终端即可生效；如想回退，删掉软链并把 *.orig-<时间戳> 改名回去。"

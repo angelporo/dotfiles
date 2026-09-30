@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>7D188C9B-9D9C-455E-B602-675360906C09</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>？</string>
+			<key>text</key>
+			<string>坚决不用百度引擎</string>
+			<key>url</key>
+			<string>https://www.google.com/search?q={query}</string>
+		</dict>
+		<key>B9708C15-659F-4238-8E9D-F388456C826B</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>jd</string>
+			<key>text</key>
+			<string>京东</string>
+			<key>url</key>
+			<string>https://search.jd.com/Search?keyword={query}&amp;enc=utf-8&amp;wq={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>E75A9229-76E1-4449-A150-E9FDA7D78791</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>github</string>
+			<key>text</key>
+			<string>github</string>
+			<key>url</key>
+			<string>https://github.com/search?utf8=%E2%9C%93&amp;q={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>EF08A660-E3DA-4089-A879-C363FA8492DD</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>tb</string>
+			<key>text</key>
+			<string>淘宝</string>
+			<key>url</key>
+			<string>http://s.taobao.com/search?oe=utf-8&amp;f=8&amp;q={query}
+http://s.taobao.com/search?oe=utf-8&amp;f=8&amp;q={query}
+http://s.taobao.com/search?oe=utf-8&amp;f=8&amp;q={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

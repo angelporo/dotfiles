@@ -14,7 +14,8 @@ bash ~/dotfiles/bootstrap.sh ports      # 只想重装端口清单时
 ```
 
 引导脚本会自动：装 Xcode 命令行工具、按 macOS 大版本装对应 MacPorts pkg、装 38 个端口（含 emacs）、
-装 Squirrel 输入法、装万象拼音（含 420MB 语法模型）、软链全部 dotfiles、备份 /etc/hosts、屏蔽 ⌃⌘空格 表情弹框。
+装 Squirrel 输入法、装万象拼音（含 420MB 语法模型）、软链全部 dotfiles（shell/git/rime/emacs/alfred）、
+备份 /etc/hosts、屏蔽 ⌃⌘空格 表情弹框。
 装完注销重登一次让输入法与表情屏蔽生效；Squirrel 需到「系统设置→键盘→输入法」手动添加「鼠须管」。
 
 ## 只迁移配置（前置已就绪时）
@@ -36,6 +37,7 @@ bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.em
 | `rime/` | 万象拼音 Base + 小鹤双拼（`install.sh` / `link.sh` / `update.sh`） |
 | `macports/` | `ports-requested.txt` + `dump.sh` / `restore.sh` / `README.md` |
 | `centaur-emacs/` | Emacs 自定义层（custom.el / snippets 等），软链进 `~/.emacs.d`；核心需另装 |
+| `alfred/` | Alfred 同步文件夹 `Alfred.alfredpreferences`（含 26 个工作流+主题+偏好），软链到 `~/Library/Application Support/Alfred/` |
 | `etc/` | hosts 等系统文件（bootstrap 仅备份，不自动覆盖） |
 
 ## 注意

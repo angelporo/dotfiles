@@ -1,0 +1,45 @@
+"use strict";
+
+const alfy = require("alfy");
+const CryptoJS = require("crypto-js");
+
+function truncate(q) {
+  var len = q.length;
+  if (len <= 20) return q;
+  return q.substring(0, 10) + len + q.substring(len - 10, len);
+}
+
+// 此 key 全采集于 github 上面 若有冒犯就先谢罪了啊哈...
+module.exports = {
+  youDaoApi: "https://openapi.youdao.com/api",
+  getParams: function () {
+    var appKey = "00b3a42c6c9c55e9"; // 需要使用自己的appkey并且开通了api功能的
+    var key = "c4AAik14S5XSGwNgfr2iD62l6xK4H5ZQ"; //注意：暴露 appSecret，有被盗用造成损失的风险
+    var salt = new Date().getTime();
+    var curtime = Math.round(new Date().getTime() / 1000);
+    var query = alfy.input;
+    // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+    var from = "zh-CHS";
+    var to = "en";
+    var str1 = appKey + truncate(query) + salt + curtime + key;
+    var sign = CryptoJS.SHA256(str1).toString(CryptoJS.enc.Hex);
+    return {
+      query: {
+        q: query,
+        appKey: appKey,
+        salt: salt,
+        from: from,
+        to: to,
+        sign: sign,
+        signType: "v3",
+        curtime: curtime,
+      },
+    };
+  },
+  filter: {
+    prep: ["and", "or", "the", "a", "at", "of"],
+    prefix: [],
+    suffix: ["ing", "ed", "ly"],
+    verb: ["was"],
+  },
+};
