@@ -37,7 +37,7 @@ fi
 # ------------------------------------------------------------------------------
 capture_userdb() {
   local s="$DEST/rime_ice.userdb"
-  local d="$HERE/userdb/rime_ice.userdb"
+  local d="$HERE/userdb/rime_ice"
   if [ ! -d "$s" ]; then
     echo "错误：未找到 $s（请先至少用一次 rime_ice 输入法，产生用户词库）"
     exit 1
@@ -119,6 +119,7 @@ if [ -d "$USERDB_SRC" ]; then
   elif [ "$DRY" = "1" ]; then
     echo "  [DRY] 将恢复用户词库快照到 $USERDB_DST"
   else
+    rm -rf "$USERDB_DST"
     cp -a "$USERDB_SRC" "$USERDB_DST"
     echo "  已恢复用户词库到 $USERDB_DST"
   fi
