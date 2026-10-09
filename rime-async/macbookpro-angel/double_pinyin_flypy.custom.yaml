@@ -12,10 +12,13 @@ patch:
   grammar/weak_collocation_penalty: -100  # 原 -50
   grammar/rear_penalty: -20               # 原 -5
 
-  # 自动调频只在这里开启。rime-ice 官方对全拼 rime_ice 和英文 melt_eng
-  # 都显式禁用了用户词典（enable_user_dict: false），全局打开会让英文候选
-  # 也被调频、逐渐漂移，所以从 default.custom.yaml 下放到这里。
+  # 自动调频 / 频率浮动：只在这里（双拼方案）开启，不要放到 default.custom.yaml。
+  # rime-ice 官方对全拼 rime_ice 和英文 melt_eng 都显式禁用（enable_user_dict: false），
+  # 全局打开会让英文候选也被调频、逐渐漂移，所以只在 double_pinyin_flypy 打开。
+  #   enable_user_dict: true  → 你选过的词/短语会被记入用户词典，用得越多权重越高，候选自然上浮（频率浮动）。
+  #   enable_sentence:  true  → 记录你打出的多字短语，让「短语」也能按使用频次浮动（默认即 true，这里显式写出）。
   translator/enable_user_dict: true
+  translator/enable_sentence: true
 
   # 候选词后面拖着的「全拼注释」：必须写在这里才生效（schema 里显式写了 8 / true）。
   # spelling_hints = 显示注音的最大字数，0 = 完全不显示。
@@ -35,13 +38,13 @@ patch:
     # 想恢复错音错字提示，取消下面这行注释，并把 default.custom.yaml 里的
     # spelling_hints 改回 8、always_show_comments 改回 true。
     # - lua_filter@*corrector
-    - reverse_lookup_filter@radical_reverse_lookup
+    # reverse_lookup_filter@radical_reverse_lookup 已摘掉：部件拆字反查，会在候选后显示五笔/拆字编码（你不使用）。
     - lua_filter@*autocap_filter
     - lua_filter@*v_filter
     - lua_filter@*pin_cand_filter
     - lua_filter@*long_word_filter
     - lua_filter@*reduce_english_filter
-    - simplifier@emoji
+    # simplifier@emoji 已摘掉：表情候选（你不使用）。
     - simplifier@traditionalize
     - lua_filter@*search@radical_pinyin
     - uniquifier

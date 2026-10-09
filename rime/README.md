@@ -4,7 +4,7 @@
 
 你的完整组合是：**rime-ice 发行版 + 小鹤双拼(double_pinyin_flypy) + 万象语法模型(wanxiang-lts-zh-hans)**。
 官方文件（default.yaml、*.schema.yaml、lua/、dicts/、opencc/ 等）由官方仓库提供；
-这里只放你自己在官方之上叠加的 `*.custom.yaml` 与个人短语。
+这里只放你自己在官方之上叠加的 `*.custom.yaml`、个人短语，以及**用户词库快照**。
 
 ## config/ 包含的文件
 
@@ -21,11 +21,22 @@
 
 > 这些文件均**不含机器专属绝对路径**，可安全跨机器使用。
 
+## 用户词库快照：`userdb/rime_ice/`
+
+你开启的「频率浮动」会把学过的词写进 `~/Library/Rime/rime_ice.userdb/`（leveldb）。
+换机时若想带上这些学习成果，这里保存一份**快照**，由 `apply.sh` 在部署时恢复到新机器。
+
+- 刷新快照（本机又学了很多词后）：`CAPTURE=1 bash ~/dotfiles/rime/apply.sh`
+  会把 `~/Library/Rime/rime_ice.userdb/` 抓回 `userdb/rime_ice/`，记得 `git add` 提交。
+- 恢复时机：`apply.sh` 只在**目标词库不存在或为空**时复制，避免覆盖新机器上已有的学习数据。
+  请在 Squirrel 未运行时执行；若已运行，注销重登后再跑更稳妥。
+- 该目录命名特意不带 `.userdb` 后缀，因此不会被 `*.userdb/` 规则忽略，自动纳入同步。
+
 ## 刻意不包含（由官方安装提供或运行时生成）
 
 - `wanxiang-lts-zh-hans.gram`（420MB 语法模型）：官方安装时下载，体积大，不入 git。
 - `build/`：编译缓存，自动生成。
-- `*.userdb*`：个人词库（学习到的字词），运行时数据，不提交。
+- `*.userdb*`：`~/Library/Rime/` 下运行时产生的用户词库 **不提交**；但本目录内的 **`userdb/rime_ice/` 快照是迁移用的，会提交**（见上）。
 - `installation.yaml`：含机器唯一 ID 与 `/Users/liyuan` 路径，**不复制**。
 - 官方 `default.yaml`、`*.schema.yaml`、`cn_dicts/`、`dicts/`、`en_dicts/`、`lua/`、`opencc/`、`others/`、`Rime/` 等：来自官方仓库。
 - `custom/` 目录（旧万象方案文件）：你已切回 ice，不再使用，未纳入。
@@ -51,8 +62,3 @@ bash ~/dotfiles/rime/apply.sh
 - `__patch:` recipe（rime_ice/melt_eng/radical_pinyin 的 custom 文件）由 rime-ice 在**部署时**自动展开，
   无需单独跑安装脚本；只要官方 `others/recipes/` 在，复制后重部署即生效。
 - 若某 App 打不了中文：先彻底退出该 App(⌘Q)重开；不行就注销重登。切勿用 `open` 手动拉起 Squirrel。
-
-## 历史遗留：`wanxiang/` 子目录
-
-里面是早期「整套切换万象 Base 方案」时期的脚本(install.sh/link.sh/update.sh)与配置，
-现已切回 rime-ice，这些不再使用，仅作存档保留，不参与迁移。

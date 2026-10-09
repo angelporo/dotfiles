@@ -8,7 +8,8 @@ dicts/
 lua/
 opencc/
 custom/
-# —— 用户词库：含个人输入习惯，不建议提交
+# —— 用户词库：默认含个人输入习惯、不建议提交
+#   例外：rime/userdb/rime_ice/ 下的快照（目录名不带 .userdb 后缀，故不命中下面规则）用于换机迁移
 *.userdb/
 *.userdb.txt
 # —— 建立软链时备份的本地原件
