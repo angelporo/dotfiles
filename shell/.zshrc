@@ -5,6 +5,17 @@
 # Forcefully remove invalid Homebrew completion path
 fpath=(${fpath[@]:#*/usr/local/share/zsh/site-functions})
 
+# [2026-10-10 修复] 确保 MacPorts 路径在任意 shell 模式下都可用
+# 关键：Ghostty 默认拉起「非登录交互 shell」，不会 source ~/.zprofile，
+# 导致 /opt/local/bin 缺失 -> starship/zoxide/atuin/fzf/fnm/eza 全部 command not found。
+# 这里在 .zshrc 顶部补上，登录/非登录 shell 均覆盖（已存在则不重复添加）。
+if [ -d /opt/local/bin ]; then
+  case ":$PATH:" in
+    *":/opt/local/bin:"*) ;;
+    *) export PATH="/opt/local/bin:/opt/local/sbin:$PATH" ;;
+  esac
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -191,3 +202,36 @@ export PATH="$PNPM_HOME:$PATH"
 # 回滚：删掉下面这行，并恢复文件开头的两行注释。
 # 显式带 --shell zsh，避免非交互/嵌套 shell 场景下 fnm 无法推断 shell 而静默失效。
 eval "$(fnm env --use-on-cd --shell zsh)"
+
+# QODER_DISPATCHER_PATH v1
+path=("$HOME/.qoder/entry" ${path:#"$HOME/.qoder/entry"})
+export PATH
+# END QODER_DISPATCHER_PATH v1
+
+# ============================================================
+#  [2026-10-10] Ghostty 体验增强：starship / zoxide / eza / vivid
+#  说明：starship、zoxide 此前已装但未启用；eza 由 MacPorts 安装中；
+#        vivid 已装到 ~/bin。全部用户级改动，回滚删本段即可（备份见 .zshrc.bak.20261010）
+# ============================================================
+
+# 用户级 bin（vivid 等）加入 PATH
+export PATH="$HOME/bin:$PATH"
+
+# 智能提示符 starship（覆盖 oh-my-zsh 默认主题）
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+# 智能 cd：z 命令跳转常用目录
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
+
+# eza 替代 ls（MacPorts 安装完成后自动生效）
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --icons'
+  alias ll='eza -la --icons'
+  alias la='eza -a --icons'
+  alias lt='eza --tree --icons'
+fi
+
+# vivid 为 ls/eza 提供配色（Catppuccin 护眼底色）
+if command -v vivid >/dev/null 2>&1; then
+  export LS_COLORS="$(vivid generate catppuccin-mocha 2>/dev/null)"
+fi
