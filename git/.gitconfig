@@ -3,3 +3,7 @@
 	email = 940079461@qq.com
 [pull]
 	rebase = false
+[core]
+	pager = delta
+[include]
+	path = /opt/local/share/git-delta/themes.gitconfig

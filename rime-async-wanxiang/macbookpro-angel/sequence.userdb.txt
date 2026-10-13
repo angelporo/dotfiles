@@ -25,7 +25,7 @@ mwvi 	煤质	c=9716 d=0 t=1
 ni 	你	c=1012 d=0 t=1
 nich 	你常	c=1011 d=0 t=1
 nihc 	hello	c=-1535 d=0 t=1
-nihc 	你好	c=-8703 d=0 t=1
+nihc 	你好	c=-10751 d=0 t=1
 nihc 	妮	c=2545 d=0 t=1
 nihc 	泥蒿	c=6631 d=0 t=1
 uide 	是的	c=2035 d=0 t=1
