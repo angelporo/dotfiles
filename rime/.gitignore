@@ -9,10 +9,11 @@ lua/
 opencc/
 custom/
 # —— 用户词库：默认含个人输入习惯、不建议提交
-#   例外：rime/userdb/rime_ice/ 下的快照（目录名不带 .userdb 后缀，故不命中下面规则）用于换机迁移
+#   例外：ice/userdb/rime_ice/ 与 wanxiang/userdb/wanxiang/ 下的快照
+#   （目录名不带 .userdb 后缀，故不命中下面规则）用于换机迁移
 *.userdb/
 *.userdb.txt
-# CAPTURE 模式产生的本地备份，不提交
-userdb/.bak-*/
+# CAPTURE 模式产生的本地备份，不提交（ice/wanxiang 各自目录下都忽略）
+**/userdb/.bak-*/
 # —— 建立软链时备份的本地原件
 *.orig-local

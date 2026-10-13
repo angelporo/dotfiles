@@ -78,7 +78,8 @@ do_git() {
 do_rime() {
   echo "==> rime"
   if [ -x "$HERE/rime/apply.sh" ]; then
-    bash "$HERE/rime/apply.sh"
+    # 默认 ice；若要万象方案，单独跑：bash "$HERE/rime/apply.sh" wanxiang
+    bash "$HERE/rime/apply.sh" ice
   else
     echo "  ⓘ rime/apply.sh 不存在，跳过"
   fi

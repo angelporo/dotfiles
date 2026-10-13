@@ -24,7 +24,8 @@ ni 	你	c=1012 d=0 t=1
 nich 	你常	c=1011 d=0 t=1
 nihc 	hello	c=-1535 d=0 t=1
 nihc 	你好	c=-8703 d=0 t=1
-nihc 	泥蒿	c=6631 d=0 t=0
+nihc 	妮	c=2545 d=0 t=0
+nihc 	泥蒿	c=6631 d=0 t=1
 uide 	是的	c=2035 d=0 t=1
 uime 	什	c=34292 d=0 t=1
 vec 	这次	c=-27647 d=0 t=1

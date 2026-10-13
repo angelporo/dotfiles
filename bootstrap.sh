@@ -121,10 +121,11 @@ step_squirrel() {
 # -----------------------------------------------------------------------------
 step_rime() {
   dry_skip "套用 Rime 个人配置（apply.sh）" && return
-  info "套用个人 Rime 配置：rime/apply.sh"
+  info "套用个人 Rime 配置：rime/apply.sh ice（默认 ice 方案）"
   info "ⓘ 前提：官方 rime-ice 需先安装到 ~/Library/Rime（含 420MB 语法模型）。"
-  info "   若尚未安装，请先按 rime-ice 官方文档部署，再单独跑：bash ~/dotfiles/rime/apply.sh"
-  bash "$HERE/rime/apply.sh"
+  info "   若尚未安装，请先按 rime-ice 官方文档部署，再单独跑：bash ~/dotfiles/rime/apply.sh ice"
+  info "   若用万象方案：bash ~/dotfiles/rime/apply.sh wanxiang（需先装官方 rime_wanxiang）"
+  bash "$HERE/rime/apply.sh" ice
 }
 
 # -----------------------------------------------------------------------------
