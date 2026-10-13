@@ -14,6 +14,8 @@ hahahah 	哈哈哈哈	c=7143 d=0 t=1
 hahahaha 	蝦	c=3049 d=0 t=1
 hahha 	哈行啊	c=14832 d=0 t=1
 haxbaa 	哈行啊	c=13295 d=0 t=1
+hcwfhc 	好文	c=2036 d=0 t=1
+hcwfhc0 	好文	c=-2559 d=0 t=1
 hf 	很	c=1012 d=0 t=1
 jb 	晋	c=-20991 d=0 t=1
 jbqu 	进去	c=-1535 d=0 t=1

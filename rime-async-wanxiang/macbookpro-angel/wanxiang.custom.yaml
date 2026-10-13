@@ -56,8 +56,8 @@ patch:
     - {when: has_menu, accept: period, send: Page_Down}              # 翻页 .
 
     # ── emacs 编辑键（万象未占用的部分）────────────────────────────
-    - {when: composing, accept: Control+n, send: Down}      # 下一个候选
-    - {when: composing, accept: Control+p, send: Up}        # 上一个候选
+#    - {when: composing, accept: Control+n, send: Down}      # 下一个候选
+#    - {when: composing, accept: Control+p, send: Up}        # 上一个候选
     - {when: composing, accept: Control+b, send: Left}      # 光标左移
     - {when: composing, accept: Control+f, send: Right}     # 光标右移
     - {when: composing, accept: Control+d, send: Delete}    # 删除后一字
