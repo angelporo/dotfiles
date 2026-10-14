@@ -43,8 +43,9 @@ bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.em
 ## 注意
 
 - `git/.gitconfig` 含个人邮箱 `940079461@qq.com`，对外公开仓库前请注意。
-- `rime-async` / `rime-async-wanxiang` 为 Rime 词频同步目录（含个人输入习惯），目前已被 git 跟踪；
+- Rime 个人配置与词库统一在 `rime/`（flavor：`ice`），词库快照 `rime/ice/userdb/rime_ice/` 已被 git 跟踪；
   若仓库公开，建议 `git rm --cached` 并从 `.gitignore` 排除。
+- 历史上的 `rime-async` / `rime-async-wanxiang` 同步目录已于 2026-10-14 删除（旧 installation id `macbookpro-angel` 的同步快照，重装后不再使用；需要时从 git 历史找回）。
 - 仓库历史含 `rime-08dd95f-macOS/dist`（librime 二进制），是 `.git` 体积偏大的主因。
 
 ## emacs
