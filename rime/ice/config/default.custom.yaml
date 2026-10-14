@@ -1,4 +1,15 @@
 patch:
+  # 默认方案顺序：小鹤双拼第一，雾凇全拼第二（其余保持官方顺序）
+  schema_list:
+    - schema: double_pinyin_flypy    # 小鹤双拼（默认）
+    - schema: rime_ice               # 雾凇拼音（全拼）
+    - schema: t9                     # 中文九键
+    - schema: double_pinyin          # 自然码双拼
+    - schema: double_pinyin_abc      # 智能 ABC 双拼
+    - schema: double_pinyin_mspy     # 微软双拼
+    - schema: double_pinyin_sogou    # 搜狗双拼
+    - schema: double_pinyin_ziguang  # 紫光双拼
+    - schema: double_pinyin_jiajia   # 拼音加加双拼
   schema:
     font:
       font_size: 14  # 你可以调整这里的数字，设置你希望的字体大小

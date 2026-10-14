@@ -2,7 +2,7 @@ __patch:
 # Rx: iDvel/rime-ice:others/recipes/grammar:schema=rime_ice {
   - patch/+:
       grammar:
-        language: null   # 关闭万象模型，个人词频主导（与 double_pinyin_flypy 一致）
+        language: wanxiang-lts-zh-hans
         collocation_max_length: 10
         collocation_min_length: 2
         collocation_penalty: -15

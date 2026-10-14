@@ -1,15 +1,16 @@
 patch:
-  # ── 万象语言模型：已关闭 ───────────────────────────────────────
-  # 关闭原因：模型的语言模型重排会盖住个人词频（c= 计数），导致动态调频在候选里看不见。
-  # 关闭后候选完全由「个人词频 + 系统词频」排序，越用越跟手。
-  # 想恢复模型：把下面 grammar/language 改回 wanxiang-lts-zh-hans 并取消其余注释即可。
-  grammar/language: null
-  # grammar/collocation_max_length: 6
-  # grammar/collocation_min_length: 3
-  # grammar/collocation_penalty: -14
-  # grammar/non_collocation_penalty: -6
-  # grammar/weak_collocation_penalty: -100
-  # grammar/rear_penalty: -20
+  # ── 万象语言模型 ────────────────────────────────────────────────
+  # 参数改回官方 recipe（others/recipes/grammar）的推荐值。
+  # 之前六项惩罚全部往 0 调（-10/-3/-50/-5），等于把 420MB 模型的话语权削到接近半关；
+  # 先按官方值跑一周，觉得整句太激进再往回调。
+  grammar:
+    language: wanxiang-lts-zh-hans
+    collocation_max_length: 6     # 官方 6（原 5）
+    collocation_min_length: 3     # 官方 3（原 2，2 字搭配噪音偏多）
+  grammar/collocation_penalty: -14        # 原 -10
+  grammar/non_collocation_penalty: -6     # 原 -3
+  grammar/weak_collocation_penalty: -100  # 原 -50
+  grammar/rear_penalty: -20               # 原 -5
 
   # 自动调频 / 频率浮动：只在这里（双拼方案）开启，不要放到 default.custom.yaml。
   # rime-ice 官方对全拼 rime_ice 和英文 melt_eng 都显式禁用（enable_user_dict: false），

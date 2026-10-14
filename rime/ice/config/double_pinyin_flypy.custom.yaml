@@ -1,15 +1,17 @@
 patch:
-  # ── 万象语言模型：已关闭 ───────────────────────────────────────
-  # 关闭原因：模型的语言模型重排会盖住个人词频（c= 计数），导致动态调频在候选里看不见。
-  # 关闭后候选完全由「个人词频 + 系统词频」排序，越用越跟手。
-  # 想恢复模型：把下面 grammar/language 改回 wanxiang-lts-zh-hans 并取消其余注释即可。
-  grammar/language: null
-  # grammar/collocation_max_length: 6
-  # grammar/collocation_min_length: 3
-  # grammar/collocation_penalty: -14
-  # grammar/non_collocation_penalty: -6
-  # grammar/weak_collocation_penalty: -100
-  # grammar/rear_penalty: -20
+  # ── 万象语言模型 ────────────────────────────────────────────────
+  # 惩罚用弱值：官方强值（-14/-6/-100/-20）会把模型的话语权拉满，
+  # 两字词每选一次只累加很小的 userdb 增量，敌不过模型的惩罚/打分，
+  # 动态调频就只剩长句可见。弱值让个人词频能透出来，长句联想仍在。
+  # collocation_min_length 保持 3：两字搭配不参与模型打分，避免模型噪音盖住两字词调频。
+  grammar:
+    language: wanxiang-lts-zh-hans
+    collocation_max_length: 5     # 原 5（官方 6）
+    collocation_min_length: 2     # 2 字搭配噪音偏多，不用 2
+  grammar/collocation_penalty: -14        # 原 -10（官方 -14）
+  grammar/non_collocation_penalty: -6     # 原 -3（官方 -6）
+  grammar/weak_collocation_penalty: -100   # 原 -50（官方 -100）
+  grammar/rear_penalty: -20                # 原 -5（官方 -20）
 
   # 自动调频 / 频率浮动：只在这里（双拼方案）开启，不要放到 default.custom.yaml。
   # rime-ice 官方对全拼 rime_ice 和英文 melt_eng 都显式禁用（enable_user_dict: false），
@@ -27,9 +29,9 @@ patch:
 
   # 上下文调频：官方 recipe 为 false。开启后候选顺序会随上文跳动，
   # 破坏肌肉记忆，故关闭（原为 true）。
-  translator/contextual_suggestions: false
-  translator/max_homophones: 8   # 原 7
-  translator/max_homographs: 8   # 原 7
+  translator/contextual_suggestions: true
+  translator/max_homophones: 4   # 原 7
+  translator/max_homographs: 2   # 原 7
 
   # 长词优先 & v 模式优先（顺序与 rime_ice 全拼方案保持一致）
   engine/filters:
