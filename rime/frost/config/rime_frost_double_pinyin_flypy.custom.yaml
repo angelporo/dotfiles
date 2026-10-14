@@ -1,0 +1,33 @@
+# 个人覆盖层（白霜小鹤双拼）
+# 作用：挂上万象大模型、恢复个人习惯（emacs 键位 / 候选数 / 短语浮动）
+patch:
+  # ── 万象大模型（LTS 语法模型）────────────────────────────
+  # 把白霜自带的极小 zh-moqi 换成万象 394MB 模型，做上下文联想排序。
+  # 若觉得每次按键重排卡顿，把下面 language 改回 zh-moqi 即可（或删掉此块）。
+  grammar/language: wanxiang-lts-zh-hans
+  grammar/collocation_max_length: 5     # 最长 5 字搭配打分（越小越省）
+  grammar/collocation_min_length: 3     # 2 字搭配不参与打分（对计算量影响最大）
+  grammar/non_collocation_penalty: -4
+
+  # ── 候选数量 ───────────────────────────────────────────
+  menu/page_size: 5
+
+  # ── 短语/整句频率浮动 ──────────────────────────────────
+  translator/enable_user_dict: true
+  translator/enable_sentence: true
+
+  # ── emacs 编辑键（组词 composing 时）───────────────────
+  key_binder/bindings/+:
+    - { when: composing, accept: Control+n, send: Down }       # 下一个候选
+    - { when: composing, accept: Control+p, send: Up }         # 上一个候选
+    - { when: composing, accept: Control+b, send: Left }       # 光标左移
+    - { when: composing, accept: Control+f, send: Right }      # 光标右移
+    - { when: composing, accept: Control+d, send: Delete }     # 删除后一字
+    - { when: composing, accept: Control+h, send: BackSpace }  # 删除前一字
+    - { when: composing, accept: Control+y, send: Page_Up }
+    - { when: composing, accept: Alt+v, send: Page_Up }
+    - { when: composing, accept: Control+v, send: Page_Down }
+    - { when: composing, accept: Control+bracketleft, send: Escape }
+    # 中英切换 / 中英标点（Rime 预设已有，这里显式保留以贴合习惯）
+    - { when: always, accept: Control+period, toggle: ascii_mode }
+    - { when: always, accept: Control+comma, toggle: ascii_punct }

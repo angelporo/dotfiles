@@ -3,8 +3,8 @@
 # 把 dotfiles 里的「个人 Rime 配置」覆盖到 ~/Library/Rime
 #
 # 支持两套方案，目录严格区分：
-#   ice      -> ice/config/      + ice/userdb/rime_ice/        (rime-ice + 小鹤双拼 + 万象语法)
-#   wanxiang -> wanxiang/config/ + wanxiang/userdb/wanxiang/   (万象拼音 + 小鹤双拼 + 声调选词)
+#   ice   -> ice/config/      + ice/userdb/rime_ice/      (rime-ice + 小鹤双拼 + 万象语法)
+#   frost -> frost/config/    + frost/userdb/rime_frost/  (白霜拼音 + 小鹤双拼 + 万象大模型)
 #
 # 每套方案只放你自己的「个人覆盖层」：*.custom.yaml、个人短语、用户词库快照。
 # 官方文件(default.yaml / *.schema.yaml / lua/ / dicts/ / *.gram 等) 不在本目录，由官方安装提供。
@@ -13,7 +13,7 @@
 #
 # 用法：
 #   bash apply.sh ice            # 应用 ice 个人配置 + 恢复 ice 用户词库
-#   bash apply.sh wanxiang       # 应用万象个人配置 + 恢复万象用户词库
+#   bash apply.sh frost          # 应用白霜个人配置 + 恢复白霜用户词库
 #   DRY=1 bash apply.sh <方案>   # 只预览，不改动
 #   CAPTURE=1 bash apply.sh <方案>  # 把本机已学词库抓回 dotfiles 快照
 #
@@ -33,9 +33,9 @@ CAPTURE="${CAPTURE:-0}"
 usage() {
   cat <<'EOF'
 用法：
-  bash apply.sh <ice|wanxiang>              应用某套方案的个人配置 + 恢复用户词库
-  DRY=1 bash apply.sh <ice|wanxiang>        只预览，不改动
-  CAPTURE=1 bash apply.sh <ice|wanxiang>    把本机已学词库抓回 dotfiles 快照
+  bash apply.sh <ice|frost>              应用某套方案的个人配置 + 恢复用户词库
+  DRY=1 bash apply.sh <ice|frost>        只预览，不改动
+  CAPTURE=1 bash apply.sh <ice|frost>    把本机已学词库抓回 dotfiles 快照
 EOF
 }
 
@@ -52,13 +52,13 @@ case "$FLAVOR" in
     UDB_NAME="rime_ice"
     SNAP="$HERE/ice/userdb/rime_ice"
     ;;
-  wanxiang)
-    CONF_DIR="$HERE/wanxiang/config"
-    UDB_NAME="wanxiang"
-    SNAP="$HERE/wanxiang/userdb/wanxiang"
+  frost)
+    CONF_DIR="$HERE/frost/config"
+    UDB_NAME="rime_frost"
+    SNAP="$HERE/frost/userdb/rime_frost"
     ;;
   *)
-    echo "错误：未知方案 '$FLAVOR'（可选 ice | wanxiang）"
+    echo "错误：未知方案 '$FLAVOR'（可选 ice | frost）"
     usage
     exit 1
     ;;
@@ -83,17 +83,17 @@ detect_live_flavor() {
   # 1) 本脚本上次写入的标记（最可靠）
   [ -f "$MARKER" ] && { cat "$MARKER"; return; }
   # 2) 看用户词库目录：哪套的 .userdb 存在即用哪套（二者皆无则交由第 3 步）
-  local w=0
+  local f=0
   local i=0
-  [ -d "$DEST/wanxiang.userdb" ] && w=1
+  [ -d "$DEST/rime_frost.userdb" ] && f=1
   [ -d "$DEST/rime_ice.userdb" ] && i=1
-  if [ "$w" = 1 ] && [ "$i" = 0 ]; then echo "wanxiang"; return; fi
-  if [ "$i" = 1 ] && [ "$w" = 0 ]; then echo "ice"; return; fi
+  if [ "$f" = 1 ] && [ "$i" = 0 ]; then echo "frost"; return; fi
+  if [ "$i" = 1 ] && [ "$f" = 0 ]; then echo "ice"; return; fi
   # 3) 退回 default.yaml 的首条 schema_list（新装机器尚未产生 userdb 时）
   local s
   s="$(grep -m1 -A2 'schema_list' "$DEST/default.yaml" 2>/dev/null | grep -oE 'schema: [a-z_]+' | head -1 | awk '{print $2}')"
   case "$s" in
-    wanxiang) echo "wanxiang" ;;
+    rime_frost_double_pinyin_flypy) echo "frost" ;;
     double_pinyin_flypy|rime_ice) echo "ice" ;;
     *) echo "" ;;
   esac

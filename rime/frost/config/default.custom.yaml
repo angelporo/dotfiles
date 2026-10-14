@@ -1,0 +1,10 @@
+# 个人对默认方案列表的覆盖：把小鹤双拼设为默认（首条）
+# 官方 default.yaml 不进 dotfiles，这里只存个人改动。
+patch:
+  schema_list:
+    - schema: rime_frost_double_pinyin_flypy    # 小鹤双拼（默认）
+    - schema: rime_frost                        # 白霜拼音（全拼）
+    - schema: rime_frost_double_pinyin          # 自然码双拼
+    - schema: rime_frost_double_pinyin_mspy     # 微软双拼
+    - schema: rime_frost_double_pinyin_sogou    # 搜狗双拼
+    - schema: rime_frost_t9                     # 仓·九键拼音
