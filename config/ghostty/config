@@ -1,0 +1,41 @@
+# ============================================================
+#  Ghostty 配置  (生成于 2026-10-10)
+#  主题随时可换：运行 `ghostty +list-themes` 查看全部 463 套
+# ============================================================
+
+# ---- 字体（已安装 JetBrains Mono Nerd Font）----
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 13
+font-feature = calt liga
+
+# ---- 主题（Catppuccin 护眼底色，可改任意内置主题名）----
+theme = Catppuccin Mocha
+
+# ---- macOS 行为 ----
+macos-option-as-alt = true
+
+# ---- 窗口与外观 ----
+window-padding-x = 10
+window-padding-y = 10
+background-opacity = 1.0
+unfocused-split-opacity = 0.85
+cursor-style = bar
+cursor-style-blink = true
+mouse-hide-while-typing = true
+
+# ---- 滚动与历史（scrollback-limit 单位为字节，默认 10000000≈10MB）----
+scrollback-limit = 100000000
+
+# ---- shell 集成：新标签继承目录 / 长命令完成通知 / prompt 间跳转 ----
+shell-integration = detect
+
+# ---- 原生分屏 & 标签（无需 tmux）----
+# 注意：= 与动作之间不能有空格；方向键名为 arrow_up/arrow_down 等
+keybind = ctrl+shift+enter=new_split:right
+keybind = ctrl+shift+space=new_split:down
+keybind = ctrl+shift+arrow_left=goto_split:left
+keybind = ctrl+shift+arrow_right=goto_split:right
+keybind = ctrl+shift+arrow_up=goto_split:up
+keybind = ctrl+shift+arrow_down=goto_split:down
+keybind = ctrl+shift+w=close_surface
+keybind = super+shift+t=new_tab

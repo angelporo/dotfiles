@@ -1,0 +1,3 @@
+model: qwen2.5-coder:1.5b
+api_base: http://localhost:11434/v1
+api_key: ollama

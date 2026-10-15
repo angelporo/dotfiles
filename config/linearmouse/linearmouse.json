@@ -1,0 +1,109 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.11.2",
+  "schemes" : [
+    {
+      "buttons" : {
+        "clickDebouncing" : {
+          "timeout" : 0
+        }
+      },
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x16",
+          "productName" : "HHKB-Studio1",
+          "vendorID" : "0x4fe"
+        }
+      },
+      "pointer" : {
+        "acceleration" : "unset",
+        "disableAcceleration" : false,
+        "redirectsToScroll" : false,
+        "speed" : "unset"
+      },
+      "scrolling" : {
+        "acceleration" : 1,
+        "distance" : "auto",
+        "smoothed" : {
+          "horizontal" : {
+            "acceleration" : 8,
+            "bouncing" : false,
+            "enabled" : true,
+            "inertia" : 1.07,
+            "preset" : "linear",
+            "response" : 2,
+            "speed" : 3.74
+          },
+          "vertical" : {
+            "acceleration" : 0.69,
+            "bouncing" : false,
+            "enabled" : true,
+            "inertia" : 0.22,
+            "preset" : "easeInOut",
+            "response" : 1.4,
+            "speed" : 1.11
+          }
+        },
+        "speed" : 0
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x269",
+          "productName" : "z鼠标",
+          "serialNumber" : "AC:BC:32:DA:39:2B",
+          "vendorID" : "0x4c"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "smoothed" : {
+          "vertical" : {
+            "acceleration" : 0.78,
+            "bouncing" : false,
+            "enabled" : true,
+            "inertia" : 0.44,
+            "preset" : "linear",
+            "response" : 0.9200000000000002048,
+            "speed" : 1
+          }
+        },
+        "speed" : {
+          "vertical" : 0
+        }
+      }
+    },
+    {
+      "if" : {
+        "app" : "com.alibaba.DingTalkMac",
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x269",
+          "productName" : "z鼠标",
+          "serialNumber" : "AC:BC:32:DA:39:2B",
+          "vendorID" : "0x4c"
+        }
+      },
+      "scrolling" : {
+        "smoothed" : {
+          "vertical" : {
+            "acceleration" : 0.78,
+            "bouncing" : false,
+            "enabled" : true,
+            "inertia" : 0.44,
+            "preset" : "linear",
+            "response" : 0.9200000000000002048,
+            "speed" : 1.54
+          }
+        }
+      }
+    }
+  ]
+}

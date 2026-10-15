@@ -14,6 +14,8 @@
 #   bash ~/dotfiles/setup.sh rime       # 调用 rime/apply.sh（复制个人配置到 ~/Library/Rime）
 #   bash ~/dotfiles/setup.sh emacs      # 软链 centaur-emacs 自定义层到 ~/.emacs.d
 #   bash ~/dotfiles/setup.sh alfred     # 软链 Alfred 同步文件夹到 Application Support
+#   bash ~/dotfiles/setup.sh config     # 软链小工具配置(ghostty/karabiner/atuin 等)到 ~/.config
+#   bash ~/dotfiles/setup.sh ssh        # 软链 ssh config（私钥不入库）
 #   DRY=1 bash ~/dotfiles/setup.sh      # 只打印将要做什么，不真改
 #
 # 全新机器一键迁移请用 bootstrap.sh（会先装 MacPorts/Squirrel 等前置）。
@@ -106,6 +108,43 @@ do_emacs() {
   fi
 }
 
+do_config() {
+  echo "==> config (ghostty/linearmouse/atuin/uv/karabiner/shell_gpt/opencode)"
+  local cfg="$HERE/config"
+  # 整目录软链
+  for t in ghostty linearmouse atuin uv; do
+    [ -d "$cfg/$t" ] || { echo "  ⓘ config/$t 不存在，跳过"; continue; }
+    if [ -d "$HOME_DIR/.config/$t" ] && [ ! -L "$HOME_DIR/.config/$t" ]; then
+      echo "  ⚠ ~/.config/$t 是真实目录，请先手动迁移内容后再跑本模块"
+      continue
+    fi
+    link "$cfg/$t" "$HOME_DIR/.config/$t"
+  done
+  # karabiner：只链 karabiner.json（automatic_backups/ 留在本地）
+  mkdir -p "$HOME_DIR/.config/karabiner"
+  link "$cfg/karabiner/karabiner.json" "$HOME_DIR/.config/karabiner/karabiner.json"
+  # shell_gpt：链 config/functions/roles；.sgptrc 含 API key 不入库，需手工放置
+  mkdir -p "$HOME_DIR/.config/shell_gpt"
+  link "$cfg/shell_gpt/config.yaml" "$HOME_DIR/.config/shell_gpt/config.yaml"
+  link "$cfg/shell_gpt/functions"   "$HOME_DIR/.config/shell_gpt/functions"
+  link "$cfg/shell_gpt/roles"       "$HOME_DIR/.config/shell_gpt/roles"
+  [ -f "$HOME_DIR/.config/shell_gpt/.sgptrc" ] || \
+    echo "  ⚠ shell_gpt 的 .sgptrc（含 API key）不入库，需手工创建"
+  # opencode：链 json+plugins；node_modules 由 cd ~/.config/opencode && npm install 重建
+  mkdir -p "$HOME_DIR/.config/opencode"
+  link "$cfg/opencode/opencode.json" "$HOME_DIR/.config/opencode/opencode.json"
+  link "$cfg/opencode/package.json"  "$HOME_DIR/.config/opencode/package.json"
+  link "$cfg/opencode/plugins"       "$HOME_DIR/.config/opencode/plugins"
+}
+
+do_ssh() {
+  echo "==> ssh"
+  mkdir -p "$HOME_DIR/.ssh"
+  chmod 700 "$HOME_DIR/.ssh"
+  link "$HERE/ssh/config" "$HOME_DIR/.ssh/config"
+  echo "  ⓘ 私钥(id_ed25519/id_rsa)不入库，换机后需从 1Password/离线备份恢复"
+}
+
 do_alfred() {
   echo "==> alfred"
   local src="$HERE/alfred/Alfred.alfredpreferences"
@@ -142,14 +181,18 @@ main() {
     rime)  do_rime ;;
     emacs) do_emacs ;;
     alfred) do_alfred ;;
+    config) do_config ;;
+    ssh)   do_ssh ;;
     all)
       do_shell
       do_git
+      do_config
+      do_ssh
       do_rime
       do_emacs
       do_alfred
       ;;
-    *) echo "未知组件: $target（可选 shell / git / rime / emacs / alfred / all）"; exit 1 ;;
+    *) echo "未知组件: $target（可选 shell / git / config / ssh / rime / emacs / alfred / all）"; exit 1 ;;
   esac
   echo
   echo "完成。新开一个终端即可生效；如想回退，删掉软链并把 *.orig-<时间戳> 改名回去。"
