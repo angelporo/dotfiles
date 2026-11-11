@@ -306,3 +306,10 @@ if [[ -o interactive ]]; then
   bindkey '\C-o' _ai_suggest_widget
 fi
 alias gs="git status"; alias ga="git add"
+
+# [2026-11-11] gcm：git add -A + commit（覆盖 oh-my-zsh git 插件的 gcm=checkout main，
+# 那个默认值曾把提交信息当成 pathspec 报 "did not match any file(s) known to git"）。
+# 用法: gcm '提交说明'；工作区干净时 commit 会自然失败，无副作用。
+# 注意：必须先 unalias——zsh 解析下面的函数定义行时会把开头的 gcm 按别名展开，导致语法错误。
+unalias gcm 2>/dev/null
+gcm() { git add -A && git commit -m "$*"; }
