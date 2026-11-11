@@ -1,17 +1,17 @@
-# __patch:
+__patch:
 # Rx: iDvel/rime-ice:others/recipes/grammar:schema=rime_ice {
-  # 万象大模型已于 2026-10-16 注释停用（.gram 文件保留在 ~/Library/Rime/，未删除）。
-  # 想重新启用：取消下面各行注释，然后重新部署即可。
-  # - patch/+:
-  #     grammar:
-  #       language: wanxiang-lts-zh-hans
-  #       collocation_max_length: 10
-  #       collocation_min_length: 2
-  #       collocation_penalty: -15
-  #       non_collocation_penalty: -5
-  #       weak_collocation_penalty: -100
-  #       rear_penalty: -10
-  #     translator/contextual_suggestions: false
-  #     translator/max_homophones: 8
-  #     translator/max_homographs: 8
+  # 2026-11-06 重新启用万象大模型（ice 配置 + 万象模型），参数与双拼个人层保持一致（弱值）。
+  # 停用方式：把下面 - patch/+ 到 translator/max_homographs 整段注释掉，重新部署即可。
+  - patch/+:
+      grammar:
+        language: wanxiang-lts-zh-hans
+        collocation_max_length: 5
+        collocation_min_length: 3
+        collocation_penalty: -10
+        non_collocation_penalty: -3
+        weak_collocation_penalty: -50
+        rear_penalty: -5
+      translator/contextual_suggestions: false
+      translator/max_homophones: 8
+      translator/max_homographs: 8
 # }

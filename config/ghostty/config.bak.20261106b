@@ -1,0 +1,52 @@
+# ============================================================
+#  Ghostty 配置  (生成于 2026-10-10)
+#  主题随时可换：运行 `ghostty +list-themes` 查看全部 463 套
+# ============================================================
+
+# ---- 字体（已安装 JetBrains Mono Nerd Font）----
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 13
+font-feature = calt liga
+
+# ---- 主题（Catppuccin 护眼底色，可改任意内置主题名）----
+theme = Catppuccin Mocha
+
+# ---- macOS 行为 ----
+macos-option-as-alt = true
+
+# ---- 窗口与外观 ----
+window-padding-x = 10
+window-padding-y = 10
+# 背景不透明（已关闭毛玻璃：background-blur 在切 tab 时会闪一帧，按需求彻底还原）
+background-opacity = 1
+background-blur = false
+unfocused-split-opacity = 1
+cursor-style = bar
+cursor-style-blink = true
+mouse-hide-while-typing = true
+
+# ---- 滚动与历史（scrollback-limit-bytes 单位为字节，默认 50000000≈50MB）----
+scrollback-limit-bytes = 100000000
+
+# ---- shell 集成：新标签继承目录 / 长命令完成通知 / prompt 间跳转 ----
+shell-integration = detect
+
+# ---- 原生分屏 & 标签（无需 tmux）----
+# 注意：= 与动作之间不能有空格；方向键名为 arrow_up/arrow_down 等
+keybind = ctrl+shift+enter=new_split:right
+keybind = ctrl+shift+space=new_split:down
+keybind = ctrl+shift+arrow_left=goto_split:left
+keybind = ctrl+shift+arrow_right=goto_split:right
+keybind = ctrl+shift+arrow_up=goto_split:up
+keybind = ctrl+shift+arrow_down=goto_split:down
+keybind = ctrl+shift+w=close_surface
+keybind = super+shift+t=new_tab
+
+# ---- 全局下拉终端（quick terminal）----
+# global: 前缀 = 系统级热键，即使 Ghostty 不在前台（你在别的 App）也能呼出
+# 前提：需在 系统设置 > 隐私与安全性 > 辅助功能 中给 Ghostty 授权，否则其他 App 在前台时无效
+# 注：Cmd+Enter 同时覆盖了默认的「全屏」快捷键（原 super+enter=toggle_fullscreen）
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.2
+keybind = super+enter=toggle_quick_terminal
+keybind = global:super+enter=toggle_quick_terminal

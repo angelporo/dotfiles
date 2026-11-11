@@ -235,3 +235,74 @@ fi
 if command -v vivid >/dev/null 2>&1; then
   export LS_COLORS="$(vivid generate catppuccin-mocha 2>/dev/null)"
 fi
+
+# ============================================================
+#  AI 命令建议（本地 Ollama：离线、免 API key、数据不出本机）
+#  用法：提示符里输入自然语言意图（如 "解压这个 tar.gz 到 tmp"），
+#        触发：按住 Ctrl 按 O（Ctrl+O），
+#        本地模型返回 shell 命令并填入当前行，可编辑后回车执行。
+#  依赖：ollama 服务在跑 + 已拉取模型（默认 qwen2.5-coder:1.5b）
+#  改键：修改下面的 bindkey '\C-o' 行换成别的键位（如 '\C-x\C-a' 两键序列）
+# ============================================================
+AI_SUGGEST_MODEL="qwen2.5-coder:1.5b"
+
+function _ai_suggest_widget() {
+  local input="$BUFFER"
+  if [[ -z "$input" ]]; then
+    zle -M "AI 建议：请先在提示符输入自然语言意图（如：解压 a.tar.gz 到 ~/tmp），再按 Ctrl+O"
+    return
+  fi
+  if ! command -v python3 >/dev/null 2>&1; then
+    zle -M "AI 建议失败：找不到 python3"
+    return
+  fi
+  if ! curl -sS -m 2 http://localhost:11434/api/tags >/dev/null 2>&1; then
+    zle -M "AI 建议失败：Ollama 未运行，请先执行 'ollama serve'（或打开 Ollama App）"
+    return
+  fi
+  local resp
+  resp=$(python3 - "$input" "$AI_SUGGEST_MODEL" <<'PYEOF' 2>/tmp/ai_suggest_err.log
+import sys, json, urllib.request, re
+inp = sys.argv[1]
+model = sys.argv[2]
+prompt = ("You are a shell command generator for macOS zsh. "
+          "Given a natural language request, output ONLY the exact shell command that accomplishes it. "
+          "No explanation, no markdown, no code fences. Never wrap the command in quotes or backticks. "
+          "When the command involves variables, quotes, or regex metacharacters, escape them correctly for zsh. "
+          "If the input is already a command or empty, return it unchanged.\n\n"
+          "Request: " + inp)
+data = json.dumps({"model": model, "prompt": prompt, "stream": False}).encode()
+req = urllib.request.Request("http://localhost:11434/api/generate",
+                             data=data, headers={"Content-Type": "application/json"})
+try:
+    with urllib.request.urlopen(req, timeout=60) as r:
+        out = json.load(r).get("response", "").strip()
+    out = re.sub(r'^```[a-zA-Z]*\n?', '', out)
+    out = re.sub(r'\n?```$', '', out).strip()
+    out = re.sub(r'^`', '', out)            # 去掉模型偶尔包裹的单反引号（左）
+    out = re.sub(r'`$', '', out).strip()    # 去掉包裹的单反引号（右）
+    # 去掉"整条命令被一对引号包裹"的情况（如 "ls -la" 或 'ls -la'）；
+    # 仅当首尾同引号且全串只有这一对时才剥离，避免误伤命令内部必要的引号
+    if len(out) >= 2 and out[0] == out[-1] and out[0] in "\"'":
+        if out.count(out[0]) == 2:
+            out = out[1:-1].strip()
+    print(out)
+except Exception as e:
+    sys.stderr.write("ollama err: %s\n" % e)
+    print("", end="")
+PYEOF
+)
+  if [[ -z "$resp" ]]; then
+    zle -M "AI 建议失败：模型无返回（详见 /tmp/ai_suggest_err.log）"
+    return
+  fi
+  BUFFER="$resp"
+  CURSOR=${#BUFFER}
+  zle redisplay
+}
+
+if [[ -o interactive ]]; then
+  zle -N _ai_suggest_widget
+  bindkey '\C-o' _ai_suggest_widget
+fi
+alias gs="git status"; alias ga="git add"

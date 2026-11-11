@@ -7,3 +7,5 @@
 	pager = delta
 [include]
 	path = /opt/local/share/git-delta/themes.gitconfig
+[safe]
+	directory = *

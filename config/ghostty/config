@@ -17,14 +17,16 @@ macos-option-as-alt = true
 # ---- 窗口与外观 ----
 window-padding-x = 10
 window-padding-y = 10
-background-opacity = 1.0
-unfocused-split-opacity = 0.85
+# 背景不透明（已关闭毛玻璃：background-blur 在切 tab 时会闪一帧，按需求彻底还原）
+background-opacity = 1
+background-blur = false
+unfocused-split-opacity = 1
 cursor-style = bar
 cursor-style-blink = true
 mouse-hide-while-typing = true
 
-# ---- 滚动与历史（scrollback-limit 单位为字节，默认 10000000≈10MB）----
-scrollback-limit = 100000000
+# ---- 滚动与历史（scrollback-limit-bytes 单位为字节，默认 50000000≈50MB）----
+scrollback-limit-bytes = 100000000
 
 # ---- shell 集成：新标签继承目录 / 长命令完成通知 / prompt 间跳转 ----
 shell-integration = detect
