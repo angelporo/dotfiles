@@ -5,9 +5,6 @@ patch:
   schema_list:
     - schema: double_pinyin_flypy    # 小鹤双拼（默认）
     - schema: rime_ice               # 雾凇拼音（全拼）
-  schema:
-    font:
-      font_size: 14  # 你可以调整这里的数字，设置你希望的字体大小
   # 菜单
   menu:
     page_size: 5  # 候选词个数

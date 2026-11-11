@@ -52,9 +52,28 @@ patch:
     # 白白多一遍候选遍历。想用长词优先时加回来并补上配置段即可。
     - lua_filter@*reduce_english_filter
     # simplifier@emoji 已摘掉：表情候选（你不使用）。
-    - simplifier@traditionalize
-    - lua_filter@*search@radical_pinyin
+    # simplifier@traditionalize 已摘掉（2026-11-11）：从不用简繁切换，
+    # OpenCC 每候选转换是剩余最大的一笔 per-candidate 开销。要恢复：加回这一行。
+    # lua_filter@*search@radical_pinyin 已摘掉（2026-11-11）：辅码检字需要拆字技能，不使用；
+    # engine/translators 里也一并摘掉了 table_translator@radical_lookup（uU 拆字反查），
+    # radical_pinyin 词库（约 5.5MB）从此不再加载。
     - uniquifier
+
+  # 2026-11-11 覆盖 translators：相对方案原列表只摘掉了 table_translator@radical_lookup
+  # （拆字反查，不用拆字技能）。其余保持原顺序，要恢复反查把那一行加回来即可。
+  engine/translators:
+    - punct_translator
+    - script_translator
+    - lua_translator@*date_translator    # 时间、日期、星期
+    - lua_translator@*lunar              # 农历
+    - lua_translator@*uuid               # UUID
+    - table_translator@custom_phrase     # 自定义短语 custom_phrase_double.txt
+    - table_translator@melt_eng          # 英文输入
+    - table_translator@cn_en             # 中英混合词汇
+    - lua_translator@*unicode            # Unicode
+    - lua_translator@*number_translator  # 数字、金额大写
+    - lua_translator@*calc_translator    # 计算器
+    - lua_translator@*force_gc           # 暴力 GC
 
   # 拼写设定
   speller:
@@ -67,16 +86,14 @@ patch:
       - erase/^xx$/
       - derive/^([jqxy])u$/$1v/
       - derive/^([aoe])([ioun])$/$1$1$2/
-      # 模糊音：2026-11-11 起「按组开关」——
-      #   平翘舌：保持单向（只容错漏打 h），z/c/s 音节不再翻倍，这是性能收益最大的一组；
-      #   前后鼻音：恢复双向（in/ing 互查），代价只是 in/ing/en/eng 这几个韵母的音节
-      #   裂成两个拼写，搜索空间增量远小于原先 6 条全开的状态。
-      # 1. 平翘舌音：只容错「漏打 h」
-      - derive/^([zcs])h/$1/             # zh/ch/sh -> z/c/s (例如: 打 "ci" 也能出 "迟")
-      # - derive/^([zcs])([^h])/$1h$2/   # z/c/s -> zh/ch/sh（反向容错，仍注释）
-      # 2. 前后鼻音：双向容错（in/ing 互查）
-      - derive/([ei])n$/$1ng/            # in/en -> ing/eng (例如: 打 "yin" 也能出 "应")
-      - derive/([ei])ng$/$1n/            # ing/eng -> in/en (例如: 打 "ying" 也能出 "因")
+      # 模糊音：2026-11-11 恢复「双向全开」——用户明确表示不在意这点性能开销，
+      # 换取任意手误方向都能出字。平翘舌 + 前后鼻音各双向，共 4 条。
+      # 1. 平翘舌音不分 (z/zh, c/ch, s/sh)
+      - derive/^([zcs])h/$1/             # zh/ch/sh -> z/c/s (例如: "chi" -> "ci")
+      - derive/^([zcs])([^h])/$1h$2/     # z/c/s -> zh/ch/sh (例如: "ci" -> "chi")
+      # 2. 前后鼻音不分 (in/ing, en/eng)
+      - derive/([ei])n$/$1ng/            # in/en -> ing/eng (例如: "yin" -> "ying")
+      - derive/([ei])ng$/$1n/            # ing/eng -> in/en (例如: "ying" -> "yin")
       - xform/^([aoe])(ng)?$/$1$1$2/
       - xform/iu$/Ⓠ/
       - xform/(.)ei$/$1Ⓦ/
